@@ -159,15 +159,16 @@ a {
    Hero Section
    =========================== */
 .hero {
-    min-height: 100vh;
+    min-height: 65vh;
     display: flex;
     align-items: center;
     padding-top: 80px;
+    padding-bottom: var(--spacing-md);
 }
 
 .hero .container {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.5fr 0.8fr;
     gap: var(--spacing-lg);
     align-items: center;
 }
@@ -177,11 +178,12 @@ a {
 }
 
 .hero-name {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 700;
     display: block;
     margin-bottom: var(--spacing-sm);
     color: var(--color-accent);
+    line-height: 1.1;
 }
 
 .hero-subtitle {
@@ -196,7 +198,7 @@ a {
     color: var(--color-text-secondary);
     line-height: 1.8;
     margin-bottom: var(--spacing-md);
-    max-width: 600px;
+    max-width: 650px;
 }
 
 .hero-cta {
@@ -207,6 +209,8 @@ a {
 
 .hero-image {
     animation: fadeIn 1s ease 0.3s both;
+    max-width: 350px;
+    margin-left: auto;
 }
 
 /* ===========================
@@ -262,7 +266,8 @@ a {
 }
 
 .hero-image .image-placeholder {
-    min-height: 500px;
+    min-height: 350px;
+    max-height: 400px;
 }
 
 /* ===========================
@@ -279,17 +284,27 @@ a {
     border-radius: var(--border-radius);
     overflow: hidden;
     transition: var(--transition);
-    border: 1px solid var(--color-border);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
 }
 
 .experience-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+}
+
+.experience-card:hover .card-title {
+    text-decoration: underline;
 }
 
 .card-image {
     height: 250px;
     overflow: hidden;
+    position: relative;
 }
 
 .card-image .image-placeholder {
@@ -306,6 +321,7 @@ a {
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
     color: var(--color-accent);
+    transition: var(--transition);
 }
 
 .card-meta {
@@ -322,14 +338,7 @@ a {
 }
 
 .card-link {
-    display: inline-block;
-    color: var(--color-accent);
-    font-weight: 600;
-    margin-top: var(--spacing-xs);
-}
-
-.card-link:hover {
-    text-decoration: underline;
+    display: none;
 }
 
 /* ===========================
@@ -346,12 +355,21 @@ a {
     border-radius: var(--border-radius);
     overflow: hidden;
     transition: var(--transition);
-    border: 1px solid var(--color-border);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-border);
+}
+
+.project-card:hover .card-title {
+    text-decoration: underline;
 }
 
 .project-card .card-image {
@@ -362,7 +380,7 @@ a {
    Contact Section
    =========================== */
 .contact-content {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     text-align: center;
 }
@@ -371,43 +389,32 @@ a {
     font-size: 1.25rem;
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
 }
 
 .contact-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-md);
+    text-align: center;
     margin-top: var(--spacing-lg);
 }
 
 .contact-item {
-    padding: var(--spacing-md);
-    background-color: var(--color-white);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-border);
-    transition: var(--transition);
+    margin-bottom: var(--spacing-md);
 }
 
-.contact-item:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-3px);
-}
-
-.contact-item h3 {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-xs);
-    font-weight: 500;
+.contact-item:last-child {
+    margin-bottom: 0;
 }
 
 .contact-item a {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: var(--color-accent);
     font-weight: 600;
+    transition: var(--transition);
 }
 
 .contact-item a:hover {
     text-decoration: underline;
+    opacity: 0.8;
 }
 
 /* ===========================
