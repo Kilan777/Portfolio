@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Color Palette Options</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .palette {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .palette h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .palette-description {
+            color: #666;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .colors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            height: 100px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .color-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .color-hex {
+            font-size: 0.75rem;
+            color: #888;
+            font-family: 'Courier New', monospace;
+        }
+
+        .preview-section {
+            margin-top: 30px;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .preview-section h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .preview-section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .preview-button {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .preview-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Option 1: Forest Green */
+        .option1-preview {
+            background: #FAFAF9;
+            color: #1A1A1A;
+        }
+
+        .option1-preview .accent-underline {
+            border-bottom: 3px solid #2D6A4F;
+            display: inline-block;
+        }
+
+        .option1-preview .preview-button {
+            background: #2D6A4F;
+            color: white;
+        }
+
+        .option1-preview .preview-button:hover {
+            background: #245A41;
+        }
+
+        /* Option 2: Monochrome */
+        .option2-preview {
+            background: #FFFFFF;
+            color: #0A0A0A;
+            border: 1px solid #E0E0E0;
+        }
+
+        .option2-preview .accent-underline {
+            border-bottom: 3px solid #1A1A1A;
+            display: inline-block;
+        }
+
+        .option2-preview .preview-button {
+            background: #1A1A1A;
+            color: white;
+        }
+
+        .option2-preview .preview-button:hover {
+            background: #000000;
+        }
+
+        /* Option 3: Warm Neutral */
+        .option3-preview {
+            background: #F8F7F4;
+            color: #2B2B2B;
+        }
+
+        .option3-preview .accent-underline {
+            border-bottom: 3px solid #5C6B3A;
+            display: inline-block;
+        }
+
+        .option3-preview .preview-button {
+            background: #5C6B3A;
+            color: white;
+        }
+
+        .option3-preview .preview-button:hover {
+            background: #4A5630;
+        }
+
+        /* Option 4: Cool Minimal */
+        .option4-preview {
+            background: #F9FAFB;
+            color: #111827;
+        }
+
+        .option4-preview .accent-underline {
+            border-bottom: 3px solid #0D9488;
+            display: inline-block;
+        }
+
+        .option4-preview .preview-button {
+            background: #0D9488;
+            color: white;
+        }
+
+        .option4-preview .preview-button:hover {
+            background: #0B7A70;
+        }
+
+        .secondary-text {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Color Palette Options for Your Portfolio</h1>
+
+        <!-- Option 1: Forest Green -->
+        <div class="palette">
+            <h2>Option 1: Forest Green (Your Current Vibe) ⭐</h2>
+            <p class="palette-description">Clean, professional, nature-inspired. Great for engineering portfolio.</p>
+
+            <div class="colors">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FAFAF9;"></div>
+                    <div class="color-name">Background</div>
+                    <div class="color-hex">#FAFAF9</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #1A1A1A;"></div>
+                    <div class="color-name">Text Primary</div>
+                    <div class="color-hex">#1A1A1A</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #666666;"></div>
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-hex">#666666</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #2D6A4F;"></div>
+                    <div class="color-name">Accent Green</div>
+                    <div class="color-hex">#2D6A4F</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #D8F3DC;"></div>
+                    <div class="color-name">Accent Light</div>
+                    <div class="color-hex">#D8F3DC</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E5E5E5;"></div>
+                    <div class="color-name">Border/Lines</div>
+                    <div class="color-hex">#E5E5E5</div>
+                </div>
+            </div>
+
+            <div class="preview-section option1-preview">
+                <h3 class="accent-underline">Kilan Rougeot</h3>
+                <p>I am a mechanical engineering student at Olin College of Engineering, driven by the challenge of transforming problems into elegant solutions.</p>
+                <p class="secondary-text">My engineering journey includes leading competitive robotics teams to world championships and developing practical systems through work at Kia and in Baja SAE racing.</p>
+                <a href="#" class="preview-button">View Projects</a>
+            </div>
+        </div>
+
+        <!-- Option 2: Monochrome -->
+        <div class="palette">
+            <h2>Option 2: Monochrome Minimal</h2>
+            <p class="palette-description">Ultra-minimal like rjansens.com. Lets your projects be the color.</p>
+
+            <div class="colors">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFFFFF; border: 2px solid #ddd;"></div>
+                    <div class="color-name">Background</div>
+                    <div class="color-hex">#FFFFFF</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0A0A0A;"></div>
+                    <div class="color-name">Text Primary</div>
+                    <div class="color-hex">#0A0A0A</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #737373;"></div>
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-hex">#737373</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #1A1A1A;"></div>
+                    <div class="color-name">Accent</div>
+                    <div class="color-hex">#1A1A1A</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F5F5F5;"></div>
+                    <div class="color-name">Accent Light</div>
+                    <div class="color-hex">#F5F5F5</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E0E0E0;"></div>
+                    <div class="color-name">Border/Lines</div>
+                    <div class="color-hex">#E0E0E0</div>
+                </div>
+            </div>
+
+            <div class="preview-section option2-preview">
+                <h3 class="accent-underline">Kilan Rougeot</h3>
+                <p>I am a mechanical engineering student at Olin College of Engineering, driven by the challenge of transforming problems into elegant solutions.</p>
+                <p class="secondary-text">My engineering journey includes leading competitive robotics teams to world championships and developing practical systems through work at Kia and in Baja SAE racing.</p>
+                <a href="#" class="preview-button">View Projects</a>
+            </div>
+        </div>
+
+        <!-- Option 3: Warm Neutral -->
+        <div class="palette">
+            <h2>Option 3: Warm Neutral + Olive</h2>
+            <p class="palette-description">Sophisticated, warm, different from typical portfolios.</p>
+
+            <div class="colors">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F8F7F4;"></div>
+                    <div class="color-name">Background</div>
+                    <div class="color-hex">#F8F7F4</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #2B2B2B;"></div>
+                    <div class="color-name">Text Primary</div>
+                    <div class="color-hex">#2B2B2B</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #6B6B6B;"></div>
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-hex">#6B6B6B</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #5C6B3A;"></div>
+                    <div class="color-name">Accent</div>
+                    <div class="color-hex">#5C6B3A</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E8EDE0;"></div>
+                    <div class="color-name">Accent Light</div>
+                    <div class="color-hex">#E8EDE0</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #DCD9D0;"></div>
+                    <div class="color-name">Border/Lines</div>
+                    <div class="color-hex">#DCD9D0</div>
+                </div>
+            </div>
+
+            <div class="preview-section option3-preview">
+                <h3 class="accent-underline">Kilan Rougeot</h3>
+                <p>I am a mechanical engineering student at Olin College of Engineering, driven by the challenge of transforming problems into elegant solutions.</p>
+                <p class="secondary-text">My engineering journey includes leading competitive robotics teams to world championships and developing practical systems through work at Kia and in Baja SAE racing.</p>
+                <a href="#" class="preview-button">View Projects</a>
+            </div>
+        </div>
+
+        <!-- Option 4: Cool Minimal -->
+        <div class="palette">
+            <h2>Option 4: Cool Minimal + Teal</h2>
+            <p class="palette-description">Modern, tech-forward, clean.</p>
+
+            <div class="colors">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F9FAFB;"></div>
+                    <div class="color-name">Background</div>
+                    <div class="color-hex">#F9FAFB</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #111827;"></div>
+                    <div class="color-name">Text Primary</div>
+                    <div class="color-hex">#111827</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #6B7280;"></div>
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-hex">#6B7280</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0D9488;"></div>
+                    <div class="color-name">Accent</div>
+                    <div class="color-hex">#0D9488</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #CCFBF1;"></div>
+                    <div class="color-name">Accent Light</div>
+                    <div class="color-hex">#CCFBF1</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #E5E7EB;"></div>
+                    <div class="color-name">Border/Lines</div>
+                    <div class="color-hex">#E5E7EB</div>
+                </div>
+            </div>
+
+            <div class="preview-section option4-preview">
+                <h3 class="accent-underline">Kilan Rougeot</h3>
+                <p>I am a mechanical engineering student at Olin College of Engineering, driven by the challenge of transforming problems into elegant solutions.</p>
+                <p class="secondary-text">My engineering journey includes leading competitive robotics teams to world championships and developing practical systems through work at Kia and in Baja SAE racing.</p>
+                <a href="#" class="preview-button">View Projects</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
