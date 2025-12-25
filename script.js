@@ -106,28 +106,9 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 }
 
 // ===========================
-// View All Experience/Projects Functionality
+// View All Projects Functionality
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
-    // Experience View All
-    const viewAllExperienceBtn = document.getElementById('viewAllExperience');
-    const experienceCards = document.querySelectorAll('.experience-card');
-
-    if (viewAllExperienceBtn && experienceCards.length <= 3) {
-        viewAllExperienceBtn.classList.add('hidden');
-    }
-
-    if (viewAllExperienceBtn) {
-        viewAllExperienceBtn.addEventListener('click', () => {
-            experienceCards.forEach((card, index) => {
-                if (index >= 3) {
-                    card.classList.add('show');
-                }
-            });
-            viewAllExperienceBtn.classList.add('hidden');
-        });
-    }
-
     // Projects View All
     const viewAllProjectsBtn = document.getElementById('viewAllProjects');
     const projectCards = document.querySelectorAll('.project-card');
