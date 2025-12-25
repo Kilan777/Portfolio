@@ -289,52 +289,76 @@ a {
     text-decoration: none;
     display: block;
     position: relative;
+    height: 350px;
 }
 
 .experience-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--color-border);
-}
-
-.experience-card:hover .card-title {
-    text-decoration: underline;
 }
 
 .card-image {
-    height: 250px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
 }
 
 .card-image .image-placeholder {
-    min-height: 250px;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
     border-radius: 0;
+    transition: var(--transition);
+}
+
+.experience-card:hover .image-placeholder {
+    filter: brightness(0.4);
 }
 
 .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.experience-card:hover .card-content {
+    opacity: 1;
 }
 
 .card-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-weight: 700;
     margin-bottom: var(--spacing-xs);
-    color: var(--color-accent);
+    color: var(--color-white);
     transition: var(--transition);
 }
 
 .card-meta {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
+    font-size: 1rem;
+    color: var(--color-white);
     margin-bottom: var(--spacing-sm);
     font-style: italic;
+    opacity: 0.9;
 }
 
 .card-description {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
+    color: var(--color-white);
+    line-height: 1.6;
     margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    max-width: 90%;
 }
 
 .card-link {
@@ -360,20 +384,17 @@ a {
     text-decoration: none;
     display: block;
     position: relative;
+    height: 350px;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--color-border);
-}
-
-.project-card:hover .card-title {
-    text-decoration: underline;
 }
 
 .project-card .card-image {
-    height: 250px;
+    width: 100%;
+    height: 100%;
 }
 
 /* ===========================
