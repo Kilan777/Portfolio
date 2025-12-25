@@ -377,7 +377,8 @@ a {
 /* View All Button */
 .view-all-container {
     text-align: center;
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+    margin-bottom: 0;
 }
 
 .view-all-container .btn {
