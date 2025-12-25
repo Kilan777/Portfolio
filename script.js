@@ -65,32 +65,61 @@ window.addEventListener('scroll', () => {
 });
 
 // ===========================
-// Fade-in Animation on Scroll
+// Cool Loading Animations
 // ===========================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            // Stagger delay for multiple elements
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, index * 100);
         }
     });
 }, observerOptions);
 
-// Observe all cards
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.experience-card, .project-card');
-
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-        observer.observe(card);
+// Animate section titles with drawing underline
+const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+        }
     });
+}, observerOptions);
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Animate section titles (draw underlines)
+    const titles = document.querySelectorAll('.section-title');
+    titles.forEach(title => {
+        titleObserver.observe(title);
+    });
+
+    // Animate cards with stagger effect
+    const cards = document.querySelectorAll('.experience-card, .project-card');
+    cards.forEach((card, index) => {
+        // Add transition delay based on index
+        card.style.transitionDelay = `${index * 0.1}s`;
+        animationObserver.observe(card);
+    });
+
+    // Animate other elements
+    const fadeElements = document.querySelectorAll('.fade-in-element');
+    fadeElements.forEach(element => {
+        animationObserver.observe(element);
+    });
+
+    // Initial load animation for hero
+    setTimeout(() => {
+        const heroTitle = document.querySelector('.hero .section-title, .hero-name');
+        if (heroTitle) {
+            heroTitle.classList.add('animate-in');
+        }
+    }, 300);
 });
 
 // ===========================
