@@ -25,7 +25,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -38,6 +38,13 @@
             border-bottom: 3px solid var(--color-accent);
             display: inline-block;
             padding-bottom: 0.5rem;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
         }
 
         .detail-content p {
@@ -83,6 +90,39 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+        .video-container {
+            margin: var(--spacing-lg) 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        code {
+            background: var(--color-accent-light);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            background: var(--color-accent-light);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            margin: var(--spacing-md) 0;
+        }
     </style>
 </head>
 <body>
@@ -105,55 +145,217 @@
     <section class="detail-hero">
         <div class="container">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Line Follower Robot</h1>
-            <p class="detail-meta">[Add date/category here]</p>
+            <h1>Line-Following Robot with Closed-Loop Control</h1>
+            <p class="detail-meta">DC Motor Control Project • October 2024 • Team: Dhvan Shah & Kilan Rougeot</p>
         </div>
     </section>
 
     <section class="detail-content">
         <div class="container">
-            <!-- Main project image -->
-            <div class="detail-image">
-                [Add main project image here - 1200x600px recommended]
+            <!-- Video Demo -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/BfBkejzWG-k" allowfullscreen></iframe>
             </div>
 
             <!-- Overview -->
-            <h2>Overview</h2>
+            <h2>Project Overview</h2>
             <p>
-                [Add project overview here - describe what the project is, what problem it solves,
-                and why you built it]
+                This project integrated sensing and control with a two-wheeled robotic platform to autonomously follow a taped track on the floor. The system uses a closed-loop PD controller on an Arduino that can navigate a non-circular loop course. A key requirement was the ability to tune the controller and adjust robot performance in real-time via serial communication, without recompiling code, to achieve the fastest possible run times.
             </p>
 
-            <!-- Image 2 -->
+            <!-- Image 1: Robot Overview -->
             <div class="detail-image">
-                [Add detail image here - showing design/CAD/build process]
+                [Add robot assembled image here - 1200x600px recommended]
             </div>
 
-            <!-- Technical Details -->
-            <h2>Technical Details</h2>
+            <!-- Approach -->
+            <h2>Design Approach</h2>
             <p>
-                [Describe the technical implementation]
+                We designed a custom chassis to precisely control wheel-to-wheel distances, sensor placements and heights, and other design elements that would optimize our code's performance. We implemented a proportional-derivative (PD) control scheme using five infrared sensors:
             </p>
             <ul>
-                <li>[Technical detail 1]</li>
-                <li>[Technical detail 2]</li>
-                <li>[Technical detail 3]</li>
+                <li><strong>Three center sensors:</strong> Positioned close together for main line following</li>
+                <li><strong>Two outer sensors:</strong> Positioned further out and less far forward for sharp corner detection</li>
+            </ul>
+            <p>
+                The control algorithm stays centered on the line using the main sensors, only using the far sensors when the main sensors lose sight of the line. This approach enabled fast line following with consistent sharp corner navigation.
+            </p>
+
+            <!-- Image 2: System Architecture -->
+            <div class="detail-image">
+                [Add system architecture diagram here showing data/power flow]
+            </div>
+
+            <!-- Mechanical Design -->
+            <h2>Mechanical Design</h2>
+
+            <h3>Chassis Configuration</h3>
+            <p>
+                Our mechanical design focused on creating a stable, balanced platform. We positioned the motors and wheels in the back to maximize sensor turning radius and concentrate weight over the drive wheels for better traction. The chassis measures 5 inches wide by 6.5 inches long and uses a three-point contact system:
+            </p>
+            <ul>
+                <li>Two driven wheels in the back for propulsion</li>
+                <li>One caster wheel in the front for balance</li>
+                <li>Sloped design to accommodate caster wheel without interference</li>
+                <li>Adjustable sensor height using caster wheel spacers</li>
             </ul>
 
-            <!-- Image 3 -->
+            <!-- Image 3: CAD Design -->
             <div class="detail-image">
-                [Add image showing technical components or testing]
+                [Add CAD chassis design image showing labeled components]
+            </div>
+
+            <h3>Sensor Array Evolution</h3>
+            <p>
+                Initially, we used three sensors positioned close together in the center. However, this design failed at sharp turns greater than 90 degrees because the sensors couldn't see the line during tight corners. To solve this, we added one sensor on each side, positioned slightly further back, to detect the line when the center sensors lost contact.
+            </p>
+            <p>
+                The sensors were positioned with 8mm spacing between the three center sensors - slightly wider than the tape. This made programming easier: when perfectly following the line, the middle sensor sees full tape color while the side sensors only partially see the line.
+            </p>
+
+            <!-- Image 4: Sensor Mounting -->
+            <div class="detail-image">
+                [Add detailed sensor mounting image showing 5-sensor configuration]
+            </div>
+
+            <!-- Electronics -->
+            <h2>Electronic Design</h2>
+
+            <h3>Component Specifications</h3>
+            <ul>
+                <li><strong>Infrared Sensors:</strong> TCRT5000 with analog voltage output (0-5V)</li>
+                <li><strong>Motors:</strong> 3-7.2V DC gearmotors, 210 RPM, 48:1 gear ratio, driven at 12V</li>
+                <li><strong>Microcontroller:</strong> Arduino Uno with ATmega328P</li>
+                <li><strong>Motor Control:</strong> Adafruit Motor Shield v2.3 with PWM speed control</li>
+                <li><strong>Power:</strong> 12V wall adapter split between Arduino and Motor Shield</li>
+            </ul>
+
+            <!-- Image 5: Circuit Diagram -->
+            <div class="detail-image">
+                [Add complete circuit schematic image]
+            </div>
+
+            <h3>Sensor Circuit</h3>
+            <p>
+                Each IR reflectance sensor includes:
+            </p>
+            <ul>
+                <li>IR LED with 200Ω current-limiting resistor (~15mA current)</li>
+                <li>Phototransistor with 10kΩ pull-up resistor</li>
+                <li>Analog voltage output proportional to surface reflectivity</li>
+            </ul>
+
+            <!-- Control System -->
+            <h2>Control System Design</h2>
+
+            <h3>PD Control Algorithm</h3>
+            <p>
+                We implemented a Finite State Machine (FSM) with two primary states:
+            </p>
+            <ul>
+                <li><strong>PD Control State:</strong> Active when center sensors detect the line</li>
+                <li><strong>Line Search State:</strong> Active when center sensors lose the line, uses outer sensors to reacquire</li>
+            </ul>
+
+            <p>
+                The PD controller calculates an error signal and applies proportional and derivative corrections:
+            </p>
+            <pre>ERROR = (LEFT_READING - RIGHT_READING)
+CORRECTION = Kp * ERROR + Kd * (ERROR - LAST_ERROR)
+LEFT_SPEED = BASE_SPEED + CORRECTION
+RIGHT_SPEED = BASE_SPEED - CORRECTION</pre>
+
+            <h3>Tuned Parameters</h3>
+            <ul>
+                <li><strong>Kp (Proportional Gain):</strong> 10 - provides immediate response to error</li>
+                <li><strong>Kd (Derivative Gain):</strong> 15 - provides damping to reduce oscillation</li>
+                <li><strong>Base Speed:</strong> 50 (0-255 PWM range)</li>
+            </ul>
+
+            <!-- Image 6: GUI Interface -->
+            <div class="detail-image">
+                [Add Python GUI screenshot showing real-time sensor plots and parameter sliders]
+            </div>
+
+            <!-- Real-Time Tuning -->
+            <h2>Real-Time Parameter Tuning</h2>
+            <p>
+                We created a Python GUI with serial communication that enabled runtime parameter adjustment without code recompilation. The interface features:
+            </p>
+            <ul>
+                <li>Real-time normalized IR sensor readings plotted over time</li>
+                <li>Adjustable sliders for Kp, Kd, and motor speeds</li>
+                <li>Bidirectional serial protocol for sending commands and receiving sensor data</li>
+            </ul>
+            <p>
+                This dramatically accelerated the tuning process, allowing us to optimize performance through rapid iteration.
+            </p>
+
+            <!-- Image 7: Sensor Data Plot -->
+            <div class="detail-image">
+                [Add time-series plot showing sensor readings and motor commands]
             </div>
 
             <!-- Results -->
-            <h2>Results & Impact</h2>
+            <h2>Performance Results</h2>
+            <ul>
+                <li><strong>Best Lap Time:</strong> 30 seconds</li>
+                <li><strong>Success Rate:</strong> 15/15 attempts (100%)</li>
+                <li><strong>Sensor Calibration:</strong> Highly reliable across different surfaces</li>
+                <li><strong>Sharp Corner Handling:</strong> Successfully navigates turns >90 degrees</li>
+            </ul>
+
+            <!-- Challenges & Solutions -->
+            <h2>Challenges Overcome</h2>
+
+            <h3>Challenge 1: Sharp Corners</h3>
             <p>
-                [Describe outcomes, what you learned, impact of the project]
+                <strong>Problem:</strong> Sharp corners (especially the "armpit") caused the 3-sensor design to lose the line.
+            </p>
+            <p>
+                <strong>Solution:</strong> Added 2 outer sensors and implemented FSM to detect and correct for line loss.
             </p>
 
-            <!-- Image 4 -->
+            <h3>Challenge 2: Prototype Iteration</h3>
+            <p>
+                <strong>Problem:</strong> Initial solderable breadboard made component changes difficult.
+            </p>
+            <p>
+                <strong>Solution:</strong> Switched to solderless breadboard for rapid prototyping, then planned PCB for final version.
+            </p>
+
+            <h3>Challenge 3: Parameter Tuning Speed</h3>
+            <p>
+                <strong>Problem:</strong> Recompiling and re-uploading code for each tuning adjustment was time-consuming.
+            </p>
+            <p>
+                <strong>Solution:</strong> Developed Python GUI with serial communication for real-time parameter adjustment.
+            </p>
+
+            <!-- Key Learnings -->
+            <h2>Key Learnings</h2>
+            <ul>
+                <li><strong>Calibration is Critical:</strong> Thorough sensor calibration resulted in reliable operation</li>
+                <li><strong>Iterative Design:</strong> Rapid chassis iteration enabled optimization of sensor locations</li>
+                <li><strong>Real-Time Tools:</strong> GUI dramatically improved tuning efficiency over code recompilation</li>
+                <li><strong>State Machines:</strong> FSM approach cleanly separated normal operation from corner handling</li>
+            </ul>
+
+            <!-- Technical Specifications -->
+            <h2>Technical Specifications</h2>
+            <ul>
+                <li><strong>Dimensions:</strong> 5" W × 6.5" L chassis</li>
+                <li><strong>Sensors:</strong> 5× TCRT5000 IR reflectance sensors</li>
+                <li><strong>Sensor Height:</strong> 5mm above ground (optimized via testing)</li>
+                <li><strong>Sensor Spacing:</strong> 8mm between center sensors</li>
+                <li><strong>Motors:</strong> 2× DC gearmotors, 210 RPM, 48:1 ratio</li>
+                <li><strong>Control Frequency:</strong> ~100 Hz (10ms loop time)</li>
+                <li><strong>Power:</strong> 12V DC supply</li>
+            </ul>
+
+            <!-- Image 8: Final Robot -->
             <div class="detail-image">
-                [Add final result image or demonstration photo]
+                [Add final assembled robot image with wiring]
             </div>
 
             <!-- Link back -->
