@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRC Team 1391 | Kilan Rougeot</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Additional styles for detail pages */
+        .detail-hero {
+            padding-top: 120px;
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .detail-hero h1 {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .detail-meta {
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: var(--spacing-xl);
+        }
+
+        .detail-content h2 {
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--color-accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .detail-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-content ul {
+            margin-left: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-content li {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Tab Styles */
+        .year-tabs {
+            display: flex;
+            gap: 1rem;
+            margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .year-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .year-tab:hover {
+            color: var(--color-accent);
+        }
+
+        .year-tab.active {
+            color: var(--color-accent);
+        }
+
+        .year-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--color-accent);
+        }
+
+        .year-content {
+            display: none;
+        }
+
+        .year-content.active {
+            display: block;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .award-card {
+            background: var(--color-accent-light);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .award-card strong {
+            display: block;
+            color: var(--color-accent);
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">KR</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Experience Detail -->
+    <section class="detail-hero">
+        <div class="container">
+            <a href="../index.html#teams" class="back-link">← Back to Teams</a>
+            <h1>FRC Team 1391 - The Metal Moose</h1>
+            <p class="detail-meta">Team Captain, Lead Builder & Robot Operator • 2022-2024</p>
+        </div>
+    </section>
+
+    <section class="detail-content">
+        <div class="container">
+            <!-- Overview -->
+            <h2>Overview</h2>
+            <p>
+                For three consecutive years (2022-2024), I served as Team Captain, Lead Builder, and Robot Operator for FRC Team 1391 (The Metal Moose). Under my leadership, our team qualified for the World Championship each year, ranking in the top 3% globally and earning numerous prestigious awards including Engineering Excellence, Autonomous Awards, and Competition Championships.
+            </p>
+            <p>
+                FIRST Robotics Competition (FRC) is the world's premier high school robotics competition, where teams have six weeks to design, build, and program competitive robots that tackle unique game challenges each year.
+            </p>
+
+            <!-- Year Tabs -->
+            <div class="year-tabs">
+                <button class="year-tab" data-year="2024">2024 Season</button>
+                <button class="year-tab" data-year="2023">2023 Season</button>
+                <button class="year-tab" data-year="2022">2022 Season</button>
+            </div>
+
+            <!-- 2024 Content -->
+            <div class="year-content" id="year-2024">
+                <h2>2024 CRESCENDO Season</h2>
+                <p>
+                    The 2024 season presented unique challenges with efficient game piece acquisition and scoring. Our robot featured advanced vision-based targeting and innovative intake mechanisms that set us apart from competitors.
+                </p>
+
+                <h3>Leadership & Responsibilities</h3>
+                <ul>
+                    <li>Managed overall robot design and build process from concept to competition</li>
+                    <li>Coordinated sub-team integration for mechanical, electrical, and programming systems</li>
+                    <li>Led daily build meetings and progress reviews</li>
+                    <li>Operated robot during competitions and made real-time strategic decisions</li>
+                    <li>Maintained comprehensive engineering documentation and notebook entries</li>
+                    <li>Mentored and trained new team members in fabrication and design</li>
+                </ul>
+
+                <h3>Key Technical Innovation: Four-Bar Intake Mechanism</h3>
+                <p>
+                    The centerpiece of our 2024 robot was an advanced four-bar intake system that revolutionized our game piece acquisition capabilities:
+                </p>
+                <ul>
+                    <li><strong>Ground Pickup with Wall Detection:</strong> Sensor-based system automatically detected proximity to walls, preventing collisions</li>
+                    <li><strong>Smart Piece Tracking:</strong> Integrated sensors tracked game piece position and provided real-time feedback</li>
+                    <li><strong>Compact Storage:</strong> Virtual four-bar geometry allowed the mechanism to fold into the robot frame perimeter</li>
+                    <li><strong>Self-Protecting Design:</strong> Automatic collision response protected the mechanism during impacts</li>
+                    <li><strong>Vision Integration:</strong> Limelight camera system provided targeting assistance for driver</li>
+                    <li><strong>Variable Speed Operation:</strong> Consistent acquisition at different robot velocities</li>
+                </ul>
+
+                <h3>Development Process</h3>
+                <p>
+                    Our iterative design process included:
+                </p>
+                <ul>
+                    <li>Wooden mockups and rapid prototyping for concept validation</li>
+                    <li>Full CAD modeling using Fusion 360 for precision manufacturing</li>
+                    <li>Seven complete design iterations (V1-V7) with documented improvements</li>
+                    <li>Sensor and feedback system integration throughout development</li>
+                    <li>Extensive testing and refinement at practice field</li>
+                    <li>Competition-ready implementation with backup systems</li>
+                </ul>
+
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <strong>District Championship Finalist</strong>
+                        <p>Advanced to finals at district championship competition</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Engineering Excellence Award</strong>
+                        <p>Recognized for outstanding engineering design and documentation</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Quality Award</strong>
+                        <p>Honored for robust design, quality fabrication, and attention to detail</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Autonomous Award</strong>
+                        <p>Winner of Ford-sponsored award for advanced autonomous capabilities</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Engineering Inspiration Award</strong>
+                        <p>Recognized for exceptional teamwork and community impact</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Top 3% Global Ranking</strong>
+                        <p>Achieved top 3% ranking among all FRC teams worldwide</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023 Content -->
+            <div class="year-content" id="year-2023">
+                <h2>2023 CHARGED UP Season</h2>
+                <p>
+                    As Team Captain, Lead Builder, and Robot Operator, I led Team 1391 through the 2023 CHARGED UP competition, featuring complex multi-stage arm systems and dual-purpose game piece manipulation.
+                </p>
+
+                <h3>Major Mechanical Systems</h3>
+
+                <h3>Gripper Mechanism</h3>
+                <p>
+                    Developed through four major design iterations (V1-V4):
+                </p>
+                <ul>
+                    <li>Dual-purpose gripper capable of handling both cones and cubes</li>
+                    <li>Pressure-sensitive gripping with variable force control</li>
+                    <li>Integrated sensor automation for piece detection and retention</li>
+                    <li>Rapid release mechanism for fast scoring cycles</li>
+                </ul>
+
+                <h3>Two-Rotation Point Arm</h3>
+                <p>
+                    Advanced arm system with multiple capabilities:
+                </p>
+                <ul>
+                    <li>Optimized weight distribution for extended reach without tipping</li>
+                    <li>Chain-driven dual-joint system for precise positioning</li>
+                    <li>Software-controlled collision avoidance across full range of motion</li>
+                    <li>Multiple pre-programmed scoring positions for different heights</li>
+                    <li>Manual override capability for adaptive gameplay</li>
+                </ul>
+
+                <h3>Swerve Drive System</h3>
+                <p>
+                    Implemented competition-grade swerve drive:
+                </p>
+                <ul>
+                    <li>27" x 27" chassis with optimal weight distribution</li>
+                    <li>Custom electronics mounting for clean cable management</li>
+                    <li>Achieved 80-degree tilt stability without tipping</li>
+                    <li>Steel electronics board serving as ballast for center of gravity control</li>
+                </ul>
+
+                <h3>Advanced Intake System</h3>
+                <p>
+                    Through seven major design iterations, developed a sophisticated intake featuring:
+                </p>
+                <ul>
+                    <li>Over-the-bumper design with 12-inch extended reach</li>
+                    <li>Virtual four-bar mechanism for compact stowage</li>
+                    <li>Motorized active intake with belt-driven rollers</li>
+                    <li>Automatic retraction system for collision protection</li>
+                    <li>Spring-assisted deployment with constant force springs</li>
+                    <li>Sensor-based piece detection and tracking</li>
+                    <li>Wide capture range for forgiving acquisition</li>
+                    <li>Polycarbonate construction for durability and light weight</li>
+                </ul>
+
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <strong>Bensalem District Event Champion</strong>
+                        <p>Won district competition as alliance captain</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>District Event Finalist</strong>
+                        <p>Advanced to finals at additional district competition</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Autonomous Award (Ford)</strong>
+                        <p>Recognized for exceptional autonomous programming capabilities</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Excellence in Engineering</strong>
+                        <p>Honored for innovative design and technical execution</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Quality Award</strong>
+                        <p>Recognized for robust design and quality manufacturing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2022 Content -->
+            <div class="year-content" id="year-2022">
+                <h2>2022 RAPID REACT Season</h2>
+                <p>
+                    My first year as Team Captain, we built robot "Gustavo" featuring innovative climbing and shooting mechanisms that propelled us to the World Championship in Houston, Texas.
+                </p>
+
+                <h3>Three-Stage Climbing Elevator</h3>
+                <p>
+                    Advanced climbing system capable of reaching the highest rungs:
+                </p>
+                <ul>
+                    <li>Belt and piston system enabling rapid bar ascent</li>
+                    <li>Pneumatic mechanism reduced swing during climbing sequence</li>
+                    <li>Custom center of mass control for stability on bars</li>
+                    <li>Components fabricated using CNC router, mill, 3D printing, and lathe</li>
+                </ul>
+
+                <h3>Precision Hook System</h3>
+                <ul>
+                    <li>Dual hook design with fixed and moving components</li>
+                    <li>Spring-loaded fixed hooks enabled smooth bar transitions</li>
+                    <li>Aluminum channel construction with integrated belts and bearings</li>
+                    <li>Synchronized movement between hook systems for coordinated climbing</li>
+                </ul>
+
+                <h3>Unlimited Rotation Turret</h3>
+                <p>
+                    Game-changing shooting mechanism with continuous rotation:
+                </p>
+                <ul>
+                    <li>Limelight camera integrated through slip ring design for 360° vision</li>
+                    <li>Continuous rotation via specialized gear and slip ring system</li>
+                    <li>NEO motor with built-in encoder for precise angle control</li>
+                    <li>One-to-one gear ratio optimization for responsive targeting</li>
+                    <li>Custom 3D-printed and CNC-machined hood for trajectory control</li>
+                    <li>Four-flywheel system for consistent ball propulsion</li>
+                </ul>
+
+                <h3>Automated Targeting System</h3>
+                <ul>
+                    <li>Retroreflective tape detection for target tracking</li>
+                    <li>Real-time angle and power calculations via RoboRIO</li>
+                    <li>Automated turret positioning based on vision data</li>
+                    <li>Driver-override capability for manual adjustment</li>
+                </ul>
+
+                <h3>Intelligent Cargo Management</h3>
+                <p>
+                    Smart indexing system with advanced ball handling:
+                </p>
+                <ul>
+                    <li>30-wheel indexer for precise cargo positioning</li>
+                    <li>Integrated color sensors for cargo tracking and sorting</li>
+                    <li>Automated enemy cargo rejection system</li>
+                    <li>Dynamic flywheel speed adjustment based on ball position</li>
+                    <li>Real-time position monitoring and feedback</li>
+                </ul>
+
+                <h3>Collection System</h3>
+                <ul>
+                    <li>Dual pneumatic polycarbonate arms for ball collection</li>
+                    <li>Lower pivot point design for collision protection</li>
+                    <li>Secondary Limelight system for ball recognition</li>
+                    <li>Driver-assist features for collection efficiency</li>
+                </ul>
+
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <strong>Competition 1 - Rank 10</strong>
+                        <p>Record: 11-6-0, Creativity Award (Rockwell Automation), Semifinals</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Competition 2 - Rank 5</strong>
+                        <p>Record: 10-7-0, Autonomous Award (Ford), Alliance Captain, Semifinals</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>Competition 3 - Rank 12</strong>
+                        <p>Record: 8-6-0, Alliance Captain, Quarterfinals</p>
+                    </div>
+                    <div class="award-card">
+                        <strong>World Championship Qualification</strong>
+                        <p>Advanced to FIRST Championship in Houston, Texas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Link back -->
+            <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+                ← Back to All Teams
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.year-tab');
+        const contents = document.querySelectorAll('.year-content');
+
+        // Set 2024 as default active
+        document.querySelector('[data-year="2024"]').classList.add('active');
+        document.getElementById('year-2024').classList.add('active');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const year = tab.dataset.year;
+
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(`year-${year}`).classList.add('active');
+            });
+        });
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>
