@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Munchkin - Assistive Feeding Device | Kilan Rougeot</title>
-    <link rel="icon" type="image/svg+xml" href="munchkin/assets/munchkin/assets/favidark.svg">
-    <link rel="stylesheet" href="munchkin/assets/munchkin/assets/styles.css">
+
+    <!-- Dark mode favicon -->
+    <link rel="icon" type="image/svg+xml" href="munchkin/assets/favidark.svg" media="(prefers-color-scheme: light)">
+
+    <!-- Light mode favicon -->
+    <link rel="icon" type="image/svg+xml" href="munchkin/assets/favilight.svg" media="(prefers-color-scheme: dark)">
+
+    <link rel="stylesheet" href="munchkin/assets/styles.css">
+
     <style>
-        /* Back button styling to match portfolio */
+        /* Back button styling */
         .back-to-portfolio {
             position: fixed;
             top: 20px;
@@ -26,51 +34,28 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(51, 65, 85, 0.3);
         }
-        
+
         .back-to-portfolio:hover {
             background-color: #475569;
             transform: translateX(-4px);
         }
-        
+
         .back-to-portfolio svg {
             width: 16px;
             height: 16px;
         }
     </style>
 </head>
+
 <body>
     <!-- Back to Portfolio Button -->
-    <a href="../../index.html#projects" class="back-to-portfolio">
+    <a href="../index.html#projects" class="back-to-portfolio">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
         Back to Portfolio
     </a>
 
-    <script>
-        // Update all asset paths
-        document.addEventListener('DOMContentLoaded', () => {
-            const basePath = 'munchkin/assets/';
-            
-            // Fix image sources
-            document.querySelectorAll('img').forEach(img => {
-                if (!img.src.startsWith('http') && !img.src.includes(basePath)) {
-                    const filename = img.getAttribute('src');
-                    img.src = basePath + filename;
-                }
-            });
-            
-            // Fix video sources
-            document.querySelectorAll('video source').forEach(source => {
-                if (!source.src.startsWith('http') && !source.src.includes(basePath)) {
-                    const filename = source.getAttribute('src');
-                    source.src = basePath + filename;
-                    source.parentElement.load();
-                }
-            });
-        });
-    </script>
-<body>
     <canvas class="webgl"></canvas>
 
     <!-- Navigation -->
