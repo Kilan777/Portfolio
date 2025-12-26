@@ -320,6 +320,7 @@ a {
     height: 100%;
     overflow: hidden;
     position: relative;
+    background-color: var(--color-white);
 }
 
 .card-image .image-placeholder {
@@ -331,8 +332,9 @@ a {
 }
 
 .card-image img.image-placeholder {
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background-color: var(--color-white);
 }
 
 .experience-card:hover .image-placeholder,
@@ -436,7 +438,7 @@ a {
 }
 
 .project-card {
-    background-color: var(--color-bg);
+    background-color: var(--color-white);
     border-radius: var(--border-radius);
     overflow: hidden;
     transition: var(--transition);
