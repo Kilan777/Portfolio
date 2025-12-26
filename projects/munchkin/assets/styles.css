@@ -5,13 +5,13 @@
 }
 
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --text-primary: #1a1a1a;
-    --text-secondary: #64748b;
-    --accent: #334155;
-    --accent-light: #475569;
-    --border: rgba(0, 0, 0, 0.1);
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent: #6366f1;
+    --accent-light: #818cf8;
+    --border: rgba(255, 255, 255, 0.1);
 }
 
 html {
@@ -55,9 +55,9 @@ html {
     transition: opacity 0.5s ease-in-out !important;
 }
 
-/* Pure white background */
+/* Pure black background */
 body {
-    background: #ffffff !important;
+    background: #000000 !important;
 }
 
 .webgl {
@@ -67,7 +67,7 @@ body {
     width: 100% !important;
     height: 100% !important;
     z-index: -3 !important;
-    background: #ffffff !important; /* Pure white */
+    background: #000000 !important; /* Pure black */
     transition: opacity 0.5s ease-in-out !important;
 }
 
@@ -89,7 +89,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
     pointer-events: none;
 }
 
@@ -125,7 +125,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
     pointer-events: none;
 }
 body {
@@ -151,9 +151,9 @@ body {
     width: 100%;
     height: 450px;
     overflow: hidden;
-    background: #f8f9fa;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: #050505;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
@@ -185,7 +185,7 @@ body {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
 }
 
@@ -217,7 +217,7 @@ body {
     left: 0;
     width: 100%;
     padding: 2rem 1.5rem;
-    background: linear-gradient(to top, rgba(248,249,250,0.98), transparent);
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
     transform: translateY(20px);
     opacity: 0;
     transition: all 0.3s ease 0.1s; /* Slight delay for smoothness */
@@ -239,7 +239,7 @@ body {
 }
 
 .card-overlay h4 {
-    color: #1a1a1a;
+    color: white;
     font-size: 1.4rem;
     margin: 0;
     line-height: 1;
@@ -283,7 +283,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 20px;
     overflow: hidden;
@@ -292,7 +292,7 @@ body {
 }
 
 .feature-card-detailed:hover {
-    border-color: rgba(51, 65, 85, 0.3);
+    border-color: rgba(139, 92, 246, 0.3);
     transform: translateY(-5px);
 }
 
@@ -443,7 +443,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 4rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(20px);
     z-index: 1000;
     border-bottom: 1px solid var(--border);
@@ -486,7 +486,7 @@ body {
 
 .nav-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
 /* Hero Section */
@@ -649,7 +649,7 @@ section {
 
 .feature-card {
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 16px;
     transition: transform 0.3s ease, border-color 0.3s ease;
@@ -683,7 +683,7 @@ section {
 
 .media-placeholder,
 .diagram-placeholder {
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 2px dashed var(--border);
     border-radius: 20px;
     padding: 4rem;
@@ -743,7 +743,7 @@ section {
 
 .decision-card {
     padding: 3rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 20px;
     transition: transform 0.3s ease;
@@ -870,7 +870,7 @@ section {
 .component-item,
 .spec-card {
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 12px;
 }
@@ -919,7 +919,7 @@ section {
 
 .module-card {
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 12px;
 }
@@ -966,7 +966,7 @@ section {
     text-align: center;
     margin-top: 4rem;
     padding: 3rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 20px;
 }
@@ -1010,7 +1010,7 @@ section {
 .bom-table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
@@ -1038,7 +1038,7 @@ section {
 }
 
 .category-row td {
-    background: rgba(0, 0, 0, 0.03);
+    background: rgba(255, 255, 255, 0.03);
     font-weight: 600;
     color: var(--text-primary);
     font-size: 1.1rem;
@@ -1102,7 +1102,7 @@ section {
 
 .improvement-card {
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 12px;
     display: flex;
@@ -1280,16 +1280,16 @@ section {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav h3 {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #fff;
 }
 
 .nav-links {
@@ -1298,7 +1298,7 @@ section {
 }
 
 .nav-links a {
-    color: #4a5568;
+    color: #e0e0e0;
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.3s ease;
@@ -1306,7 +1306,7 @@ section {
 }
 
 .nav-links a:hover {
-    color: #1a1a1a;
+    color: #fff;
 }
 
 .nav-links a::after {
@@ -1338,8 +1338,8 @@ section {
     position: absolute !important;
     top: 100% !important;
     left: 0 !important;
-    background: rgba(255, 255, 255, 0.98) !important;
-    border: 1px solid rgba(51, 65, 85, 0.3) !important;
+    background: rgba(10, 10, 15, 0.98) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3) !important;
     border-radius: 8px !important;
     padding: 0.5rem 0 !important;
     min-width: 200px !important;
@@ -1348,7 +1348,7 @@ section {
     transform: translateY(-10px) !important;
     transition: all 0.3s ease !important;
     margin-top: 0.5rem !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
     z-index: 1000 !important;
     display: block !important;
 }
@@ -1368,7 +1368,7 @@ section {
 .dropdown-menu a {
     display: block !important;
     padding: 0.75rem 1.5rem !important;
-    color: rgba(26, 26, 26, 0.8) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     text-decoration: none !important;
     font-size: 0.95rem !important;
     transition: all 0.2s ease !important;
@@ -1376,9 +1376,9 @@ section {
 }
 
 .dropdown-menu a:hover {
-    background: rgba(51, 65, 85, 0.1) !important;
-    color: rgba(51, 65, 85, 1) !important;
-    border-left-color: rgba(51, 65, 85, 1) !important;
+    background: rgba(139, 92, 246, 0.1) !important;
+    color: rgba(139, 92, 246, 1) !important;
+    border-left-color: rgba(139, 92, 246, 1) !important;
     padding-left: 1.75rem !important;
 }
 
@@ -1400,7 +1400,7 @@ section {
     backdrop-filter: blur(20px);
     padding: 3rem;
     border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
@@ -1419,7 +1419,7 @@ h1 {
 h2 {
     font-size: 2.5rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #fff;
     margin-bottom: 1.5rem;
     position: relative;
     display: inline-block;
@@ -1439,7 +1439,7 @@ h2::after {
 h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #fff;
     margin: 2rem 0 1rem 0;
 }
 
@@ -1506,7 +1506,7 @@ p {
 /* Decision Cards */
 .decision-card {
     background: rgba(40, 40, 40, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
     margin: 1.5rem 0;
@@ -1529,7 +1529,7 @@ p {
 .video-placeholder,
 .diagram-placeholder {
     background: rgba(30, 30, 30, 0.8);
-    border: 2px dashed rgba(0, 0, 0, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 3rem;
     text-align: center;
@@ -1595,7 +1595,7 @@ ul {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #fff;
 }
 
 .bom-table td {
@@ -1611,7 +1611,7 @@ ul {
 .category-header td {
     background: rgba(102, 126, 234, 0.15);
     font-weight: 600;
-    color: #1a1a1a;
+    color: #fff;
     padding: 0.8rem 1rem;
 }
 
@@ -1627,7 +1627,7 @@ ul {
     display: inline-block;
     padding: 0.8rem 2rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #1a1a1a;
+    color: #fff;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
@@ -1741,7 +1741,7 @@ footer a:hover {
 
 .module-card {
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 12px;
 }
@@ -1788,7 +1788,7 @@ footer a:hover {
     text-align: center;
     margin-top: 4rem;
     padding: 3rem;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 20px;
 }
@@ -1825,19 +1825,19 @@ footer a:hover {
 .spec-card,
 .improvement-card,
 .feature-card {
-    /* Use the same light background as the demo specs */
-    background: #ffffff !important;
+    /* Use the same dark background as the demo specs */
+    background: #0a0a0a !important; 
     backdrop-filter: blur(10px); /* Ensures text stays readable */
     transition: all 0.3s ease;
 }
 
-/* Optional: Make them slightly darker when you hover over them */
+/* Optional: Make them slightly lighter when you hover over them */
 .component-item:hover,
 .analysis-item:hover,
 .spec-card:hover,
 .improvement-card:hover,
 .feature-card:hover {
-    background: #f8f9fa !important;
-    border-color: rgba(51, 65, 85, 0.4);
+    background: #141414 !important;
+    border-color: rgba(139, 92, 246, 0.4);
     transform: translateY(-5px);
 }
