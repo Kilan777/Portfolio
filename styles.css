@@ -88,9 +88,10 @@ a {
 }
 
 .nav-logo {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--color-accent);
+    letter-spacing: 0.05em;
 }
 
 .nav-logo:hover {
@@ -175,11 +176,11 @@ a {
    Hero Section
    =========================== */
 .hero {
-    min-height: 65vh;
+    min-height: auto;
     display: flex;
     align-items: center;
-    padding-top: 80px;
-    padding-bottom: var(--spacing-md);
+    padding-top: 100px;
+    padding-bottom: var(--spacing-sm);
 }
 
 .hero .container {
