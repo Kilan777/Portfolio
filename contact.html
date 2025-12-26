@@ -3,40 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with Kilan Rougeot">
     <title>Contact | Kilan Rougeot</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-page {
+            min-height: calc(100vh - 200px);
+            padding-top: 120px;
+            padding-bottom: var(--spacing-xl);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .contact-header h1 {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact-header p {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--color-white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: #475569;
+            transform: translateY(-2px);
+        }
+
+        .contact-info-section {
+            margin-top: var(--spacing-xl);
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: var(--color-accent-light);
+            border-radius: var(--border-radius);
+        }
+
+        .contact-info-section h2 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-methods {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-method a {
+            color: var(--color-accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.125rem;
+        }
+
+        .contact-method a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">Kilan Rougeot</a>
+            <a href="index.html" class="nav-logo">KR</a>
             <ul class="nav-menu">
                 <li><a href="index.html#home" class="nav-link">Home</a></li>
                 <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Contact Section -->
-    <section class="section" style="padding-top: 120px; min-height: 80vh; display: flex; align-items: center;">
+    <!-- Contact Page -->
+    <section class="contact-page">
         <div class="container">
-            <div class="contact-content">
-                <h1 class="section-title">Contact</h1>
-                <p class="contact-description" style="margin-top: 2rem;">
+            <div class="contact-header">
+                <h1>Get in Touch</h1>
+                <p>
                     Interested in collaborating or learning more about my work?
-                    Feel free to reach out.
+                    Send me a message and I'll get back to you as soon as possible.
                 </p>
+            </div>
 
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a>
+            <div class="contact-container">
+                <div id="successMessage" class="success-message">
+                    Thank you for your message! I'll get back to you soon.
+                </div>
+
+                <!--
+                    IMPORTANT: To make this form work, you need to:
+                    1. Go to https://formspree.io and create a free account
+                    2. Create a new form and get your form endpoint
+                    3. Replace YOUR_FORM_ID below with your actual Formspree form ID
+
+                    Example: action="https://formspree.io/f/YOUR_FORM_ID"
+
+                    Alternative: You can also use EmailJS, Web3Forms, or any other form service
+                -->
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                    <div class="contact-item">
-                        <a href="tel:+14459426585">(445) 942-6585</a>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <div class="contact-info-section">
+                    <h2>Other Ways to Reach Me</h2>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <span style="color: var(--color-text-secondary); margin-bottom: 0.5rem;">Email</span>
+                            <a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a>
+                        </div>
+                        <div class="contact-method">
+                            <span style="color: var(--color-text-secondary); margin-bottom: 0.5rem;">Phone</span>
+                            <a href="tel:+14459426585">(445) 942-6585</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,11 +231,30 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
         </div>
     </footer>
 
+    <script>
+        // Form submission handling
+        const form = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            // If using Formspree, it will handle the submission
+            // This just shows the success message
+            setTimeout(function() {
+                successMessage.classList.add('show');
+                form.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            }, 500);
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

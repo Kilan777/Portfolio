@@ -6,6 +6,22 @@
     <meta name="description" content="Kilan Rougeot - Mechanical Engineering Student specializing in robotics, automation, and product development">
     <title>Kilan Rougeot | Mechanical Engineering Student</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual tracking ID -->
+    <!--
+    To set up Google Analytics:
+    1. Go to https://analytics.google.com
+    2. Create an account and property
+    3. Get your Measurement ID (format: G-XXXXXXXXXX)
+    4. Replace G-XXXXXXXXXX below with your actual ID (in both places)
+    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -18,7 +34,7 @@
                 <li><a href="#teams" class="nav-link">Teams</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -264,31 +280,12 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Contact</h2>
-                <p class="contact-description">
-                    Interested in collaborating or learning more about my work?
-                    Feel free to reach out.
-                </p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <a href="tel:+14459426585">(445) 942-6585</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0;">
+                &copy; 2024 Kilan Rougeot
+            </p>
         </div>
     </footer>
 
