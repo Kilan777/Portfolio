@@ -330,6 +330,11 @@ a {
     transition: var(--transition);
 }
 
+.card-image img.image-placeholder {
+    object-fit: cover;
+    display: block;
+}
+
 .experience-card:hover .image-placeholder,
 .project-card:hover .image-placeholder {
     filter: brightness(0.4);
@@ -355,6 +360,18 @@ a {
 .experience-card:hover .card-content,
 .project-card:hover .card-content {
     opacity: 1;
+}
+
+.company-logo {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    border-radius: 8px;
 }
 
 .card-title {
