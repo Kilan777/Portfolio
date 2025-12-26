@@ -330,7 +330,8 @@ a {
     transition: var(--transition);
 }
 
-.experience-card:hover .image-placeholder {
+.experience-card:hover .image-placeholder,
+.project-card:hover .image-placeholder {
     filter: brightness(0.4);
 }
 
@@ -351,7 +352,8 @@ a {
     z-index: 2;
 }
 
-.experience-card:hover .card-content {
+.experience-card:hover .card-content,
+.project-card:hover .card-content {
     opacity: 1;
 }
 
