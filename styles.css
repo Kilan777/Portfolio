@@ -374,14 +374,6 @@ a {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 0.5rem;
     border-radius: 8px;
-    opacity: 0.3;
-    transition: var(--transition);
-    z-index: 3;
-}
-
-.experience-card:hover .company-logo,
-.project-card:hover .company-logo {
-    opacity: 1;
 }
 
 .card-title {
