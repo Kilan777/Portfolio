@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kia | Kilan Rougeot</title>
+    <title>Kia (Hyundai) | Kilan Rougeot</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         /* Additional styles for detail pages */
@@ -25,7 +25,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -38,6 +38,13 @@
             border-bottom: 3px solid var(--color-accent);
             display: inline-block;
             padding-bottom: 0.5rem;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
         }
 
         .detail-content p {
@@ -59,6 +66,32 @@
             margin-bottom: var(--spacing-xs);
         }
 
+        .detail-image {
+            margin: var(--spacing-lg) 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: var(--color-accent-light);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            border: 2px dashed var(--color-border);
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+            min-height: 300px;
+        }
+
         .back-link {
             display: inline-block;
             margin-bottom: var(--spacing-md);
@@ -68,6 +101,12 @@
 
         .back-link:hover {
             text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .image-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -82,7 +121,7 @@
                 <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="../Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -91,8 +130,8 @@
     <section class="detail-hero">
         <div class="container">
             <a href="../index.html#experience" class="back-link">← Back to Experience</a>
-            <h1>Kia</h1>
-            <p class="detail-meta">Engineering Intern • Summer 2024</p>
+            <h1>Kia (Hyundai Motor Group)</h1>
+            <p class="detail-meta">Engineering Intern • Summer 2024 • West Point, GA</p>
         </div>
     </section>
 
@@ -101,38 +140,176 @@
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                As an Engineering Intern at Kia, I contributed to automotive engineering projects focused on vehicle development and testing. This experience provided valuable exposure to large-scale manufacturing processes and automotive industry standards.
+                During my internship at Kia's West Point manufacturing facility, I rotated through all five maintenance departments (Press, Body, Paint, Assembly, and Engine), gaining comprehensive exposure to large-scale automotive manufacturing. I led the development of a fully automated robotic tire loading system and contributed to critical automation projects across the facility, working directly with robotic arms, PLC programming, and vision systems.
             </p>
 
-            <!-- Key Responsibilities -->
-            <h2>Key Responsibilities</h2>
+            <!-- Main Project -->
+            <h2>Main Project: Automated Wheel Loading System</h2>
+            <p>
+                Led the design and implementation of a fully automated robotic wheel rim loading system, reported directly to the Head of Group and Assembly Manager. This system eliminated the need for 3 employees while creating a safer, more efficient work environment.
+            </p>
+
+            <h3>System Design & Components</h3>
             <ul>
-                <li>Supported vehicle development and testing initiatives</li>
-                <li>Collaborated with cross-functional engineering teams</li>
-                <li>Participated in design reviews and technical meetings</li>
-                <li>Conducted analysis and documentation of engineering processes</li>
+                <li><strong>Robotic Manipulation:</strong> Hyundai robotic arm equipped with Festo pneumatic gripper to grab rim interiors and suction cup jig to remove plastic layers between pallet stacks</li>
+                <li><strong>Bi-Directional Conveyor System:</strong> Intelligent conveyor network that lines up rim pallets based on production order</li>
+                <li><strong>Automated Material Handling:</strong> System loads pallets and autonomously sequences them for production</li>
+                <li><strong>Oversight Station:</strong> Single operator booth for monitoring, reducing workforce from 3 to 1 person</li>
             </ul>
 
-            <!-- Technical Skills -->
-            <h2>Technical Skills & Tools</h2>
-            <p>
-                Throughout this internship, I gained experience with:
-            </p>
+            <!-- CAD Image -->
+            <div class="detail-image">
+                [Add CAD system design image here - shows full automated wheel loading system layout - 1200x600px recommended]
+            </div>
+
+            <h3>Redundancy & Failsafe Systems</h3>
             <ul>
-                <li>Automotive engineering principles and practices</li>
-                <li>Manufacturing processes and quality control</li>
-                <li>Technical documentation and reporting</li>
-                <li>Cross-functional team collaboration</li>
-                <li>Industry-standard engineering tools and software</li>
+                <li><strong>Conveyor Failure:</strong> System automatically reprograms pallet paths to avoid failed conveyors</li>
+                <li><strong>Robotic Arm Backup:</strong> Backup robotic arm available if primary goes down</li>
+                <li><strong>Final Failsafe:</strong> Manual rim loading capability maintained for emergency situations</li>
             </ul>
 
-            <!-- Impact & Learnings -->
-            <h2>Impact & Learnings</h2>
+            <!-- Presentation Image -->
+            <div class="detail-image">
+                [Add project presentation slides/overview image here - 1200x600px recommended]
+            </div>
+
+            <!-- Department Rotations -->
+            <h2>Department Rotations & Key Projects</h2>
+
+            <h3>Assembly Department</h3>
             <p>
-                This internship provided invaluable insight into the automotive industry's engineering practices. Working with a major automotive manufacturer taught me the importance of rigorous testing, quality standards, and the complex coordination required to bring vehicles from concept to production.
+                Worked on critical automation systems for the main assembly line, including maintenance of the magnetic rail system and support during a new model launch.
+            </p>
+            <ul>
+                <li>Repaired and maintained EMS door carriers, replacing outdated technology</li>
+                <li>Troubleshot proprietary magnetic induction charged robotic rail system that lifts vehicle undersides to chassis for mounting</li>
+                <li>Performed PLC programming and tool head tuning to resolve machine malfunctions</li>
+                <li>Supported new model launch, resolving machine interference issues during production ramp-up</li>
+            </ul>
+
+            <!-- Assembly Department Images -->
+            <div class="image-row">
+                <div class="detail-image">
+                    [Add robotic arm working on car image here - 800x500px recommended]
+                </div>
+                <div class="detail-image">
+                    [Add magnetic rail system image here - 800x500px recommended]
+                </div>
+            </div>
+
+            <h3>Engine Department</h3>
+            <p>
+                Implemented advanced vision system for quality control in engine assembly, combining 3D scanning technology with automated inspection.
+            </p>
+            <ul>
+                <li>Installed Keyence camera-based vision system for engine valve spring alignment verification</li>
+                <li>Programmed PLC logic to integrate vision system with production line</li>
+                <li>Developed 3D scanning algorithm to identify spring valve alignment issues</li>
+                <li>Created automated inspection workflow to catch defects before assembly continuation</li>
+            </ul>
+
+            <!-- Engine Department Images -->
+            <div class="image-row">
+                <div class="detail-image">
+                    [Add engine block with valve springs image here - 800x500px recommended]
+                </div>
+                <div class="detail-image">
+                    [Add computer showing vision system software image here - 800x500px recommended]
+                </div>
+            </div>
+
+            <div class="detail-image">
+                [Add image of spring alignment being captured/analyzed here - 1200x600px recommended]
+            </div>
+
+            <h3>Press Shop</h3>
+            <p>
+                Implemented critical safety systems for die changing operations while learning the metal stamping process from raw coils to formed parts.
+            </p>
+            <ul>
+                <li>Installed Keyence safety sensor system for automated die changing machinery</li>
+                <li>Designed safety protocol ensuring no personnel in danger zone during die swaps</li>
+                <li>Dies are massive steel blocks weighing thousands of pounds requiring careful handling</li>
+                <li>Learned complete press operation from raw metal coil intake through stamped part production</li>
+            </ul>
+
+            <h3>Body Shop</h3>
+            <p>
+                Maintained the largest robotic workforce in the facility while developing PLC programming skills.
+            </p>
+            <ul>
+                <li>Maintained over 300 autonomous welding robotic arms throughout the body shop</li>
+                <li>Learned advanced PLC programming for robotic control systems</li>
+                <li>Observed coordination of 400+ robotic arms welding stamped sheets into complete chassis</li>
+                <li>Performed preventive maintenance and troubleshooting on high-speed welding operations</li>
+            </ul>
+
+            <h3>Paint Shop</h3>
+            <p>
+                Observed the complete paint process including pre-treatment, coating application, and sealing operations.
+            </p>
+            <ul>
+                <li>Studied chassis immersion in 10+ different treatment liquids for corrosion protection</li>
+                <li>Observed robotic arms applying sealers at critical joints and seams</li>
+                <li>Learned about paint quality control and environmental compliance systems</li>
+                <li>Understood coordination between automated and manual paint operations</li>
+            </ul>
+
+            <!-- Manufacturing Process Overview -->
+            <h2>Complete Manufacturing Process</h2>
+            <p>
+                Through my rotation across all departments, I gained end-to-end understanding of automotive manufacturing:
+            </p>
+            <ul>
+                <li><strong>Press Shop:</strong> Raw metal coils stamped into body panels by precision dies</li>
+                <li><strong>Body Shop:</strong> 400+ robotic arms weld stamped sheets into complete chassis structure</li>
+                <li><strong>Paint Shop:</strong> Chassis treated in multiple chemical baths and sealed by robotic arms</li>
+                <li><strong>Assembly:</strong> Complete vehicle assembly with rigorous documentation and quality control</li>
+                <li><strong>Quality Systems:</strong> Every tool torque specification logged in central database with operator tracking for legal compliance</li>
+            </ul>
+
+            <h3>Advanced Manufacturing Systems</h3>
+            <p>
+                Observed cutting-edge automation including the electric vehicle battery assembly station:
+            </p>
+            <ul>
+                <li>Automated battery intake from external supplier trucks (supplier under NDA)</li>
+                <li>Autonomous battery transport to assembly location</li>
+                <li>Precision alignment system for battery-to-vehicle mounting</li>
+                <li>Fully automated installation with quality verification</li>
+            </ul>
+
+            <!-- Skills & Technologies -->
+            <h2>Technical Skills & Technologies</h2>
+            <ul>
+                <li><strong>Robotic Programming:</strong> Hyundai robotic arm programming, motion planning, and gripper control</li>
+                <li><strong>PLC Programming:</strong> Logic development for automated systems and machine control</li>
+                <li><strong>Vision Systems:</strong> Keyence camera systems, 3D scanning, and automated inspection</li>
+                <li><strong>Safety Systems:</strong> Keyence safety sensors and zone monitoring</li>
+                <li><strong>Pneumatic Systems:</strong> Festo pneumatic grippers and actuation systems</li>
+                <li><strong>Conveyor Systems:</strong> Bi-directional conveyor programming and material flow optimization</li>
+                <li><strong>CAD & Design:</strong> System layout and mechanical design for automation projects</li>
+                <li><strong>Manufacturing Systems:</strong> Large-scale assembly line operations and workflow optimization</li>
+            </ul>
+
+            <!-- Impact -->
+            <h2>Impact & Results</h2>
+            <ul>
+                <li>Eliminated 3 full-time positions through automation while improving workplace safety</li>
+                <li>Created redundant failsafe systems ensuring continuous production capability</li>
+                <li>Implemented vision systems improving engine assembly quality control</li>
+                <li>Enhanced safety protocols for die changing operations in press shop</li>
+                <li>Supported successful new model launch with minimal production disruption</li>
+            </ul>
+
+            <!-- Key Learnings -->
+            <h2>Key Learnings</h2>
+            <p>
+                This internship provided unparalleled exposure to modern automotive manufacturing at scale. I learned how thousands of components, hundreds of robotic systems, and dozens of processes must coordinate perfectly to produce vehicles efficiently and safely. The experience taught me the critical importance of redundancy in automation, the complexity of large-scale PLC systems, and how quality control and legal compliance drive manufacturing decisions.
             </p>
             <p>
-                I learned how large-scale engineering teams operate, the critical role of documentation and standardization, and how design decisions impact manufacturing efficiency and product quality.
+                Working across all five departments gave me perspective on how each stage impacts the others - from press shop tolerances affecting body shop welding, to paint shop requirements influencing assembly procedures. This holistic understanding of manufacturing will inform my engineering approach throughout my career.
             </p>
 
             <!-- Link back -->
@@ -144,8 +321,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
         </div>
     </footer>
 
