@@ -25,7 +25,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -38,6 +38,13 @@
             border-bottom: 3px solid var(--color-accent);
             display: inline-block;
             padding-bottom: 0.5rem;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
         }
 
         .detail-content p {
@@ -59,6 +66,51 @@
             margin-bottom: var(--spacing-xs);
         }
 
+        .detail-image {
+            margin: var(--spacing-lg) 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: var(--color-accent-light);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            border: 2px dashed var(--color-border);
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+            min-height: 300px;
+        }
+
+        .video-container {
+            margin: var(--spacing-lg) 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            background: #1a1a1a;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .back-link {
             display: inline-block;
             margin-bottom: var(--spacing-md);
@@ -68,6 +120,12 @@
 
         .back-link:hover {
             text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .image-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -82,7 +140,7 @@
                 <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="../Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -101,53 +159,149 @@
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                AT Dev Inc specializes in developing assistive technology for individuals with physical disabilities. As a Robotics Engineering Intern, I contributed to the design and prototyping of innovative assistive devices that improve quality of life for users with mobility challenges.
+                Developed and prototyped assistive technology for people with physical disabilities and post-surgical rehabilitation needs at a medical device startup. Contributed to FDA approval processes, precision machining, and the design of a revolutionary leg brace fastening system using 3D scanning technology and innovative guitar tuning peg mechanics.
             </p>
 
-            <!-- Key Projects -->
-            <h2>Key Projects & Responsibilities</h2>
-            <ul>
-                <li>Developed and prototyped assistive technology devices for individuals with physical disabilities</li>
-                <li>Designed leg brace with innovative fastening system using CAD software</li>
-                <li>Applied hands-on machining techniques to fabricate prototypes and functional components</li>
-                <li>Collaborated with occupational therapists to understand user needs and design requirements</li>
-                <li>Conducted testing and iteration based on user feedback and clinical requirements</li>
-            </ul>
+            <!-- Product Demo Video -->
+            <h2>Product in Market</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="ATDevpics/product-demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
+                Final product now available in market being used by patient
+            </p>
 
-            <!-- Leg Brace Design -->
-            <h2>Innovative Leg Brace Design</h2>
+            <!-- Startup Operations -->
+            <h2>Startup Operations & Shop Setup</h2>
             <p>
-                One of my primary projects involved designing a leg brace with a novel fastening system. This project required:
+                Gained firsthand experience in startup operations, from shop organization to investor meetings. Set up critical infrastructure for rapid prototyping and production:
             </p>
             <ul>
-                <li>Understanding biomechanical constraints and user comfort requirements</li>
-                <li>CAD modeling to ensure proper fit and function</li>
-                <li>Selecting appropriate materials balancing strength, weight, and comfort</li>
-                <li>Hands-on machining to create functional prototypes</li>
-                <li>Iterative testing and refinement based on user trials</li>
+                <li>Configured OctoPrint on 3D printers enabling wireless printing from web interface</li>
+                <li>Organized shop layout for efficient workflow and safety compliance</li>
+                <li>Established tool and inventory management systems</li>
+                <li>Participated in client calls to understand user needs and product requirements</li>
+                <li>Observed investor meetings and learned startup fundraising processes</li>
             </ul>
 
-            <!-- Technical Skills -->
+            <!-- Shop Images -->
+            <div class="detail-image">
+                <img src="ATDevpics/shop.jpg" alt="AT Dev Workshop" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <!-- Main Project -->
+            <h2>Custom Leg Brace with Revolutionary Fastening System</h2>
+            <p>
+                Designed and developed a first-of-its-kind leg brace attachment system that combined 3D scanning technology with guitar tuning peg mechanics for superior fit and ease of use.
+            </p>
+
+            <h3>Design Innovation</h3>
+            <p>
+                The attachment system featured a dual-sided approach optimized for both patient comfort and clinical precision:
+            </p>
+            <ul>
+                <li><strong>3D Scanned Side:</strong> Used 3D scanning of patient's leg to create custom-molded surface ensuring perfect anatomical fit</li>
+                <li><strong>Guitar Tuning Peg Side:</strong> Innovative mechanism requiring minimal force to tighten around leg</li>
+                <li><strong>Individual Finger Adjustment:</strong> Four independent "fingers" each individually adjustable by physician for precise fit customization</li>
+                <li><strong>String-Based Mechanism:</strong> String threaded through fingers that when pulled causes fingers to wrap around and close, distributing pressure evenly</li>
+            </ul>
+
+            <!-- Brace Images -->
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="ATDevpics/finished-brace.jpg" alt="Finished Leg Brace" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="detail-image">
+                    <img src="ATDevpics/tuning-peg-side.jpg" alt="Guitar Tuning Peg Fastening Mechanism" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- FDA Approval Process -->
+            <h2>FDA Approval & Compliance</h2>
+            <p>
+                Contributed to FDA approval application by ensuring products exceeded regulatory safety requirements:
+            </p>
+            <ul>
+                <li>Conducted rigorous force testing on brace components to verify safety margins</li>
+                <li>Ensured factor of safety exceeded FDA requirements by substantial margin</li>
+                <li>Performed Finite Element Analysis (FEA) in SolidWorks to validate structural integrity</li>
+                <li>Documented testing procedures and results for regulatory submission</li>
+                <li>Machined test fixtures and validation equipment</li>
+            </ul>
+
+            <!-- Testing Image -->
+            <div class="detail-image">
+                <img src="ATDevpics/force-testing.jpg" alt="Testing Brace Force on Scale" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <!-- Manufacturing & Machining -->
+            <h2>Precision Manufacturing</h2>
+            <p>
+                Executed hands-on machining and manufacturing processes to create functional prototypes and production components:
+            </p>
+
+            <h3>CNC Machining & Lathe Work</h3>
+            <ul>
+                <li>Programmed CNC mills using Fusion 360 CAM for complex part geometries</li>
+                <li>Operated manual and CNC lathes for cylindrical components</li>
+                <li>Used bandsaw and drill press for material preparation and hole drilling</li>
+                <li>Designed and fabricated custom fan mount for CNC mill cooling system</li>
+            </ul>
+
+            <h3>Design for Manufacturing</h3>
+            <ul>
+                <li>Performed FEA in SolidWorks to optimize part geometry and reduce weight</li>
+                <li>Machined lightweight plates with strategic material removal for strength-to-weight ratio</li>
+                <li>Tested parts under load to validate FEA predictions</li>
+                <li>Iterated designs based on manufacturing feedback and test results</li>
+            </ul>
+
+            <!-- Machining Images -->
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="ATDevpics/machined-plates.jpg" alt="Machined Plates with FEA Optimization" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="detail-image">
+                    <img src="ATDevpics/additional.jpg" alt="Manufacturing Process" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- Skills & Technologies -->
             <h2>Technical Skills & Tools</h2>
-            <p>
-                This internship developed my skills in:
-            </p>
             <ul>
-                <li>CAD design for assistive technology applications</li>
-                <li>Manual machining including milling and lathe operations</li>
-                <li>User-centered design and accessibility considerations</li>
-                <li>Prototype fabrication and testing methodologies</li>
-                <li>Cross-functional collaboration with clinical professionals</li>
-                <li>Design for manufacturing and assembly (DFMA)</li>
+                <li><strong>CAD & Simulation:</strong> SolidWorks (modeling, FEA, assemblies), Fusion 360 (CAM programming)</li>
+                <li><strong>Manufacturing:</strong> CNC milling, manual lathe, bandsaw, drill press, 3D printing</li>
+                <li><strong>Medical Device Development:</strong> FDA compliance, safety testing, user-centered design</li>
+                <li><strong>3D Scanning:</strong> Patient anatomy capture for custom-fit devices</li>
+                <li><strong>Prototyping:</strong> Rapid iteration, functional testing, design validation</li>
+                <li><strong>Materials:</strong> Medical-grade plastics, metals, composite materials</li>
+                <li><strong>Quality Control:</strong> Force testing, fit verification, safety factor validation</li>
             </ul>
 
-            <!-- Impact & Learnings -->
-            <h2>Impact & Learnings</h2>
+            <!-- Impact -->
+            <h2>Impact & Results</h2>
+            <ul>
+                <li>Developed first-of-its-kind fastening system now in production and used by patients</li>
+                <li>Contributed to successful FDA approval through rigorous testing and documentation</li>
+                <li>Reduced patient effort required to secure brace through innovative tuning peg mechanism</li>
+                <li>Improved fit accuracy and comfort through 3D scanning-based customization</li>
+                <li>Enabled physician-controlled precision fitting through individual finger adjustability</li>
+                <li>Optimized component weight through FEA-driven design iterations</li>
+            </ul>
+
+            <!-- Key Learnings -->
+            <h2>Key Learnings</h2>
             <p>
-                Working at AT Dev Inc taught me that the most rewarding engineering work directly improves people's lives. Seeing users interact with prototypes I helped create gave me a deeper appreciation for user-centered design and the importance of empathy in engineering.
+                This internship provided invaluable exposure to the complete medical device development cycle—from initial concept to market-ready product. Working at a startup taught me how to operate with limited resources, move quickly while maintaining quality, and balance innovation with regulatory compliance.
             </p>
             <p>
-                I learned to balance technical constraints with real-world usability. A device might be mechanically sound, but if it's uncomfortable, difficult to put on, or doesn't fit into a user's daily routine, it won't be successful. This experience fundamentally shaped how I approach design problems—always starting with the user's needs.
+                The experience of seeing the product I helped develop actually being used by patients reinforced the importance of user-centered design. Every design decision had real-world implications for someone's mobility and quality of life. This responsibility drove me to be more thoughtful about ergonomics, ease of use, and reliability.
+            </p>
+            <p>
+                I also learned how startups operate differently from larger companies—the need for team members to wear multiple hats, the importance of rapid prototyping and iteration, and how investor relationships and client feedback directly shape product development. These insights have been invaluable in understanding entrepreneurship and product development at all scales.
             </p>
 
             <!-- Link back -->
@@ -159,8 +313,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
         </div>
     </footer>
 
