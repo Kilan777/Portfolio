@@ -165,7 +165,7 @@
             <!-- Product Demo Video -->
             <h2>Product in Market</h2>
             <div class="video-container">
-                <video controls>
+                <video id="productVideo" muted loop playsinline>
                     <source src="ATDevpics/BraceWorking.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -188,7 +188,7 @@
             </ul>
 
             <!-- Shop Images -->
-            <div class="detail-image">
+            <div class="detail-image" style="min-height: 300px; max-height: 400px;">
                 <img src="ATDevpics/shop.jpg" alt="AT Dev Workshop" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
 
@@ -232,10 +232,16 @@
                 <li>Machined test fixtures and validation equipment</li>
             </ul>
 
-            <!-- Testing Image -->
-            <div class="detail-image">
-                <img src="ATDevpics/scaletesting.jpg" alt="Testing Brace Force on Scale" style="width: 100%; height: 100%; object-fit: contain;">
+            <!-- Brace Testing Video -->
+            <div class="video-container">
+                <video id="braceTestVideo" muted loop playsinline>
+                    <source src="ATDevpics/brace-testing.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
+            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
+                Testing custom brace force and fit
+            </p>
 
             <!-- Manufacturing & Machining -->
             <h2>Precision Manufacturing</h2>
@@ -319,5 +325,25 @@
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Autoplay videos when they come into view
+        const videos = document.querySelectorAll('#productVideo, #braceTestVideo');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play();
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }, {
+            threshold: 0.5 // Video plays when 50% visible
+        });
+
+        videos.forEach(video => {
+            observer.observe(video);
+        });
+    </script>
 </body>
 </html>
