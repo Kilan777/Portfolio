@@ -127,12 +127,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--spacing-md);
-            margin: var(--spacing-lg) 0;
+            margin: var(--spacing-md) 0;
         }
 
         .stat-card {
             background: var(--color-white);
-            padding: var(--spacing-md);
+            padding: 1.5rem var(--spacing-md);
             border-radius: var(--border-radius);
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -185,7 +185,8 @@
     </nav>
 
     <!-- Experience Detail -->
-    <section class="detail-hero">
+    <section class="detail-hero" style="position: relative;">
+        <img src="../Pics/astaralogo.png" alt="Astara Logo" style="position: absolute; top: 140px; right: 5%; width: 180px; height: auto; z-index: 2;">
         <div class="container">
             <a href="../index.html#experience" class="back-link">← Back to Experience</a>
             <h1>Astara</h1>
