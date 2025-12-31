@@ -33,8 +33,8 @@
         .detail-content h2 {
             font-size: 2rem;
             color: var(--color-accent);
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
             border-bottom: 3px solid var(--color-accent);
             display: inline-block;
             padding-bottom: 0.5rem;
@@ -130,33 +130,70 @@
             border: none;
         }
 
-        .notebook-btn {
-            display: inline-block;
+        .year-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-lg) 0;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .year-tab {
             padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            margin-bottom: -2px;
+        }
+
+        .year-tab:hover {
+            color: var(--color-accent);
+        }
+
+        .year-tab.active {
+            color: var(--color-accent);
+            border-bottom-color: var(--color-accent);
+        }
+
+        .year-content {
+            display: none;
+        }
+
+        .year-content.active {
+            display: block;
+        }
+
+        .year-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .year-title {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .specs-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
             background: var(--color-accent);
             color: var(--color-white);
-            font-weight: 700;
-            font-size: 1.125rem;
+            font-weight: 600;
+            font-size: 1rem;
             border-radius: var(--border-radius);
             text-decoration: none;
-            margin: var(--spacing-md) 0;
+            margin: var(--spacing-sm) 0 var(--spacing-md) 0;
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .notebook-btn:hover {
+        .specs-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .year-section {
-            padding-top: var(--spacing-xl);
-            border-top: 2px solid var(--color-border);
-            margin-top: var(--spacing-xl);
-        }
-
-        .year-section:first-of-type {
-            border-top: none;
         }
 
         .awards-grid {
@@ -180,6 +217,15 @@
         @media (max-width: 768px) {
             .image-row, .image-triple {
                 grid-template-columns: 1fr;
+            }
+
+            .year-tabs {
+                flex-wrap: wrap;
+            }
+
+            .year-tab {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -218,11 +264,19 @@
                 As Team Captain, Lead Builder, and Robot Operator for FRC Team 1391 (The Metal Moose), I led our team through three successful competition seasons, developing innovative robots that competed at the highest levels including World Championships. My journey with FIRST Robotics has been defined by iterative design, technical excellence, and leadership growth—from learning the fundamentals in 2022 to leading comprehensive robot development and achieving top 3% global rankings by 2024.
             </p>
 
-            <!-- 2024 Season -->
-            <div class="year-section">
-                <h2>2024 Season - CRESCENDO</h2>
+            <!-- Year Selection Tabs -->
+            <div class="year-tabs">
+                <button class="year-tab active" onclick="showYear('2024')">2024 - CRESCENDO</button>
+                <button class="year-tab" onclick="showYear('2023')">2023 - CHARGED UP</button>
+                <button class="year-tab" onclick="showYear('2022')">2022 - Rapid React</button>
+            </div>
 
-                <a href="FRCpics/2024-engineering-notebook.pdf" class="notebook-btn" target="_blank">📖 Read 2024 Engineering Notebook</a>
+            <!-- 2024 Content -->
+            <div id="year-2024" class="year-content active">
+                <div class="year-header">
+                    <h2 class="year-title">2024 Season - CRESCENDO</h2>
+                    <a href="FRCpics/2024-engineering-notebook.pdf" class="specs-btn" target="_blank">📖 See Robot Specifications</a>
+                </div>
 
                 <p>
                     In the 2024 FIRST Robotics Competition season (CRESCENDO), I served as Team Captain, Lead Builder, and Robot Operator for Team 1391. Our team designed and built a highly competitive robot capable of efficiently acquiring and scoring game pieces with remarkable consistency. The robot featured a cutting-edge four-bar intake mechanism of my design that incorporated advanced sensor systems and automated controls. Under my leadership, we achieved multiple awards including Engineering Excellence and competed at the World Championship, ranking in the top 3% globally.
@@ -352,11 +406,12 @@
                 </ul>
             </div>
 
-            <!-- 2023 Season -->
-            <div class="year-section">
-                <h2>2023 Season - CHARGED UP</h2>
-
-                <a href="FRCpics/2023-engineering-notebook.pdf" class="notebook-btn" target="_blank">📖 Read 2023 Engineering Notebook</a>
+            <!-- 2023 Content -->
+            <div id="year-2023" class="year-content">
+                <div class="year-header">
+                    <h2 class="year-title">2023 Season - CHARGED UP</h2>
+                    <a href="FRCpics/2023-engineering-notebook.pdf" class="specs-btn" target="_blank">📖 See Robot Specifications</a>
+                </div>
 
                 <p>
                     As Team Captain, Lead Builder, and Robot Operator for FRC Team 1391 during the 2023 season (CHARGED UP), I led our team through designing and building a highly competitive robot featuring both cube and cone handling mechanisms. My primary focus was the development of our multi-stage arm system and intake mechanisms. The robot, named "BAMI," showcased innovation in game piece manipulation with a two-rotation point arm and advanced gripper system.
@@ -483,11 +538,12 @@
                 </ul>
             </div>
 
-            <!-- 2022 Season -->
-            <div class="year-section">
-                <h2>2022 Season - Rapid React</h2>
-
-                <a href="FRCpics/2022-engineering-notebook.pdf" class="notebook-btn" target="_blank">📖 Read 2022 Engineering Notebook</a>
+            <!-- 2022 Content -->
+            <div id="year-2022" class="year-content">
+                <div class="year-header">
+                    <h2 class="year-title">2022 Season - Rapid React</h2>
+                    <a href="FRCpics/2022-engineering-notebook.pdf" class="specs-btn" target="_blank">📖 See Robot Specifications</a>
+                </div>
 
                 <p>
                     As a key member of FRC Team 1391 (The Metal Moose) during the 2022 season, I contributed significantly to developing our innovative robot "Gustavo." The robot featured breakthrough designs in climbing and shooting mechanisms, including a unique unlimited-rotation turret and a sophisticated multi-stage climbing system capable of reaching the traversal bar. These innovations helped our robot demonstrate exceptional performance throughout the season, making it all the way to the World Championship in Houston, Texas.
@@ -629,31 +685,33 @@
                 </ul>
             </div>
 
-            <!-- Overall Impact -->
-            <h2>Three-Year Impact & Growth</h2>
-            <p>
-                My three-year journey with FIRST Robotics Competition represents a progression from contributor to leader, from learning fundamentals to teaching others, and from implementing designs to creating comprehensive documentation that sets new team standards. Each season built upon the last, culminating in World Championship appearances, top 3% global rankings, and multiple Engineering Excellence awards.
-            </p>
+            <!-- Overall Impact Section (Always Visible) -->
+            <div style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 2px solid var(--color-border);">
+                <h2>Three-Year Impact & Growth</h2>
+                <p>
+                    My three-year journey with FIRST Robotics Competition represents a progression from contributor to leader, from learning fundamentals to teaching others, and from implementing designs to creating comprehensive documentation that sets new team standards. Each season built upon the last, culminating in World Championship appearances, top 3% global rankings, and multiple Engineering Excellence awards.
+                </p>
 
-            <h3>Technical Skills Developed</h3>
-            <ul>
-                <li><strong>CAD & Simulation:</strong> Fusion 360, SolidWorks - from basic modeling to inverse kinematics</li>
-                <li><strong>Manufacturing:</strong> CNC mill, CNC router, lathe, 3D printing, sheet metal fabrication</li>
-                <li><strong>Mechanical Design:</strong> Iterative prototyping, weight optimization, center of gravity management</li>
-                <li><strong>Control Systems:</strong> Motor controllers, encoders, sensors, pneumatics integration</li>
-                <li><strong>Vision Processing:</strong> Limelight configuration, AprilTag tracking, automated targeting</li>
-                <li><strong>System Integration:</strong> Coordinating mechanical, electrical, and programming subsystems</li>
-                <li><strong>Documentation:</strong> Engineering notebooks, design rationale, iterative improvement tracking</li>
-            </ul>
+                <h3>Technical Skills Developed</h3>
+                <ul>
+                    <li><strong>CAD & Simulation:</strong> Fusion 360, SolidWorks - from basic modeling to inverse kinematics</li>
+                    <li><strong>Manufacturing:</strong> CNC mill, CNC router, lathe, 3D printing, sheet metal fabrication</li>
+                    <li><strong>Mechanical Design:</strong> Iterative prototyping, weight optimization, center of gravity management</li>
+                    <li><strong>Control Systems:</strong> Motor controllers, encoders, sensors, pneumatics integration</li>
+                    <li><strong>Vision Processing:</strong> Limelight configuration, AprilTag tracking, automated targeting</li>
+                    <li><strong>System Integration:</strong> Coordinating mechanical, electrical, and programming subsystems</li>
+                    <li><strong>Documentation:</strong> Engineering notebooks, design rationale, iterative improvement tracking</li>
+                </ul>
 
-            <h3>Leadership Development</h3>
-            <ul>
-                <li><strong>Team Management:</strong> Led 30+ member team across mechanical, electrical, programming, and business sub-teams</li>
-                <li><strong>Project Planning:</strong> Managed build schedules, prototyping timelines, and competition deadlines</li>
-                <li><strong>Mentorship:</strong> Trained new members in CAD, machining, and design processes</li>
-                <li><strong>Competition Strategy:</strong> Coordinated with alliance partners and adapted to field conditions</li>
-                <li><strong>Documentation Standards:</strong> Established comprehensive engineering notebook practices</li>
-            </ul>
+                <h3>Leadership Development</h3>
+                <ul>
+                    <li><strong>Team Management:</strong> Led 30+ member team across mechanical, electrical, programming, and business sub-teams</li>
+                    <li><strong>Project Planning:</strong> Managed build schedules, prototyping timelines, and competition deadlines</li>
+                    <li><strong>Mentorship:</strong> Trained new members in CAD, machining, and design processes</li>
+                    <li><strong>Competition Strategy:</strong> Coordinated with alliance partners and adapted to field conditions</li>
+                    <li><strong>Documentation Standards:</strong> Established comprehensive engineering notebook practices</li>
+                </ul>
+            </div>
 
             <!-- Link back -->
             <a href="../index.html#experience" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
@@ -671,6 +729,28 @@
 
     <script src="../script.js"></script>
     <script>
+        // Year tab switching
+        function showYear(year) {
+            // Hide all year content
+            document.querySelectorAll('.year-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.year-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected year content
+            document.getElementById('year-' + year).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Scroll to top of content
+            document.querySelector('.year-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         // Autoplay videos when they come into view
         const videos = document.querySelectorAll('.frc-video');
 
@@ -683,7 +763,7 @@
                 }
             });
         }, {
-            threshold: 0.5 // Video plays when 50% visible
+            threshold: 0.5
         });
 
         videos.forEach(video => {
