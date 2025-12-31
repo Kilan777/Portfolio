@@ -25,7 +25,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -38,6 +38,13 @@
             border-bottom: 3px solid var(--color-accent);
             display: inline-block;
             padding-bottom: 0.5rem;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
         }
 
         .detail-content p {
@@ -63,6 +70,84 @@
             margin: var(--spacing-lg) 0;
             border-radius: var(--border-radius);
             overflow: hidden;
+            background: var(--color-accent-light);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            border: 2px dashed var(--color-border);
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            padding: var(--spacing-md);
+            margin: 0 0 var(--spacing-lg) 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword { color: #569cd6; }
+        .code-block .string { color: #ce9178; }
+        .code-block .comment { color: #6a9955; font-style: italic; }
+        .code-block .function { color: #dcdcaa; }
+        .code-block .variable { color: #9cdcfe; }
+        .code-block .number { color: #b5cea8; }
+
+        .code-header {
+            background: #2d2d2d;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: var(--spacing-lg);
+        }
+
+        .code-header::before {
+            content: '●●●';
+            color: #666;
+            letter-spacing: 3px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .stat-card {
+            background: var(--color-white);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
         }
 
         .back-link {
@@ -76,11 +161,10 @@
             text-decoration: underline;
         }
 
-        .company-link {
-            display: inline-block;
-            color: var(--color-accent);
-            text-decoration: underline;
-            margin-top: var(--spacing-sm);
+        @media (max-width: 768px) {
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -95,7 +179,7 @@
                 <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="../Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -105,8 +189,7 @@
         <div class="container">
             <a href="../index.html#experience" class="back-link">← Back to Experience</a>
             <h1>Astara</h1>
-            <p class="detail-meta">Data & Computer Science Analyst Intern • Summer 2024</p>
-            <a href="https://astaramove.com" target="_blank" class="company-link">Visit Astara →</a>
+            <p class="detail-meta">Data & Computer Science Intern • Astara Move Department • 2023</p>
         </div>
     </section>
 
@@ -115,41 +198,261 @@
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                Astara is a global mobility provider focused on optimizing vehicle fleets and providing sustainable transportation solutions. As a Data & Computer Science Analyst Intern, I developed automation tools and data analysis solutions that significantly improved operational efficiency.
+                Served as second-in-command for data analytics in Astara's newly launched Move department, a car subscription service managing over 1,000 active vehicles. Developed Python automation tools and web scraping solutions that transformed how the company made pricing decisions and prepared executive reports, reducing weekly report preparation time by over 90%.
             </p>
 
-            <!-- Key Accomplishments -->
-            <h2>Key Accomplishments</h2>
+            <!-- Company Context -->
+            <h3>About Astara</h3>
+            <p>
+                Astara is a major automotive distributor handling over $1 billion in annual revenue. The Move department launched a subscription-based car rental service as an alternative to traditional car ownership, requiring sophisticated data analytics to compete in a crowded market.
+            </p>
+
+            <!-- Astara Move Website Screenshot -->
+            <div class="detail-image">
+                <img src="Astarapics/website-screenshot.jpg" alt="Astara Move Subscription Platform" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <!-- Impact Stats -->
+            <h2>Impact & Scale</h2>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Reduction in Report Prep Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,000+</div>
+                    <div class="stat-label">Competitors Tracked</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,000+</div>
+                    <div class="stat-label">Active Fleet Vehicles</div>
+                </div>
+            </div>
+
+            <!-- Main Projects -->
+            <h2>Key Projects & Contributions</h2>
+
+            <!-- Fleet Analytics -->
+            <h3>1. Fleet Analytics & Vehicle Demand Forecasting</h3>
+            <p>
+                As a newly launched department, Astara Move needed data-driven insights to guide fleet expansion decisions. I analyzed user subscription data to identify which vehicle models were most popular, helping inform purchasing decisions worth millions of dollars.
+            </p>
             <ul>
-                <li>Developed Python data analysis tools and automation solutions for fleet optimization</li>
-                <li>Created web scraping scripts to monitor over 1,000 competitors' prices for real-time market analysis</li>
-                <li>Automated the company's reporting system, reducing weekly report preparation time by over 90%</li>
-                <li>Built tools that continue to provide competitive insights and operational efficiency improvements</li>
+                <li>Analyzed customer preferences across different vehicle categories (sedans, SUVs, luxury, economy)</li>
+                <li>Identified seasonal demand patterns and peak subscription periods</li>
+                <li>Provided actionable recommendations on fleet composition and expansion priorities</li>
+                <li>Used Python with Pandas and NumPy for statistical analysis of user behavior</li>
             </ul>
 
-            <!-- Technical Skills -->
+            <div class="code-header">fleet_analysis.py</div>
+            <div class="code-block">
+<pre><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+
+<span class="comment"># Load subscription data from database</span>
+<span class="keyword">def</span> <span class="function">analyze_vehicle_popularity</span>(df):
+    <span class="comment"># Group by vehicle model and calculate key metrics</span>
+    popularity = df.<span class="function">groupby</span>(<span class="string">'vehicle_model'</span>).<span class="function">agg</span>({
+        <span class="string">'subscription_id'</span>: <span class="string">'count'</span>,
+        <span class="string">'subscription_duration'</span>: <span class="string">'mean'</span>,
+        <span class="string">'revenue'</span>: <span class="string">'sum'</span>
+    })
+
+    <span class="comment"># Calculate utilization rate</span>
+    popularity[<span class="string">'utilization_rate'</span>] = (
+        popularity[<span class="string">'subscription_id'</span>] /
+        df.<span class="function">groupby</span>(<span class="string">'vehicle_model'</span>)[<span class="string">'available_units'</span>].<span class="function">first</span>()
+    )
+
+    <span class="keyword">return</span> popularity.<span class="function">sort_values</span>(<span class="string">'utilization_rate'</span>, ascending=<span class="keyword">False</span>)
+
+<span class="comment"># Identify peak seasons</span>
+<span class="keyword">def</span> <span class="function">find_peak_seasons</span>(df):
+    df[<span class="string">'month'</span>] = pd.<span class="function">to_datetime</span>(df[<span class="string">'start_date'</span>]).<span class="variable">dt</span>.<span class="variable">month</span>
+    monthly_demand = df.<span class="function">groupby</span>(<span class="string">'month'</span>)[<span class="string">'subscription_id'</span>].<span class="function">count</span>()
+
+    <span class="keyword">return</span> monthly_demand</pre>
+            </div>
+
+            <!-- Competitor Analysis & Web Scraping -->
+            <h3>2. Automated Competitor Pricing Intelligence</h3>
+            <p>
+                Developed a sophisticated web scraping system that automatically tracked competitor pricing across 1,000+ competitors. When Astara added a new vehicle model to their fleet, the system would immediately provide average subscription costs from all tracked competitors, enabling data-driven pricing strategies.
+            </p>
+            <ul>
+                <li>Built robust web scrapers using BeautifulSoup and Selenium for dynamic content</li>
+                <li>Implemented error handling and retry logic for reliable data collection</li>
+                <li>Stored competitive data in database for historical trend analysis</li>
+                <li>Created automated alerts when competitors changed their pricing</li>
+            </ul>
+
+            <div class="code-header">competitor_scraper.py</div>
+            <div class="code-block">
+<pre><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+<span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By
+<span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup
+<span class="keyword">import</span> requests
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+<span class="keyword">class</span> <span class="function">CompetitorPriceScraper</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>, competitors_list):
+        <span class="variable">self</span>.competitors = competitors_list
+        <span class="variable">self</span>.driver = webdriver.<span class="function">Chrome</span>()
+
+    <span class="keyword">def</span> <span class="function">scrape_competitor</span>(<span class="variable">self</span>, url, vehicle_model):
+        <span class="keyword">try</span>:
+            <span class="variable">self</span>.driver.<span class="function">get</span>(url)
+
+            <span class="comment"># Wait for dynamic content to load</span>
+            <span class="variable">self</span>.driver.<span class="function">implicitly_wait</span>(<span class="number">5</span>)
+
+            <span class="comment"># Extract pricing data</span>
+            price_element = <span class="variable">self</span>.driver.<span class="function">find_element</span>(
+                By.<span class="variable">CLASS_NAME</span>, <span class="string">'subscription-price'</span>
+            )
+
+            price = <span class="function">float</span>(price_element.<span class="variable">text</span>.<span class="function">replace</span>(<span class="string">'€'</span>, <span class="string">''</span>).<span class="function">replace</span>(<span class="string">','</span>, <span class="string">''</span>))
+
+            <span class="keyword">return</span> {
+                <span class="string">'vehicle'</span>: vehicle_model,
+                <span class="string">'competitor'</span>: url,
+                <span class="string">'price'</span>: price,
+                <span class="string">'timestamp'</span>: datetime.<span class="function">now</span>()
+            }
+
+        <span class="keyword">except</span> <span class="keyword">Exception</span> <span class="keyword">as</span> e:
+            <span class="function">print</span>(<span class="string">f"Error scraping {url}: {e}"</span>)
+            <span class="keyword">return</span> <span class="keyword">None</span>
+
+    <span class="keyword">def</span> <span class="function">get_market_average</span>(<span class="variable">self</span>, vehicle_model):
+        prices = []
+
+        <span class="keyword">for</span> competitor <span class="keyword">in</span> <span class="variable">self</span>.competitors:
+            data = <span class="variable">self</span>.<span class="function">scrape_competitor</span>(competitor, vehicle_model)
+            <span class="keyword">if</span> data:
+                prices.<span class="function">append</span>(data[<span class="string">'price'</span>])
+
+        <span class="keyword">return</span> {
+            <span class="string">'average'</span>: np.<span class="function">mean</span>(prices),
+            <span class="string">'median'</span>: np.<span class="function">median</span>(prices),
+            <span class="string">'min'</span>: <span class="function">min</span>(prices),
+            <span class="string">'max'</span>: <span class="function">max</span>(prices)
+        }</pre>
+            </div>
+
+            <!-- Report Automation -->
+            <h3>3. Automated Weekly Reporting System</h3>
+            <p>
+                Transformed the weekly executive reporting process from hours of manual data entry into an automated system that pulled data directly from databases and generated presentation-ready reports. This 90%+ time reduction allowed the team to focus on strategic analysis rather than data compilation.
+            </p>
+            <ul>
+                <li>Connected Python scripts to company databases using SQL queries</li>
+                <li>Automated data extraction, transformation, and loading (ETL) processes</li>
+                <li>Generated charts and visualizations using Matplotlib and Seaborn</li>
+                <li>Exported formatted reports directly into PowerPoint presentations</li>
+            </ul>
+
+            <div class="code-header">report_automation.py</div>
+            <div class="code-block">
+<pre><span class="keyword">import</span> sqlite3
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="keyword">from</span> pptx <span class="keyword">import</span> Presentation
+<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta
+
+<span class="keyword">class</span> <span class="function">WeeklyReportGenerator</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>, db_path):
+        <span class="variable">self</span>.conn = sqlite3.<span class="function">connect</span>(db_path)
+
+    <span class="keyword">def</span> <span class="function">fetch_weekly_metrics</span>(<span class="variable">self</span>):
+        <span class="comment"># Calculate date range for past week</span>
+        end_date = datetime.<span class="function">now</span>()
+        start_date = end_date - timedelta(days=<span class="number">7</span>)
+
+        query = <span class="string">"""
+            SELECT
+                DATE(subscription_start) as date,
+                COUNT(*) as new_subscriptions,
+                SUM(revenue) as daily_revenue,
+                AVG(customer_rating) as avg_rating
+            FROM subscriptions
+            WHERE subscription_start BETWEEN ? AND ?
+            GROUP BY DATE(subscription_start)
+        """</span>
+
+        <span class="keyword">return</span> pd.<span class="function">read_sql_query</span>(query, <span class="variable">self</span>.conn,
+                                    params=(start_date, end_date))
+
+    <span class="keyword">def</span> <span class="function">generate_charts</span>(<span class="variable">self</span>, data):
+        <span class="comment"># Create revenue trend chart</span>
+        plt.<span class="function">figure</span>(figsize=(<span class="number">10</span>, <span class="number">6</span>))
+        plt.<span class="function">plot</span>(data[<span class="string">'date'</span>], data[<span class="string">'daily_revenue'</span>], marker=<span class="string">'o'</span>)
+        plt.<span class="function">title</span>(<span class="string">'Weekly Revenue Trend'</span>)
+        plt.<span class="function">xlabel</span>(<span class="string">'Date'</span>)
+        plt.<span class="function">ylabel</span>(<span class="string">'Revenue (€)'</span>)
+        plt.<span class="function">savefig</span>(<span class="string">'weekly_revenue.png'</span>)
+
+    <span class="keyword">def</span> <span class="function">create_presentation</span>(<span class="variable">self</span>):
+        prs = Presentation()
+
+        <span class="comment"># Add title slide</span>
+        title_slide = prs.slides.<span class="function">add_slide</span>(prs.slide_layouts[<span class="number">0</span>])
+        title_slide.shapes.title.text = <span class="string">"Weekly Performance Report"</span>
+
+        <span class="comment"># Add data slides automatically...</span>
+        <span class="comment"># (Additional slide generation code)</span>
+
+        prs.<span class="function">save</span>(<span class="string">'weekly_report.pptx'</span>)</pre>
+            </div>
+
+            <!-- Bug Finding & Quality Assurance -->
+            <h3>4. Platform Quality Assurance</h3>
+            <p>
+                Identified and reported critical bugs in the Astara Move platform, including pricing discrepancies across different devices and platforms. These findings prevented potential revenue loss and improved customer experience.
+            </p>
+            <ul>
+                <li>Discovered price inconsistencies between mobile and desktop platforms</li>
+                <li>Found calculation errors in subscription renewal pricing</li>
+                <li>Reported issues directly to department head with detailed documentation</li>
+                <li>Contributed to platform stability and reliability improvements</li>
+            </ul>
+
+            <!-- Skills & Technologies -->
             <h2>Technical Skills & Tools</h2>
-            <p>
-                Throughout this internship, I developed expertise in data engineering and automation:
-            </p>
             <ul>
-                <li>Python programming for data analysis and automation</li>
-                <li>Web scraping technologies for competitive intelligence</li>
-                <li>Data pipeline development and ETL processes</li>
-                <li>Report automation and data visualization</li>
-                <li>API integration and data processing workflows</li>
+                <li><strong>Programming:</strong> Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
+                <li><strong>Web Scraping:</strong> BeautifulSoup, Selenium, Requests</li>
+                <li><strong>Data Analysis:</strong> Statistical analysis, trend identification, forecasting</li>
+                <li><strong>Database:</strong> SQL queries, data extraction and manipulation</li>
+                <li><strong>Automation:</strong> ETL pipelines, scheduled tasks, report generation</li>
+                <li><strong>Visualization:</strong> Matplotlib, Seaborn, PowerPoint integration</li>
+                <li><strong>Business Intelligence:</strong> Competitor analysis, pricing strategy, market research</li>
             </ul>
 
-            <!-- Impact & Learnings -->
-            <h2>Impact & Learnings</h2>
+            <!-- Learning from Distribution Business -->
+            <h2>Industry Insights</h2>
             <p>
-                This internship taught me the value of automation in business operations. By reducing manual reporting time by 90%, I freed up the team to focus on strategic analysis rather than data collection. The web scraping tools I developed provided real-time competitive intelligence that informed pricing decisions across the fleet.
+                Working at a major automotive distributor handling over $1 billion in annual revenue provided invaluable insights into large-scale operations:
+            </p>
+            <ul>
+                <li>Learned how distributors manage relationships with manufacturers and dealers</li>
+                <li>Understood the complexity of fleet management and vehicle lifecycle optimization</li>
+                <li>Observed how data analytics drives strategic business decisions at scale</li>
+                <li>Gained appreciation for the importance of automation in high-volume operations</li>
+                <li>Experienced the challenges of launching a new business unit within an established company</li>
+            </ul>
+
+            <!-- Key Learnings -->
+            <h2>Key Learnings</h2>
+            <p>
+                This internship taught me the power of automation and data-driven decision making. By replacing manual processes with automated systems, I helped a small team manage a rapidly growing operation without proportionally increasing workload. The 90% reduction in report preparation time demonstrated that thoughtful automation isn't just about saving time—it's about enabling teams to focus on high-value strategic work.
             </p>
             <p>
-                I learned that effective engineering solutions must balance technical sophistication with practical usability. The tools I built needed to be maintainable by non-technical team members, which taught me the importance of clear documentation and user-friendly interfaces.
+                Working with a newly launched department showed me the importance of building scalable systems from the start. The web scraping and analytics tools I developed continue to provide value as the fleet grows beyond 1,000 vehicles, proving that good engineering creates lasting impact.
             </p>
-            <p style="font-style: italic; font-size: 1rem; margin-top: var(--spacing-md);">
-                Note: Additional project details are limited due to NDA restrictions.
+            <p>
+                Perhaps most importantly, I learned that effective data analysis isn't just about writing code—it's about understanding business needs and translating them into actionable insights. Every script I wrote solved a real business problem, and seeing executives make million-dollar fleet decisions based on my analysis reinforced the real-world impact of data science.
             </p>
 
             <!-- Link back -->
@@ -161,8 +464,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
         </div>
     </footer>
 
