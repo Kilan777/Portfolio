@@ -460,14 +460,7 @@ a {
     height: 100%;
 }
 
-/* Hide cards beyond the first 3 */
-.project-card:nth-child(n+4) {
-    display: none;
-}
-
-.project-card.show {
-    display: block;
-}
+/* Show all project cards */
 
 /* ===========================
    Contact Section
