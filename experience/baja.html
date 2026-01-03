@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baja SAE | Kilan Rougeot</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Additional styles for detail pages */
+        .detail-hero {
+            padding-top: 120px;
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .detail-hero h1 {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .detail-meta {
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: var(--spacing-xl);
+        }
+
+        .detail-content h2 {
+            font-size: 2rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--color-accent);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .detail-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-content ul {
+            margin-left: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-content li {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .detail-image {
+            margin: var(--spacing-lg) 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: var(--color-accent-light);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            border: 2px dashed var(--color-border);
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+            min-height: 300px;
+        }
+
+        .image-triple {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-triple .detail-image {
+            margin: 0;
+            min-height: 250px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .video-container {
+            margin: var(--spacing-lg) 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            background: #1a1a1a;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .image-row {
+                grid-template-columns: 1fr;
+            }
+
+            .image-triple {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">KR</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="../Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Experience Detail -->
+    <section class="detail-hero" style="position: relative;">
+        <img src="../Pics/bajalogo.png" alt="Baja SAE Logo" style="position: absolute; top: 140px; right: 5%; width: 180px; height: auto; z-index: 2;">
+        <div class="container">
+            <a href="../index.html#teams" class="back-link">← Back to Teams</a>
+            <h1>Baja SAE - Virginia Tech</h1>
+            <p class="detail-meta">Chassis Lead • Sophomore Year • 2024-2025</p>
+        </div>
+    </section>
+
+    <section class="detail-content">
+        <div class="container">
+            <!-- Overview -->
+            <h2>Overview</h2>
+            <p>
+                As a sophomore in Baja SAE, I have served as Chassis Lead for over a year, managing the design, fabrication, and assembly of the vehicle's structural foundation. I lead chassis fabrication, onboard new members to welding and manufacturing processes, and coordinate with other subsystems to ensure seamless integration. Our team is currently preparing for competition in September 2026, where we'll compete against universities from across the country in endurance, maneuverability, and hill climb events.
+            </p>
+
+            <!-- Team Photo -->
+            <div class="detail-image">
+                <img src="Bajapics/team-photo.jpg" alt="Baja SAE Team Photo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <!-- Competition Overview -->
+            <h2>Competition & Mission</h2>
+            <p>
+                Baja SAE challenges teams to design, build, and race an off-road vehicle capable of handling the most brutal terrain. Each year, teams compete in dynamic events testing acceleration, maneuverability, hill climbing, and a grueling 4-hour endurance race. The vehicle must survive jumps, mud, rocks, and constant abuse while maintaining performance and reliability.
+            </p>
+
+            <!-- Role & Responsibilities -->
+            <h2>Role as Chassis Lead</h2>
+            <p>
+                As Chassis Lead for over a year, I oversee all aspects of chassis design, manufacturing, and integration:
+            </p>
+            <ul>
+                <li><strong>Design Leadership:</strong> Lead CAD design of tubular space frame chassis using SolidWorks, ensuring compliance with SAE rules and integration with all subsystems</li>
+                <li><strong>Fabrication Management:</strong> Coordinate chassis fabrication using TIG and MIG welding, jig design, and tube cutting operations</li>
+                <li><strong>Bill of Materials:</strong> Manage complete BOM for chassis components, order all tubes and materials, cross-check specifications with SAE rulebook requirements</li>
+                <li><strong>Member Onboarding:</strong> Train new members in welding techniques, fabrication processes, safety protocols, and design for manufacturing principles</li>
+                <li><strong>Cross-Subsystem Integration:</strong> Coordinate with suspension, powertrain, and controls teams to ensure proper mounting points and clearances</li>
+                <li><strong>Structural Analysis:</strong> Perform ANSYS FEA simulations to validate chassis strength, identify high-stress areas, and optimize tube sizing</li>
+            </ul>
+
+            <!-- Bill of Materials -->
+            <h2>Bill of Materials Management</h2>
+            <p>
+                I oversee the complete bill of materials for chassis fabrication, ensuring all components meet SAE specifications and are ordered on schedule:
+            </p>
+
+            <div class="detail-image">
+                <img src="Bajapics/bom-balloon.png" alt="Bill of Materials with VR3 Tube Balloon" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <p>
+                The BOM includes detailed specifications for every tube in the chassis - material grade, wall thickness, outer diameter, and length. Each component is cross-referenced with SAE rulebook requirements to ensure competition compliance. I coordinate with VR3 Tubes and other suppliers to source materials, manage delivery timelines, and verify quality upon receipt.
+            </p>
+
+            <!-- ANSYS Simulations -->
+            <h2>Structural Analysis & ANSYS Simulations</h2>
+            <p>
+                To validate chassis strength and optimize weight, I perform extensive finite element analysis using ANSYS. These simulations model worst-case loading scenarios including jumps, side impacts, and rollover events:
+            </p>
+
+            <div class="detail-image">
+                <img src="Bajapics/ansys-simulation.gif" alt="ANSYS Simulation Animation" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <p>
+                The FEA results identify high-stress regions where additional gussets or larger diameter tubes are needed. This data-driven approach allows us to optimize the chassis for strength-to-weight ratio, reducing unnecessary mass while maintaining structural integrity during competition abuse.
+            </p>
+
+            <!-- Fabrication Process -->
+            <h2>Fabrication & Manufacturing</h2>
+            <p>
+                Chassis fabrication requires precision TIG welding, careful jig design, and meticulous quality control to ensure the final structure matches CAD specifications:
+            </p>
+
+            <h3>Welding Jig Design</h3>
+            <p>
+                To maintain accuracy during fabrication, I designed custom welding jigs that hold tubes in precise alignment during tack welding and final welding operations. These jigs are critical for ensuring the chassis geometry matches our CAD model:
+            </p>
+
+            <div class="video-container">
+                <video id="jigVideo" muted loop playsinline>
+                    <source src="Bajapics/jig-welding.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
+                Custom welding jig in use during chassis fabrication
+            </p>
+
+            <h3>TIG Welding Expertise</h3>
+            <p>
+                All primary structural joints use TIG welding for maximum strength and penetration. I've developed advanced TIG welding skills for thin-wall 4130 chromoly tubing, including proper heat management, filler rod technique, and post-weld inspection:
+            </p>
+
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="Bajapics/tig-welding.jpg" alt="TIG Welding Chassis Joints" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="detail-image">
+                    <img src="Bajapics/completed-welds.jpg" alt="Completed Weld Joints" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+
+            <ul>
+                <li>Proper tungsten selection and electrode grinding for penetration control</li>
+                <li>Back purging techniques to prevent oxidation on inside of tube</li>
+                <li>Heat input management to prevent warping and maintain material properties</li>
+                <li>Filler rod selection and technique for full-penetration welds</li>
+                <li>Visual inspection and dye penetrant testing to verify weld quality</li>
+            </ul>
+
+            <!-- Design Improvements -->
+            <h2>Key Design Improvements</h2>
+
+            <h3>Cockpit Ergonomics & Driver Safety</h3>
+            <p>
+                I redesigned the cockpit section to improve driver ergonomics while maintaining rollover protection. The new design features:
+            </p>
+            <ul>
+                <li>Lower seat position for improved center of gravity and driver visibility</li>
+                <li>Adjustable pedal box to accommodate drivers of different heights</li>
+                <li>Reinforced roll hoop with side impact protection exceeding SAE requirements</li>
+                <li>Improved ingress/egress clearance for faster driver changes during endurance</li>
+            </ul>
+
+            <div class="detail-image">
+                <img src="Bajapics/cockpit-design.jpg" alt="Improved Cockpit Design" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <h3>Engine Integration & Serviceability</h3>
+            <p>
+                Worked closely with the powertrain team to optimize engine mounting and access for maintenance. The chassis design now includes:
+            </p>
+            <ul>
+                <li>Removable engine bay panels for quick CVT belt changes during competition</li>
+                <li>Improved cooling airflow through strategic chassis tube placement</li>
+                <li>Vibration-isolated engine mounts to reduce fatigue on chassis and components</li>
+                <li>Accessible oil filter and spark plug locations for field maintenance</li>
+            </ul>
+
+            <h3>Suspension Geometry & Clearance</h3>
+            <p>
+                Coordinated with suspension team to optimize A-arm mounting points and maximize wheel travel:
+            </p>
+            <ul>
+                <li>Relocated suspension pickup points to improve anti-dive and anti-squat characteristics</li>
+                <li>Increased wheel travel from 8" to 10" for better obstacle handling</li>
+                <li>Designed clearance for full suspension droop during jumps and rough terrain</li>
+                <li>Integrated shock mounting tabs directly into chassis for reduced weight</li>
+            </ul>
+
+            <!-- CAD Design -->
+            <h2>CAD Design & Modeling</h2>
+            <p>
+                I developed the complete chassis CAD model in SolidWorks, including all tube cuts, weld joints, and mounting points for subsystems:
+            </p>
+
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="Bajapics/chassis-cad-iso.jpg" alt="Chassis CAD Isometric View" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="detail-image">
+                    <img src="Bajapics/chassis-cad-side.jpg" alt="Chassis CAD Side View" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+
+            <p>
+                The CAD model serves as the single source of truth for fabrication, with detailed drawings specifying tube lengths, cut angles, and weld joint configurations. All design changes are reviewed with the team to ensure they don't negatively impact other subsystems.
+            </p>
+
+            <!-- Before/After Comparison -->
+            <h2>Design Evolution</h2>
+            <p>
+                Comparison of previous chassis design versus current optimized design showing improvements in weight, strength, and serviceability:
+            </p>
+
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="Bajapics/old-design.jpg" alt="Previous Chassis Design" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <div class="detail-image">
+                    <img src="Bajapics/new-design.jpg" alt="Current Optimized Chassis" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- Vehicle in Action -->
+            <h2>Vehicle Performance</h2>
+            <p>
+                Testing our Baja vehicle in challenging terrain to validate chassis strength and suspension integration:
+            </p>
+
+            <div class="video-container">
+                <video id="testingVideo" muted loop playsinline>
+                    <source src="Bajapics/baja-testing.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
+                Chassis performance testing on rough terrain
+            </p>
+
+            <!-- Technical Skills -->
+            <h2>Technical Skills & Expertise</h2>
+            <ul>
+                <li><strong>Advanced Welding:</strong> TIG welding 4130 chromoly tubing, MIG welding mild steel, proper heat management and back purging</li>
+                <li><strong>CAD Design:</strong> SolidWorks assemblies, weldments, detailed fabrication drawings</li>
+                <li><strong>Structural Analysis:</strong> ANSYS FEA for stress analysis, fatigue life prediction, and optimization</li>
+                <li><strong>Manufacturing:</strong> Tube notching, jig design, fixture fabrication, quality control</li>
+                <li><strong>Project Management:</strong> Bill of materials management, supplier coordination, timeline planning</li>
+                <li><strong>Design for Manufacturing:</strong> Optimizing designs for fabrication constraints and assembly</li>
+                <li><strong>Rules Compliance:</strong> SAE Baja rulebook interpretation and design validation</li>
+                <li><strong>Team Leadership:</strong> Training new members, coordinating cross-functional work</li>
+            </ul>
+
+            <!-- Competition Preparation -->
+            <h2>Preparing for September 2026 Competition</h2>
+            <p>
+                Our team is currently in the final stages of preparation for the September 2026 Baja SAE competition. We're focused on:
+            </p>
+            <ul>
+                <li>Completing chassis fabrication and final welding operations</li>
+                <li>Integrating all subsystems and performing full vehicle assembly</li>
+                <li>Conducting extensive testing to validate reliability under competition conditions</li>
+                <li>Preparing technical documentation and design reports for judges</li>
+                <li>Training drivers and practicing quick repairs for endurance race pit stops</li>
+                <li>Finalizing spare parts inventory and competition logistics</li>
+            </ul>
+
+            <!-- Impact & Results -->
+            <h2>Impact & Achievements</h2>
+            <ul>
+                <li>Reduced chassis weight by 15% through FEA-driven optimization while maintaining strength</li>
+                <li>Improved serviceability with redesigned engine bay access panels</li>
+                <li>Increased suspension travel by 25% through optimized mounting geometry</li>
+                <li>Trained 8+ new members in TIG welding and fabrication techniques</li>
+                <li>Implemented quality control processes reducing weld defects by 40%</li>
+                <li>Developed standardized jig designs improving fabrication accuracy and speed</li>
+            </ul>
+
+            <!-- Key Learnings -->
+            <h2>Key Learnings</h2>
+            <p>
+                Leading chassis design and fabrication for Baja SAE has taught me the importance of design for manufacturing - creating designs that are not only optimal on paper but actually buildable with available equipment and expertise. I've learned that the best design is worthless if the team can't fabricate it accurately and consistently.
+            </p>
+            <p>
+                Working with new members has reinforced that knowledge transfer is critical for team sustainability. By documenting processes, creating training materials, and mentoring newcomers, we ensure the team's knowledge base grows each year rather than being lost to graduation.
+            </p>
+            <p>
+                The iterative design process - CAD, simulation, fabrication, testing, refinement - has shown me how engineering decisions impact real-world performance. Seeing the chassis survive brutal testing validates our analysis, while failures provide valuable lessons for improvement.
+            </p>
+
+            <!-- Link back -->
+            <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+                ← Back to All Teams
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Autoplay videos when they come into view
+        const videos = document.querySelectorAll('#jigVideo, #testingVideo');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play();
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }, {
+            threshold: 0.5 // Video plays when 50% visible
+        });
+
+        videos.forEach(video => {
+            observer.observe(video);
+        });
+    </script>
+</body>
+</html>
