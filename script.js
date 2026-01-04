@@ -104,7 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.forEach((card, index) => {
         // Add transition delay based on index
         card.style.transitionDelay = `${index * 0.1}s`;
-        animationObserver.observe(card);
+
+        // Make all project cards visible immediately (since we show all projects now)
+        if (card.classList.contains('project-card')) {
+            card.classList.add('visible');
+        } else {
+            animationObserver.observe(card);
+        }
     });
 
     // Animate other elements
