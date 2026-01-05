@@ -11,6 +11,26 @@
             min-height: calc(100vh - 200px);
             padding-top: 120px;
             padding-bottom: var(--spacing-xl);
+            background-image: url('Pics/contactbackground.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .contact-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: 0;
+        }
+
+        .contact-page .container {
+            position: relative;
+            z-index: 1;
         }
 
         .contact-header {
@@ -32,7 +52,7 @@
         }
 
         .contact-container {
-            max-width: 600px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -41,10 +61,15 @@
             padding: var(--spacing-lg);
             border-radius: var(--border-radius);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-end;
+            flex-wrap: wrap;
         }
 
         .form-group {
-            margin-bottom: var(--spacing-md);
+            flex: 1;
+            min-width: 200px;
         }
 
         .form-group label {
@@ -72,14 +97,9 @@
             border-color: var(--color-accent);
         }
 
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
         .submit-btn {
-            width: 100%;
-            padding: 1rem;
+            flex-shrink: 0;
+            padding: 1rem 2.5rem;
             background: var(--color-accent);
             color: white;
             border: none;
@@ -88,6 +108,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            align-self: flex-end;
         }
 
         .submit-btn:hover {
@@ -151,7 +172,7 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">KR</a>
+            <a href="index.html" class="nav-logo">KILAN ROUGEOT</a>
             <ul class="nav-menu">
                 <li><a href="index.html#home" class="nav-link">Home</a></li>
                 <li><a href="index.html#experience" class="nav-link">Experience</a></li>
@@ -203,11 +224,6 @@
                     <div class="form-group">
                         <label for="subject">Subject *</label>
                         <input type="text" id="subject" name="subject" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" required></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">Send Message</button>
