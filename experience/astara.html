@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,12 +99,30 @@
             line-height: 1.6;
         }
 
-        .code-block .keyword { color: #569cd6; }
-        .code-block .string { color: #ce9178; }
-        .code-block .comment { color: #6a9955; font-style: italic; }
-        .code-block .function { color: #dcdcaa; }
-        .code-block .variable { color: #9cdcfe; }
-        .code-block .number { color: #b5cea8; }
+        .code-block .keyword {
+            color: #569cd6;
+        }
+
+        .code-block .string {
+            color: #ce9178;
+        }
+
+        .code-block .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        .code-block .function {
+            color: #dcdcaa;
+        }
+
+        .code-block .variable {
+            color: #9cdcfe;
+        }
+
+        .code-block .number {
+            color: #b5cea8;
+        }
 
         .code-header {
             background: #2d2d2d;
@@ -169,6 +188,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav">
@@ -179,7 +199,7 @@
                 <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
                 <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
+                <li><a href="../Files/Resume Kilan Rougeot.pdf" class="nav-link" target="_blank">Resume</a></li>
                 <li><a href="../contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -187,11 +207,12 @@
 
     <!-- Experience Detail -->
     <section class="detail-hero" style="position: relative;">
-        <img src="../Pics/astaralogo.png" alt="Astara Logo" style="position: absolute; top: 140px; right: 5%; width: 180px; height: auto; z-index: 2;">
+        <img src="../Pics/astaralogo.png" alt="Astara Logo"
+            style="position: absolute; top: 140px; right: 5%; width: 180px; height: auto; z-index: 2;">
         <div class="container">
             <a href="../index.html#experience" class="back-link">← Back to Experience</a>
             <h1>Astara</h1>
-            <p class="detail-meta">Data & Computer Science Intern • Astara Move Department • 2023</p>
+            <p class="detail-meta">Data & Computer Science Intern • Summer 2023 • Madrid, Spain</p>
         </div>
     </section>
 
@@ -200,18 +221,24 @@
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                Served as second-in-command for data analytics in Astara's newly launched Move department, a car subscription service managing over 1,000 active vehicles. Developed Python automation tools and web scraping solutions that transformed how the company made pricing decisions and prepared executive reports, reducing weekly report preparation time by over 90%.
+                Served as second-in-command for data analytics in Astara's newly launched Move department, a car
+                subscription service managing over 1,000 active vehicles. Developed Python automation tools and web
+                scraping solutions that transformed how the company made pricing decisions and prepared executive
+                reports, reducing weekly report preparation time by over 90%.
             </p>
 
             <!-- Company Context -->
             <h3>About Astara</h3>
             <p>
-                Astara is a major automotive distributor handling over $1 billion in annual revenue. The Move department launched a subscription-based car rental service as an alternative to traditional car ownership, requiring sophisticated data analytics to compete in a crowded market.
+                Astara is a major automotive distributor handling over $1 billion in annual revenue. The Move department
+                launched a subscription-based car rental service as an alternative to traditional car ownership,
+                requiring sophisticated data analytics to compete in a crowded market.
             </p>
 
             <!-- Astara Move Website Screenshot -->
             <div class="detail-image">
-                <img src="Astarapics/website.png" alt="Astara Move Subscription Platform" style="width: 100%; height: 100%; object-fit: contain;">
+                <img src="Astarapics/website.png" alt="Astara Move Subscription Platform"
+                    style="width: 100%; height: 100%; object-fit: contain;">
             </div>
 
             <!-- Impact Stats -->
@@ -237,10 +264,13 @@
             <!-- Fleet Analytics -->
             <h3>1. Fleet Analytics & Vehicle Demand Forecasting</h3>
             <p>
-                As a newly launched department, Astara Move needed data-driven insights to guide fleet expansion decisions. I analyzed user subscription data to identify which vehicle models were most popular, helping inform purchasing decisions worth millions of dollars.
+                As a newly launched department, Astara Move needed data-driven insights to guide fleet expansion
+                decisions. I analyzed user subscription data to identify which vehicle models were most popular, helping
+                inform purchasing decisions worth millions of dollars.
             </p>
             <ul>
-                <li>Analyzed customer preferences across different vehicle categories (sedans, SUVs, luxury, economy)</li>
+                <li>Analyzed customer preferences across different vehicle categories (sedans, SUVs, luxury, economy)
+                </li>
                 <li>Identified seasonal demand patterns and peak subscription periods</li>
                 <li>Provided actionable recommendations on fleet composition and expansion priorities</li>
                 <li>Used Python with Pandas and NumPy for statistical analysis of user behavior</li>
@@ -248,7 +278,7 @@
 
             <div class="code-header">fleet_analysis.py</div>
             <div class="code-block">
-<pre><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+                <pre><span class="keyword">import</span> pandas <span class="keyword">as</span> pd
 <span class="keyword">import</span> numpy <span class="keyword">as</span> np
 <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
 
@@ -280,7 +310,10 @@
             <!-- Competitor Analysis & Web Scraping -->
             <h3>2. Automated Competitor Pricing Intelligence</h3>
             <p>
-                Developed a sophisticated web scraping system that automatically tracked competitor pricing across 1,000+ competitors. When Astara added a new vehicle model to their fleet, the system would immediately provide average subscription costs from all tracked competitors, enabling data-driven pricing strategies.
+                Developed a sophisticated web scraping system that automatically tracked competitor pricing across
+                1,000+ competitors. When Astara added a new vehicle model to their fleet, the system would immediately
+                provide average subscription costs from all tracked competitors, enabling data-driven pricing
+                strategies.
             </p>
             <ul>
                 <li>Built robust web scrapers using BeautifulSoup and Selenium for dynamic content</li>
@@ -291,7 +324,7 @@
 
             <div class="code-header">competitor_scraper.py</div>
             <div class="code-block">
-<pre><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
+                <pre><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver
 <span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By
 <span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup
 <span class="keyword">import</span> requests
@@ -346,7 +379,9 @@
             <!-- Report Automation -->
             <h3>3. Automated Weekly Reporting System</h3>
             <p>
-                Transformed the weekly executive reporting process from hours of manual data entry into an automated system that pulled data directly from databases and generated presentation-ready reports. This 90%+ time reduction allowed the team to focus on strategic analysis rather than data compilation.
+                Transformed the weekly executive reporting process from hours of manual data entry into an automated
+                system that pulled data directly from databases and generated presentation-ready reports. This 90%+ time
+                reduction allowed the team to focus on strategic analysis rather than data compilation.
             </p>
             <ul>
                 <li>Connected Python scripts to company databases using SQL queries</li>
@@ -357,7 +392,7 @@
 
             <div class="code-header">report_automation.py</div>
             <div class="code-block">
-<pre><span class="keyword">import</span> sqlite3
+                <pre><span class="keyword">import</span> sqlite3
 <span class="keyword">import</span> pandas <span class="keyword">as</span> pd
 <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
 <span class="keyword">from</span> pptx <span class="keyword">import</span> Presentation
@@ -411,7 +446,9 @@
             <!-- Bug Finding & Quality Assurance -->
             <h3>4. Platform Quality Assurance</h3>
             <p>
-                Identified and reported critical bugs in the Astara Move platform, including pricing discrepancies across different devices and platforms. These findings prevented potential revenue loss and improved customer experience.
+                Identified and reported critical bugs in the Astara Move platform, including pricing discrepancies
+                across different devices and platforms. These findings prevented potential revenue loss and improved
+                customer experience.
             </p>
             <ul>
                 <li>Discovered price inconsistencies between mobile and desktop platforms</li>
@@ -435,7 +472,8 @@
             <!-- Learning from Distribution Business -->
             <h2>Industry Insights</h2>
             <p>
-                Working at a major automotive distributor handling over $1 billion in annual revenue provided invaluable insights into large-scale operations:
+                Working at a major automotive distributor handling over $1 billion in annual revenue provided invaluable
+                insights into large-scale operations:
             </p>
             <ul>
                 <li>Learned how distributors manage relationships with manufacturers and dealers</li>
@@ -448,13 +486,22 @@
             <!-- Key Learnings -->
             <h2>Key Learnings</h2>
             <p>
-                This internship taught me the power of automation and data-driven decision making. By replacing manual processes with automated systems, I helped a small team manage a rapidly growing operation without proportionally increasing workload. The 90% reduction in report preparation time demonstrated that thoughtful automation isn't just about saving time—it's about enabling teams to focus on high-value strategic work.
+                This internship taught me the power of automation and data-driven decision making. By replacing manual
+                processes with automated systems, I helped a small team manage a rapidly growing operation without
+                proportionally increasing workload. The 90% reduction in report preparation time demonstrated that
+                thoughtful automation isn't just about saving time—it's about enabling teams to focus on high-value
+                strategic work.
             </p>
             <p>
-                Working with a newly launched department showed me the importance of building scalable systems from the start. The web scraping and analytics tools I developed continue to provide value as the fleet grows beyond 1,000 vehicles, proving that good engineering creates lasting impact.
+                Working with a newly launched department showed me the importance of building scalable systems from the
+                start. The web scraping and analytics tools I developed continue to provide value as the fleet grows
+                beyond 1,000 vehicles, proving that good engineering creates lasting impact.
             </p>
             <p>
-                Perhaps most importantly, I learned that effective data analysis isn't just about writing code—it's about understanding business needs and translating them into actionable insights. Every script I wrote solved a real business problem, and seeing executives make million-dollar fleet decisions based on my analysis reinforced the real-world impact of data science.
+                Perhaps most importantly, I learned that effective data analysis isn't just about writing code—it's
+                about understanding business needs and translating them into actionable insights. Every script I wrote
+                solved a real business problem, and seeing executives make million-dollar fleet decisions based on my
+                analysis reinforced the real-world impact of data science.
             </p>
 
             <!-- Link back -->
@@ -473,4 +520,5 @@
 
     <script src="../script.js"></script>
 </body>
+
 </html>

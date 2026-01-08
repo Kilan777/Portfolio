@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,67 @@
     <link rel="icon" type="image/png" href="Pics/webicon.png">
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Contact page nav styling */
+        .nav {
+            --nav-bg-opacity: 0;
+            background-color: transparent;
+            border-bottom: none;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #334155;
+            opacity: var(--nav-bg-opacity);
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-logo {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link::after {
+            background-color: white;
+        }
+
         .contact-hero {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 350px;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
             overflow: hidden;
-            margin-bottom: var(--spacing-xl);
-            --top-opacity: 0.2;
-            --bottom-opacity: 0.1;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: 2rem;
+            --bg-opacity: 1.0;
+            --top-opacity: 0.6;
+            --bottom-opacity: 0.4;
         }
 
         .contact-hero::before {
@@ -41,12 +92,12 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to bottom, rgba(0, 0, 0, var(--top-opacity)), rgba(0, 0, 0, var(--bottom-opacity)));
-            z-index: 1.5;
+            z-index: 2;
         }
 
         .contact-hero .contact-header {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             width: 100%;
             padding: 0 var(--spacing-lg);
         }
@@ -63,110 +114,145 @@
 
         .contact-header h1 {
             font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-weight: 400;
+            font-family: var(--font-sans);
         }
 
-        
+
         .contact-header p {
-            color: var(--color-text-secondary);
-            font-size: 1.5rem;
+            color: white;
+            font-size: 1.2rem;
             margin-bottom: var(--spacing-md);
-            font-weight: 600;
+            font-weight: 400;
+            font-family: var(--font-sans);
             padding: 0.4rem 0.8rem;
             border-radius: 4px;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-header p:last-of-type {
+            margin-top: 1rem;
         }
 
         .contact-header a {
-              color: var(--color-accent);
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-md);
-            font-weight: 600;
-            padding: 0.4rem 0.8rem;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding: 0.2rem 0.4rem;
             border-radius: 4px;
-            max-width: 600px;
-            margin: 0 auto;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
         .contact-header a:hover {
-            text-decoration: underline;
+            opacity: 0.8;
         }
 
-        .contact-container {
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--spacing-xl);
             max-width: 1000px;
             margin: 0 auto;
+            align-items: start;
+        }
+
+        .contact-info-section {
+            padding-top: var(--spacing-sm);
+        }
+
+        .contact-info-section h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-sans);
+        }
+
+        .contact-info-section p {
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+            font-family: var(--font-sans);
+        }
+
+        .contact-info-section a {
+            color: var(--color-text-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info-section a:hover {
+            color: var(--color-accent);
+        }
+
+        .contact-form-section {
+            background: transparent;
         }
 
         .contact-form {
-            background: var(--color-white);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-row {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            background: transparent;
+            padding: 0;
         }
 
         .form-group {
-            flex: 1;
-        }
-
-        .form-group.full-width {
-            width: 100%;
-        }
-
-        .form-group.subject-group input {
-            height: 120px;
-            padding-top: 1rem;
+            margin-bottom: var(--spacing-md);
         }
 
         .form-group label {
             display: block;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--color-text-primary);
             margin-bottom: var(--spacing-xs);
-            font-size: 1rem;
+            font-size: 0.9rem;
+            font-family: var(--font-sans);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.875rem;
-            border: 2px solid var(--color-border);
-            border-radius: var(--border-radius);
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
             font-family: var(--font-sans);
             font-size: 1rem;
             transition: var(--transition);
+            background: #F5F5F5;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--color-accent);
+            border-color: var(--color-text-primary);
+            background: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
         .submit-btn {
-            width: 100%;
-            padding: 1rem 2.5rem;
+            padding: 0.75rem 2rem;
             background: var(--color-accent);
             color: white;
             border: none;
-            border-radius: var(--border-radius);
-            font-size: 1.125rem;
-            font-weight: 600;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: var(--spacing-md);
         }
 
         .submit-btn:hover {
             background: #475569;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .success-message {
@@ -174,7 +260,7 @@
             background: #10b981;
             color: white;
             padding: var(--spacing-md);
-            border-radius: var(--border-radius);
+            border-radius: 4px;
             margin-bottom: var(--spacing-md);
             text-align: center;
         }
@@ -184,6 +270,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="nav">
@@ -194,7 +281,7 @@
                 <li><a href="index.html#experience" class="nav-link">Experience</a></li>
                 <li><a href="index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="Files/Resume - Kilan Rougeot Latest .pdf" class="nav-link" target="_blank">Resume</a></li>
+                <li><a href="Files/Resume Kilan Rougeot.pdf" class="nav-link" target="_blank">Resume</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -204,50 +291,52 @@
     <section class="contact-page">
         <div class="contact-hero">
             <div class="contact-header">
-                <h1>Get in Touch</h1>
-                <p>
-                    Send me a message and I'll get back to you as soon as possibl. Either use the form below or reach out through email or phone: <br>     
-                     <a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a> <a href="tel:+14459426585">(445) 942-6585</a>
-                </p>
+                <h1>Contact me</h1>
             </div>
         </div>
 
         <div class="container">
-            <div class="contact-container">
-                <div id="successMessage" class="success-message">
-                    Thank you for your message! I'll get back to you soon.
+            <div class="contact-wrapper">
+                <!-- Left Column: Contact Info -->
+                <div class="contact-info-section">
+                    <h2>Get in touch.</h2>
+                    <p>You can get in contact with me at <a href="mailto:kilanrou@gmail.com">Kilanrou@gmail.com</a> or
+                        <a href="tel:+14459426585">(445) 942-6585</a>
+                    </p>
+                    <p>Alternatively, use this form.</p>
                 </div>
 
-                <!--
-                    IMPORTANT: To make this form work, you need to:
-                    1. Go to https://formspree.io and create a free account
-                    2. Create a new form and get your form endpoint
-                    3. Replace YOUR_FORM_ID below with your actual Formspree form ID
+                <!-- Right Column: Contact Form -->
+                <div class="contact-form-section">
+                    <div id="successMessage" class="success-message">
+                        Thank you for your message! I'll get back to you soon.
+                    </div>
 
-                    Example: action="https://formspree.io/f/YOUR_FORM_ID"
+                    <!--
+                        IMPORTANT: To make this form work, you need to:
+                        1. Go to https://formspree.io and create a free account
+                        2. Create a new form and get your form endpoint
+                        3. Replace YOUR_FORM_ID below with your actual Formspree form ID
 
-                    Alternative: You can also use EmailJS, Web3Forms, or any other form service
-                -->
-                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
-                    <div class="form-row">
+                        Example: action="https://formspree.io/f/YOUR_FORM_ID"
+
+                        Alternative: You can also use EmailJS, Web3Forms, or any other form service
+                    -->
+                    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+                        id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email *</label>
+                            <label for="email">Email (required)</label>
                             <input type="email" id="email" name="email" required>
                         </div>
-                    </div>
 
-                    <div class="form-group full-width subject-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="message">Message (required)</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
 
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+                        <button type="submit" class="submit-btn">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -260,8 +349,32 @@
     </footer>
 
     <script>
+        // Nav bar scroll effect
+        const nav = document.querySelector('.nav');
+
+        window.addEventListener('scroll', function () {
+            // Get scroll position
+            const scrollPosition = window.scrollY;
+            // Calculate opacity based on scroll (0 at top, 1 at 20% of viewport)
+            const maxScroll = window.innerHeight * 0.2;
+            const bgOpacity = Math.min(scrollPosition / maxScroll, 1);
+
+            // Apply background opacity via CSS variable
+            nav.style.setProperty('--nav-bg-opacity', bgOpacity);
+        });
+
         // Background gradient fade control for hero section
         const contactHero = document.querySelector('.contact-hero');
+
+        // Adjust background image opacity (0 to 1)
+        // bgOpacity: opacity of the background image
+        function setBackgroundImageOpacity(bgOpacity) {
+            if (contactHero) {
+                const opacity = Math.max(0, Math.min(1, bgOpacity));
+                contactHero.style.setProperty('--bg-opacity', opacity);
+            }
+        }
+
         // Adjust these values to control the fade gradient (0 to 1)
         // topOpacity: opacity at the top of the hero section
         // bottomOpacity: opacity at the bottom of the hero section
@@ -274,19 +387,22 @@
             }
         }
 
+        // Set initial opacity values on page load
+        setBackgroundFade(0.6, 0.4);
+
         // Form submission handling
         const form = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             // If using Formspree, it will handle the submission
             // This just shows the success message
-            setTimeout(function() {
+            setTimeout(function () {
                 successMessage.classList.add('show');
                 form.reset();
 
                 // Hide success message after 5 seconds
-                setTimeout(function() {
+                setTimeout(function () {
                     successMessage.classList.remove('show');
                 }, 5000);
             }, 500);
@@ -294,4 +410,5 @@
     </script>
     <script src="script.js"></script>
 </body>
+
 </html>
