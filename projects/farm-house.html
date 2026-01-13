@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm House Project | Kilan Rougeot</title>
+    <title>Barn in a Box | Kilan Rougeot</title>
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -27,7 +27,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -73,13 +73,15 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             background: var(--color-accent-light);
-            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
         .back-link {
@@ -91,6 +93,49 @@
 
         .back-link:hover {
             text-decoration: underline;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+            min-height: 300px;
+        }
+
+        /* Assembly grid - 6 images in upper section, 5 in lower */
+        .assembly-grid-top {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: var(--spacing-sm);
+            margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+        }
+
+        .assembly-grid-bottom {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--spacing-sm);
+            margin: var(--spacing-sm) 0 var(--spacing-lg) 0;
+        }
+
+        .assembly-grid-top .detail-image,
+        .assembly-grid-bottom .detail-image {
+            margin: 0;
+            min-height: 150px;
+        }
+
+        @media (max-width: 768px) {
+            .assembly-grid-top {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .assembly-grid-bottom {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
@@ -115,95 +160,304 @@
     <section class="detail-hero">
         <div class="container">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Farm House Project</h1>
-            <p class="detail-meta">[Add project category] • [Add year]</p>
+            <h1>Barn in a Box</h1>
+            <p class="detail-meta">Laser-Cut Design • Fall 2024 • Boston, MA</p>
         </div>
     </section>
 
     <section class="detail-content">
         <div class="container">
-            <!-- Main image -->
-            <div class="detail-image">
-                [Add main project image here - 1200x600px recommended]
-            </div>
-
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                [Add project overview - describe what the farm house project is about,
-                what problem it solves, and its main features]
+                A laser-cut plywood box designed as a miniature barn, featuring functional doors, decorative farm
+                engravings, and detailed architectural elements. This project links to the memory of my grandfather's
+                farmhouse and is similar to the one found in the mobile game "Hay Day".
             </p>
 
-            <!-- Image 2 -->
+            <!-- Final Product Image -->
             <div class="detail-image">
-                [Add design/CAD image here - 800x500px recommended]
+                <img src="housepics/final.png" alt="Completed Barn in a Box"
+                    style="width: 50%; height: 50%; object-fit: contain;">
             </div>
+
+            <!-- Project Objective -->
+            <h2>Project Objective</h2>
+            <p>
+                Create a functional box that links to the memory of my grandfather's farmhouse while demonstrating
+                mastery of various joinery techniques and laser-cutting capabilities. Key requirements included:
+            </p>
+            <ul>
+                <li>Incorporating at least 5 different joint types</li>
+                <li>Using at least 4 fastening methods</li>
+                <li>Manufacturing from a single piece of 1/4" plywood, 18" x 24"</li>
+                <li>Including personal design elements that reflect the farm's character</li>
+            </ul>
 
             <!-- Design Process -->
             <h2>Design Process</h2>
+
+            <h3>Initial Concept</h3>
+
             <p>
-                [Describe your design approach and methodology]
+                Early sketches explored various barn architectural elements and how to translate them into a functional
+                box design. Key considerations included:
             </p>
             <ul>
-                <li>[Design step or consideration 1]</li>
-                <li>[Design step or consideration 2]</li>
-                <li>[Design step or consideration 3]</li>
+                <li>Roof angle and window placement</li>
+                <li>Integration of farm imagery</li>
+                <li>Joint placements and box opening mechanism</li>
             </ul>
 
-            <!-- Image 3 -->
-            <div class="detail-image">
-                [Add construction/build image here - 800x500px recommended]
+            <!-- Joint and Fastener Sketches Side by Side -->
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="housepics/sketch1.png" alt="Joint Sketch"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/sketch2.png" alt="Fastener Sketch"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
 
-            <!-- Technical Details -->
-            <h2>Technical Details</h2>
-            <h3>Materials & Construction</h3>
-            <ul>
-                <li>[Material/method 1]</li>
-                <li>[Material/method 2]</li>
-                <li>[Material/method 3]</li>
-            </ul>
+            <h3>Prototyping</h3>
 
-            <h3>Key Features</h3>
-            <ul>
-                <li>[Feature 1]</li>
-                <li>[Feature 2]</li>
-                <li>[Feature 3]</li>
-            </ul>
-
-            <!-- Image 4 -->
+            <!-- Cardboard Prototype -->
             <div class="detail-image">
-                [Add detail/assembly image here - 800x500px recommended]
+                <img src="housepics/cardboard.png" alt="Cardboard Prototype"
+                    style="width:40%; height: 40%; object-fit: contain;">
+            </div>
+
+            <p>The cardboard prototype phase revealed:</p>
+            <ul>
+                <li>Optimal dimensions for the box proportions</li>
+                <li>Testing of joint placements and fit</li>
+                <li>Validation of the opening mechanism</li>
+                <li>Assembly sequence steps</li>
+                <li>More ideas for patterns and things to include</li>
+            </ul>
+
+            <h3>CAD Development</h3>
+
+            <!-- CAD Images Side by Side -->
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="housepics/cad1.png" alt="CAD Model View 1"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/cad2.png" alt="CAD Model View 2"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+
+            <p>The CAD model refined the design through:</p>
+            <ul>
+                <li>Precise joint specifications</li>
+                <li>Material thickness compensation</li>
+            </ul>
+            <p>
+                Although, the roof couldn't be made with the curve because it would be inaccurate.
+            </p>
+
+            <h3>Laser Cutting</h3>
+
+            <!-- Laser Cutter Image -->
+            <div class="detail-image">
+                <img src="housepics/lasercutter.png" alt="Laser Cutter in Action"
+                    style="width: 85%; height: 85%; object-fit: contain;">
+            </div>
+
+            <p>The laser-cutting layout included:</p>
+            <ul>
+                <li>Nested sketches in layout for efficient material use</li>
+                <li>Integration of decorative elements using AI</li>
+            </ul>
+
+            <!-- Final Product Pictures -->
+            <h2>Final Product</h2>
+
+            <!-- 3 Final Product Images Side by Side -->
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--spacing-md); margin: var(--spacing-lg) 0;">
+                <div class="detail-image" style="margin: 0; min-height: 300px;">
+                    <img src="housepics/final1.png" alt="Final Product View 1"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image" style="margin: 0; min-height: 300px;">
+                    <img src="housepics/final2.png" alt="Final Product View 2"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image" style="margin: 0; min-height: 300px;">
+                    <img src="housepics/final3.png" alt="Final Product View 3"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+
+            <!-- Button to View More Pictures -->
+            <div style="text-align: center; margin: var(--spacing-lg) 0;">
+                <a href="https://drive.google.com/drive/folders/1XVPD8YCXgbF_bdpsELTMU2votm_UHgA4?usp=sharing"
+                    class="btn btn-primary" target="_blank" style="display: inline-block;">
+                    📸 View More Pictures
+                </a>
+            </div>
+
+            <!-- Technical Challenges & Solutions -->
+            <h2>Technical Challenges & Solutions</h2>
+
+            <h3>1. Roof Assembly Complexity</h3>
+
+            <!-- Technical Issue Pic 1 -->
+            <div class="detail-image">
+                <img src="housepics/issue1.png" alt="Roof Assembly Challenge"
+                    style="width: 50%; height: 50%; object-fit: contain;">
+            </div>
+
+            <p>
+                <strong>Challenge:</strong> The straight lattice joint roof required precise measurements, alignment,
+                and creative connections while maintaining visual appeal.
+            </p>
+            <p>
+                <strong>Solution:</strong> Researched proper lattice sketch distances and measurements and found the
+                ideal ones for my material and used nails to secure roof as it held down much better than glue and did
+                not distract from the visual appeal as much as other methods. Additionally, to help the curve form, I
+                sprayed water on the joint and clamped it down to the body overnight.
+            </p>
+
+            <h3>2. Material Optimization</h3>
+
+            <!-- Technical Issue Pic 2 -->
+            <div class="detail-image">
+                <img src="housepics/issue2.png" alt="Material Optimization"
+                    style="width: 75%; height: 75%; object-fit: contain;">
+            </div>
+
+            <p>
+                <strong>Challenge:</strong> Fitting all components within the 18" x 24" plywood constraint while
+                maintaining proper grain orientation for strength.
+            </p>
+            <p>
+                <strong>Solution:</strong> Created a model and then nested the sketches in Adobe Illustrator to ensure
+                maximized material usage. (The barn ended up being bigger than the material, so I had to reduce its
+                overall size thanks to the CAD being entirely based on equations)
+            </p>
+
+            <h3>3. Joint Selection</h3>
+
+            <!-- Technical Issue Pic 3 -->
+            <div class="detail-image">
+                <img src="housepics/issue3.png" alt="Joint Selection"
+                    style="width: 40%; height: 40%; object-fit: contain;">
+            </div>
+
+            <p>
+                <strong>Challenge:</strong> Needed to incorporate multiple joint types while ensuring box stability and
+                ease of assembly.
+            </p>
+            <p>
+                <strong>Solution:</strong> Strategically used different joints based on requirements and locations as
+                well as adding components specifically to add joints such as the mortise & tenon sign.
+            </p>
+
+            <p><strong>The list came down to the following:</strong></p>
+            <p><strong>Joints:</strong></p>
+            <ul>
+                <li>Box Joint (Front Corners of Barn)</li>
+                <li>Half Lap Joint (Window Frame)</li>
+                <li>Basic Butt Joint (Back Side of Barn)</li>
+                <li>Mortise & Tenon Joint (Barn Name Sign)</li>
+                <li>Straight Lattice Joint (Curved Barn Roof)</li>
+                <li>Hinge (Door Opening)</li>
+            </ul>
+            <p><strong>Fasteners:</strong></p>
+            <ul>
+                <li>Wood Glue (Everywhere)</li>
+                <li>Screws (Back Left Barn Wall & Hinges on Door)</li>
+                <li>Nails (Roof Attachment)</li>
+                <li>Tape and Rivet (Wind Vane Attachment)</li>
+            </ul>
+
+            <!-- Workspace Image -->
+            <div class="detail-image">
+                <img src="housepics/workspace.png" alt="Workspace"
+                    style="width: 50%; height: 50%; object-fit: contain;">
             </div>
 
             <!-- Results -->
-            <h2>Results & Impact</h2>
-            <p>
-                [Describe the outcomes, performance, and real-world impact of your project]
-            </p>
+            <h2>Results</h2>
+            <p>The final product successfully merged form and function through:</p>
             <ul>
-                <li>[Result/achievement 1]</li>
-                <li>[Result/achievement 2]</li>
-                <li>[Result/achievement 3]</li>
+                <li>A distinctive barn-shaped design featuring windows and a detailed roof structure</li>
+                <li>Decorative engraving showing farm tools and animal silhouettes that tell the story of farm life
+                </li>
+                <li>Strong construction using multiple joint techniques and fasteners</li>
+                <li>Integration of both traditional woodworking techniques and modern digital fabrication</li>
             </ul>
-
-            <!-- Image 5 -->
-            <div class="detail-image">
-                [Add final result image here - 800x500px recommended]
-            </div>
 
             <!-- Skills Developed -->
             <h2>Skills Developed</h2>
             <ul>
-                <li>[Skill 1]</li>
-                <li>[Skill 2]</li>
-                <li>[Skill 3]</li>
+                <li>CAD modeling and assembly planning</li>
+                <li>Laser cutter operation and file preparation</li>
+                <li>Understanding of material properties and kerf compensation</li>
+                <li>Joint design and fastener selection</li>
+                <li>Integration of aesthetic and functional elements</li>
             </ul>
 
-            <!-- Project Poster -->
-            <h2>Project Poster</h2>
-            <div class="detail-image">
-                [Add project poster image here - full width recommended]
+            <!-- Assembly Pictures -->
+            <h2>Assembly Pictures</h2>
+
+            <!-- Top Row: 6 Images -->
+            <div class="assembly-grid-top">
+                <div class="detail-image">
+                    <img src="housepics/assemb1.png" alt="Assembly Step 1"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb2.png" alt="Assembly Step 2"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb3.png" alt="Assembly Step 3"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb4.png" alt="Assembly Step 4"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb5.png" alt="Assembly Step 5"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb6.png" alt="Assembly Step 6"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+
+            <!-- Bottom Row: 5 Images -->
+            <div class="assembly-grid-bottom">
+                <div class="detail-image">
+                    <img src="housepics/assemb7.png" alt="Assembly Step 7"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb8.png" alt="Assembly Step 8"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb9.png" alt="Assembly Step 9"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb10.png" alt="Assembly Step 10"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="housepics/assemb11.png" alt="Assembly Step 11"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
 
             <!-- Link back -->
@@ -216,7 +470,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2026 Kilan Rougeot</p>
         </div>
     </footer>
 

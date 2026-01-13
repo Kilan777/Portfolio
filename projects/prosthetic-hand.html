@@ -8,6 +8,11 @@
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
+        /* Poster width variable - adjust this to change poster size */
+        :root {
+            --poster-max-width: 80vw;
+        }
+
         /* Additional styles for detail pages */
         .detail-hero {
             padding-top: 120px;
@@ -27,7 +32,8 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: none;
+            /* Allow full width for poster display */
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -93,6 +99,24 @@
             display: block;
             margin-bottom: 0.5rem;
         }
+
+        @keyframes growIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .poster-image {
+            animation: growIn 1.2s ease-out forwards;
+            max-width: none !important;
+            /* Override container limits to allow variable control */
+        }
     </style>
 </head>
 
@@ -117,133 +141,16 @@
         <div class="container">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
             <h1>EMG-Controlled 3D Printed Prosthetic Hand</h1>
-            <p class="detail-meta">Assistive Technology • 2024</p>
+            <p class="detail-meta">Assistive Technology • 2024 • Philadelphia, PA</p>
         </div>
     </section>
 
     <section class="detail-content">
         <div class="container">
-            <!-- Overview -->
-            <h2>Overview</h2>
-            <p>
-                This project aimed to create an affordable, functional prosthetic hand controlled by electromyography
-                (EMG) sensors that detect muscle signals. By combining 3D printing technology with Arduino-based
-                electronics, the design achieves professional-level functionality at a fraction of traditional
-                prosthetic costs.
-            </p>
-
-            <div class="cost-highlight">
-                <strong>Total Cost: Under $50</strong>
-                <p style="margin: 0;">Compared to commercial prosthetics costing $10,000+, this design proves that
-                    advanced assistive technology can be accessible to everyone.</p>
-            </div>
-
-            <!-- How It Works -->
-            <h2>How It Works</h2>
-            <p>
-                The prosthetic hand uses EMG sensors placed on the user's residual limb to detect muscle contractions.
-                These electrical signals are processed by an Arduino microcontroller, which translates them into finger
-                movements through servo motors.
-            </p>
-
-            <h3>Signal Processing Pipeline</h3>
-            <ul>
-                <li><strong>Signal Acquisition:</strong> EMG sensors detect electrical activity from muscle contractions
-                </li>
-                <li><strong>Amplification & Filtering:</strong> Raw signals are amplified and noise is filtered out</li>
-                <li><strong>Pattern Recognition:</strong> Arduino identifies different muscle activation patterns</li>
-                <li><strong>Motor Control:</strong> Servo motors actuate fingers based on recognized patterns</li>
-                <li><strong>Feedback Loop:</strong> Visual and mechanical feedback helps users refine control</li>
-            </ul>
-
-            <!-- Design & Construction -->
-            <h2>Design & Construction</h2>
-
-            <h3>Mechanical Design</h3>
-            <ul>
-                <li>3D printed components using PLA for lightweight, durable structure</li>
-                <li>Finger joints designed with cable-driven actuation system</li>
-                <li>Palm structure sized for average adult proportions</li>
-                <li>Modular design allowing component replacement and upgrades</li>
-                <li>Cable routing system mimicking tendon structure of human hand</li>
-            </ul>
-
-            <h3>Electronic Components</h3>
-            <ul>
-                <li><strong>Arduino Nano:</strong> Compact microcontroller for signal processing</li>
-                <li><strong>MyoWare EMG Sensors:</strong> Medical-grade muscle signal detection</li>
-                <li><strong>Servo Motors:</strong> Precise finger actuation with position feedback</li>
-                <li><strong>Battery Pack:</strong> Rechargeable power supply for portable operation</li>
-                <li><strong>Custom PCB:</strong> Integrated circuit board for clean wiring</li>
-            </ul>
-
-            <h3>Software & Control</h3>
-            <ul>
-                <li>Custom Arduino code for real-time signal processing</li>
-                <li>Threshold-based gesture recognition algorithm</li>
-                <li>Calibration routine adapting to individual muscle signatures</li>
-                <li>Multiple grip patterns (pinch, power grip, precision grip)</li>
-                <li>Safety features preventing over-torque on fingers</li>
-            </ul>
-
-            <!-- Technical Challenges -->
-            <h2>Technical Challenges Overcome</h2>
-            <ul>
-                <li><strong>Signal Noise:</strong> Implemented hardware filtering and software algorithms to isolate
-                    muscle signals from electromagnetic interference</li>
-                <li><strong>Power Efficiency:</strong> Optimized servo control to extend battery life while maintaining
-                    responsive control</li>
-                <li><strong>Mechanical Strength:</strong> Reinforced stress points in 3D printed structure without
-                    significantly increasing weight</li>
-                <li><strong>User Calibration:</strong> Developed adaptive threshold system accounting for varying muscle
-                    strength and signal amplitude</li>
-                <li><strong>Cable Tension:</strong> Designed tensioning system maintaining proper finger position
-                    without binding</li>
-            </ul>
-
-            <!-- Results & Impact -->
-            <h2>Results & Impact</h2>
-            <p>
-                The completed prosthetic hand successfully demonstrates that advanced assistive technology doesn't
-                require expensive commercial solutions. Key achievements include:
-            </p>
-            <ul>
-                <li>Functional grip strength sufficient for everyday objects (books, cups, utensils)</li>
-                <li>Response time under 200ms from muscle signal to finger movement</li>
-                <li>Battery life exceeding 6 hours of continuous use</li>
-                <li>Total build cost of $48 (components + printing material)</li>
-                <li>Open-source design allowing others to replicate and improve</li>
-            </ul>
-
-            <!-- Skills Developed -->
-            <h2>Skills Developed</h2>
-            <ul>
-                <li>Biomedical signal processing and EMG analysis</li>
-                <li>Arduino programming and embedded systems development</li>
-                <li>3D CAD modeling optimized for additive manufacturing</li>
-                <li>Cable-driven mechanism design</li>
-                <li>User-centered design for assistive technology</li>
-                <li>Iterative prototyping and testing methodologies</li>
-                <li>Circuit design and PCB layout</li>
-            </ul>
-
-            <!-- Future Improvements -->
-            <h2>Future Improvements</h2>
-            <p>
-                Potential enhancements for future iterations:
-            </p>
-            <ul>
-                <li>Machine learning for improved gesture recognition</li>
-                <li>Haptic feedback providing sense of touch</li>
-                <li>Individual finger control for more dexterous manipulation</li>
-                <li>Smartphone app for configuration and calibration</li>
-                <li>Cosmetic covers matching skin tones</li>
-            </ul>
-
-            <!-- Project Poster -->
-            <h2>Project Poster</h2>
-            <div class="detail-image">
-                [Add project poster image here - full width recommended]
+            <!-- Project Poster Image -->
+            <div style="margin: var(--spacing-lg) 0; text-align: center;">
+                <img src="Handpics/hand.png" alt="EMG-Controlled Prosthetic Hand Project Poster" class="poster-image"
+                    style="width: var(--poster-max-width); height: auto; object-fit: contain; border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
             </div>
 
             <!-- Link back -->
@@ -256,7 +163,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+            <p>&copy; 2026 Kilan Rougeot. All rights reserved.</p>
         </div>
     </footer>
 

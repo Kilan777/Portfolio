@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Scanner | Kilan Rougeot</title>
+    <title>DIY 3D Scanner | Kilan Rougeot</title>
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -27,7 +27,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -73,13 +73,15 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             background: var(--color-accent-light);
-            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
         .back-link {
@@ -91,6 +93,58 @@
 
         .back-link:hover {
             text-decoration: underline;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+            min-height: 300px;
+        }
+
+        /* Code block styling */
+        .code-block {
+            background: #1a1a1a;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: #e0e0e0;
+        }
+
+        .video-container {
+            margin: var(--spacing-lg) 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            background: #1a1a1a;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
@@ -115,108 +169,276 @@
     <section class="detail-hero">
         <div class="container">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>3D Scanner</h1>
-            <p class="detail-meta">[Add project category] • [Add year]</p>
+            <h1>DIY 3D Scanner</h1>
+            <p class="detail-meta">Principles of Integrated Engineering • 2025 • Boston, MA</p>
         </div>
     </section>
 
     <section class="detail-content">
         <div class="container">
-            <!-- Main image -->
-            <div class="detail-image">
-                [Add main project image here - 1200x600px recommended]
-            </div>
-
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                [Add project overview - describe what the 3D scanner project is about,
-                what problem it solves, and its main features]
+                For the PIE Mini Project 2, we designed a 3D scanner using an Arduino, two servo motors, and a Sharp
+                GP2Y0A02YK0F infrared distance sensor. Our mechanical design consists of a pan-and-tilt mechanism that
+                allows the sensor to capture distance measurements from multiple angles, which are then processed using
+                Python to generate 3D point cloud visualizations of scanned objects.
             </p>
 
-            <!-- Image 2 -->
+            <!-- Final Project Image -->
             <div class="detail-image">
-                [Add scanner hardware image here - 800x500px recommended]
+                <img src="3Dpics/good.png" alt="Completed 3D Scanner"
+                    style="width: 75%; height: 75%; object-fit: contain;">
             </div>
 
-            <!-- Design Process -->
-            <h2>Design Process</h2>
+            <!-- Hardware Components -->
+            <h2>Hardware Components</h2>
+            <ul>
+                <li>Arduino microcontroller for motor control and sensor data acquisition</li>
+                <li>Two servo motors for pan-and-tilt motion</li>
+                <li>Sharp GP2Y0A02YK0F infrared distance sensor (20-150cm range)</li>
+                <li>Custom 3D printed mounting system for sensor and motors</li>
+                <li>Rotating platform for object placement</li>
+            </ul>
+
+            <!-- Wiring Diagram -->
+            <h3>Wiring Diagram</h3>
+            <div class="detail-image">
+                <img src="3Dpics/wiring.png" alt="Circuit Wiring Diagram"
+                    style="width: 30%; height: 30%; object-fit: contain;">
+            </div>
+
+            <!-- Mechanical Design -->
+            <h2>Mechanical Design</h2>
+
+            <h3>CAD Model</h3>
+            <div class="detail-image">
+                <img src="3Dpics/cad101.png" alt="CAD Model of Scanner"
+                    style="width: 30%; height: 30%; object-fit: contain;">
+            </div>
+
+            <p>The mechanical design includes:</p>
+            <ul>
+                <li>Base structure providing stability for scanning operations</li>
+                <li>Rotating platform driven by servo motor for horizontal scanning</li>
+                <li>Sensor mount with adjustable tilt mechanism for vertical coverage</li>
+                <li>Optimized geometry to minimize mechanical interference during scanning</li>
+            </ul>
+
+            <!-- Mechanical Component Images -->
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="3Dpics/cad102.png" alt="Base Structure"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="3Dpics/cad103.png" alt="Spinning Platform"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+
+            <div class="detail-image">
+                <img src="3Dpics/cad104.png" alt="Sensor Mount" style="width: 30%; height: 30%; object-fit: contain;">
+            </div>
+
+            <!-- Software & Processing -->
+            <h2>Software & Processing</h2>
+
+            <h3>Arduino Code</h3>
             <p>
-                [Describe your design approach and methodology]
+                The Arduino controls the servo motors and reads distance measurements from the IR sensor, sending data
+                over serial communication to Python for processing.
             </p>
-            <ul>
-                <li>[Design step or consideration 1]</li>
-                <li>[Design step or consideration 2]</li>
-                <li>[Design step or consideration 3]</li>
-            </ul>
 
-            <!-- Image 3 -->
-            <div class="detail-image">
-                [Add scanning process image here - 800x500px recommended]
+            <div class="code-block">
+                <pre><code>// Arduino scanning control
+#include &lt;Servo.h&gt;
+
+Servo panServo, tiltServo;
+
+void loop() {
+  for (int pan = 0; pan &lt;= 180; pan += 5) {
+    panServo.write(pan);
+    for (int tilt = 0; tilt &lt;= 90; tilt += 5) {
+      tiltServo.write(tilt);
+      delay(100);
+      
+      int distance = analogRead(A0);
+      Serial.print(pan); Serial.print(",");
+      Serial.print(tilt); Serial.print(",");
+      Serial.println(distance);
+    }
+  }
+}</code></pre>
             </div>
 
-            <!-- Technical Details -->
-            <h2>Technical Details</h2>
-            <h3>Hardware Components</h3>
+            <h3>Python Data Processing</h3>
+            <p>
+                Python receives the scan data, converts sensor readings to distances, and transforms spherical
+                coordinates to Cartesian coordinates for 3D visualization.
+            </p>
+
+            <div class="code-block">
+                <pre><code># Python data processing and visualization
+import numpy as np
+import matplotlib.pyplot as plt
+
+def spherical_to_cartesian(r, theta, phi):
+    x = r * np.sin(np.radians(phi)) * np.cos(np.radians(theta))
+    y = r * np.sin(np.radians(phi)) * np.sin(np.radians(theta))
+    z = r * np.cos(np.radians(phi))
+    return x, y, z
+
+# Process scan data
+points = []
+for pan, tilt, sensor in scan_data:
+    distance = 29.988 * pow((sensor * 5.0/1023.0), -1.173)
+    x, y, z = spherical_to_cartesian(distance, pan, tilt)
+    points.append([x, y, z])
+
+# 3D visualization
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(points[:,0], points[:,1], points[:,2])
+plt.show()</code></pre>
+            </div>
+
+            <!-- Technical Mathematics -->
+            <h2>Technical Mathematics</h2>
+
+            <h3>IR Sensor Calibration</h3>
+            <p>
+                The Sharp GP2Y0A02YK0F infrared distance sensor provides an analog voltage output that correlates to
+                the distance of an object. The relationship between voltage and distance is non-linear and follows an
+                inverse power law.
+            </p>
+            <p><strong>Sensor Calibration Equation:</strong></p>
+            <p style="background: #f0f0f0; padding: 1rem; border-radius: 8px; font-family: 'Courier New', monospace;">
+                distance (cm) = 29.988 × V<sup>-1.173</sup>
+            </p>
+            <p>Where <em>V</em> is the sensor voltage (0-5V). The Arduino's 10-bit ADC converts this to a digital
+                value (0-1023), requiring:</p>
+            <p style="background: #f0f0f0; padding: 1rem; border-radius: 8px; font-family: 'Courier New', monospace;">
+                V = (ADC_value × 5.0) / 1023
+            </p>
+            <p>
+                This calibration was determined empirically by measuring known distances and fitting a power-law curve
+                to the voltage readings. The sensor's effective range is 20-150 cm, with optimal accuracy between
+                30-100 cm.
+            </p>
+
+            <h3>Coordinate System Transformation</h3>
+            <p>
+                The scanner operates in a spherical coordinate system (r, θ, φ) but 3D visualization requires
+                Cartesian coordinates (x, y, z). The transformation involves:
+            </p>
             <ul>
-                <li>[Component 1]</li>
-                <li>[Component 2]</li>
-                <li>[Component 3]</li>
+                <li><strong>r</strong>: radial distance from sensor (measured by IR sensor)</li>
+                <li><strong>θ</strong>: azimuthal angle, horizontal pan (0-180°)</li>
+                <li><strong>φ</strong>: polar angle, vertical tilt (0-90°)</li>
+            </ul>
+            <p><strong>Spherical to Cartesian Transformation:</strong></p>
+            <div style="background: #f0f0f0; padding: 1rem; border-radius: 8px; font-family: 'Courier New', monospace;">
+                x = r × sin(φ) × cos(θ)<br>
+                y = r × sin(φ) × sin(θ)<br>
+                z = r × cos(φ)
+            </div>
+            <p style="margin-top: 1rem;">
+                These equations derive from the geometric relationship between spherical and Cartesian systems. The
+                polar angle φ measures from the z-axis (vertical), while the azimuthal angle θ measures rotation around
+                the z-axis from the x-axis.
+            </p>
+
+            <h3>Data Filtering and Noise Reduction</h3>
+            <p>
+                IR distance sensors are susceptible to noise from ambient light, surface reflectivity variations, and
+                electrical interference. Several filtering techniques were implemented:
+            </p>
+            <ul>
+                <li><strong>Moving Average Filter:</strong> Each distance reading is averaged with neighboring readings
+                    to smooth short-term fluctuations. A 3-point moving average reduces noise while maintaining edge
+                    detail.</li>
+                <li><strong>Outlier Rejection:</strong> Readings outside the sensor's valid range (20-150 cm) are
+                    discarded to prevent corrupted data points in the point cloud.</li>
+                <li><strong>Median Filtering:</strong> For each position, multiple samples are taken and the median
+                    value is used, rejecting extreme outliers while preserving true distance measurements.</li>
+                <li><strong>Surface Normal Filtering:</strong> Points with inconsistent local geometry (indicating noise
+                    or reflections) are identified and removed based on angle analysis with neighboring points.</li>
             </ul>
 
-            <h3>Software & Processing</h3>
+            <h3>Angular Resolution and Sampling</h3>
+            <p>
+                The scanning resolution is determined by the angular step size of the servo motors. A 5° increment was
+                chosen to balance scan density with acquisition time:
+            </p>
             <ul>
-                <li>[Software feature 1]</li>
-                <li>[Software feature 2]</li>
-                <li>[Software feature 3]</li>
+                <li>Horizontal sweep: 0-180° in 5° steps = 37 positions</li>
+                <li>Vertical sweep: 0-90° in 5° steps = 19 positions</li>
+                <li>Total data points per scan: 37 × 19 = 703 points</li>
+                <li>Scan time: ~70 seconds (100ms delay per position)</li>
             </ul>
+            <p>
+                Finer angular resolution (e.g., 2°) increases point cloud density but extends scan time proportionally.
+                The 5° step provides adequate detail for objects 20-50 cm in size while maintaining reasonable scan
+                duration.
+            </p>
 
-            <!-- Image 4 -->
+            <!-- Scanning Process -->
+            <h2>Scanning Process</h2>
+
+            <h3>Scan Setup</h3>
             <div class="detail-image">
-                [Add 3D scan result image here - 800x500px recommended]
+                <img src="3Dpics/scan1.png" alt="Horizontal Scanning Setup"
+                    style="width: 75%; height: 75%; object-fit: contain;">
+            </div>
+
+            <h3>Horizontal Scan Data</h3>
+            <div class="detail-image">
+                <img src="3Dpics/plot1.png" alt="Horizontal Scan Data Visualization"
+                    style="width: 100%; height: 100%; object-fit: contain;">
             </div>
 
             <!-- Results -->
-            <h2>Results & Performance</h2>
-            <p>
-                [Describe the scanning accuracy, speed, and quality of results]
-            </p>
-            <ul>
-                <li>[Performance metric 1]</li>
-                <li>[Performance metric 2]</li>
-                <li>[Performance metric 3]</li>
-            </ul>
-
-            <!-- Image 5 -->
+            <h2>Full 3D Scan Results</h2>
             <div class="detail-image">
-                [Add comparison/example scans image here - 800x500px recommended]
+                <img src="3Dpics/plot 2.png" alt="3D Point Cloud Visualization"
+                    style="width: 75%; height: 75%; object-fit: contain;">
             </div>
+
+            <p>Key achievements:</p>
+            <ul>
+                <li>Successfully captured 3D point cloud data of various objects</li>
+                <li>Accurate distance measurements within sensor's 20-150cm range</li>
+                <li>Smooth pan-and-tilt motion for comprehensive angular coverage</li>
+                <li>Real-time data transmission and visualization</li>
+                <li>Integration of mechanical, electrical, and software systems</li>
+            </ul>
 
             <!-- Skills Developed -->
             <h2>Skills Developed</h2>
             <ul>
-                <li>[Skill 1]</li>
-                <li>[Skill 2]</li>
-                <li>[Skill 3]</li>
+                <li>Arduino programming and serial communication</li>
+                <li>Python data processing and 3D visualization (matplotlib)</li>
+                <li>CAD modeling for custom mechanical components</li>
+                <li>Servo motor control and timing optimization</li>
+                <li>IR sensor calibration and distance conversion</li>
+                <li>Coordinate system transformations (spherical to Cartesian)</li>
+                <li>System integration across hardware and software domains</li>
             </ul>
 
-            <!-- Project Poster -->
-            <h2>Project Poster</h2>
-            <div class="detail-image">
-                [Add project poster image here - full width recommended]
-            </div>
+        </div>
 
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
+        <!-- Link back -->
+        <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+            ← Back to All Projects
+        </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2026 Kilan Rougeot</p>
         </div>
     </footer>
 

@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
-        /* Additional styles for detail pages */
         .detail-hero {
             padding-top: 120px;
             padding-bottom: var(--spacing-lg);
@@ -27,7 +26,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -72,6 +71,17 @@
             margin: var(--spacing-lg) 0;
             border-radius: var(--border-radius);
             overflow: hidden;
+            background: var(--color-accent-light);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .back-link {
@@ -85,32 +95,95 @@
             text-decoration: underline;
         }
 
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-md);
-            margin: var(--spacing-md) 0;
-            padding: var(--spacing-md);
-            background: var(--color-accent-light);
-            border-radius: var(--border-radius);
+        /* Poster Modal Styles */
+        .poster-clickable {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .comparison-item {
-            text-align: center;
+        .poster-clickable:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .comparison-item strong {
-            display: block;
-            font-size: 0.9rem;
+        .poster-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .poster-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .poster-modal img {
+            max-width: 95%;
+            max-height: 95vh;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+            transition: transform 0.2s ease;
+            cursor: zoom-in;
+        }
+
+        .poster-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10000;
+        }
+
+        .poster-close:hover {
             color: var(--color-accent);
-            margin-bottom: 0.5rem;
         }
 
-        .comparison-item span {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-accent);
+        .zoom-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 10001;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -126,7 +199,7 @@
                 <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
                 <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
                 <li><a href="../Files/Resume Kilan Rougeot.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -143,88 +216,101 @@
     <section class="detail-content">
         <div class="container">
             <!-- Overview -->
-            <h2>Overview</h2>
+            <h2>Project Overview</h2>
             <p>
-                This project enhanced beach accessibility through a cost-effective motorized wheelchair design. Working
-                with Avalon Beach Patrol in New Jersey, I transformed their manual wheelchair model into a motorized
-                version that improved user independence while maintaining affordability at a $1,500 budget target.
+                This project aimed to enhance beach accessibility by developing a cost-effective motorized beach
+                wheelchair. Working with Avalon Beach Patrol in New Jersey, who provided the original manual wheelchair
+                model, I designed and constructed a motorized version that significantly improves user independence
+                while maintaining affordability.
             </p>
-            <p>
-                Traditional beach wheelchairs require constant caregiver assistance for navigation through sand. This
-                motorized solution empowers users with independent joystick control, significantly improving the beach
-                experience for individuals with mobility challenges.
-            </p>
+
+            <!-- Final Wheelchair Photo -->
+            <div class="detail-image">
+                <img src="wheelchair-pics/Final First View.png" alt="Final Motorized Beach Wheelchair"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
 
             <!-- Design Process -->
             <h2>Design Process</h2>
 
             <h3>Initial Research & Planning</h3>
             <p>
-                I began by examining existing manual beach wheelchair limitations and identifying key challenges:
+                I began by analyzing the existing manual beach wheelchair donated by Avalon Beach Patrol, identifying
+                key limitations:
             </p>
             <ul>
-                <li>Difficulty navigating through sand requiring significant caregiver effort</li>
-                <li>Complete dependence on caregivers limiting user autonomy</li>
-                <li>High cost of commercial motorized alternatives ($3,000+)</li>
-                <li>Need for waterproof components in beach environment</li>
+                <li>Difficulty navigating sand, user-dependence on caregivers</li>
+                <li>Identified key limitations</li>
+                <li>Set target budget of $1,500 to ensure accessibility</li>
+                <li>Conducted material research focusing on durability and water resistance</li>
             </ul>
+
+
 
             <h3>CAD Design Phase</h3>
             <p>
                 I fully modeled the wheelchair in Fusion 360, focusing on:
             </p>
             <ul>
-                <li>Custom motor and battery mounting systems</li>
-                <li>Optimized weight distribution for sand navigation</li>
-                <li>Waterproofing integration throughout the design</li>
-                <li>Assembly instructions for straightforward construction</li>
+                <li>Designed custom mounts for motors and battery systems</li>
+                <li>Optimized component placement for weight distribution</li>
+                <li>Created detailed assembly instructions</li>
+                <li>Integrated waterproofing considerations throughout design</li>
             </ul>
 
-            <h3>Build & Construction</h3>
-            <p>
-                The construction phase involved careful material selection and assembly:
-            </p>
-            <ul>
-                <li><strong>Frame:</strong> PVC construction with marine-grade materials and reinforced joints</li>
-                <li><strong>Motors:</strong> Dual waterproof electric motors for redundancy and power</li>
-                <li><strong>Power System:</strong> 12V 50Ah LiFePO4 batteries for extended runtime</li>
-                <li><strong>Control:</strong> Intuitive joystick system for easy user operation</li>
-                <li><strong>Safety:</strong> Waterproof electronics enclosure, safety belt, and water sensors</li>
-            </ul>
-
-            <!-- Results -->
-            <h2>Results & Impact</h2>
-            <p>
-                The motorized beach wheelchair successfully addressed all design goals:
-            </p>
-
-            <div class="comparison-grid">
-                <div class="comparison-item">
-                    <strong>Maneuverability Rating</strong>
-                    <span>9.0/10</span>
-                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">vs 2.0/10 traditional</p>
-                </div>
-                <div class="comparison-item">
-                    <strong>Total Cost</strong>
-                    <span>$1,500</span>
-                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">vs $3,000+ commercial</p>
-                </div>
+            <!-- CAD 4 Views -->
+            <div class="detail-image">
+                <img src="wheelchair-pics/CAD Models Wheelchair Different Angles.png"
+                    alt="CAD Four-View Technical Drawing" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
 
-            <h2>Key Improvements</h2>
+            <!-- Build Process -->
+            <h2>Build Process</h2>
+
+            <h3>Frame Construction</h3>
             <ul>
-                <li><strong>Independent Control:</strong> Joystick operation eliminates need for constant caregiver
-                    pushing</li>
-                <li><strong>Enhanced Stability:</strong> Improved weight distribution and wide wheelbase for sand
-                    terrain</li>
-                <li><strong>Waterproof Design:</strong> Marine-grade materials and sealed electronics for beach
-                    environment</li>
-                <li><strong>Cost-Effective:</strong> 50% cost reduction compared to commercial alternatives</li>
-                <li><strong>Sustainable:</strong> LiFePO4 batteries provide long lifespan and reliable performance</li>
+                <li>Cut and assembled PVC frame based on CAD specifications</li>
+                <li>Used marine-grade materials for enhanced durability</li>
+                <li>Implemented reinforced joints for structural integrity</li>
+            </ul>
+
+            <h3>Motorization System</h3>
+            <ul>
+                <li>Installed dual waterproof electric motors</li>
+                <li>Integrated 12V 50Ah LiFePO4 batteries for extended use</li>
+                <li>Added emergency stop functionality</li>
+                <li>Implemented joystick control system</li>
+            </ul>
+
+            <h3>Safety Features</h3>
+            <ul>
+                <li>Waterproof electronics enclosure</li>
+                <li>User safety belt system</li>
+                <li>Water sensor integration</li>
+                <li>Redundant emergency stops</li>
+            </ul>
+
+            <!-- Build Process Photo -->
+            <div class="detail-image">
+                <img src="wheelchair-pics/Build Process.png" alt="Wheelchair During Construction"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <!-- Key Improvements -->
+            <h2>Key Improvements Over Traditional Design</h2>
+            <p>
+                Independent user control via joystick:
+            </p>
+            <ul>
+                <li><strong>Enhanced stability on sandy terrain</strong></li>
+                <li><strong>Waterproof electrical systems</strong></li>
+                <li><strong>Improved maneuverability (9.0/10 vs 2.0/10 in testing)</strong></li>
+                <li><strong>Significant cost savings and additional motorized features compared to commercial options
+                        ($1,500 vs $3,000+)</strong></li>
             </ul>
 
             <!-- Technical Skills -->
-            <h2>Technical Skills Used</h2>
+            <h2>Technical Skills Demonstrated</h2>
             <ul>
                 <li>CAD modeling and assembly design (Fusion 360)</li>
                 <li>Electromechanical system integration</li>
@@ -234,24 +320,39 @@
                 <li>Cost optimization and design for manufacturing</li>
             </ul>
 
-            <!-- Learnings -->
-            <h2>Learnings</h2>
+            <!-- Impact -->
+            <h2>Project Impact</h2>
             <p>
-                This project taught me the importance of designing for real-world constraints. Working within a strict
-                $1,500 budget while meeting waterproofing and performance requirements required creative problem-solving
-                and careful material selection.
-            </p>
-            <p>
-                Most importantly, I learned that impactful engineering isn't always about the most advanced
-                technology—it's about understanding user needs and creating practical solutions that genuinely improve
-                quality of life. The Avalon Beach Patrol's continued use of the wheelchair validates that accessible
-                design can be both affordable and effective.
+                This project demonstrates that accessible design can be both affordable and effective. The motorized
+                beach wheelchair successfully improved user independence while reducing costs by 50% compared to
+                commercial alternatives. Most importantly, it provides beach access to individuals who would otherwise
+                require constant caregiver assistance, significantly enhancing their beach experience and autonomy.
             </p>
 
-            <!-- Project Poster -->
-            <h2>Project Poster</h2>
+            <!-- Final Wheelchair View 2 -->
             <div class="detail-image">
-                [Add project poster image here - full width recommended]
+                <img src="wheelchair-pics/Final Other View. png.png" alt="Motorized Beach Wheelchair - Alternate Angle"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+
+
+            <!-- Research Poster -->
+            <h2>Research Poster</h2>
+            <p style="color: var(--color-text-secondary); font-style: italic; margin-bottom: var(--spacing-sm);">
+                Click to view full screen
+            </p>
+            <div class="detail-image">
+                <img src="wheelchair-pics/WheelchairPoster.png" alt="Motorized Beach Wheelchair Research Poster"
+                    class="poster-clickable" id="posterImage" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <!-- Poster Modal -->
+            <div id="posterModal" class="poster-modal">
+                <span class="poster-close" id="closeModal">&times;</span>
+                <img src="wheelchair-pics/WheelchairPoster.png"
+                    alt="Motorized Beach Wheelchair Research Poster - Full Screen" id="modalImage">
+                <div class="zoom-indicator" id="zoomIndicator">Scroll to zoom • Click outside to close</div>
             </div>
 
             <!-- Link back -->
@@ -263,12 +364,81 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Kilan Rougeot. All rights reserved.</p>
+        <div class="container" style="text-align: center;">
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2026 Kilan Rougeot</p>
         </div>
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Poster Modal Functionality
+        const posterImage = document.getElementById('posterImage');
+        const posterModal = document.getElementById('posterModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalImage = document.getElementById('modalImage');
+        const zoomIndicator = document.getElementById('zoomIndicator');
+        let currentZoom = 1;
+
+        // Open modal on poster click
+        posterImage.addEventListener('click', () => {
+            posterModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            currentZoom = 1;
+            modalImage.style.transform = 'scale(1)';
+        });
+
+        // Close modal function
+        function closeModalFunc() {
+            posterModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentZoom = 1;
+            modalImage.style.transform = 'scale(1)';
+        }
+
+        // Close modal on X click
+        closeModal.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeModalFunc();
+        });
+
+        // Close modal on background click
+        posterModal.addEventListener('click', (e) => {
+            if (e.target === posterModal) {
+                closeModalFunc();
+            }
+        });
+
+        // Prevent image click from closing modal
+        modalImage.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && posterModal.classList.contains('active')) {
+                closeModalFunc();
+            }
+        });
+
+        // Zoom functionality with mouse wheel
+        modalImage.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const zoomSpeed = 0.1;
+            const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
+            currentZoom = Math.min(Math.max(1, currentZoom + delta), 4); // Limit zoom between 1x and 4x
+
+            modalImage.style.transform = `scale(${currentZoom})`;
+
+            // Update zoom indicator
+            if (currentZoom > 1) {
+                zoomIndicator.textContent = `Zoom: ${Math.round(currentZoom * 100)}% • Scroll to zoom • Click outside to close`;
+            } else {
+                zoomIndicator.textContent = 'Scroll to zoom • Click outside to close';
+            }
+        });
+    </script>
 </body>
 
 </html>

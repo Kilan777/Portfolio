@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laser Cut Mechanics | Kilan Rougeot</title>
+    <title>Spring Cliches - Moving Sculpture | Kilan Rougeot</title>
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -27,7 +27,7 @@
         }
 
         .detail-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: var(--spacing-xl);
         }
@@ -73,13 +73,15 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             background: var(--color-accent-light);
-            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
         .back-link {
@@ -91,6 +93,37 @@
 
         .back-link:hover {
             text-decoration: underline;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+            min-height: 300px;
+        }
+
+        .video-container {
+            margin: var(--spacing-lg) 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            background: #1a1a1a;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
@@ -115,95 +148,238 @@
     <section class="detail-hero">
         <div class="container">
             <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Laser Cut Mechanics</h1>
-            <p class="detail-meta">[Add project category] • [Add year]</p>
+            <h1>Spring Cliches - Moving Sculpture</h1>
+            <p class="detail-meta">Mechanical Design • Spring 2025 • Boston, MA</p>
         </div>
     </section>
 
     <section class="detail-content">
         <div class="container">
-            <!-- Main image -->
-            <div class="detail-image">
-                [Add main project image here - 1200x600px recommended]
-            </div>
-
             <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                [Add project overview - describe what the laser cut mechanics project is about,
-                what problem it solves, and its main features]
+                A dynamic sculpture that combines mechanical engineering with artistic design, featuring
+                nature-inspired elements driven by an integrated belt and pulley system. The project showcases five
+                independently moving components—windmill, butterfly, flower, bunny ears, and hatching chick—all
+                powered by a single unified motor system.
             </p>
 
-            <!-- Image 2 -->
+            <!-- Final Image -->
             <div class="detail-image">
-                [Add design/CAD image here - 800x500px recommended]
+                <img src="springpics/main_image.png" alt="Spring Cliches Final Sculpture"
+                    style="width: 60%; height: 60%; object-fit: contain;">
             </div>
+
+            <!-- Objective -->
+            <h2>Project Objective</h2>
+            <p>
+                To design and fabricate a moving sculpture where multiple components (4 minimum)—windmill, butterfly,
+                flower, bunny ears, and hatching chick—operate seamlessly using a unified belt and pulley mechanism,
+                showcasing the integration of mechanical systems in artistic installations.
+            </p>
 
             <!-- Design Process -->
             <h2>Design Process</h2>
+
+            <h3>Initial Concept</h3>
+
+            <!-- Sketch Concept Image -->
+            <div class="detail-image">
+                <img src="springpics/Sketches.png" alt="Initial Concept Sketches"
+                    style="width: 50%; height: 50%; object-fit: contain;">
+            </div>
+
             <p>
-                [Describe your design approach and methodology]
+                Early sketches explored making a box as the base to store the belt and pulley system as well as the
+                motor, with CAMs coming off shafts and allowing the components to move aside from the windmill which
+                would also be powered using a belt and pulley and the butterfly which would use a scotch and yolk
+                mechanism.
             </p>
+            <p>Key considerations included:</p>
             <ul>
-                <li>[Design step or consideration 1]</li>
-                <li>[Design step or consideration 2]</li>
-                <li>[Design step or consideration 3]</li>
+                <li>Keeping a clean look</li>
+                <li>Not overcomplicating the mechanisms</li>
+                <li>Having enough for each team member to contribute</li>
             </ul>
 
-            <!-- Image 3 -->
+            <h3>Prototyping</h3>
+
+            <!-- Prototyping Cardboard Image -->
             <div class="detail-image">
-                [Add fabrication/assembly image here - 800x500px recommended]
+                <img src="springpics/proto.png" alt="Cardboard Prototype Components"
+                    style="width: 100%; height: 100%; object-fit: contain;">
             </div>
 
-            <!-- Technical Details -->
-            <h2>Technical Details</h2>
-            <h3>Materials & Methods</h3>
+            <p><strong>What We Prototyped:</strong></p>
             <ul>
-                <li>[Material/method 1]</li>
-                <li>[Material/method 2]</li>
-                <li>[Material/method 3]</li>
+                <li>Windmill structure and rotation using a basic shaft and pinwheel</li>
+                <li>Linkage-based flower with opening petals to test joint orientation and movement</li>
+                <li>Butterfly with Scotch Yoke mechanism to explore up-down flutter motion</li>
+                <li>Cam-driven egg to visualize the chick hatching effect</li>
+                <li>Rope-actuated bunny ears for testing vertical actuation via cam</li>
             </ul>
 
-            <h3>Key Features</h3>
+            <p><strong>What We Learned:</strong></p>
             <ul>
-                <li>[Feature 1]</li>
-                <li>[Feature 2]</li>
-                <li>[Feature 3]</li>
+                <li>Box dimensions were dialed in to balance space for all mechanisms without overcrowding</li>
+                <li>Joint tolerance and alignment are critical—loose fits caused jamming or wobble</li>
+                <li>Motion validation confirmed that the flower linkage was really hard to do and linkages around 4
+                    separate pivot points were the easiest way to make the flower open using a CAM which provided 1
+                    linear motion in the wrong direction</li>
+                <li>Assembly steps became clearer, helping us plan for modular sub-assemblies</li>
             </ul>
 
-            <!-- Image 4 -->
-            <div class="detail-image">
-                [Add detail/close-up image here - 800x500px recommended]
+            <h3>CAD Development</h3>
+
+            <!-- Grid: Belts/Pulleys + CAD System -->
+            <div class="image-row">
+                <div class="detail-image">
+                    <img src="springpics/Inside.png" alt="Inside View - Belts and Pulleys"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="detail-image">
+                    <img src="springpics/CAD.png" alt="CAD - Systems Working Together"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
             </div>
+
+            <p>The CAD model refined the design through:</p>
+            <ul>
+                <li><strong>Precise part integration:</strong> Ensured that all mechanical elements—windmill, flower
+                    linkages, butterfly yoke, bunny cam, and chick lifter—fit within the confined box space without
+                    collisions</li>
+                <li><strong>Motion simulation:</strong> Enabled virtual testing of each mechanism's motion path and
+                    range before fabrication, reducing risk of failed assembly</li>
+                <li><strong>Belt and pulley layout:</strong> Optimized pulley spacing, shaft alignment, and belt
+                    tensioning for consistent motion transfer across four vertical axes</li>
+            </ul>
+
+            <!-- Technical Challenges -->
+            <h2>Technical Challenges & Solutions</h2>
+
+            <h3>1. Mechanism Crowding</h3>
+
+            <!-- Mechanism Crowding Image -->
+            <div class="detail-image">
+                <img src="springpics/crowding.png" alt="Mechanism Crowding Challenge"
+                    style="width: 50%; height: 50%; object-fit: contain;">
+            </div>
+
+            <p>
+                <strong>Challenge:</strong> The proximity of five independently moving components in a small footprint
+                led to collisions during early testing.
+            </p>
+            <p>
+                <strong>Solution:</strong> We repositioned mechanisms and adjusted component heights to ensure clean
+                paths of motion. This meant drilling new holes in the laser cut box to move parts so the egg and flower
+                moved back and the windmill moved forward and in doing so everything fit well.
+            </p>
+
+            <h3>2. Overly Aggressive CAM Profiles</h3>
+
+            <!-- Overly Aggressive CAMs GIF -->
+            <div class="detail-image">
+                <img src="springpics/CAMs.gif" alt="CAM Profile Jamming Animation"
+                    style="width: 80%; height: 80%; object-fit: contain;">
+            </div>
+
+            <p>
+                <strong>Challenge:</strong> Initial cam designs had steep rises, which caused jamming and inconsistent
+                movement.
+            </p>
+            <p>
+                <strong>Solution:</strong> Redesigned cams with smoother rise/fall transitions and tested on scrap
+                before final cuts. Originally we had planned to use different CAM shapes to learn about them which
+                included a heart, circle and raindrop CAM. These mechanisms although cool, did not work and caused
+                jamming with the optimal CAM shape ending up being a simple circle cam with an offset hole in the
+                middle and we ended up using this for all the CAMS.
+            </p>
+
+            <h3>3. Mounting the Motor and Maintaining Belt Tension</h3>
+
+            <!-- Motor Mounting and Belt Tension Image -->
+            <div class="detail-image">
+                <img src="springpics/view.png" alt="Motor Mounting with Adjustable Belt Tension"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <p>
+                <strong>Challenge:</strong> One major challenge was securely mounting the motor while allowing for
+                adjustable belt tension. A fixed mount led to inconsistent tension and slippage.
+            </p>
+            <p>
+                <strong>Solution:</strong> I redesigned the box with two slotted lines through the base panel, creating
+                a built-in motor slider. This allowed the motor to be screwed in and adjusted along the slots, enabling
+                precise control of belt tension without additional hardware. It was a clean, integrated solution that
+                improved performance and ease of assembly.
+            </p>
 
             <!-- Results -->
-            <h2>Results & Impact</h2>
-            <p>
-                [Describe the outcomes, performance, and real-world impact of your project]
-            </p>
-            <ul>
-                <li>[Result/achievement 1]</li>
-                <li>[Result/achievement 2]</li>
-                <li>[Result/achievement 3]</li>
-            </ul>
+            <h2>Results</h2>
 
-            <!-- Image 5 -->
+            <!-- Working GIF -->
             <div class="detail-image">
-                [Add final result image here - 800x500px recommended]
+                <img src="springpics/Result.gif" alt="Spring Cliches in Motion"
+                    style="width: 60%; height: 60%; object-fit: contain;">
             </div>
 
-            <!-- Skills Developed -->
-            <h2>Skills Developed</h2>
+            <p>
+                Our final sculpture successfully brought together five dynamic, nature-inspired elements powered by a
+                unified belt and pulley system. Each component performed its intended motion:
+            </p>
             <ul>
-                <li>[Skill 1]</li>
-                <li>[Skill 2]</li>
-                <li>[Skill 3]</li>
+                <li>The windmill spun fluidly</li>
+                <li>The butterfly flapped using a Scotch yoke</li>
+                <li>The flower opened through a four-bar linkage</li>
+                <li>The bunny's ears moved up and down via cam and rope</li>
+                <li>The chick hatched as a cam pushed its eggshell open</li>
+            </ul>
+            <p>
+                To enhance the visual experience, we added laser-cut acrylic grass to the top surface, introducing depth
+                and a 3D perspective to the otherwise flat layout. The integration of different materials like clear
+                acrylic and rastered wood also elevated the visual appeal and dimensional contrast of the design.
+            </p>
+
+            <p><strong>What Went Well:</strong></p>
+            <ul>
+                <li>All mechanical elements operated as intended after final tuning</li>
+                <li>Belt-driven motion transferred smoothly across four vertical shafts</li>
+                <li>The entire system ran reliably off a single motor with coordinated timing</li>
+                <li>The aesthetic and mechanical elements blended seamlessly into one playful, kinetic design</li>
             </ul>
 
-            <!-- Project Poster -->
-            <h2>Project Poster</h2>
-            <div class="detail-image">
-                [Add project poster image here - full width recommended]
+            <!-- Skills Developed -->
+            <h2>Skills Developed and Practiced</h2>
+            <ul>
+                <li><strong>CAD Modeling & Assembly Design:</strong> Designed complex multi-part systems with motion
+                    constraints and mechanical integration</li>
+                <li><strong>CNC Machining:</strong> Used CNC routers to fabricate precise components for the box
+                    structure and mechanisms</li>
+                <li><strong>Manual Machining & Lathe Work:</strong> Created custom shafts and axles for pulley-driven
+                    motion using lathe and mill tools</li>
+                <li><strong>3D Printing:</strong> Rapidly prototyped detailed or curved components not easily made by
+                    subtractive methods</li>
+                <li><strong>Plasma Cutting:</strong> Used for cutting out larger or uniquely shaped components with
+                    precision and speed</li>
+                <li><strong>Laser Cutting:</strong> Fabricated flat-pack parts with tight tolerances for quick testing
+                    and clean assembly</li>
+                <li><strong>Belt and Pulley Calculations:</strong> Determined pulley sizes, spacing, and tensioning for
+                    optimal motion transfer</li>
+                <li><strong>Mechanism Prototyping:</strong> Built and tested linkages, cams, Scotch yokes, and actuation
+                    methods</li>
+                <li><strong>Assembly Planning:</strong> Structured component layouts for modular builds and ease of
+                    integration</li>
+                <li><strong>Team Collaboration:</strong> Worked effectively within a group—dividing tasks, integrating
+                    feedback, and troubleshooting together</li>
+                <li><strong>Design for Manufacturing (DFM):</strong> Balanced visual design with fabrication constraints
+                    for efficient and clean builds</li>
+            </ul>
+
+            <!-- Demo Video with Explanation -->
+            <h2>Full Demonstration & Explanation</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/_45wFtYPRG0" title="Spring Cliches Demo with Explanation"
+                    allowfullscreen></iframe>
             </div>
 
             <!-- Link back -->
@@ -216,7 +392,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2026 Kilan Rougeot</p>
         </div>
     </footer>
 

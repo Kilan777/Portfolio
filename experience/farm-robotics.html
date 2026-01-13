@@ -179,7 +179,8 @@
         <div class="container">
             <a href="../index.html#teams" class="back-link">← Back to Teams</a>
             <h1>Farming Challenge</h1>
-            <p class="detail-meta">Mechanical Engineering • Autonomous Soil Testing Drone • 2024-2025</p>
+            <p class="detail-meta">Autonomous Soil Testing Drone Swarm • Mechanical Engineering Member • 2025-Present
+            </p>
             <div style="margin-top: var(--spacing-md);">
                 <span class="patent-badge">Patent Pending</span>
                 <span class="patent-badge">Scientific Journal in Progress</span>
@@ -228,7 +229,7 @@
             </p>
 
             <!-- Solution -->
-            <h2>Our Solution: Autonomous Soil Testing Drone</h2>
+            <h2>Our Solution: Autonomous Soil Testing Probe</h2>
             <p>
                 The Farming Challenge system combines autonomous drone navigation with a novel mechanical soil sampling
                 probe to collect quantitative soil moisture measurements at precise GPS-tagged locations across farm
@@ -236,14 +237,15 @@
             </p>
 
             <div class="detail-image">
-                [Add drone overview image showing system components]
+                <img src="Farmpics/Tester.png" alt="Sampling Device"
+                    style="width: 40%; height: 40%; object-fit: contain;">
             </div>
 
             <h3>System Components</h3>
             <ul>
                 <li><strong>Autonomous Navigation:</strong> Camera, IMU, and LIDAR sensors enable the drone to map farm
                     terrain, avoid obstacles, and determine optimal sampling locations</li>
-                <li><strong>Precision Soil Probe:</strong> Custom-designed auger-based insertion mechanism penetrates 18
+                <li><strong>Precision Soil Probe:</strong> Custom-designed auger-based insertion mechanism penetrates 6
                     inches into soil to measure moisture profiles</li>
                 <li><strong>Capacitive Moisture Sensors:</strong> TEROS 54-style sensors provide accurate volumetric
                     water content measurements at multiple depths</li>
@@ -270,7 +272,7 @@
 
             <h4>Functional Requirements</h4>
             <ul>
-                <li>Probe soil moisture across 18-inch depth (6-inch prototype for initial validation)</li>
+                <li>Probe soil moisture across 6-inch depth</li>
                 <li>Achieve ±5% measurement accuracy with proper sensor insertion</li>
                 <li>Penetrate all soil types: sand, silt, and clay (designed for worst-case clay)</li>
                 <li>Insertion success rate >95% across 30+ samples per battery cycle</li>
@@ -281,9 +283,8 @@
 
             <h4>Design Constraints</h4>
             <ul>
-                <li>Total payload mass <1500g (Holybro X500 drone platform limitation at 70% throttle)</li>
+                <li>Total payload mass <600g (Holybro X500 drone platform limitation at 90% throttle)</li>
                 <li>Footprint compatible with X500 landing gear and center of gravity</li>
-                <li>Scalable design architecture from 6-inch prototype to 18-inch production version</li>
                 <li>Rapid deployment/removal for field testing iterations</li>
                 <li>Robust to field conditions: moisture, dirt, vibration, repeated impacts</li>
             </ul>
@@ -311,30 +312,24 @@
             </ul>
 
             <p>
-                Using Pugh's matrix analysis and stakeholder feedback, we converged on the <strong>auger-based design
-                    with anchoring spikes and dual-motor belt drive system</strong> as optimal for reliability,
-                precision depth control, and scalability.
+                Throughout prototypes and meetings, we converged on the <strong>auger-based design
+                    with anchoring spikes and decided on a single motor gear drive system</strong> as optimal for
+                reliability,
+                precision depth control, and scalability while not being too heavy for the drone. Although, to find the
+                optimal gear ratio of linear motion and turning of the probe, a two motor version was originally built:
             </p>
 
             <div class="detail-image">
-                [Add concept sketches and functional decomposition diagrams]
+                <img src="Farmpics/OriginalVersion.png" alt="Two motor version"
+                    style="width: 40%; height: 40%; object-fit: contain;">
             </div>
 
             <!-- Final Design -->
             <h2>Final Mechanical Design</h2>
             <p>
-                The production design features a dual-motor belt-driven system with precision lead screw depth control
+                The production design features a single motor gear driven system with precision lead screw depth control
                 and passive anchoring mechanism:
             </p>
-
-            <div class="image-row">
-                <div class="detail-image">
-                    [Add CAD model isometric view]
-                </div>
-                <div class="detail-image">
-                    [Add CAD model side view]
-                </div>
-            </div>
 
             <h3>Key Mechanical Components</h3>
 
@@ -348,22 +343,19 @@
 
             <h4>Drive System</h4>
             <ul>
-                <li><strong>Dual stepper motors:</strong> NEMA 17 silent steppers controlled via Tinkerforge master
-                    brick</li>
-                <li><strong>GT2 timing belt transmission:</strong> 20T pulley on lead screw motor, 50T pulley on auger
-                    shaft (2.5:1 reduction for torque)</li>
+                <li><strong>25kg/cm Servo Motor:</strong> Servo used for light weight and high torque</li>
+                <li><strong>Custom 3D printed Gears:</strong> 3D printed gears to keep cost low and to allow for quick
+                    iterations</li>
                 <li><strong>Lead screw mechanism:</strong> 8mm diameter, 2mm pitch, 4-start trapezoidal thread with
                     metal lead nut (replaced plastic for durability)</li>
-                <li><strong>Tensioning system:</strong> Slotted motor mounts enable belt tensioning without dedicated
-                    tensioner wheel</li>
             </ul>
 
             <h4>Structural & Guidance</h4>
             <ul>
-                <li><strong>Linear guide rails:</strong> Dual 0.25" hardened steel shafts with flanged supports and
+                <li><strong>Linear guide rails:</strong> Dual 0.25" Aluminum shafts with flanged supports and
                     bronze bushings</li>
                 <li><strong>Thrust bearings:</strong> Axial load management for auger rotation forces</li>
-                <li><strong>Base plate assembly:</strong> Laser-cut aluminum mounting plate integrating all subsystems
+                <li><strong>Base plate assembly:</strong> Mounting plate integrating all subsystems
                 </li>
                 <li><strong>Top stabilization plate:</strong> Prevents cantilever wobble and auger jamming during
                     insertion</li>
@@ -374,47 +366,10 @@
                 <li>Passive spike anchors extending diagonally outward during soil insertion</li>
                 <li>Increased moment arm resists auger rotation torque transferred to drone body</li>
                 <li>Spring-loaded deployment tested in grass and soft soil</li>
+                <li>Powered by cheap and lightweight 9g servo</li>
+
             </ul>
 
-            <!-- Fabrication -->
-            <h2>Fabrication & Manufacturing</h2>
-            <p>
-                I led fabrication of the mechanical probe assembly, integrating machining, welding, 3D printing, and
-                precision assembly processes:
-            </p>
-
-            <h3>Auger Welding</h3>
-            <p>
-                Custom auger fabrication required precise helical welding of flight blade to shaft:
-            </p>
-
-            <div class="detail-image">
-                [Add auger welding and fabrication image]
-            </div>
-
-            <ul>
-                <li>Lathe-turned 12mm shaft to exact diameter for bearing/bushing fit tolerance</li>
-                <li>Designed welding jig to maintain 20mm pitch and counterclockwise helix geometry</li>
-                <li>TIG welded flight blade to shaft with full penetration welds</li>
-                <li>Post-weld inspection and runout verification on lathe</li>
-            </ul>
-
-            <h3>Assembly & Integration</h3>
-
-            <div class="detail-image">
-                [Add assembly and integration process image]
-            </div>
-            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
-                Mechanical assembly and integration process
-            </p>
-
-            <ul>
-                <li>Linear shafts cut to length and press-fit into flanged supports</li>
-                <li>Belt drive system assembled with GT2 timing belt and tensioned via slotted motor mounts</li>
-                <li>Lead screw nut integrated into auger carriage with thrust bearing installation</li>
-                <li>Stepper motors wired to Tinkerforge control bricks with power distribution</li>
-                <li>Soil moisture sensor integrated into auger probe with waterproof wire routing</li>
-            </ul>
 
             <!-- Prototype Testing -->
             <h2>Prototype Testing & Validation</h2>
@@ -428,8 +383,11 @@
                 force, depth precision, and measurement repeatability:
             </p>
 
-            <div class="detail-image">
-                [Add bucket testing video or image]
+            <div class="video-container">
+                <video id="bucketTestingVideo" muted loop playsinline>
+                    <source src="Farmpics/Demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
                 Prototype testing in bucket with clay soil
@@ -449,83 +407,6 @@
                     across multiple insertions</li>
             </ul>
 
-            <!-- Technical Challenges -->
-            <h2>Technical Challenges & Solutions</h2>
-
-            <h3>Challenge 1: Minimizing Payload Mass</h3>
-            <p>
-                <strong>Problem:</strong> Initial design exceeded 1500g drone payload limit, causing insufficient lift
-                margin for stable flight.
-            </p>
-            <p>
-                <strong>Solution:</strong> Topology optimization of base plate (30% mass reduction), switched to hollow
-                shaft motors, and replaced steel fasteners with aluminum where feasible. Final assembly mass: 1420g
-                including battery.
-            </p>
-
-            <h3>Challenge 2: Auger Wobble and Jamming</h3>
-            <p>
-                <strong>Problem:</strong> Cantilever loading on long auger shaft caused lateral wobble, leading to
-                binding in linear guides and jamming during insertion.
-            </p>
-            <p>
-                <strong>Solution:</strong> Added top stabilization plate with bronze bushing to constrain auger shaft at
-                both ends. Increased linear guide shaft diameter from 6mm to 0.25" for improved rigidity.
-            </p>
-
-            <h3>Challenge 3: Belt Drive vs. Dual Motors</h3>
-            <p>
-                <strong>Problem:</strong> Initial dual-motor design (separate motors for auger rotation and lead screw)
-                added complexity and mass.
-            </p>
-            <p>
-                <strong>Solution:</strong> Implemented belt-driven system using timing belt to transmit power from
-                single motor to auger while second motor drives lead screw independently. Reduced part count and enabled
-                flexible gear ratio tuning.
-            </p>
-
-            <h3>Challenge 4: Depth Position Feedback</h3>
-            <p>
-                <strong>Problem:</strong> Stepper motors can lose steps under high soil resistance, causing depth
-                measurement error.
-            </p>
-            <p>
-                <strong>Solution:</strong> Evaluated linear potentiometer for absolute position feedback. Currently
-                using stepper motor step counting with stall detection; production version will integrate optical
-                encoder for closed-loop depth control.
-            </p>
-
-            <!-- System Integration -->
-            <h2>System Integration & Autonomous Operation</h2>
-            <p>
-                The mechanical probe integrates with the autonomous drone platform to enable fully automated soil
-                sampling missions:
-            </p>
-
-            <h3>Control Architecture</h3>
-            <ul>
-                <li><strong>Master controller:</strong> Tinkerforge master brick coordinates stepper motors, sensor
-                    readings, and drone communication</li>
-                <li><strong>Mission planning:</strong> Farmer defines sampling grid on map interface; drone computes
-                    optimal flight path</li>
-                <li><strong>Autonomous insertion sequence:</strong> Drone lands at waypoint → deploys anchors → engages
-                    auger → records depth-profiled moisture → retracts → proceeds to next location</li>
-                <li><strong>Real-time data transmission:</strong> Sensor measurements wirelessly transmitted to ground
-                    station during flight</li>
-                <li><strong>GPS tagging:</strong> Each sample associated with precise coordinates for temporal
-                    monitoring and spatial interpolation</li>
-            </ul>
-
-            <h3>Data Visualization</h3>
-            <p>
-                Soil moisture data visualized as heat maps overlaid on farm field maps, enabling farmers to identify dry
-                zones requiring irrigation and wet areas indicating drainage issues:
-            </p>
-
-            <div class="detail-image">
-                [Add soil moisture heat map visualization]
-            </div>
-
             <!-- Impact -->
             <h2>Impact & Results</h2>
 
@@ -533,26 +414,12 @@
             <ul>
                 <li><strong>97% insertion success rate</strong> in clay soil, exceeding 95% design requirement</li>
                 <li><strong>±2mm depth accuracy</strong> enabling precise repeatability for temporal monitoring</li>
-                <li><strong>1420g total assembly mass</strong> within 1500g payload constraint</li>
+                <li><strong>570g total assembly mass</strong> within 600g payload constraint</li>
                 <li><strong>30+ samples per battery charge</strong> covering typical 5-acre farm field</li>
                 <li><strong>±3% measurement repeatability</strong> validating sensor integration quality</li>
                 <li><strong>Patent application submitted</strong> for novel aerial soil sampling mechanism</li>
                 <li><strong>Scientific journal paper in progress</strong> documenting system design and field validation
                 </li>
-            </ul>
-
-            <!-- Partnership -->
-            <h2>MIT Partnership & Research Collaboration</h2>
-            <p>
-                Farming Challenge collaborates with MIT's precision agriculture research program to advance autonomous
-                farming technologies. This partnership provides:
-            </p>
-            <ul>
-                <li>Access to agricultural robotics expertise and sensor calibration facilities</li>
-                <li>Field testing opportunities at MIT research farms with diverse soil conditions</li>
-                <li>Co-authorship on scientific publications documenting novel soil sampling methods</li>
-                <li>Mentorship on patent application process and intellectual property strategy</li>
-                <li>Integration with MIT's larger precision agriculture ecosystem and farmer network</li>
             </ul>
 
             <!-- Technical Skills -->
@@ -577,8 +444,8 @@
             </ul>
 
             <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
+            <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+                ← Back to All Teams
             </a>
         </div>
     </section>
@@ -586,11 +453,31 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container" style="text-align: center;">
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2024 Kilan Rougeot</p>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary);">&copy; 2026 Kilan Rougeot</p>
         </div>
     </footer>
 
     <script src="../script.js"></script>
+    <script>
+        // Autoplay videos when they come into view
+        const videos = document.querySelectorAll('#bucketTestingVideo');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play();
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }, {
+            threshold: 0.5 // Video plays when 50% visible
+        });
+
+        videos.forEach(video => {
+            observer.observe(video);
+        });
+    </script>
 </body>
 
 </html>
