@@ -1,0 +1,13 @@
+# Large video files - too big for GitHub Pages
+*.mp4
+*.mov
+*.avi
+
+# Keep small GIFs but you may want to optimize these too
+# *.gif
+
+# Other common excludes
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
