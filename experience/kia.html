@@ -289,11 +289,8 @@
             </ul>
 
             <!-- Body Shop Welding Robots Video -->
-            <div class="video-container">
-                <video id="systemVideo" muted loop playsinline>
-                    <source src="Kiapics/machineworking.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="video-container" id="systemVideoContainer">
+                <div id="systemVideo"></div>
             </div>
             <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
                 Body shop welding robots in operation during troubleshooting
@@ -405,24 +402,41 @@
     </footer>
 
     <script src="../script.js"></script>
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Autoplay video when it comes into view
-        const video = document.querySelector('#systemVideo');
+        // YouTube Player API
+        let systemPlayer;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.play();
-                } else {
-                    entry.target.pause();
+        function onYouTubeIframeAPIReady() {
+            systemPlayer = new YT.Player('systemVideo', {
+                videoId: 'LpV5swDnDv4',
+                playerVars: {
+                    autoplay: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'LpV5swDnDv4',
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    'onReady': () => {
+                        const container = document.getElementById('systemVideoContainer');
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    systemPlayer.playVideo();
+                                } else {
+                                    systemPlayer.pauseVideo();
+                                }
+                            });
+                        }, { threshold: 0.5 });
+                        if (container) observer.observe(container);
+                    }
                 }
             });
-        }, {
-            threshold: 0.5 // Video plays when 50% visible
-        });
-
-        if (video) {
-            observer.observe(video);
         }
     </script>
 </body>

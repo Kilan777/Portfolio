@@ -173,11 +173,8 @@
 
             <!-- Product Demo Video -->
             <h2>Product in Market</h2>
-            <div class="video-container">
-                <video id="productVideo" muted loop playsinline>
-                    <source src="ATDevpics/BraceWorking.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="video-container" id="productVideoContainer">
+                <div id="productVideo"></div>
             </div>
             <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
                 Final product now available in market being used by patient
@@ -266,12 +263,9 @@
                     <img src="ATDevpics/machinedpieces.jpg" alt="Machined Plates with FEA Optimization"
                         style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
-                <div class="detail-image" style="min-height: 300px;">
-                    <video id="braceTestVideo" muted loop playsinline
-                        style="width: 100%; height: 100%; object-fit: contain; border-radius: var(--border-radius);">
-                        <source src="ATDevpics/brace-testing.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <div class="detail-image" style="min-height: 300px;" id="braceTestVideoContainer">
+                    <div id="braceTestVideo" style="width: 100%; height: 100%; border-radius: var(--border-radius);">
+                    </div>
                 </div>
             </div>
 
@@ -355,25 +349,82 @@
     </footer>
 
     <script src="../script.js"></script>
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Autoplay videos when they come into view
-        const videos = document.querySelectorAll('#productVideo, #braceTestVideo');
+        // YouTube Player API - Two videos with autoplay on scroll
+        let productPlayer, braceTestPlayer;
+        let playersReady = {};
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.play();
-                } else {
-                    entry.target.pause();
+        function onYouTubeIframeAPIReady() {
+            // Product Video Player (Brace Working)
+            productPlayer = new YT.Player('productVideo', {
+                videoId: 'Ij_nopwxCnk',
+                playerVars: {
+                    autoplay: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'Ij_nopwxCnk', // Required for looping
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    'onReady': () => {
+                        playersReady.product = true;
+                        setupObserver();
+                    }
                 }
             });
-        }, {
-            threshold: 0.5 // Video plays when 50% visible
-        });
 
-        videos.forEach(video => {
-            observer.observe(video);
-        });
+            // Brace Test Video Player
+            braceTestPlayer = new YT.Player('braceTestVideo', {
+                videoId: 'kTSxrwMCS7I',
+                playerVars: {
+                    autoplay: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'kTSxrwMCS7I', // Required for looping
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    'onReady': () => {
+                        playersReady.braceTest = true;
+                        setupObserver();
+                    }
+                }
+            });
+        }
+
+        function setupObserver() {
+            // Only set up observers once both players are ready
+            if (!playersReady.product || !playersReady.braceTest) return;
+
+            const observers = [
+                { player: productPlayer, container: document.getElementById('productVideoContainer') },
+                { player: braceTestPlayer, container: document.getElementById('braceTestVideoContainer') }
+            ];
+
+            observers.forEach(({ player, container }) => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            player.playVideo();
+                        } else {
+                            player.pauseVideo();
+                        }
+                    });
+                }, {
+                    threshold: 0.5
+                });
+
+                if (container) observer.observe(container);
+            });
+        }
     </script>
 </body>
 

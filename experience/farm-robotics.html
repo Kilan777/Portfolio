@@ -383,11 +383,8 @@
                 force, depth precision, and measurement repeatability:
             </p>
 
-            <div class="video-container">
-                <video id="bucketTestingVideo" muted loop playsinline>
-                    <source src="Farmpics/Demo.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="video-container" id="bucketTestingVideoContainer">
+                <div id="bucketTestingVideo"></div>
             </div>
             <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
                 Prototype testing in bucket with clay soil
@@ -458,25 +455,42 @@
     </footer>
 
     <script src="../script.js"></script>
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Autoplay videos when they come into view
-        const videos = document.querySelectorAll('#bucketTestingVideo');
+        // YouTube Player API for Farm robotics demo
+        let farmPlayer;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.play();
-                } else {
-                    entry.target.pause();
+        function onYouTubeIframeAPIReady() {
+            farmPlayer = new YT.Player('bucketTestingVideo', {
+                videoId: 'OG9nCUOgXYo',
+                playerVars: {
+                    autoplay: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'OG9nCUOgXYo',
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    'onReady': () => {
+                        const container = document.getElementById('bucketTestingVideoContainer');
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    farmPlayer.playVideo();
+                                } else {
+                                    farmPlayer.pauseVideo();
+                                }
+                            });
+                        }, { threshold: 0.5 });
+                        if (container) observer.observe(container);
+                    }
                 }
             });
-        }, {
-            threshold: 0.5 // Video plays when 50% visible
-        });
-
-        videos.forEach(video => {
-            observer.observe(video);
-        });
+        }
     </script>
 </body>
 

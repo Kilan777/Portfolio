@@ -400,13 +400,10 @@
                     </div>
                 </div>
 
-                <!-- Testing Video -->
+                <!--Testing Video -->
                 <h3>Robot In Action</h3>
-                <div class="video-container">
-                    <video class="frc-video" controls muted loop playsinline>
-                        <source src="FRCpics/Frc2024matchwithtracking.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <div class="video-container" id="frcVideoContainer">
+                    <div id="frcVideo"></div>
                 </div>
 
                 <h3>Competition Results</h3>
@@ -868,6 +865,8 @@
     </footer>
 
     <script src="../script.js"></script>
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         // Year tab switching
         function showYear(year) {
@@ -891,24 +890,39 @@
             document.querySelector('.year-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Autoplay videos when they come into view
-        const videos = document.querySelectorAll('.frc-video');
+        // YouTube Player API for FRC video (with controls)
+        let frcPlayer;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.play();
-                } else {
-                    entry.target.pause();
+        function onYouTubeIframeAPIReady() {
+            frcPlayer = new YT.Player('frcVideo', {
+                videoId: 'bGctsCAEjrI',
+                playerVars: {
+                    autoplay: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'bGctsCAEjrI',
+                    controls: 1, // Keep controls for FRC video
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    'onReady': () => {
+                        const container = document.getElementById('frcVideoContainer');
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    frcPlayer.playVideo();
+                                } else {
+                                    frcPlayer.pauseVideo();
+                                }
+                            });
+                        }, { threshold: 0.5 });
+                        if (container) observer.observe(container);
+                    }
                 }
             });
-        }, {
-            threshold: 0.5
-        });
-
-        videos.forEach(video => {
-            observer.observe(video);
-        });
+        }
     </script>
 </body>
 

@@ -285,11 +285,7 @@
 
             <div class="demo-media">
                 <div class="video-wrapper">
-                    <video id="pieSystemDemoVideo" class="demo-video" loop muted playsinline
-                        style="display: block !important; opacity: 1 !important; visibility: visible !important;">
-                        <source src="munchkin/assets/demo.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div id="pieSystemDemoVideo" class="demo-video"></div>
                     <div class="video-hover-overlay">
                         <button class="pause-play-btn" id="pausePlayBtn">
                             <svg class="pause-icon" width="60" height="60" viewBox="0 0 100 100" fill="none">
@@ -546,85 +542,77 @@
         }
     </style>
 
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Modern Intersection Observer approach with custom controls
-        (function () {
-            var video = document.getElementById('pieSystemDemoVideo');
-            var pausePlayBtn = document.getElementById('pausePlayBtn');
-            var pauseIcon = document.querySelector('.pause-icon');
-            var playIcon = document.querySelector('.play-icon');
-            var restartBtn = document.getElementById('restartBtn');
-            var progressBarContainer = document.getElementById('progressBarContainer');
-            var progressBar = document.getElementById('progressBar');
-            var progressHandle = document.getElementById('progressHandle');
-            var timeDisplay = document.getElementById('timeDisplay');
-            var userPaused = false;
-            var isDragging = false;
+        // YouTube Player API with custom controls for Munchkin demo
+        let munchkinPlayer;
+        let userPaused = false;
+        let isDragging = false;
+        let observerSetup = false;
 
-            if (!video) {
-                console.error('❌ Video element not found!');
-                return;
-            }
+        function onYouTubeIframeAPIReady() {
+            munchkinPlayer = new YT.Player('pieSystemDemoVideo', {
+                videoId: 'jkpbdXxJ8nk',
+                playerVars: {
+                    autoplay: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'jkpbdXxJ8nk',
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    rel: 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
 
-            console.log('✅ Video element found');
+        function onPlayerReady(event) {
+            console.log('✅ Munchkin player ready');
+            const pausePlayBtn = document.getElementById('pausePlayBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const progressBarContainer = document.getElementById('progressBarContainer');
 
-            function updateButtonIcon() {
-                if (video.paused) {
-                    pauseIcon.style.display = 'none';
-                    playIcon.style.display = 'block';
+            // Update progress bar periodically
+            setInterval(updateProgress, 100);
+
+            // Play/pause button
+            pausePlayBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const state = munchkinPlayer.getPlayerState();
+                if (state === YT.PlayerState.PLAYING) {
+                    munchkinPlayer.pauseVideo();
+                    userPaused = true;
                 } else {
-                    pauseIcon.style.display = 'block';
-                    playIcon.style.display = 'none';
+                    munchkinPlayer.playVideo();
+                    userPaused = false;
                 }
-            }
-
-            function formatTime(seconds) {
-                var mins = Math.floor(seconds / 60);
-                var secs = Math.floor(seconds % 60);
-                return mins + ':' + (secs < 10 ? '0' : '') + secs;
-            }
-
-            function updateProgress() {
-                if (!isDragging && video.duration) {
-                    var percent = (video.currentTime / video.duration) * 100;
-                    progressBar.style.width = percent + '%';
-                    progressHandle.style.left = percent + '%';
-                    timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
-                }
-            }
-
-            function setProgress(e) {
-                var rect = progressBarContainer.getBoundingClientRect();
-                var pos = (e.clientX - rect.left) / rect.width;
-                pos = Math.max(0, Math.min(1, pos)); // Clamp between 0 and 1
-                video.currentTime = pos * video.duration;
-                updateProgress();
-            }
+            });
 
             // Restart button
             restartBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                console.log('🔄 Restarting video');
-                video.currentTime = 0;
-                video.play();
+                munchkinPlayer.seekTo(0);
+                munchkinPlayer.playVideo();
                 userPaused = false;
-                updateButtonIcon();
             });
 
             // Progress bar click
-            progressBarContainer.addEventListener('click', function (e) {
-                setProgress(e);
-            });
+            progressBarContainer.addEventListener('click', setProgressFromClick);
 
             // Progress bar drag
             progressBarContainer.addEventListener('mousedown', function (e) {
                 isDragging = true;
-                setProgress(e);
+                setProgressFromClick(e);
             });
 
             document.addEventListener('mousemove', function (e) {
                 if (isDragging) {
-                    setProgress(e);
+                    setProgressFromClick(e);
                 }
             });
 
@@ -632,88 +620,80 @@
                 isDragging = false;
             });
 
-            // Update progress as video plays
-            video.addEventListener('timeupdate', updateProgress);
+            // Setup intersection observer for autoplay
+            if (!observerSetup) {
+                setupIntersectionObserver();
+                observerSetup = true;
+            }
 
-            // Intersection Observer for autoplay
-            var observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5
-            };
+            updateButtonIcon();
+        }
 
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    console.log('Intersection changed - isIntersecting:', entry.isIntersecting);
+        function onPlayerStateChange(event) {
+            updateButtonIcon();
+        }
 
-                    if (entry.isIntersecting) {
-                        // Video is visible
-                        if (!userPaused) {
-                            console.log('▶️ Auto-playing (visible)');
-                            video.play().then(function () {
-                                console.log('✅ Playing successfully');
-                                updateButtonIcon();
-                            }).catch(function (err) {
-                                console.error('⚠️ Autoplay blocked:', err);
-                                console.log('💡 Click the play button to start');
-                                updateButtonIcon();
-                            });
-                        }
-                    } else {
-                        // Video is not visible
-                        console.log('⏸️ Pausing (not visible)');
-                        video.pause();
-                        userPaused = false; // Reset when out of view
-                        updateButtonIcon();
+        function setupIntersectionObserver() {
+            const container = document.querySelector('.video-wrapper');
+            if (!container) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !userPaused) {
+                        munchkinPlayer.playVideo();
+                    } else if (!entry.isIntersecting) {
+                        munchkinPlayer.pauseVideo();
+                        userPaused = false;
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.5 });
 
-            observer.observe(video);
+            observer.observe(container);
+        }
 
-            // Button click handler
-            pausePlayBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                if (video.paused) {
-                    console.log('👆 User clicked play');
-                    video.play();
-                    userPaused = false;
-                } else {
-                    console.log('👆 User clicked pause');
-                    video.pause();
-                    userPaused = true;
-                }
-                updateButtonIcon();
-            });
+        function updateButtonIcon() {
+            const pauseIcon = document.querySelector('.pause-icon');
+            const playIcon = document.querySelector('.play-icon');
+            const state = munchkinPlayer.getPlayerState();
 
-            // Update icon on video state changes
-            video.addEventListener('play', function () {
-                console.log('🎬 Video playing');
-                updateButtonIcon();
-            });
+            if (state === YT.PlayerState.PLAYING) {
+                pauseIcon.style.display = 'block';
+                playIcon.style.display = 'none';
+            } else {
+                pauseIcon.style.display = 'none';
+                playIcon.style.display = 'block';
+            }
+        }
 
-            video.addEventListener('pause', function () {
-                console.log('⏸️ Video paused');
-                updateButtonIcon();
-            });
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return mins + ':' + (secs < 10 ? '0' : '') + secs;
+        }
 
-            video.addEventListener('loadeddata', function () {
-                console.log('✅ Video loaded');
-                updateButtonIcon();
-                updateProgress();
-            });
+        function updateProgress() {
+            if (!munchkinPlayer || !munchkinPlayer.getDuration) return;
+            if (isDragging) return;
 
-            video.addEventListener('loadedmetadata', function () {
-                updateProgress();
-            });
+            const currentTime = munchkinPlayer.getCurrentTime();
+            const duration = munchkinPlayer.getDuration();
 
-            video.addEventListener('error', function (e) {
-                console.error('❌ Video error:', e);
-            });
+            if (duration > 0) {
+                const percent = (currentTime / duration) * 100;
+                document.getElementById('progressBar').style.width = percent + '%';
+                document.getElementById('progressHandle').style.left = percent + '%';
+                document.getElementById('timeDisplay').textContent =
+                    formatTime(currentTime) + ' / ' + formatTime(duration);
+            }
+        }
 
-            // Initial icon state
-            updateButtonIcon();
-        })();
+        function setProgressFromClick(e) {
+            const progressBarContainer = document.getElementById('progressBarContainer');
+            const rect = progressBarContainer.getBoundingClientRect();
+            const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            const duration = munchkinPlayer.getDuration();
+            munchkinPlayer.seekTo(pos * duration);
+        }
     </script>
 
     <!-- Section 4: Design Process -->
