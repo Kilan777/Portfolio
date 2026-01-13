@@ -173,8 +173,11 @@
 
             <!-- Product Demo Video -->
             <h2>Product in Market</h2>
-            <div class="video-container" id="productVideoContainer">
-                <div id="productVideo"></div>
+            <div class="video-container">
+                <video id="productVideo" muted loop playsinline>
+                    <source src="ATDevpics/BraceWorking.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
             <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
                 Final product now available in market being used by patient
@@ -357,43 +360,27 @@
         let playersReady = {};
 
         function onYouTubeIframeAPIReady() {
-            // Product Video Player (Brace Working)
-            productPlayer = new YT.Player('productVideo', {
-                videoId: 'Ij_nopwxCnk',
-                playerVars: {
-                    autoplay: 0,
-                    mute: 1,
-                    loop: 1,
-                    playlist: 'Ij_nopwxCnk', // Required for looping
-                    controls: 0,
-                    modestbranding: 1,
-                    playsinline: 1,
-                    rel: 0
-                },
-                events: {
-                    'onReady': () => {
-                        playersReady.product = true;
-                        setupObserver();
-                    }
-                }
-            });
+            // Product video is now local - no YouTube player needed
 
             // Brace Test Video Player
             braceTestPlayer = new YT.Player('braceTestVideo', {
                 videoId: 'kTSxrwMCS7I',
+                width: '100%',
+                height: '100%',
                 playerVars: {
                     autoplay: 0,
                     mute: 1,
                     loop: 1,
-                    playlist: 'kTSxrwMCS7I', // Required for looping
+                    playlist: 'kTSxrwMCS7I',
                     controls: 0,
                     modestbranding: 1,
                     playsinline: 1,
-                    rel: 0
+                    rel: 0,
+                    hd: 1,
+                    vq: 'hd1080'
                 },
                 events: {
                     'onReady': () => {
-                        playersReady.braceTest = true;
                         setupObserver();
                     }
                 }
@@ -401,29 +388,36 @@
         }
 
         function setupObserver() {
-            // Only set up observers once both players are ready
-            if (!playersReady.product || !playersReady.braceTest) return;
-
-            const observers = [
-                { player: productPlayer, container: document.getElementById('productVideoContainer') },
-                { player: braceTestPlayer, container: document.getElementById('braceTestVideoContainer') }
-            ];
-
-            observers.forEach(({ player, container }) => {
-                const observer = new IntersectionObserver((entries) => {
+            // Set up observer for YouTube video
+            const productVideo = document.getElementById('productVideo');
+            if (productVideo) {
+                const productObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            player.playVideo();
+                            productVideo.play();
                         } else {
-                            player.pauseVideo();
+                            productVideo.pause();
                         }
                     });
-                }, {
-                    threshold: 0.5
-                });
+                }, { threshold: 0.5 });
+                productObserver.observe(productVideo);
+            }
 
-                if (container) observer.observe(container);
-            });
+            // Set up observer for brace test YouTube video
+            const braceTestContainer = document.getElementById('braceTestVideoContainer');
+
+            if (braceTestContainer) {
+                const braceTestObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            braceTestPlayer.playVideo();
+                        } else {
+                            braceTestPlayer.pauseVideo();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                braceTestObserver.observe(braceTestContainer);
+            }
         }
     </script>
 </body>
