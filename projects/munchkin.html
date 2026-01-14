@@ -152,14 +152,14 @@
                     </div>
 
                     <!-- Exploded View Video -->
-                    <!-- Exploded View Video - COMMENTED OUT: explode.mp4 missing -->
-                    <!-- <div class="exploded-video-wrapper">
+                    <!-- Exploded View Video -->
+                    <div class="exploded-video-wrapper">
                         <video id="explosionVideo" muted playsinline preload="auto">
-                            <source src="munchkin/assets/explode.mp4" type="video/mp4">
+                            <source src="munchkin/assets/images/explode.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="video-label">Scroll to explore assembly</div>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="overview-features">
@@ -359,8 +359,8 @@
 
         .demo-video {
             width: 100%;
-            height: auto;
-            display: block;
+            min-height: 470px;
+            /* Changed from display:block to ensure YouTube iframe is visible */
         }
 
         .video-hover-overlay {
@@ -3132,7 +3132,7 @@
                 width: 100%;
                 height: auto;
                 border-radius: 8px;
-                display: none;
+                /* REMOVED display: none; - was hiding YouTube iframe */
                 position: relative;
             }
 
