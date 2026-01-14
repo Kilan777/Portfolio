@@ -227,7 +227,7 @@ function init3DModelViewer() {
 
     // Try to load the model - update 'model.gltf' with actual filename when provided
     loader.load(
-        'FullCAD.gltf', // 3D model file
+        'images/FullCAD.gltf', // 3D model file
         function (gltf) {
             const model = gltf.scene;
 
@@ -508,7 +508,7 @@ function initEmbedded3DViewer() {
 
     console.log('Starting to load FullCAD.gltf...');
     loader.load(
-        'FullCAD.gltf',
+        'images/FullCAD.gltf',
         function (gltf) {
             console.log('GLTF file loaded successfully!');
             const model = gltf.scene;
