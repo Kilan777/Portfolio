@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Kilan Rougeot</title>
+    <link rel="icon" type="image/png" href="Pics/webicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin: 1rem 0;
+        }
+
+        .error-message {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .baja-image-container {
+            margin: 2rem 0;
+            position: relative;
+            width: 400px;
+            max-width: 90%;
+        }
+
+        .baja-image {
+            width: 100%;
+            height: auto;
+            transform: rotate(180deg);
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+
+            0%,
+            100% {
+                transform: rotate(180deg) translateY(0);
+            }
+
+            50% {
+                transform: rotate(180deg) translateY(-10px);
+            }
+        }
+
+        .countdown-container {
+            margin-top: 2rem;
+        }
+
+        .countdown-text {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .countdown-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            font-family: 'Courier New', monospace;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        .manual-link {
+            margin-top: 2rem;
+        }
+
+        .manual-link a {
+            color: var(--color-accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.125rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .manual-link a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .countdown-number {
+                font-size: 3rem;
+            }
+
+            .baja-image-container {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-message">
+            Oops! Looks like this page took a tumble. The page you're looking for doesn't exist or has been moved.
+        </p>
+
+        <div class="baja-image-container">
+            <img src="Pics/Baja.png" alt="Upside Down Baja Car" class="baja-image">
+        </div>
+
+        <div class="countdown-container">
+            <p class="countdown-text">Returning to home page in</p>
+            <div class="countdown-number" id="countdown">10</div>
+        </div>
+
+        <div class="manual-link">
+            <p>Don't want to wait? <a href="index.html">Click here to go home now</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Countdown and redirect
+        let timeLeft = 10;
+        const countdownElement = document.getElementById('countdown');
+
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
