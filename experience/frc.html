@@ -228,7 +228,7 @@
         }
 
         /* ========================================
-           HORIZONTAL TIMELINE VIEWER STYLES
+           AUTO-PLAYING TIMELINE SLIDESHOW
            ======================================== */
 
         /* Component Tabs */
@@ -265,10 +265,11 @@
             box-shadow: 0 4px 12px rgba(51, 65, 85, 0.3);
         }
 
-        /* Timeline Container */
+        /* Timeline Slideshow Container */
         .component-timeline-container {
             position: relative;
-            margin: 2rem 0 3rem 0;
+            margin: 2rem auto 3rem auto;
+            max-width: 900px;
         }
 
         .component-timeline {
@@ -295,152 +296,154 @@
             }
         }
 
-        /* Horizontal Timeline Track */
-        .timeline-track {
+        /* Slideshow Track */
+        .slideshow-track {
             position: relative;
-            padding: 3rem 0;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Custom scrollbar styling */
-        .timeline-track::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .timeline-track::-webkit-scrollbar-track {
-            background: var(--color-accent-light);
-            border-radius: 4px;
-        }
-
-        .timeline-track::-webkit-scrollbar-thumb {
-            background: var(--color-accent);
-            border-radius: 4px;
-        }
-
-        .timeline-track::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-
-        /* Timeline Spine - Horizontal line */
-        .timeline-spine {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            height: 4px;
-            background: linear-gradient(90deg,
-                    var(--color-accent) 0%,
-                    var(--color-accent-light) 50%,
-                    var(--color-accent) 100%);
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        /* Timeline Items Container */
-        .timeline-items {
-            display: flex;
-            gap: 2rem;
-            padding: 0 1rem;
-            position: relative;
-            min-width: min-content;
-        }
-
-        /* Timeline Item */
-        .timeline-item {
-            position: relative;
-            flex-shrink: 0;
-            width: 350px;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Timeline Node - Dot on spine */
-        .timeline-node {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
+            width: 100%;
             background: var(--color-white);
-            border: 4px solid var(--color-accent);
-            border-radius: 50%;
-            z-index: 2;
-            transition: all 0.3s ease;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         }
 
-        .timeline-item:hover .timeline-node {
-            width: 28px;
-            height: 28px;
-            border-width: 5px;
-            box-shadow: 0 0 0 8px rgba(51, 65, 85, 0.1);
+        /* Slideshow Slides */
+        .slideshow-slide {
+            display: none;
+            text-align: center;
+            animation: slideIn 0.6s ease-in-out;
         }
 
-        /* Timeline Content */
-        .timeline-content {
-            margin-top: 40px;
-            background: var(--color-white);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+        .slideshow-slide.active {
+            display: block;
         }
 
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        /* Timeline Label - Iteration version */
-        .timeline-label {
+        .slide-label {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.5rem;
             background: var(--color-accent);
             color: var(--color-white);
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 20px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             letter-spacing: 0.05em;
         }
 
-        /* Timeline Image */
-        .timeline-image {
+        .slide-image {
             width: 100%;
-            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 1rem;
-            background: var(--color-accent-light);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
 
-        .timeline-image img {
+        .slide-image img {
             width: 100%;
-            height: 250px;
+            height: 350px;
             object-fit: cover;
             display: block;
-            transition: transform 0.3s ease;
         }
 
-        .timeline-content:hover .timeline-image img {
-            transform: scale(1.05);
-        }
-
-        /* Timeline Caption */
-        .timeline-caption {
-            font-size: 1rem;
+        .slide-caption {
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-accent);
             line-height: 1.6;
             margin: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline Progress Indicators */
+        .timeline-progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .progress-dot {
+            position: relative;
+            width: 40px;
+            height: 8px;
+            background: var(--color-border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .progress-dot::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--color-accent);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-dot.active::before {
+            width: 100%;
+            animation: fillProgress 3s linear;
+        }
+
+        .progress-dot.completed {
+            background: var(--color-accent);
+        }
+
+        @keyframes fillProgress {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .progress-dot:hover {
+            transform: scaleY(1.5);
+        }
+
+        /* Play/Pause Button */
+        .slideshow-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
         }
 
         /* Mobile Responsive */
@@ -450,16 +453,20 @@
                 font-size: 0.9rem;
             }
 
-            .timeline-item {
-                width: 280px;
+            .slideshow-track {
+                padding: 1.5rem;
             }
 
-            .timeline-image img {
-                height: 200px;
+            .slide-image img {
+                height: 250px;
             }
 
-            .timeline-caption {
-                font-size: 0.9rem;
+            .slide-caption {
+                font-size: 1rem;
+            }
+
+            .progress-dot {
+                width: 30px;
             }
         }
     </style>
@@ -639,685 +646,701 @@
                     </button>
                 </div>
 
-                <!-- Image Timelines Container -->
+                <!-- Auto-Playing Timelines Container -->
                 <div class="component-timeline-container">
 
-                    <!-- Shooter Timeline (6 versions) -->
+                    <!-- Shooter Slideshow (6 versions) -->
                     <div class="component-timeline active" id="shooter-timeline">
-                        <div class="timeline-track">
-                            <div class="timeline-spine"></div>
-                            <div class="timeline-items">
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V1</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V1">
-                                        </div>
-                                        <p class="timeline-caption">First Prototype - Basic flywheel concept</p>
-                                    </div>
+                        <div class="slideshow-track">
+                            <div class="slideshow-slide active" data-index="0">
+                                <span class="slide-label">V1</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V1">
                                 </div>
+                                <p class="slide-caption">First Prototype - Basic flywheel concept</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V2</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V2">
-                                        </div>
-                                        <p class="timeline-caption">Compression Testing - Optimizing wheel spacing</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="1">
+                                <span class="slide-label">V2</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V2">
                                 </div>
+                                <p class="slide-caption">Compression Testing - Optimizing wheel spacing</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V3</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V3">
-                                        </div>
-                                        <p class="timeline-caption">Hood Geometry - Adjusting trajectory angles</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="2">
+                                <span class="slide-label">V3</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V3">
                                 </div>
+                                <p class="slide-caption">Hood Geometry - Adjusting trajectory angles</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V4</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V4">
-                                        </div>
-                                        <p class="timeline-caption">Motor Gearing - Refining power delivery</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="3">
+                                <span class="slide-label">V4</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V4">
                                 </div>
+                                <p class="slide-caption">Motor Gearing - Refining power delivery</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V5</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V5">
-                                        </div>
-                                        <p class="timeline-caption">Distance Calculation - Vision system integration</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="4">
+                                <span class="slide-label">V5</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Shooter_Testing.jpg" alt="Shooter V5">
                                 </div>
+                                <p class="slide-caption">Distance Calculation - Vision system integration</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V6 FINAL</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Shooter.jpg" alt="Final Shooter">
-                                        </div>
-                                        <p class="timeline-caption">Competition Ready - Dual flywheel with automated
-                                            targeting</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="5">
+                                <span class="slide-label">V6 FINAL</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Shooter.jpg" alt="Final Shooter">
                                 </div>
+                                <p class="slide-caption">Competition Ready - Dual flywheel with automated targeting</p>
+                            </div>
+
+                            <div class="timeline-progress">
+                                <div class="progress-dot active" data-index="0"></div>
+                                <div class="progress-dot" data-index="1"></div>
+                                <div class="progress-dot" data-index="2"></div>
+                                <div class="progress-dot" data-index="3"></div>
+                                <div class="progress-dot" data-index="4"></div>
+                                <div class="progress-dot" data-index="5"></div>
+                            </div>
+
+                            <div class="slideshow-controls">
+                                <button class="control-btn" data-action="pause">⏸ Pause</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Intake Timeline (7 versions) -->
+                    <!-- Intake Slideshow (7 versions) -->
                     <div class="component-timeline" id="intake-timeline">
-                        <div class="timeline-track">
-                            <div class="timeline-spine"></div>
-                            <div class="timeline-items">
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V1</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Intake V1">
-                                        </div>
-                                        <p class="timeline-caption">First Concept - Over-the-bumper design exploration
-                                        </p>
-                                    </div>
+                        <div class="slideshow-track">
+                            <div class="slideshow-slide active" data-index="0">
+                                <span class="slide-label">V1</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Intake V1">
                                 </div>
+                                <p class="slide-caption">First Concept - Over-the-bumper design exploration</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V2</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Intake V2">
-                                        </div>
-                                        <p class="timeline-caption">Wheel Configuration - Testing different grip
-                                            patterns</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="1">
+                                <span class="slide-label">V2</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Intake V2">
                                 </div>
+                                <p class="slide-caption">Wheel Configuration - Testing different grip patterns</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V3</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Intake V3">
-                                        </div>
-                                        <p class="timeline-caption">Arm Geometry - Optimizing collection angles</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="2">
+                                <span class="slide-label">V3</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Intake V3">
                                 </div>
+                                <p class="slide-caption">Arm Geometry - Optimizing collection angles</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V4</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Intake V4">
-                                        </div>
-                                        <p class="timeline-caption">Material Upgrade - Stronger polycarbonate arms</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="3">
+                                <span class="slide-label">V4</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Intake V4">
                                 </div>
+                                <p class="slide-caption">Material Upgrade - Stronger polycarbonate arms</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V5</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Intake V5">
-                                        </div>
-                                        <p class="timeline-caption">Belt Optimization - Increasing from 6 to 10 belts
-                                        </p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="4">
+                                <span class="slide-label">V5</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Intake V5">
                                 </div>
+                                <p class="slide-caption">Belt Optimization - Increasing from 6 to 10 belts</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V6</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Intake V6">
-                                        </div>
-                                        <p class="timeline-caption">Four-Bar Mechanism - Virtual linkage implementation
-                                        </p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="5">
+                                <span class="slide-label">V6</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Intake V6">
                                 </div>
+                                <p class="slide-caption">Four-Bar Mechanism - Virtual linkage implementation</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">V7 FINAL</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Intake.jpg" alt="Final Intake">
-                                        </div>
-                                        <p class="timeline-caption">Competition Ready - Sensor integration and collision
-                                            protection</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="6">
+                                <span class="slide-label">V7 FINAL</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Intake.jpg" alt="Final Intake">
                                 </div>
+                                <p class="slide-caption">Competition Ready - Sensor integration and collision protection
+                                </p>
+                            </div>
+
+                            <div class="timeline-progress">
+                                <div class="progress-dot active" data-index="0"></div>
+                                <div class="progress-dot" data-index="1"></div>
+                                <div class="progress-dot" data-index="2"></div>
+                                <div class="progress-dot" data-index="3"></div>
+                                <div class="progress-dot" data-index="4"></div>
+                                <div class="progress-dot" data-index="5"></div>
+                                <div class="progress-dot" data-index="6"></div>
+                            </div>
+
+                            <div class="slideshow-controls">
+                                <button class="control-btn" data-action="pause">⏸ Pause</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Robot Evolution Timeline (3 seasons, last with 2 pics) -->
+                    <!-- Robot Slideshow (4 versions) -->
                     <div class="component-timeline" id="robot-timeline">
-                        <div class="timeline-track">
-                            <div class="timeline-spine"></div>
-                            <div class="timeline-items">
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">2022 SEASON</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/2022-robot.jpg" alt="2022 Robot Gustavo">
-                                        </div>
-                                        <p class="timeline-caption">Gustavo - World Championship with unlimited rotation
-                                            turret</p>
-                                    </div>
+                        <div class="slideshow-track">
+                            <div class="slideshow-slide active" data-index="0">
+                                <span class="slide-label">2022 SEASON</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/2022-robot.jpg" alt="2022 Robot Gustavo">
                                 </div>
+                                <p class="slide-caption">Gustavo - World Championship with unlimited rotation turret</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">2023 SEASON</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Robot23.jpg" alt="2023 Robot BAMI">
-                                        </div>
-                                        <p class="timeline-caption">BAMI - District Champion with two-rotation arm</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="1">
+                                <span class="slide-label">2023 SEASON</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Robot23.jpg" alt="2023 Robot BAMI">
                                 </div>
+                                <p class="slide-caption">BAMI - District Champion with two-rotation arm</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">2024 - CAD</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/2024-intake-cad.jpg" alt="2024 CAD Design">
-                                        </div>
-                                        <p class="timeline-caption">Design Phase - CAD modeling and simulation</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="2">
+                                <span class="slide-label">2024 - CAD</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/2024-intake-cad.jpg" alt="2024 CAD Design">
                                 </div>
+                                <p class="slide-caption">Design Phase - CAD modeling and simulation</p>
+                            </div>
 
-                                <div class="timeline-item">
-                                    <div class="timeline-node"></div>
-                                    <div class="timeline-content">
-                                        <span class="timeline-label">2024 FINAL</span>
-                                        <div class="timeline-image">
-                                            <img src="FRCpics/Robot24.jpg" alt="2024 Robot CRESCENDO">
-                                        </div>
-                                        <p class="timeline-caption">CRESCENDO - World Championship, Top 3% global
-                                            ranking</p>
-                                    </div>
+                            <div class="slideshow-slide" data-index="3">
+                                <span class="slide-label">2024 FINAL</span>
+                                <div class="slide-image">
+                                    <img src="FRCpics/Robot24.jpg" alt="2024 Robot CRESCENDO">
                                 </div>
+                                <p class="slide-caption">CRESCENDO - World Championship, Top 3% global ranking</p>
+                            </div>
+
+                            <div class="timeline-progress">
+                                <div class="progress-dot active" data-index="0"></div>
+                                <div class="progress-dot" data-index="1"></div>
+                                <div class="progress-dot" data-index="2"></div>
+                                <div class="progress-dot" data-index="3"></div>
+                            </div>
+
+                            <div class="slideshow-controls">
+                                <button class="control-btn" data-action="pause">⏸ Pause</button>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
-                <!--Testing Video -->
-                <h3>Robot In Action</h3>
-                <div class="video-container" id="frcVideoContainer">
-                    <div id="frcVideo"></div>
-                </div>
-
-                <h3>Competition Results</h3>
-                <div class="awards-grid">
-                    <ul style="margin: 0;">
-                        <li><strong>World Championship Qualification</strong> - Ranked in top 3% globally</li>
-                        <li><strong>District Championship Finalist</strong></li>
-                        <li><strong>Engineering Excellence Award</strong> - Recognized for innovative design and
-                            documentation</li>
-                        <li><strong>Quality Award</strong> - Acknowledging robust design and manufacturing excellence
-                        </li>
-                        <li><strong>Engineering Inspiration Award</strong></li>
-                        <li><strong>Autonomous Award (2x)</strong> - Consistent autonomous performance</li>
-                    </ul>
-                </div>
-
-                <h3>Engineering Process</h3>
-                <p>
-                    Our development followed a rigorous iterative approach with extensive documentation:
-                </p>
-                <ul>
-                    <li><strong>Initial Prototyping:</strong> Wooden mockups and concept validation</li>
-                    <li><strong>CAD Modeling:</strong> Detailed modeling and simulation in Fusion 360</li>
-                    <li><strong>Iterative Design:</strong> Seven intake versions, six shooter versions with documented
-                        improvements</li>
-                    <li><strong>Sensor Integration:</strong> Beam break sensors, encoders, and vision systems</li>
-                    <li><strong>Competition Refinement:</strong> Post-competition improvements based on performance data
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 2023 Content -->
-            <div id="year-2023" class="year-content">
-                <a href="FRCpics/Engineering Notebook 2023.pdf" class="specs-btn" target="_blank">📖 See Robot
-                    Specifications</a>
-
-                <p>
-                    As Team Captain, Lead Builder, and Robot Operator for FRC Team 1391 during the 2023 season (CHARGED
-                    UP), I led our team through designing and building a highly competitive robot featuring both cube
-                    and cone handling mechanisms. My primary focus was the development of our multi-stage arm system and
-                    intake mechanisms. The robot, named "BAMI," showcased innovation in game piece manipulation with a
-                    two-rotation point arm and advanced gripper system.
-                </p>
-
-                <!-- Robot Image -->
-                <div class="detail-image">
-                    <img src="FRCpics/Robot23.jpg" alt="2023 Robot BAMI - CHARGED UP"
-                        style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-
-                <h3>Key Mechanical Systems</h3>
-
-                <h4>Advanced Gripper Mechanism (V1-V4)</h4>
-                <p>
-                    Developed through four major iterations to create a dual-purpose gripper for both cones and cubes.
-                </p>
-                <ul>
-                    <li><strong>Dual-Purpose Design:</strong> Handles both game piece types with pressure-sensitive
-                        gripping</li>
-                    <li><strong>Sheet Metal Construction:</strong> Final V4 design machined from sheet metal for
-                        durability</li>
-                    <li><strong>Linear Actuation:</strong> Dual pneumatic pistons for variable grip strength</li>
-                    <li><strong>Sorbothane Pads:</strong> Optimized grip material replacing initial wheel design</li>
-                    <li><strong>Sensor Integration:</strong> Automated control for consistent piece acquisition</li>
-                    <li><strong>Compact Design:</strong> Smaller paddles on V4 to reduce cube grip and prevent sticking
-                    </li>
-                </ul>
-
-                <!-- Gripper Images -->
-                <div class="image-row">
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-gripper-cone.jpg" alt="2023 Gripper with Cone"
-                            style="width: 100%; height: 100%; object-fit: contain;">
+                <div class="timeline-item">
+                    <!--Testing Video -->
+                    <h3>Robot In Action</h3>
+                    <div class="video-container" id="frcVideoContainer">
+                        <div id="frcVideo"></div>
                     </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-gripper-cube.jpg" alt="2023 Gripper with Cube"
-                            style="width: 100%; height: 100%; object-fit: contain;">
+
+                    <h3>Competition Results</h3>
+                    <div class="awards-grid">
+                        <ul style="margin: 0;">
+                            <li><strong>World Championship Qualification</strong> - Ranked in top 3% globally</li>
+                            <li><strong>District Championship Finalist</strong></li>
+                            <li><strong>Engineering Excellence Award</strong> - Recognized for innovative design and
+                                documentation</li>
+                            <li><strong>Quality Award</strong> - Acknowledging robust design and manufacturing
+                                excellence
+                            </li>
+                            <li><strong>Engineering Inspiration Award</strong></li>
+                            <li><strong>Autonomous Award (2x)</strong> - Consistent autonomous performance</li>
+                        </ul>
                     </div>
-                </div>
 
-                <h4>Two-Rotation Point Arm</h4>
-                <p>
-                    Engineered a sophisticated arm system with shoulder and elbow joints for precise game piece
-                    positioning.
-                </p>
-                <ul>
-                    <li><strong>Optimized Weight Distribution:</strong> Lightweight 1x2 box construction with strategic
-                        material reduction</li>
-                    <li><strong>Chain-Driven Joints:</strong> Shoulder motors mounted low with chain drive to lower
-                        center of gravity</li>
-                    <li><strong>Through-Bore Encoders:</strong> Precise angle monitoring for shoulder and elbow joints
-                    </li>
-                    <li><strong>Inverse Kinematics:</strong> Automated positioning using x,y coordinate input</li>
-                    <li><strong>Multiple Scoring Heights:</strong> Capable of ground pickup to high scoring positions
-                    </li>
-                    <li><strong>Independent Operation:</strong> Can function without intake if needed</li>
-                    <li><strong>Upgraded Chain:</strong> #35 chain on shoulder joint (upgraded from #25) for reliability
-                    </li>
-                </ul>
-
-                <!-- Arm Images -->
-                <div class="detail-image">
-                    <img src="FRCpics/2023-arm-extended.jpg" alt="2023 Arm Fully Extended"
-                        style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-
-                <h4>Over-the-Bumper Intake System</h4>
-                <p>
-                    Led development through seven major design iterations to create a reliable game piece collection
-                    system.
-                </p>
-                <ul>
-                    <li><strong>Wide Capture Range:</strong> Extended 12.5 degrees opening for forgiving piece
-                        acquisition</li>
-                    <li><strong>Dual Wheel Design:</strong> Two-layer wheels providing grip without launching pieces
-                    </li>
-                    <li><strong>Virtual Four-Bar Mechanism:</strong> Compact storage within frame, extends for
-                        collection</li>
-                    <li><strong>Polycarbonate Arms:</strong> Upgraded to 1/8" thick for reduced flex</li>
-                    <li><strong>Constant Force Springs:</strong> Assisted deployment and retraction</li>
-                    <li><strong>Automated Control:</strong> Sensor-based detection for automatic piece handling</li>
-                    <li><strong>Cone Orientation:</strong> Utilized gravity to naturally orient bottom-heavy cones</li>
-                </ul>
-
-                <!-- Intake Images -->
-                <div class="image-row">
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-intake-open.jpg" alt="2023 Intake Open"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-intake-closed.jpg" alt="2023 Intake Closed"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-
-                <h4>27" x 27" Swerve Drive Base</h4>
-                <ul>
-                    <li><strong>Steel Electronics Board:</strong> Custom-machined steel board for low center of gravity
-                    </li>
-                    <li><strong>80-Degree Tip Resistance:</strong> Could tilt up to 80 degrees without falling over</li>
-                    <li><strong>Countersunk Holes:</strong> Flat-head screws prevent catching on charge station</li>
-                    <li><strong>Cutout Design:</strong> Strategic cutouts for component access without removal</li>
-                    <li><strong>Enhanced Maneuverability:</strong> Swerve drive for precise charge station balancing
-                    </li>
-                </ul>
-
-                <!-- Drive Base Image -->
-                <div class="detail-image">
-                    <img src="FRCpics/2023-drivebase.jpg" alt="2023 Swerve Drive Base"
-                        style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-
-                <!-- Build Images -->
-                <h3>Build Process</h3>
-                <div class="image-triple">
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-build-1.jpg" alt="2023 Build 1"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-build-2.jpg" alt="2023 Build 2"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2023-build-3.jpg" alt="2023 Build 3"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-
-                <h3>Competition Results</h3>
-                <div class="awards-grid">
-                    <ul style="margin: 0;">
-                        <li><strong>Bensalem District Event Champion</strong></li>
-                        <li><strong>District Event Finalist</strong></li>
-                        <li><strong>Autonomous Award</strong> sponsored by Ford - Advanced autonomous capabilities</li>
-                        <li><strong>Excellence in Engineering Award</strong> - Innovative design solutions and technical
-                            execution</li>
-                        <li><strong>Quality Award</strong> - Robust design and manufacturing excellence</li>
-                    </ul>
-                </div>
-
-                <h3>Key Learnings</h3>
-                <ul>
-                    <li><strong>Iterative Prototyping:</strong> Learned to build and test physical prototypes rather
-                        than over-planning in CAD</li>
-                    <li><strong>Center of Gravity Management:</strong> Critical calculations to prevent robot tipping
-                        with extended arm</li>
-                    <li><strong>Team Communication:</strong> Improved coordination between mechanical, electrical, and
-                        programming sub-teams</li>
-                    <li><strong>Robustness vs. Complexity:</strong> Balanced innovative design with field-repairable
-                        simplicity</li>
-                </ul>
-            </div>
-
-            <!-- 2022 Content -->
-            <div id="year-2022" class="year-content">
-                <a href="FRCpics/Engineering Notebook 2022.pdf" class="specs-btn" target="_blank">📖 See Robot
-                    Specifications</a>
-
-                <p>
-                    As a key member of FRC Team 1391 (The Metal Moose) during the 2022 season, I contributed
-                    significantly to developing our innovative robot "Gustavo." The robot featured breakthrough designs
-                    in climbing and shooting mechanisms, including a unique unlimited-rotation turret and a
-                    sophisticated multi-stage climbing system capable of reaching the traversal bar. These innovations
-                    helped our robot demonstrate exceptional performance throughout the season, making it all the way to
-                    the World Championship in Houston, Texas.
-                </p>
-
-                <!-- Robot Image -->
-                <div class="detail-image">
-                    <img src="FRCpics/2022-robot.jpg" alt="2022 Robot Gustavo"
-                        style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-
-                <h3>Key Mechanical Systems</h3>
-
-                <h4>Unlimited Rotation Turret with Vision Tracking</h4>
-                <p>
-                    Innovative shooting system with continuous rotation capability and automated targeting.
-                </p>
-                <ul>
-                    <li><strong>Slip Ring Design:</strong> Limelight camera powered through slip ring for continuous
-                        rotation</li>
-                    <li><strong>Vision-Based Targeting:</strong> Retroreflective tape detection with real-time angle
-                        calculations</li>
-                    <li><strong>NEO Motor Control:</strong> Built-in encoder for precise angle positioning</li>
-                    <li><strong>One-to-One Gear Ratio:</strong> Limelight rotates synchronously with turret</li>
-                    <li><strong>Four-Flywheel System:</strong> Consistent ball propulsion with variable speed control
-                    </li>
-                    <li><strong>3D-Printed Hood:</strong> Custom geometry for optimal trajectory (CNC cut and 3D
-                        printed)</li>
-                    <li><strong>Automated Distance Calculation:</strong> RoboRIO integration for dynamic power
-                        adjustment</li>
-                </ul>
-
-                <!-- Turret Images -->
-                <div class="image-row">
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-turret.jpg" alt="2022 Unlimited Rotation Turret"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-shooter-detail.jpg" alt="2022 Shooter Detail"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-
-                <h4>Three-Stage Climbing System</h4>
-                <p>
-                    Sophisticated elevator mechanism for traversal bar ascent with anti-swing features.
-                </p>
-                <ul>
-                    <li><strong>Belt and Piston Design:</strong> Advanced system enabling rapid bar-to-bar traversal
-                    </li>
-                    <li><strong>Swing Reduction:</strong> Piston mechanism pulls robot to lower center of mass during
-                        climb</li>
-                    <li><strong>Dual Hook System:</strong> Fixed and moving hooks with precision tilt angles</li>
-                    <li><strong>Spring-Loaded Fixed Hooks:</strong> Allow bar to slide through during transitions</li>
-                    <li><strong>Aluminum Channel Construction:</strong> Integrated belts and bearings for smooth
-                        operation</li>
-                    <li><strong>Custom Manufacturing:</strong> Components made with CNC router, mill, 3D printing, and
-                        lathe</li>
-                </ul>
-
-                <!-- Climbing Images -->
-                <div class="image-row">
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-climber-hooks.jpg" alt="2022 Climbing Hooks"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-climbing-action.jpg" alt="2022 Robot Climbing"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-
-                <h4>Intelligent Cargo Management System</h4>
-                <p>
-                    Advanced indexer with sensor-based sorting and automated ball handling.
-                </p>
-                <ul>
-                    <li><strong>30-Wheel Indexer:</strong> Precise cargo control and guidance to flywheels</li>
-                    <li><strong>Integrated Color Sensors:</strong> Real-time cargo tracking and identification</li>
-                    <li><strong>Automated Enemy Rejection:</strong> System inverts to eject incorrect colored cargo</li>
-                    <li><strong>Dynamic Speed Adjustment:</strong> Flywheel speed varies based on cargo type</li>
-                    <li><strong>Position Monitoring:</strong> Tracks cargo location within robot</li>
-                    <li><strong>Driver Feedback:</strong> Visual indicators for cargo status</li>
-                </ul>
-
-                <!-- Indexer Image -->
-                <div class="detail-image">
-                    <img src="FRCpics/2022-indexer.jpg" alt="2022 30-Wheel Indexer with Color Sensors"
-                        style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-
-                <h4>Dual-Arm Collection System</h4>
-                <ul>
-                    <li><strong>Pneumatic Polycarbonate Arms:</strong> Compliant yet durable construction</li>
-                    <li><strong>Lower Pivot Point:</strong> Collision protection - arms pivot away from impacts</li>
-                    <li><strong>Wheel Collection:</strong> Active intake wheels on arm fronts</li>
-                    <li><strong>Secondary Limelight:</strong> Automated ball recognition and tracking</li>
-                    <li><strong>Driver-Assist Features:</strong> Auto-rotation to center on nearest cargo</li>
-                    <li><strong>Five-Ball Autonomous:</strong> Consistent autonomous operation without precise alignment
-                    </li>
-                </ul>
-
-                <h4>Tank Drive with Omni Wheels</h4>
-                <ul>
-                    <li><strong>Mixed Wheel Configuration:</strong> Four Versa wheels with two front Omni wheels</li>
-                    <li><strong>Enhanced Turning:</strong> Omni wheels ease rotation while maintaining speed</li>
-                    <li><strong>Single-Speed Gearbox:</strong> Simple but effective drive system</li>
-                    <li><strong>Integrated Ball Recognition:</strong> Works seamlessly with vision-based collection</li>
-                    <li><strong>CNC Manufactured:</strong> Precision components from CNC mill and router</li>
-                </ul>
-
-                <!-- Collection System Images -->
-                <div class="image-row">
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-collector.jpg" alt="2022 Collection Arms"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-limelight-front.jpg" alt="2022 Front Limelight"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-
-                <!-- Build Process -->
-                <h3>Manufacturing & Build</h3>
-                <div class="image-triple">
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-build-1.jpg" alt="2022 Build Process"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-build-2.jpg" alt="2022 Assembly"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                    <div class="detail-image">
-                        <img src="FRCpics/2022-build-3.jpg" alt="2022 Final Assembly"
-                            style="width: 100%; height: 100%; object-fit: contain;">
-                    </div>
-                </div>
-
-                <h3>Competition Results</h3>
-                <div class="awards-grid">
-                    <ul style="margin: 0;">
-                        <li><strong>World Championship Qualification</strong> - Houston, Texas</li>
-                        <li><strong>Competition 1:</strong> Rank 10 (11-6-0 record) - Creativity Award sponsored by
-                            Rockwell Automation</li>
-                        <li><strong>Competition 2:</strong> Rank 5 (10-7-0 record) - Autonomous Award sponsored by Ford
-                        </li>
-                        <li><strong>Competition 3:</strong> Rank 12 (8-6-0 record)</li>
-                        <li><strong>Consistent Playoff Performance:</strong> Semifinals and Quarterfinals appearances
+                    <h3>Engineering Process</h3>
+                    <p>
+                        Our development followed a rigorous iterative approach with extensive documentation:
+                    </p>
+                    <ul>
+                        <li><strong>Initial Prototyping:</strong> Wooden mockups and concept validation</li>
+                        <li><strong>CAD Modeling:</strong> Detailed modeling and simulation in Fusion 360</li>
+                        <li><strong>Iterative Design:</strong> Seven intake versions, six shooter versions with
+                            documented
+                            improvements</li>
+                        <li><strong>Sensor Integration:</strong> Beam break sensors, encoders, and vision systems</li>
+                        <li><strong>Competition Refinement:</strong> Post-competition improvements based on performance
+                            data
                         </li>
                     </ul>
                 </div>
 
-                <h3>Key Innovations</h3>
-                <ul>
-                    <li><strong>Slip Ring Integration:</strong> First on our team to implement continuous rotation
-                        vision tracking</li>
-                    <li><strong>Multi-Stage Climbing:</strong> Sophisticated traversal mechanism with anti-swing control
-                    </li>
-                    <li><strong>Advanced Sensor Integration:</strong> Color sensors for cargo sorting and dual Limelight
-                        setup</li>
-                    <li><strong>Automated Game Piece Handling:</strong> Driver-assist features for collection and
-                        shooting</li>
-                    <li><strong>Robust Manufacturing:</strong> CNC routing, milling, 3D printing, and lathe work</li>
-                </ul>
-            </div>
+                <!-- 2023 Content -->
+                <div id="year-2023" class="year-content">
+                    <a href="FRCpics/Engineering Notebook 2023.pdf" class="specs-btn" target="_blank">📖 See Robot
+                        Specifications</a>
 
-            <!-- Overall Impact Section (Always Visible) -->
-            <div
-                style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 2px solid var(--color-border);">
-                <h2>Three-Year Impact & Growth</h2>
+                    <p>
+                        As Team Captain, Lead Builder, and Robot Operator for FRC Team 1391 during the 2023 season
+                        (CHARGED
+                        UP), I led our team through designing and building a highly competitive robot featuring both
+                        cube
+                        and cone handling mechanisms. My primary focus was the development of our multi-stage arm system
+                        and
+                        intake mechanisms. The robot, named "BAMI," showcased innovation in game piece manipulation with
+                        a
+                        two-rotation point arm and advanced gripper system.
+                    </p>
+
+                    <!-- Robot Image -->
+                    <div class="detail-image">
+                        <img src="FRCpics/Robot23.jpg" alt="2023 Robot BAMI - CHARGED UP"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <h3>Key Mechanical Systems</h3>
+
+                    <h4>Advanced Gripper Mechanism (V1-V4)</h4>
+                    <p>
+                        Developed through four major iterations to create a dual-purpose gripper for both cones and
+                        cubes.
+                    </p>
+                    <ul>
+                        <li><strong>Dual-Purpose Design:</strong> Handles both game piece types with pressure-sensitive
+                            gripping</li>
+                        <li><strong>Sheet Metal Construction:</strong> Final V4 design machined from sheet metal for
+                            durability</li>
+                        <li><strong>Linear Actuation:</strong> Dual pneumatic pistons for variable grip strength</li>
+                        <li><strong>Sorbothane Pads:</strong> Optimized grip material replacing initial wheel design
+                        </li>
+                        <li><strong>Sensor Integration:</strong> Automated control for consistent piece acquisition</li>
+                        <li><strong>Compact Design:</strong> Smaller paddles on V4 to reduce cube grip and prevent
+                            sticking
+                        </li>
+                    </ul>
+
+                    <!-- Gripper Images -->
+                    <div class="image-row">
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-gripper-cone.jpg" alt="2023 Gripper with Cone"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-gripper-cube.jpg" alt="2023 Gripper with Cube"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <h4>Two-Rotation Point Arm</h4>
+                    <p>
+                        Engineered a sophisticated arm system with shoulder and elbow joints for precise game piece
+                        positioning.
+                    </p>
+                    <ul>
+                        <li><strong>Optimized Weight Distribution:</strong> Lightweight 1x2 box construction with
+                            strategic
+                            material reduction</li>
+                        <li><strong>Chain-Driven Joints:</strong> Shoulder motors mounted low with chain drive to lower
+                            center of gravity</li>
+                        <li><strong>Through-Bore Encoders:</strong> Precise angle monitoring for shoulder and elbow
+                            joints
+                        </li>
+                        <li><strong>Inverse Kinematics:</strong> Automated positioning using x,y coordinate input</li>
+                        <li><strong>Multiple Scoring Heights:</strong> Capable of ground pickup to high scoring
+                            positions
+                        </li>
+                        <li><strong>Independent Operation:</strong> Can function without intake if needed</li>
+                        <li><strong>Upgraded Chain:</strong> #35 chain on shoulder joint (upgraded from #25) for
+                            reliability
+                        </li>
+                    </ul>
+
+                    <!-- Arm Images -->
+                    <div class="detail-image">
+                        <img src="FRCpics/2023-arm-extended.jpg" alt="2023 Arm Fully Extended"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <h4>Over-the-Bumper Intake System</h4>
+                    <p>
+                        Led development through seven major design iterations to create a reliable game piece collection
+                        system.
+                    </p>
+                    <ul>
+                        <li><strong>Wide Capture Range:</strong> Extended 12.5 degrees opening for forgiving piece
+                            acquisition</li>
+                        <li><strong>Dual Wheel Design:</strong> Two-layer wheels providing grip without launching pieces
+                        </li>
+                        <li><strong>Virtual Four-Bar Mechanism:</strong> Compact storage within frame, extends for
+                            collection</li>
+                        <li><strong>Polycarbonate Arms:</strong> Upgraded to 1/8" thick for reduced flex</li>
+                        <li><strong>Constant Force Springs:</strong> Assisted deployment and retraction</li>
+                        <li><strong>Automated Control:</strong> Sensor-based detection for automatic piece handling</li>
+                        <li><strong>Cone Orientation:</strong> Utilized gravity to naturally orient bottom-heavy cones
+                        </li>
+                    </ul>
+
+                    <!-- Intake Images -->
+                    <div class="image-row">
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-intake-open.jpg" alt="2023 Intake Open"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-intake-closed.jpg" alt="2023 Intake Closed"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <h4>27" x 27" Swerve Drive Base</h4>
+                    <ul>
+                        <li><strong>Steel Electronics Board:</strong> Custom-machined steel board for low center of
+                            gravity
+                        </li>
+                        <li><strong>80-Degree Tip Resistance:</strong> Could tilt up to 80 degrees without falling over
+                        </li>
+                        <li><strong>Countersunk Holes:</strong> Flat-head screws prevent catching on charge station</li>
+                        <li><strong>Cutout Design:</strong> Strategic cutouts for component access without removal</li>
+                        <li><strong>Enhanced Maneuverability:</strong> Swerve drive for precise charge station balancing
+                        </li>
+                    </ul>
+
+                    <!-- Drive Base Image -->
+                    <div class="detail-image">
+                        <img src="FRCpics/2023-drivebase.jpg" alt="2023 Swerve Drive Base"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <!-- Build Images -->
+                    <h3>Build Process</h3>
+                    <div class="image-triple">
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-build-1.jpg" alt="2023 Build 1"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-build-2.jpg" alt="2023 Build 2"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2023-build-3.jpg" alt="2023 Build 3"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <h3>Competition Results</h3>
+                    <div class="awards-grid">
+                        <ul style="margin: 0;">
+                            <li><strong>Bensalem District Event Champion</strong></li>
+                            <li><strong>District Event Finalist</strong></li>
+                            <li><strong>Autonomous Award</strong> sponsored by Ford - Advanced autonomous capabilities
+                            </li>
+                            <li><strong>Excellence in Engineering Award</strong> - Innovative design solutions and
+                                technical
+                                execution</li>
+                            <li><strong>Quality Award</strong> - Robust design and manufacturing excellence</li>
+                        </ul>
+                    </div>
+
+                    <h3>Key Learnings</h3>
+                    <ul>
+                        <li><strong>Iterative Prototyping:</strong> Learned to build and test physical prototypes rather
+                            than over-planning in CAD</li>
+                        <li><strong>Center of Gravity Management:</strong> Critical calculations to prevent robot
+                            tipping
+                            with extended arm</li>
+                        <li><strong>Team Communication:</strong> Improved coordination between mechanical, electrical,
+                            and
+                            programming sub-teams</li>
+                        <li><strong>Robustness vs. Complexity:</strong> Balanced innovative design with field-repairable
+                            simplicity</li>
+                    </ul>
+                </div>
+
+                <!-- 2022 Content -->
+                <div id="year-2022" class="year-content">
+                    <a href="FRCpics/Engineering Notebook 2022.pdf" class="specs-btn" target="_blank">📖 See Robot
+                        Specifications</a>
+
+                    <p>
+                        As a key member of FRC Team 1391 (The Metal Moose) during the 2022 season, I contributed
+                        significantly to developing our innovative robot "Gustavo." The robot featured breakthrough
+                        designs
+                        in climbing and shooting mechanisms, including a unique unlimited-rotation turret and a
+                        sophisticated multi-stage climbing system capable of reaching the traversal bar. These
+                        innovations
+                        helped our robot demonstrate exceptional performance throughout the season, making it all the
+                        way to
+                        the World Championship in Houston, Texas.
+                    </p>
+
+                    <!-- Robot Image -->
+                    <div class="detail-image">
+                        <img src="FRCpics/2022-robot.jpg" alt="2022 Robot Gustavo"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <h3>Key Mechanical Systems</h3>
+
+                    <h4>Unlimited Rotation Turret with Vision Tracking</h4>
+                    <p>
+                        Innovative shooting system with continuous rotation capability and automated targeting.
+                    </p>
+                    <ul>
+                        <li><strong>Slip Ring Design:</strong> Limelight camera powered through slip ring for continuous
+                            rotation</li>
+                        <li><strong>Vision-Based Targeting:</strong> Retroreflective tape detection with real-time angle
+                            calculations</li>
+                        <li><strong>NEO Motor Control:</strong> Built-in encoder for precise angle positioning</li>
+                        <li><strong>One-to-One Gear Ratio:</strong> Limelight rotates synchronously with turret</li>
+                        <li><strong>Four-Flywheel System:</strong> Consistent ball propulsion with variable speed
+                            control
+                        </li>
+                        <li><strong>3D-Printed Hood:</strong> Custom geometry for optimal trajectory (CNC cut and 3D
+                            printed)</li>
+                        <li><strong>Automated Distance Calculation:</strong> RoboRIO integration for dynamic power
+                            adjustment</li>
+                    </ul>
+
+                    <!-- Turret Images -->
+                    <div class="image-row">
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-turret.jpg" alt="2022 Unlimited Rotation Turret"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-shooter-detail.jpg" alt="2022 Shooter Detail"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <h4>Three-Stage Climbing System</h4>
+                    <p>
+                        Sophisticated elevator mechanism for traversal bar ascent with anti-swing features.
+                    </p>
+                    <ul>
+                        <li><strong>Belt and Piston Design:</strong> Advanced system enabling rapid bar-to-bar traversal
+                        </li>
+                        <li><strong>Swing Reduction:</strong> Piston mechanism pulls robot to lower center of mass
+                            during
+                            climb</li>
+                        <li><strong>Dual Hook System:</strong> Fixed and moving hooks with precision tilt angles</li>
+                        <li><strong>Spring-Loaded Fixed Hooks:</strong> Allow bar to slide through during transitions
+                        </li>
+                        <li><strong>Aluminum Channel Construction:</strong> Integrated belts and bearings for smooth
+                            operation</li>
+                        <li><strong>Custom Manufacturing:</strong> Components made with CNC router, mill, 3D printing,
+                            and
+                            lathe</li>
+                    </ul>
+
+                    <!-- Climbing Images -->
+                    <div class="image-row">
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-climber-hooks.jpg" alt="2022 Climbing Hooks"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-climbing-action.jpg" alt="2022 Robot Climbing"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <h4>Intelligent Cargo Management System</h4>
+                    <p>
+                        Advanced indexer with sensor-based sorting and automated ball handling.
+                    </p>
+                    <ul>
+                        <li><strong>30-Wheel Indexer:</strong> Precise cargo control and guidance to flywheels</li>
+                        <li><strong>Integrated Color Sensors:</strong> Real-time cargo tracking and identification</li>
+                        <li><strong>Automated Enemy Rejection:</strong> System inverts to eject incorrect colored cargo
+                        </li>
+                        <li><strong>Dynamic Speed Adjustment:</strong> Flywheel speed varies based on cargo type</li>
+                        <li><strong>Position Monitoring:</strong> Tracks cargo location within robot</li>
+                        <li><strong>Driver Feedback:</strong> Visual indicators for cargo status</li>
+                    </ul>
+
+                    <!-- Indexer Image -->
+                    <div class="detail-image">
+                        <img src="FRCpics/2022-indexer.jpg" alt="2022 30-Wheel Indexer with Color Sensors"
+                            style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <h4>Dual-Arm Collection System</h4>
+                    <ul>
+                        <li><strong>Pneumatic Polycarbonate Arms:</strong> Compliant yet durable construction</li>
+                        <li><strong>Lower Pivot Point:</strong> Collision protection - arms pivot away from impacts</li>
+                        <li><strong>Wheel Collection:</strong> Active intake wheels on arm fronts</li>
+                        <li><strong>Secondary Limelight:</strong> Automated ball recognition and tracking</li>
+                        <li><strong>Driver-Assist Features:</strong> Auto-rotation to center on nearest cargo</li>
+                        <li><strong>Five-Ball Autonomous:</strong> Consistent autonomous operation without precise
+                            alignment
+                        </li>
+                    </ul>
+
+                    <h4>Tank Drive with Omni Wheels</h4>
+                    <ul>
+                        <li><strong>Mixed Wheel Configuration:</strong> Four Versa wheels with two front Omni wheels
+                        </li>
+                        <li><strong>Enhanced Turning:</strong> Omni wheels ease rotation while maintaining speed</li>
+                        <li><strong>Single-Speed Gearbox:</strong> Simple but effective drive system</li>
+                        <li><strong>Integrated Ball Recognition:</strong> Works seamlessly with vision-based collection
+                        </li>
+                        <li><strong>CNC Manufactured:</strong> Precision components from CNC mill and router</li>
+                    </ul>
+
+                    <!-- Collection System Images -->
+                    <div class="image-row">
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-collector.jpg" alt="2022 Collection Arms"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-limelight-front.jpg" alt="2022 Front Limelight"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <!-- Build Process -->
+                    <h3>Manufacturing & Build</h3>
+                    <div class="image-triple">
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-build-1.jpg" alt="2022 Build Process"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-build-2.jpg" alt="2022 Assembly"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="detail-image">
+                            <img src="FRCpics/2022-build-3.jpg" alt="2022 Final Assembly"
+                                style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+
+                    <h3>Competition Results</h3>
+                    <div class="awards-grid">
+                        <ul style="margin: 0;">
+                            <li><strong>World Championship Qualification</strong> - Houston, Texas</li>
+                            <li><strong>Competition 1:</strong> Rank 10 (11-6-0 record) - Creativity Award sponsored by
+                                Rockwell Automation</li>
+                            <li><strong>Competition 2:</strong> Rank 5 (10-7-0 record) - Autonomous Award sponsored by
+                                Ford
+                            </li>
+                            <li><strong>Competition 3:</strong> Rank 12 (8-6-0 record)</li>
+                            <li><strong>Consistent Playoff Performance:</strong> Semifinals and Quarterfinals
+                                appearances
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3>Key Innovations</h3>
+                    <ul>
+                        <li><strong>Slip Ring Integration:</strong> First on our team to implement continuous rotation
+                            vision tracking</li>
+                        <li><strong>Multi-Stage Climbing:</strong> Sophisticated traversal mechanism with anti-swing
+                            control
+                        </li>
+                        <li><strong>Advanced Sensor Integration:</strong> Color sensors for cargo sorting and dual
+                            Limelight
+                            setup</li>
+                        <li><strong>Automated Game Piece Handling:</strong> Driver-assist features for collection and
+                            shooting</li>
+                        <li><strong>Robust Manufacturing:</strong> CNC routing, milling, 3D printing, and lathe work
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Overall Impact Section (Always Visible) -->
+                <div
+                    style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 2px solid var(--color-border);">
+                    <h2>Three-Year Impact & Growth</h2>
+                    <p>
+                        My three-year journey with FIRST Robotics Competition represents a progression from contributor
+                        to
+                        leader, from learning fundamentals to teaching others, and from implementing designs to creating
+                        comprehensive documentation that sets new team standards. Each season built upon the last,
+                        culminating in World Championship appearances, top 3% global rankings, and multiple Engineering
+                        Excellence awards.
+                    </p>
+
+                    <h3>Technical Skills Developed</h3>
+                    <ul>
+                        <li><strong>CAD & Simulation:</strong> Fusion 360, SolidWorks - from basic modeling to inverse
+                            kinematics</li>
+                        <li><strong>Manufacturing:</strong> CNC mill, CNC router, lathe, 3D printing, sheet metal
+                            fabrication</li>
+                        <li><strong>Mechanical Design:</strong> Iterative prototyping, weight optimization, center of
+                            gravity management</li>
+                        <li><strong>Control Systems:</strong> Motor controllers, encoders, sensors, pneumatics
+                            integration
+                        </li>
+                        <li><strong>Vision Processing:</strong> Limelight configuration, AprilTag tracking, automated
+                            targeting</li>
+                        <li><strong>System Integration:</strong> Coordinating mechanical, electrical, and programming
+                            subsystems</li>
+                        <li><strong>Documentation:</strong> Engineering notebooks, design rationale, iterative
+                            improvement
+                            tracking</li>
+                    </ul>
+
+                    <h3>Leadership Development</h3>
+                    <ul>
+                        <li><strong>Team Management:</strong> Led 30+ member team across mechanical, electrical,
+                            programming, and business sub-teams</li>
+                        <li><strong>Project Planning:</strong> Managed build schedules, prototyping timelines, and
+                            competition deadlines</li>
+                        <li><strong>Mentorship:</strong> Trained new members in CAD, machining, and design processes
+                        </li>
+                        <li><strong>Competition Strategy:</strong> Coordinated with alliance partners and adapted to
+                            field
+                            conditions</li>
+                        <li><strong>Documentation Standards:</strong> Established comprehensive engineering notebook
+                            practices</li>
+                    </ul>
+                </div>
+
+                <!-- Key Learnings -->
+                <h2>Key Learnings</h2>
                 <p>
-                    My three-year journey with FIRST Robotics Competition represents a progression from contributor to
-                    leader, from learning fundamentals to teaching others, and from implementing designs to creating
-                    comprehensive documentation that sets new team standards. Each season built upon the last,
-                    culminating in World Championship appearances, top 3% global rankings, and multiple Engineering
-                    Excellence awards.
+                    My three seasons with FIRST Robotics Competition transformed how I approach engineering challenges.
+                    The six-week build season forced rapid iteration and decision-making under pressure—there's no time
+                    to perfect every detail in CAD when you need a working prototype to test. This taught me to build
+                    physical mockups early, fail fast, and iterate based on real-world performance rather than
+                    theoretical perfection.
+                </p>
+                <p>
+                    Leading a team of 30+ students across mechanical, electrical, programming, and business sub-teams
+                    showed me that technical excellence alone doesn't win competitions. Communication between
+                    subsystems,
+                    clear documentation, and shared understanding of design constraints matter just as much as
+                    innovative
+                    mechanisms. When our intake team couldn't coordinate with programmers, even the best hardware
+                    failed.
+                </p>
+                <p>
+                    Competing at World Championships and earning multiple Engineering Excellence awards validated that
+                    thorough documentation and design process matter to judges and clients alike. The comprehensive
+                    engineering notebooks I created became team standards because they forced us to articulate not just
+                    *what* we built, but *why* each design decision was made and *how* we validated it.
+                </p>
+                <p>
+                    Most importantly, FRC taught me that setbacks on the competition field are inevitable—mechanisms
+                    break, sensors fail, and alliance partners have off-matches. The teams that succeed are those that
+                    can quickly diagnose problems in the pits, make field repairs under time pressure, and adapt their
+                    strategy based on what's actually working. This resilience and adaptability has proven invaluable in
+                    every engineering project since.
                 </p>
 
-                <h3>Technical Skills Developed</h3>
-                <ul>
-                    <li><strong>CAD & Simulation:</strong> Fusion 360, SolidWorks - from basic modeling to inverse
-                        kinematics</li>
-                    <li><strong>Manufacturing:</strong> CNC mill, CNC router, lathe, 3D printing, sheet metal
-                        fabrication</li>
-                    <li><strong>Mechanical Design:</strong> Iterative prototyping, weight optimization, center of
-                        gravity management</li>
-                    <li><strong>Control Systems:</strong> Motor controllers, encoders, sensors, pneumatics integration
-                    </li>
-                    <li><strong>Vision Processing:</strong> Limelight configuration, AprilTag tracking, automated
-                        targeting</li>
-                    <li><strong>System Integration:</strong> Coordinating mechanical, electrical, and programming
-                        subsystems</li>
-                    <li><strong>Documentation:</strong> Engineering notebooks, design rationale, iterative improvement
-                        tracking</li>
-                </ul>
-
-                <h3>Leadership Development</h3>
-                <ul>
-                    <li><strong>Team Management:</strong> Led 30+ member team across mechanical, electrical,
-                        programming, and business sub-teams</li>
-                    <li><strong>Project Planning:</strong> Managed build schedules, prototyping timelines, and
-                        competition deadlines</li>
-                    <li><strong>Mentorship:</strong> Trained new members in CAD, machining, and design processes</li>
-                    <li><strong>Competition Strategy:</strong> Coordinated with alliance partners and adapted to field
-                        conditions</li>
-                    <li><strong>Documentation Standards:</strong> Established comprehensive engineering notebook
-                        practices</li>
-                </ul>
+                <!-- Link back -->
+                <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+                    ← Back to All Teams
+                </a>
             </div>
-
-            <!-- Key Learnings -->
-            <h2>Key Learnings</h2>
-            <p>
-                My three seasons with FIRST Robotics Competition transformed how I approach engineering challenges.
-                The six-week build season forced rapid iteration and decision-making under pressure—there's no time
-                to perfect every detail in CAD when you need a working prototype to test. This taught me to build
-                physical mockups early, fail fast, and iterate based on real-world performance rather than
-                theoretical perfection.
-            </p>
-            <p>
-                Leading a team of 30+ students across mechanical, electrical, programming, and business sub-teams
-                showed me that technical excellence alone doesn't win competitions. Communication between subsystems,
-                clear documentation, and shared understanding of design constraints matter just as much as innovative
-                mechanisms. When our intake team couldn't coordinate with programmers, even the best hardware failed.
-            </p>
-            <p>
-                Competing at World Championships and earning multiple Engineering Excellence awards validated that
-                thorough documentation and design process matter to judges and clients alike. The comprehensive
-                engineering notebooks I created became team standards because they forced us to articulate not just
-                *what* we built, but *why* each design decision was made and *how* we validated it.
-            </p>
-            <p>
-                Most importantly, FRC taught me that setbacks on the competition field are inevitable—mechanisms
-                break, sensors fail, and alliance partners have off-matches. The teams that succeed are those that
-                can quickly diagnose problems in the pits, make field repairs under time pressure, and adapt their
-                strategy based on what's actually working. This resilience and adaptability has proven invaluable in
-                every engineering project since.
-            </p>
-
-            <!-- Link back -->
-            <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Teams
-            </a>
-        </div>
     </section>
 
     <!-- Footer -->
@@ -1392,37 +1415,165 @@
         }
 
         // ========================================
-        // HORIZONTAL TIMELINE VIEWER INTERACTIVITY
+        // AUTO-PLAYING TIMELINE SLIDESHOW
         // ========================================
 
-        // Timeline Tab Switching
         document.addEventListener('DOMContentLoaded', function () {
             const componentTabs = document.querySelectorAll('.component-tab');
             const componentTimelines = document.querySelectorAll('.component-timeline');
+            const slideshows = {};
 
-            // Make all timeline items visible immediately
-            const allTimelineItems = document.querySelectorAll('.timeline-item');
-            allTimelineItems.forEach(item => {
-                item.classList.add('visible');
+            // Initialize each slideshow
+            componentTimelines.forEach(timeline => {
+                const timelineId = timeline.id;
+                const slides = timeline.querySelectorAll('.slideshow-slide');
+                const dots = timeline.querySelectorAll('.progress-dot');
+                const controlBtn = timeline.querySelector('.control-btn');
+
+                slideshows[timelineId] = {
+                    currentIndex: 0,
+                    interval: null,
+                    isPaused: false,
+                    slides: slides,
+                    dots: dots,
+                    controlBtn: controlBtn
+                };
+
+                // Start autoplay if this is the active timeline
+                if (timeline.classList.contains('active')) {
+                    startSlideshow(timelineId);
+                }
+
+                // Progress dot click handlers
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const index = parseInt(dot.dataset.index);
+                        goToSlide(timelineId, index);
+                        // Pause after manual interaction
+                        pauseSlideshow(timelineId);
+                    });
+                });
+
+                // Play/Pause button
+                if (controlBtn) {
+                    controlBtn.addEventListener('click', () => {
+                        if (slideshows[timelineId].isPaused) {
+                            resumeSlideshow(timelineId);
+                        } else {
+                            pauseSlideshow(timelineId);
+                        }
+                    });
+                }
             });
 
+            // Tab switching
             componentTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     // Remove active from all tabs and timelines
                     componentTabs.forEach(t => t.classList.remove('active'));
-                    componentTimelines.forEach(timeline => timeline.classList.remove('active'));
+                    componentTimelines.forEach(timeline => {
+                        timeline.classList.remove('active');
+                        stopSlideshow(timeline.id);
+                    });
 
                     // Add active to clicked tab
                     tab.classList.add('active');
 
-                    // Show corresponding timeline
+                    // Show and start corresponding timeline
                     const component = tab.dataset.component;
                     const targetTimeline = document.getElementById(`${component}-timeline`);
                     if (targetTimeline) {
                         targetTimeline.classList.add('active');
+                        startSlideshow(`${component}-timeline`);
                     }
                 });
             });
+
+            function goToSlide(timelineId, index) {
+                const slideshow = slideshows[timelineId];
+                if (!slideshow) return;
+
+                // Remove active from all slides and dots
+                slideshow.slides.forEach(s => s.classList.remove('active'));
+                slideshow.dots.forEach(d => {
+                    d.classList.remove('active');
+                    d.classList.add('completed');
+                });
+
+                // Mark previous dots as completed, current and future as not
+                slideshow.dots.forEach((d, i) => {
+                    if (i < index) {
+                        d.classList.add('completed');
+                    } else if (i === index) {
+                        d.classList.remove('completed');
+                        d.classList.add('active');
+                    } else {
+                        d.classList.remove('completed');
+                        d.classList.remove('active');
+                    }
+                });
+
+                // Show current slide
+                slideshow.slides[index].classList.add('active');
+                slideshow.currentIndex = index;
+            }
+
+            function nextSlide(timelineId) {
+                const slideshow = slideshows[timelineId];
+                if (!slideshow) return;
+
+                const nextIndex = (slideshow.currentIndex + 1) % slideshow.slides.length;
+                goToSlide(timelineId, nextIndex);
+            }
+
+            function startSlideshow(timelineId) {
+                const slideshow = slideshows[timelineId];
+                if (!slideshow) return;
+
+                // Clear any existing interval
+                if (slideshow.interval) {
+                    clearInterval(slideshow.interval);
+                }
+
+                // Start auto-advance every 3 seconds
+                slideshow.interval = setInterval(() => {
+                    nextSlide(timelineId);
+                }, 3000);
+
+                slideshow.isPaused = false;
+                if (slideshow.controlBtn) {
+                    slideshow.controlBtn.innerHTML = '⏸ Pause';
+                }
+            }
+
+            function pauseSlideshow(timelineId) {
+                const slideshow = slideshows[timelineId];
+                if (!slideshow) return;
+
+                if (slideshow.interval) {
+                    clearInterval(slideshow.interval);
+                    slideshow.interval = null;
+                }
+
+                slideshow.isPaused = true;
+                if (slideshow.controlBtn) {
+                    slideshow.controlBtn.innerHTML = '▶ Play';
+                }
+            }
+
+            function resumeSlideshow(timelineId) {
+                startSlideshow(timelineId);
+            }
+
+            function stopSlideshow(timelineId) {
+                const slideshow = slideshows[timelineId];
+                if (!slideshow) return;
+
+                if (slideshow.interval) {
+                    clearInterval(slideshow.interval);
+                    slideshow.interval = null;
+                }
+            }
         });
     </script>
 </body>
