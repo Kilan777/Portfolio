@@ -404,13 +404,37 @@ a {
     display: none;
 }
 
-/* Hide cards beyond the first 3 */
-.experience-card:nth-child(n+4) {
-    display: none;
+/* Non-clickable experience cards */
+.experience-card.non-clickable {
+    cursor: default;
 }
 
-.experience-card.show {
-    display: block;
+/* Status badges for ongoing/incoming experience cards */
+.status-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 5;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+    transition: var(--transition);
+}
+
+.status-badge.ongoing-badge {
+    background-color: rgba(254, 242, 242, 0.95); /* Extremely pale warm rose */
+    color: #991B1B; /* Muted burgundy red */
+    border: 1px solid rgba(252, 165, 165, 0.6);
+}
+
+.experience-card:hover .status-badge {
+    transform: scale(0.95);
+    opacity: 0.9;
 }
 
 /* View All Button */

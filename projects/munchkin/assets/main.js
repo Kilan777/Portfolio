@@ -343,6 +343,7 @@ let mechSlideTimer;
 
 // Initialize slideshow
 function initMechSlideshow() {
+    if (document.getElementsByClassName("mech-slide").length === 0) return;
     mechShowSlides(mechSlideIndex);
     // Auto-play every 4 seconds
     mechSlideTimer = setInterval(() => {
