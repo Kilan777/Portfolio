@@ -406,7 +406,7 @@ a {
 
 /* Non-clickable experience cards */
 .experience-card.non-clickable {
-    cursor: default;
+    cursor: not-allowed;
 }
 
 /* Status badges for ongoing/incoming experience cards */
