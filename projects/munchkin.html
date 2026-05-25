@@ -474,13 +474,6 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="exploded-video-wrapper">
-                        <video id="explosionVideo" muted playsinline preload="auto">
-                            <source src="munchkin/assets/images/explode.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-label">Scroll to explore the assembly</div>
-                </div>
             </div>
         </div>
     </section>
@@ -2299,29 +2292,6 @@
         <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
         <script src="munchkin/assets/main.js"></script>
 
-        <script>
-            // Scroll-driven exploded view animation
-            (function () {
-                const video = document.getElementById('explosionVideo');
-                const wrapper = document.querySelector('.exploded-video-wrapper');
-                if (!video || !wrapper) return;
-
-                function scrub() {
-                    const rect = wrapper.getBoundingClientRect();
-                    const vh = window.innerHeight;
-                    // 0 when wrapper bottom enters viewport bottom, 1 when wrapper top exits viewport top
-                    const progress = (vh - rect.top) / (vh + rect.height);
-                    const t = Math.max(0, Math.min(1, progress));
-                    if (video.readyState >= 1 && video.duration) {
-                        video.currentTime = t * video.duration;
-                    }
-                }
-
-                window.addEventListener('scroll', scrub, { passive: true });
-                video.addEventListener('loadedmetadata', scrub);
-                scrub();
-            })();
-        </script>
 </body>
 
 </html>
