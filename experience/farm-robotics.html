@@ -4,49 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farming Challenge - Autonomous Soil Testing Drone | Kilan Rougeot</title>
+    <title>HydroFleet - Autonomous Soil Moisture Mapping Drone Swarm | Kilan Rougeot</title>
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
     <link rel="stylesheet" href="../styles.css">
     <style>
-        /* Additional styles for detail pages */
+        /* Premium Styles matching Kilan's Original Slate Blue Theme */
+        :root {
+            --color-slate-dark: #0f172a;
+            --color-slate-light: #f8fafc;
+            --shadow-premium: 0 10px 30px rgba(51, 65, 85, 0.06);
+            --shadow-hover: 0 20px 40px rgba(51, 65, 85, 0.1);
+        }
+
         .detail-hero {
-            padding-top: 120px;
+            padding-top: 140px;
             padding-bottom: var(--spacing-lg);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(51, 65, 85, 0.04) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-left {
+            flex: 1;
+        }
+
+        .hero-right {
+            flex-shrink: 0;
+        }
+
+        .hero-right img {
+            width: 160px;
+            height: auto;
+            filter: drop-shadow(0 8px 16px rgba(51, 65, 85, 0.08));
+            transition: var(--transition);
+        }
+
+        .hero-right img:hover {
+            transform: scale(1.05) rotate(2deg);
         }
 
         .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
+            font-size: 3.5rem;
+            color: var(--color-slate-dark);
+            margin-bottom: var(--spacing-xs);
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .detail-meta {
             color: var(--color-text-secondary);
-            font-size: 1.125rem;
+            font-size: 1.15rem;
             margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--color-accent);
+            display: inline-block;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .patent-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--color-accent), #475569);
+            color: white;
+            padding: 0.5rem 1.1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 12px rgba(51, 65, 85, 0.1);
+            transition: var(--transition);
+        }
+
+        .patent-badge.sec {
+            background: #ffffff;
+            color: var(--color-accent);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 2px 8px rgba(51, 65, 85, 0.04);
+        }
+
+        .patent-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(51, 65, 85, 0.15);
         }
 
         .detail-content {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg) 2rem var(--spacing-xl) 2rem;
         }
 
         .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
+            font-size: 2.25rem;
+            color: var(--color-slate-dark);
             margin-top: var(--spacing-lg);
             margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .detail-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background-color: var(--color-accent);
         }
 
         .detail-content h3 {
-            font-size: 1.5rem;
-            color: var(--color-accent);
+            font-size: 1.6rem;
+            color: var(--color-slate-dark);
             margin-top: var(--spacing-md);
             margin-bottom: var(--spacing-sm);
+            font-weight: 600;
         }
 
         .detail-content h4 {
@@ -54,6 +164,7 @@
             color: var(--color-accent);
             margin-top: var(--spacing-sm);
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .detail-content p {
@@ -75,81 +186,374 @@
             margin-bottom: var(--spacing-xs);
         }
 
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
+        /* Top Premium Video Player */
+        .video-wrapper {
+            background: #000;
+            border-radius: 16px;
             overflow: hidden;
-            background: var(--color-accent-light);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+            border: 1px solid var(--color-border);
+            margin-bottom: 2.5rem;
+            transition: var(--transition);
         }
 
-        .detail-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .image-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-md);
-            margin: var(--spacing-lg) 0;
-        }
-
-        .image-row .detail-image {
-            margin: 0;
-            min-height: 300px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
+        .video-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
         }
 
         .video-container {
-            margin: var(--spacing-lg) 0;
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            border-radius: var(--border-radius);
-            background: #1a1a1a;
         }
 
-        .video-container video {
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            border: 0;
         }
 
-        .patent-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--color-accent), #667eea);
+        /* Premium Resource Cards */
+        .resources-section {
+            margin: 2rem 0 3rem 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--color-accent);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(51, 65, 85, 0.1);
+            border-color: var(--color-accent);
+        }
+
+        .resource-card:hover::before {
+            width: 6px;
+        }
+
+        .resource-info {
+            flex: 1;
+        }
+
+        .resource-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.15rem;
+            color: var(--color-slate-dark);
+            font-weight: 700;
+        }
+
+        .resource-info p {
+            margin: 0 !important;
+            font-size: 0.9rem !important;
+            color: var(--color-text-secondary);
+            line-height: 1.4 !important;
+        }
+
+        .resource-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: var(--transition);
+            white-space: nowrap;
+            gap: 0.5rem;
+        }
+
+        .resource-btn:hover {
+            background-color: var(--color-accent);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-right: var(--spacing-sm);
-            margin-bottom: var(--spacing-sm);
+            border-color: var(--color-accent);
         }
 
-        @media (max-width: 768px) {
-            .image-row {
+        .btn-svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Metrics Grid styling */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: var(--color-white);
+            border: 1px solid var(--color-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition);
+            border-top: 4px solid var(--color-accent);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .metric-card h4 {
+            margin: 0;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-value {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--color-slate-dark);
+            margin: 0.5rem 0;
+        }
+
+        .metric-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Image Display styles */
+        .detail-image {
+            margin: 2.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--color-slate-light);
+            border: 1px solid var(--color-border);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-premium);
+        }
+
+        .detail-image img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .detail-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .image-row .detail-image {
+            margin: 0;
+        }
+
+        .image-row .detail-image img {
+            max-width: 100%;
+        }
+
+        /* Engineering Bill of Materials (BOM) styling */
+        .bom-section {
+            margin: 3rem 0;
+        }
+
+        .bom-table-wrapper {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-premium);
+        }
+
+        .bom-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .bom-table th {
+            background-color: var(--color-slate-light);
+            color: var(--color-slate-dark);
+            font-weight: 700;
+            padding: 1rem 1.25rem;
+            border-bottom: 2px solid var(--color-border);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .bom-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        .bom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .bom-table tr:hover td {
+            background-color: #fafafa;
+        }
+
+        .bom-category-row {
+            background-color: #f1f5f9 !important;
+            font-weight: 700;
+            color: var(--color-slate-dark) !important;
+        }
+
+        .bom-category-row td {
+            color: var(--color-slate-dark) !important;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .bom-total-row {
+            background-color: #f8fafc !important;
+            font-weight: 800;
+        }
+
+        .bom-total-row td {
+            color: var(--color-accent) !important;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .bom-grand-total {
+            background: linear-gradient(135deg, var(--color-slate-dark), #1e293b) !important;
+        }
+
+        .bom-grand-total td {
+            color: white !important;
+            font-weight: 800;
+            font-size: 1.15rem;
+        }
+
+        /* Design Story Table styling */
+        .story-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+            border: 1px solid var(--color-border);
+        }
+
+        .story-table th {
+            background-color: var(--color-accent);
+            color: white;
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .story-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        .story-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .story-challenge {
+            font-weight: 700;
+            color: var(--color-slate-dark);
+            width: 30%;
+        }
+
+        .story-solution {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-accent);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--color-slate-dark);
+            transform: translateX(-4px);
+        }
+
+        @media (max-width: 900px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+
+            .hero-right img {
+                width: 120px;
+            }
+
+            .detail-hero h1 {
+                font-size: 2.75rem;
+            }
+
+            .resources-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -172,278 +576,351 @@
         </div>
     </nav>
 
-    <!-- Experience Detail -->
-    <section class="detail-hero" style="position: relative;">
-        <img src="../Pics/FarmTeamLogo.png" alt="Farming Challenge Logo"
-            style="position: absolute; top: 140px; right: 5%; width: 180px; height: auto; z-index: 2;">
-        <div class="container">
-            <a href="../index.html#teams" class="back-link">← Back to Teams</a>
-            <h1>Farming Challenge</h1>
-            <p class="detail-meta">Autonomous Soil Testing Drone Swarm • Mechanical Engineering Member • 2025-Present
-            </p>
-            <div style="margin-top: var(--spacing-md);">
-                <span class="patent-badge">Patent Pending</span>
-                <span class="patent-badge">Scientific Journal in Progress</span>
-                <span class="patent-badge">MIT Partnership</span>
+    <!-- Experience Detail Header -->
+    <section class="detail-hero">
+        <div class="container hero-container">
+            <div class="hero-left">
+                <a href="../index.html#teams" class="back-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Back to Teams
+                </a>
+                <h1>HydroFleet</h1>
+                <div class="detail-meta">
+                    <span>Autonomous Soil Moisture Mapping Drone Swarm</span>
+                    <span class="meta-dot"></span>
+                    <span>Mechanical Engineering Member</span>
+                    <span class="meta-dot"></span>
+                    <span>2025 - Present</span>
+                </div>
+                <div class="badge-container">
+                    <span class="patent-badge" style="background: linear-gradient(135deg, #d97706, #b45309); box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                        Excellence in Drone Applications Award
+                    </span>
+                    <span class="patent-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Utility Patent Filed (2026)
+                    </span>
+                    <span class="patent-badge sec">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
+                        MIT Partnership
+                    </span>
+                    <span class="patent-badge sec">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        Scientific Journal In-Progress
+                    </span>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="../Pics/FarmTeamLogo.png" alt="HydroFleet Logo">
             </div>
         </div>
     </section>
 
+    <!-- Main Content -->
     <section class="detail-content">
         <div class="container">
+            
+            <!-- Demonstration Video (First Content Element) -->
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <iframe src="https://drive.google.com/file/d/14CtJUGs3FAzTav8NykCC2oiNq6bymxE6/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Deliverables Section -->
+            <div class="resources-section">
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-info">
+                            <h4>Final Technical Report</h4>
+                            <p>Download the official 41-page technical documentation submitted detailing system architecture, mechatronics, and full field evaluation.</p>
+                        </div>
+                        <a href="Farmpics/HydroFleet_Final_Technical_Report.pdf" class="resource-btn" download>
+                            <svg class="btn-svg" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+                            Report (PDF)
+                        </a>
+                    </div>
+                    <div class="resource-card" style="opacity: 0.85;">
+                        <div class="resource-info">
+                            <h4>Utility Patent Application</h4>
+                            <p><em>"Systems, Devices, and Methods for Measuring Soil Parameters Using an Unmanned Aerial Vehicle"</em> (Docket: MIT 27192J USPRO). Filed jointly with MIT &amp; Olin College in 2026.</p>
+                        </div>
+                        <span class="resource-btn" style="background: #f1f5f9; color: #64748b; border-color: #e2e8f0; cursor: not-allowed; font-size: 0.8rem; padding: 0.6rem 1rem; gap: 0.3rem;" title="Under USPTO 18-month confidentiality guidelines, the full application draft is held from public access until official publication.">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            Confidential Hold
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Overview -->
             <h2>Project Overview</h2>
             <p>
-                Team Farming Challenge is developing an autonomous soil testing drone in partnership with an MIT
-                research program to revolutionize precision agriculture for small organic farms. Our system provides
-                farmers with quantitative insights about soil health and moisture levels, reducing water usage and labor
-                by replacing manual soil checking methods.
+                <strong>HydroFleet</strong> is an autonomous multi-drone system developed in collaboration with a research team at the <strong>Massachusetts Institute of Technology (MIT)</strong>. The system enables data-driven precision irrigation by generating high-resolution soil moisture mapping data, helping farms increase yields while reducing water and energy costs.
             </p>
             <p>
-                The innovation is currently undergoing patent review, and our team is collaborating on a scientific
-                journal publication documenting our novel approach to aerial soil sampling. As the mechanical
-                engineering lead, I designed and fabricated the core soil sampling mechanism that enables autonomous
-                depth-profiled moisture measurements.
+                The HydroFleet project was highly successful, winning the prestigious <strong>Excellence in Drone Applications Award</strong> at the Farm Robotics Challenge for its innovative coordinated aerial design and robust mechatronic execution.
+            </p>
+            <p>
+                By implementing variable-rate irrigation (VRI) driven by HydroFleet maps, agricultural operations can increase crop yields by <strong>up to 15%</strong> while simultaneously cutting water and energy expenses by <strong>25% to 40%</strong>.
+            </p>
+            <p>
+                The underlying technology is the subject of a newly filed <strong>Utility Patent Application</strong> with the U.S. Patent and Trademark Office. As a core mechanical engineer on the team, I designed, simulated, and fabricated the entire <strong>Soil Probing Module (SPM)</strong>—a novel electromechanical payload that enables a drone to lower, anchor, and physically drill a capacitive moisture probe into soil to a depth of over 5 inches, capturing direct ground-truth measurements without landing.
             </p>
 
-            <!-- Problem Statement -->
-            <h2>The Problem</h2>
-            <p>
-                Small organic farms face a critical challenge: current soil moisture assessment methods are inefficient
-                and imprecise. Farmers rely on manual checking—walking fields, digging holes, and using the "hand feel"
-                method to estimate moisture levels. This approach is:
-            </p>
-            <ul>
-                <li><strong>Labor-intensive:</strong> Requires significant time to sample multiple field locations</li>
-                <li><strong>Subjective and imprecise:</strong> Provides only vague understanding of soil conditions</li>
-                <li><strong>Limited spatial coverage:</strong> Cannot efficiently sample enough locations for precision
-                    irrigation</li>
-                <li><strong>Constraining farm efficiency:</strong> Prevents optimization of water usage and crop health
-                </li>
-            </ul>
-            <p>
-                Existing automated solutions either require expensive embedded sensor networks (costly for small farms)
-                or use satellite/remote sensing (limited to top 5-10cm of soil with low resolution). Our drone-based
-                approach fills this gap by providing affordable, high-resolution, depth-profiled soil moisture data
-                across entire fields.
-            </p>
-
-            <!-- Solution -->
-            <h2>Our Solution: Autonomous Soil Testing Probe</h2>
-            <p>
-                The Farming Challenge system combines autonomous drone navigation with a novel mechanical soil sampling
-                probe to collect quantitative soil moisture measurements at precise GPS-tagged locations across farm
-                fields:
-            </p>
-
-            <div class="detail-image">
-                <img src="Farmpics/Tester.png" alt="Sampling Device"
-                    style="width: 40%; height: 40%; object-fit: contain;">
+            <!-- Key Evaluation Metrics Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Navigation Accuracy</h4>
+                    <div class="metric-value">0.43m</div>
+                    <div class="metric-desc">Circular Error Probable (CEP50) across 12 consecutive experimental flights.</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Landing Precision</h4>
+                    <div class="metric-value">0.23m</div>
+                    <div class="metric-desc">CEP50 landing accuracy of the underactuated slung soil sampler payload.</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Measurement Fidelity</h4>
+                    <div class="metric-value">0.95 R²</div>
+                    <div class="metric-desc">R² correlation between autonomous mechatronic probes and manual hand insertions.</div>
+                </div>
+                <div class="metric-card">
+                    <h4>Sampling Efficiency</h4>
+                    <div class="metric-value">30+</div>
+                    <div class="metric-desc">Successful soil samples completed on a single battery charge (15W power draw).</div>
+                </div>
             </div>
-
-            <h3>System Components</h3>
-            <ul>
-                <li><strong>Autonomous Navigation:</strong> Camera, IMU, and LIDAR sensors enable the drone to map farm
-                    terrain, avoid obstacles, and determine optimal sampling locations</li>
-                <li><strong>Precision Soil Probe:</strong> Custom-designed auger-based insertion mechanism penetrates 6
-                    inches into soil to measure moisture profiles</li>
-                <li><strong>Capacitive Moisture Sensors:</strong> TEROS 54-style sensors provide accurate volumetric
-                    water content measurements at multiple depths</li>
-                <li><strong>Data Visualization:</strong> Real-time measurements transmitted to ground station for
-                    farmer-friendly visualization and irrigation planning</li>
-                <li><strong>GPS Localization:</strong> Each sample tagged with precise coordinates for repeatable
-                    monitoring and spatial analysis</li>
-            </ul>
 
             <!-- Mechanical Design -->
-            <h2>Mechanical Design: Aerial Soil Sampling Device</h2>
+            <h2>Mechanical &amp; Mechatronic Design: The Soil Probing Module</h2>
             <p>
-                As mechanical engineering lead, I designed the core soil sampling mechanism—the most critical technical
-                challenge of the project. The probe must insert 18 inches into compacted clay soil, collect accurate
-                measurements, retract cleanly without debris accumulation, and repeat this process autonomously while
-                carried by a drone with strict payload limits.
-            </p>
-
-            <h3>Design Requirements</h3>
-            <p>
-                Our team established rigorous functional requirements and constraints through stakeholder interviews
-                with organic farmers and literature review of soil sampling methods:
-            </p>
-
-            <h4>Functional Requirements</h4>
-            <ul>
-                <li>Probe soil moisture across 6-inch depth</li>
-                <li>Achieve ±5% measurement accuracy with proper sensor insertion</li>
-                <li>Penetrate all soil types: sand, silt, and clay (designed for worst-case clay)</li>
-                <li>Insertion success rate >95% across 30+ samples per battery cycle</li>
-                <li>Clean retraction without debris accumulation affecting subsequent samples</li>
-                <li>Minimal soil disturbance to avoid damaging crops</li>
-                <li>Operate 30 minutes on single battery charge</li>
-            </ul>
-
-            <h4>Design Constraints</h4>
-            <ul>
-                <li>Total payload mass <600g (Holybro X500 drone platform limitation at 90% throttle)</li>
-                <li>Footprint compatible with X500 landing gear and center of gravity</li>
-                <li>Rapid deployment/removal for field testing iterations</li>
-                <li>Robust to field conditions: moisture, dirt, vibration, repeated impacts</li>
-            </ul>
-
-            <!-- Concept Development -->
-            <h2>Design Process & Concept Development</h2>
-            <p>
-                We followed a rigorous mechanical design process, beginning with extensive concept generation,
-                functional decomposition, and prototype-driven validation:
-            </p>
-
-            <h3>Concept Generation</h3>
-            <p>
-                Initial brainstorming produced diverse insertion mechanisms:
-            </p>
-            <ul>
-                <li><strong>Spring-loaded harpoon:</strong> Rapidly fire probe into soil using compressed spring energy
-                </li>
-                <li><strong>Sliding hammer mechanism:</strong> Iterative impact force to drive probe downward</li>
-                <li><strong>Screw-type auger with reaction anchor:</strong> Rotating drill bit pulls itself into soil
-                    while anchors resist rotation</li>
-                <li><strong>Linear actuator with passive spikes:</strong> Electric motor drives lead screw while passive
-                    anchors stabilize</li>
-                <li><strong>Dual-motor belt drive:</strong> Separate motors for auger rotation and vertical feed</li>
-            </ul>
-
-            <p>
-                Throughout prototypes and meetings, we converged on the <strong>auger-based design
-                    with anchoring spikes and decided on a single motor gear drive system</strong> as optimal for
-                reliability,
-                precision depth control, and scalability while not being too heavy for the drone. Although, to find the
-                optimal gear ratio of linear motion and turning of the probe, a two motor version was originally built:
+                Developing a soil probing mechanism capable of generating the high linear forces needed to penetrate compacted clay, while remaining within a strict <strong>600g payload weight budget</strong>, was the core mechanical challenge of the project.
             </p>
 
             <div class="detail-image">
-                <img src="Farmpics/OriginalVersion.png" alt="Two motor version"
-                    style="width: 40%; height: 40%; object-fit: contain;">
+                <img src="Farmpics/FinalSampler.png" alt="HydroFleet Final Soil Probing Module" style="max-width: 384px; width: 100%; height: auto; object-fit: contain;">
+                <div class="image-caption">Figure 1: The final fabricated Soil Probing Module featuring pocketed structural plates, active anchoring arms, and the single-motor synchronized vertical-rotational drive.</div>
             </div>
 
-            <!-- Final Design -->
-            <h2>Final Mechanical Design</h2>
+            <h3>Key Hardware Innovations</h3>
+
+            <h4>Single-Motor Dual Linear-Rotational Actuation</h4>
             <p>
-                The production design features a single motor gear driven system with precision lead screw depth control
-                and passive anchoring mechanism:
+                While early prototypes utilized two independent motors to manage linear feed and rotation separately, I engineered a highly optimized <strong>single-motor gear drive system</strong> utilizing a 25kg/cm continuous servo motor. 
+                By routing the output through a custom-machined <strong>1:1:2 gear ratio train</strong>, the rotation of the 3D-printed helical auger is perfectly synchronized with its downward linear descent along a fixed trapezoidal lead screw (Tr8x8). This forces the auger thread to cut precisely into the soil at its natural pitch rate, drastically reducing the torque required for penetration and saving significant motor weight.
             </p>
 
-            <h3>Key Mechanical Components</h3>
-
-            <h4>Auger Probe Assembly</h4>
-            <ul>
-                <li>Custom-welded counterclockwise auger thread (20mm pitch) on 12mm diameter shaft</li>
-                <li>Lathe-machined shaft for precise tolerances and linear bearing compatibility</li>
-                <li>Integrated capacitive soil moisture sensor (TEROS 54 style) with dual-prong configuration</li>
-                <li>Probe extends beyond sensor tip to prevent debris accumulation around sensing elements</li>
-            </ul>
-
-            <h4>Drive System</h4>
-            <ul>
-                <li><strong>25kg/cm Servo Motor:</strong> Servo used for light weight and high torque</li>
-                <li><strong>Custom 3D printed Gears:</strong> 3D printed gears to keep cost low and to allow for quick
-                    iterations</li>
-                <li><strong>Lead screw mechanism:</strong> 8mm diameter, 2mm pitch, 4-start trapezoidal thread with
-                    metal lead nut (replaced plastic for durability)</li>
-            </ul>
-
-            <h4>Structural & Guidance</h4>
-            <ul>
-                <li><strong>Linear guide rails:</strong> Dual 0.25" Aluminum shafts with flanged supports and
-                    bronze bushings</li>
-                <li><strong>Thrust bearings:</strong> Axial load management for auger rotation forces</li>
-                <li><strong>Base plate assembly:</strong> Mounting plate integrating all subsystems
-                </li>
-                <li><strong>Top stabilization plate:</strong> Prevents cantilever wobble and auger jamming during
-                    insertion</li>
-            </ul>
-
-            <h4>Anchoring Mechanism</h4>
-            <ul>
-                <li>Passive spike anchors extending diagonally outward during soil insertion</li>
-                <li>Increased moment arm resists auger rotation torque transferred to drone body</li>
-                <li>Spring-loaded deployment tested in grass and soft soil</li>
-                <li>Powered by cheap and lightweight 9g servo</li>
-
-            </ul>
-
-
-            <!-- Prototype Testing -->
-            <h2>Prototype Testing & Validation</h2>
+            <h4>High-Torque Anchoring Mechanism</h4>
             <p>
-                We conducted extensive testing of the 6-inch prototype before scaling to the full 18-inch design:
+                Reacting to the rotational torque of drilling in compacted clay would spin the suspended drone out of control. To prevent this, I developed an <strong>active anchoring system</strong> using three high-torque coreless micro-servos (MEUS Racing, 8.5kg/cm) spaced at 120-degree intervals around the base plate. These deploy curved, tapered circular claws into the soil, while static nails on the underside of the pocketed aluminum base plate prevent rotation.
             </p>
 
-            <h3>Bench Testing in Controlled Soil</h3>
+            <h4>Rotating Electrical Slip Ring</h4>
             <p>
-                Initial validation used bucket testing with sand, silt, and clay soil samples to quantify insertion
-                force, depth precision, and measurement repeatability:
+                To cut cleanly, the capacitive sensor body must rotate in unison with the auger. This created a major electrical failure mode as wires would twist and snap. To solve this, I integrated a <strong>6-wire electrical slip ring</strong> directly on top of the rotating carriage. This maintains noise-free, continuous data connectivity between the rotating capacitive sensor and the stationary Arduino Nano microcontroller.
             </p>
 
-            <div class="video-container" id="bucketTestingVideoContainer">
-                <div id="bucketTestingVideo"></div>
+            <h4>Astable Sensor Circuit &amp; CAN Bus Networking</h4>
+            <p>
+                To read moisture, we utilized a capacitive probe from a <strong>General Tools DSMM500</strong>. I discarded the bulky 300g housing and built a custom signal-conditioning circuit using an <strong>LMC555 CMOS Timer configured in astable mode</strong>. The probe acts as a dynamic capacitor; as Volumetric Water Content increases, capacitance shifts, altering the output pulse frequency. This frequency is converted into an analog voltage read by the Arduino Nano.
+            </p>
+            <p>
+                To prevent electromagnetic noise from the adjacent servos and brushless drone motors from corrupting the sensor readings over the 2-meter slung cable, we implemented a robust <strong>CAN bus network</strong> using an MCP2515 CAN transceiver shield on the Arduino Nano, communicating with a Waveshare USB-CAN-A converter on the flight companion PC.
+            </p>
+
+            <!-- Bill of Materials Section -->
+            <div class="bom-section">
+                <h2>System Bill of Materials (BOM)</h2>
+                <p>A single, ready-to-deploy unit of HydroFleet represents a total material cost of <strong>$1,846.83</strong>, split between the custom mechatronic sampler module ($455.11) and the autonomous flight platform ($1,391.72).</p>
+                
+                <div class="bom-table-wrapper">
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Item Description</th>
+                                <th>Purpose / Application</th>
+                                <th>Unit Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Category 1 -->
+                            <tr class="bom-category-row">
+                                <td colspan="3">1. Soil Probing Module (SPM)</td>
+                            </tr>
+                            <tr>
+                                <td>DSMM500 Soil Moisture Probe</td>
+                                <td>Soil Dielectric / Capacitance Sensing</td>
+                                <td>$221.64</td>
+                            </tr>
+                            <tr>
+                                <td>MEUS Racing 8.5kg/cm Coreless Servos (x3)</td>
+                                <td>Active Anchoring Claw Deployment</td>
+                                <td>$101.97</td>
+                            </tr>
+                            <tr>
+                                <td>Arducam 2MP Color Camera</td>
+                                <td>Downward Visual Probing Verification</td>
+                                <td>$59.99</td>
+                            </tr>
+                            <tr>
+                                <td>TD-8825MG Digital 25kg/cm Servo</td>
+                                <td>Synchronized Drive System Actuation</td>
+                                <td>$19.99</td>
+                            </tr>
+                            <tr>
+                                <td>200mm Tr8x8 Lead Screw &amp; Nut</td>
+                                <td>Linear Carriage Feed and Translation</td>
+                                <td>$8.19</td>
+                            </tr>
+                            <tr>
+                                <td>Arduino Nano ATmega328P</td>
+                                <td>Onboard Low-Level Microcontroller</td>
+                                <td>$3.79</td>
+                            </tr>
+                            <tr>
+                                <td>HiLetgo Nano Terminal Board</td>
+                                <td>Breakout and Component Wiring Shield</td>
+                                <td>$2.93</td>
+                            </tr>
+                            <tr>
+                                <td>MCP2515 CAN Bus Transceiver</td>
+                                <td>Noise-Free Differential Communication</td>
+                                <td>$2.66</td>
+                            </tr>
+                            <tr>
+                                <td>HiLetgo XL4015 Buck Converter</td>
+                                <td>Voltage Stepdown (14.8V to 8.4V)</td>
+                                <td>$3.16</td>
+                            </tr>
+                            <tr>
+                                <td>HC-SR04 Ultrasonic Distance Sensor</td>
+                                <td>Vertical Carriage Depth Feedback</td>
+                                <td>$1.99</td>
+                            </tr>
+                            <tr>
+                                <td>Miscellaneous Hardware</td>
+                                <td>Carbon fiber tubes, custom 3D gears, fasteners</td>
+                                <td>$28.79</td>
+                            </tr>
+                            <tr class="bom-total-row">
+                                <td>SOIL SAMPLING MODULE TOTAL</td>
+                                <td>Weight: 570g Payload</td>
+                                <td>$455.11</td>
+                            </tr>
+
+                            <!-- Category 2 -->
+                            <tr class="bom-category-row">
+                                <td colspan="3">2. UAV Flight Platform</td>
+                            </tr>
+                            <tr>
+                                <td>Pixhawk 6X Flight Controller</td>
+                                <td>Low-Level Flight Stabilization &amp; Controls</td>
+                                <td>$309.99</td>
+                            </tr>
+                            <tr>
+                                <td>DroneCAN F9P Rover RTK GPS</td>
+                                <td>High-Precision, Noise-Free GNSS Positioning</td>
+                                <td>$296.99</td>
+                            </tr>
+                            <tr>
+                                <td>Asus NUC Companion Computer</td>
+                                <td>High-Level ROS2 Offboard Orchestration</td>
+                                <td>$289.78</td>
+                            </tr>
+                            <tr>
+                                <td>Holybro X500 V2 Frame Kit</td>
+                                <td>Quadcopter Structural Carbon Fiber Frame</td>
+                                <td>$260.99</td>
+                            </tr>
+                            <tr>
+                                <td>FlySky RC Controller &amp; Receiver</td>
+                                <td>Manual Overrides / Emergency Fallback</td>
+                                <td>$64.99</td>
+                            </tr>
+                            <tr>
+                                <td>Arducam Global Shutter Camera</td>
+                                <td>Downward Visual Human Detection</td>
+                                <td>$59.99</td>
+                            </tr>
+                            <tr>
+                                <td>Holybro Telemetry Radio (915MHz)</td>
+                                <td>Real-Time Data Streaming to Ground Station</td>
+                                <td>$58.99</td>
+                            </tr>
+                            <tr>
+                                <td>4S 4000mAh LiPo Battery Pack</td>
+                                <td>Swarm Flight System Power Source</td>
+                                <td>$50.00</td>
+                            </tr>
+                            <tr class="bom-total-row">
+                                <td>UAV FLIGHT PLATFORM TOTAL</td>
+                                <td>Thrust-to-Weight Ratio: 2.2:1</td>
+                                <td>$1,391.72</td>
+                            </tr>
+
+                            <!-- Grand Total -->
+                            <tr class="bom-grand-total">
+                                <td>GRAND TOTAL PER UNIT</td>
+                                <td>Full System (BOM Only)</td>
+                                <td>$1,846.83</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
-                Prototype testing in bucket with clay soil
+
+            <!-- Field Evaluation -->
+            <h2>Field Evaluation &amp; Testing</h2>
+            <p>
+                We validated the fully integrated HydroFleet platform through extensive field testing under realistic agricultural conditions at <strong>Powisset Farm in Dover, MA</strong>, a 109-acre organic Community Supported Agriculture (CSA) vegetable farm.
+            </p>
+            <ul>
+                <li><strong>97% Insertion Success Rate:</strong> Across repeated trials in highly compacted, organic clay soils, the active circular anchoring claws completely prevented the module from lifting or twisting, ensuring a 97% success rate.</li>
+                <li><strong>Repeatable Depth Tracking:</strong> Precision depth tracking of <strong>±2mm</strong> was achieved by combining Tr8x8 lead screw rotation counters with live ultrasonic distance tracking between the upper and lower plates.</li>
+                <li><strong>Zero Data Degradation:</strong> Sensor VWC readings recorded via the autonomous single-motor astable oscillator showed a correlation of <strong>R² = 0.947</strong> when compared directly to manual, hand-inserted controls, verifying that high-frequency vibrations from the auger drive did not corrupt capacitive dielectric measurements.</li>
+            </ul>
+
+            <!-- Design Story -->
+            <h2>Design Story &amp; Swarm Evolution</h2>
+            <p>
+                Achieving a reliable, robust, and lightweight system required multiple architectural pivots. Below is the summary of major engineering challenges and the design adaptations implemented:
             </p>
 
-            <h4>Key Testing Results</h4>
-            <ul>
-                <li><strong>Insertion success rate:</strong> 97% across 30 test cycles in clay soil (exceeding 95%
-                    requirement)</li>
-                <li><strong>Depth accuracy:</strong> ±2mm deviation from commanded depth using lead screw position
-                    feedback</li>
-                <li><strong>Debris management:</strong> Extended probe tip successfully prevented sensor fouling in
-                    28/30 tests</li>
-                <li><strong>Power consumption:</strong> Average 15W during insertion, enabling 30+ samples on 2200mAh
-                    LiPo battery</li>
-                <li><strong>Measurement repeatability:</strong> ±3% variation in moisture readings at same soil depth
-                    across multiple insertions</li>
-            </ul>
-
-            <!-- Impact -->
-            <h2>Impact & Results</h2>
-
-            <h3>Technical Achievements</h3>
-            <ul>
-                <li><strong>97% insertion success rate</strong> in clay soil, exceeding 95% design requirement</li>
-                <li><strong>±2mm depth accuracy</strong> enabling precise repeatability for temporal monitoring</li>
-                <li><strong>570g total assembly mass</strong> within 600g payload constraint</li>
-                <li><strong>30+ samples per battery charge</strong> covering typical 5-acre farm field</li>
-                <li><strong>±3% measurement repeatability</strong> validating sensor integration quality</li>
-                <li><strong>Patent application submitted</strong> for novel aerial soil sampling mechanism</li>
-                <li><strong>Scientific journal paper in progress</strong> documenting system design and field validation
-                </li>
-            </ul>
-
-            <!-- Technical Skills -->
-            <h2>Technical Skills Developed</h2>
-            <ul>
-                <li><strong>Mechanical Design:</strong> SolidWorks CAD modeling, tolerance analysis, design for
-                    manufacturing</li>
-                <li><strong>Fabrication:</strong> Lathe machining, TIG welding, jig design, precision assembly</li>
-                <li><strong>Systems Engineering:</strong> Functional decomposition, requirements derivation, stakeholder
-                    interviews</li>
-                <li><strong>Concept Development:</strong> Brainstorming, Pugh's matrix analysis, prototype-driven
-                    validation</li>
-                <li><strong>Motion Control:</strong> Stepper motor programming, belt drive design, lead screw kinematics
-                </li>
-                <li><strong>Sensor Integration:</strong> Capacitive soil moisture sensors, calibration, signal
-                    processing</li>
-                <li><strong>Testing & Validation:</strong> Experimental design, data analysis, field testing protocols
-                </li>
-                <li><strong>Technical Communication:</strong> Patent writing, journal paper drafting, stakeholder
-                    presentations</li>
-                <li><strong>Project Management:</strong> Sprint planning, team coordination, timeline management</li>
-            </ul>
+            <table class="story-table">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">Engineering Challenge</th>
+                        <th>Iterative Solution &amp; Adaptation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="story-challenge">Severe Slung Payload Oscillations</td>
+                        <td class="story-solution">Initial tests suspending the 570g payload from a single point caused severe rotational transfer, turning the drone in flight. I resolved this by designing a <strong>3-point bridle line</strong> utilizing a high-tensile braided cord coupled to a low-friction <strong>marine fishing swivel</strong>, completely isolating payload rotation from the airframe dynamics.</td>
+                    </tr>
+                    <tr>
+                        <td class="story-challenge">Excessive Stepper Motor Weight</td>
+                        <td class="story-solution">Early prototypes utilized heavy dual stepper motors for carriage translation and auger rotation. To hit our 600g budget, I replaced both with a single continuous-rotation servo motor and engineered a custom 3D-printed <strong>1:1:2 ratio gear system</strong> to drive both axes simultaneously.</td>
+                    </tr>
+                    <tr>
+                        <td class="story-challenge">Insufficient Anchoring Force</td>
+                        <td class="story-solution">When drilling into compacted clay, the vertical resistance forced the sampler upward, lifting it off the ground. We upgraded passive spikes and 9g servos to three active 8.5kg/cm coreless servos and tapered circular claws. This allowed the claws to slide deep into clay perpendicular to the normal force of the auger.</td>
+                    </tr>
+                    <tr>
+                        <td class="story-challenge">High Electromagnetic Noise</td>
+                        <td class="story-solution">High-frequency noise from the drone's ESCs and brushless motors corrupted the analog sensor lines. We isolated the signals by implementing a <strong>local CAN bus network</strong> utilizing an MCP2515 CAN controller on the sampler's Arduino Nano, transmitting differential signals over the 2-meter line.</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <!-- Link back -->
-            <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Teams
-            </a>
+            <div style="margin-top: 3rem; text-align: center;">
+                <a href="../index.html#teams" class="btn btn-secondary">
+                    ← Back to All Teams
+                </a>
+            </div>
         </div>
     </section>
 
@@ -455,47 +932,6 @@
     </footer>
 
     <script src="../script.js"></script>
-    <!-- YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-        // YouTube Player API for Farm robotics demo
-        let farmPlayer;
-
-        function onYouTubeIframeAPIReady() {
-            farmPlayer = new YT.Player('bucketTestingVideo', {
-                height: '470',
-                width: '100%',
-                videoId: 'LpV5swDnDv4',
-                playerVars: {
-                    autoplay: 0,
-                    mute: 1,
-                    loop: 1,
-                    playlist: 'LpV5swDnDv4',
-                    controls: 0,
-                    modestbranding: 1,
-                    playsinline: 1,
-                    rel: 0,
-                    hd: 1,
-                    vq: 'hd1080'
-                },
-                events: {
-                    'onReady': () => {
-                        const container = document.getElementById('bucketTestingVideoContainer');
-                        const observer = new IntersectionObserver((entries) => {
-                            entries.forEach(entry => {
-                                if (entry.isIntersecting) {
-                                    farmPlayer.playVideo();
-                                } else {
-                                    farmPlayer.pauseVideo();
-                                }
-                            });
-                        }, { threshold: 0.5 });
-                        if (container) observer.observe(container);
-                    }
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
