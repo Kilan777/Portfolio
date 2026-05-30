@@ -377,11 +377,14 @@ a {
 }
 
 .card-title {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: var(--spacing-xs);
     color: var(--color-white);
     transition: var(--transition);
+    max-width: 82%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card-meta {
