@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Munchkin – Robotic Assistive Feeding Device | Kilan Rougeot</title>
     <meta name="description" content="Munchkin: an affordable, open-source robotic feeding device from Olin College with MediaPipe mouth tracking, a 4-DOF arm and an automatic utensil changer.">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/munchkin.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/munchkin.html">
@@ -34,43 +34,49 @@
     }
     </script>
 
-    <!-- Page-scoped styles: only for the two interactive widgets (inverse-kinematics canvas, webcam
-         mouth-tracking demo), the portrait V3 clip, the feature-01 split and the inline architecture SVG.
-         Everything else is the shared design system. Tokens only. -->
+    <!-- Page-scoped styles, tokens only: the two interactive widgets (inverse-kinematics canvas, webcam
+         mouth-tracking demo), the portrait V3 clip beside its text, and the inline architecture SVG.
+         Everything else is the shared stylesheet. -->
     <style>
-        .widget { background: var(--tile); border-radius: var(--radius); padding: 20px; margin: 32px 0; }
-        .widget__note { margin-top: 12px; font-size: 14px; color: var(--text-3); text-align: center; text-wrap: pretty; }
+        .widget { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px; margin: 32px 0; }
+        .widget__note { margin-top: 12px; font-size: 14px; color: var(--text-3); text-wrap: pretty; }
 
-        .ik canvas { width: 100%; height: auto; background: #fff; border-radius: var(--radius-sm); cursor: crosshair; touch-action: none; }
-        .ik__readout { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
-        .ik__cell { background: #fff; border-radius: var(--radius-xs); padding: 10px 8px; text-align: center; }
-        .ik__cell span { display: block; font-size: 12px; font-weight: 500; color: var(--text-3); margin-bottom: 2px; }
-        .ik__cell output { display: block; font-size: 16px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+        .ik canvas { width: 100%; height: auto; background: var(--bg-alt); border-radius: var(--radius-sm); cursor: crosshair; touch-action: none; }
+        .ik__readout { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 20px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+        .ik__cell span { display: block; font-size: 13px; color: var(--text-3); margin-bottom: 2px; }
+        .ik__cell output { display: block; font-size: 16px; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
 
-        .cam__intro { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 32px 8px; text-align: center; }
+        .cam__intro { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 4px 0; }
         .cam__intro p { margin: 0; }
-        .cam__intro .btn { margin-top: 8px; }
-        .cam__stage { position: relative; display: none; border-radius: var(--radius-sm); overflow: hidden; background: #000; }
+        .cam__intro .btn { margin-top: 6px; }
+        .cam__stage { position: relative; display: none; border-radius: var(--radius-sm); overflow: hidden; background: var(--text); }
         .cam__stage video { width: 100%; height: auto; display: block; }
         .cam__stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-        .cam__stop { display: none; margin: 12px auto 0; }
+        .cam__stop { display: none; margin-top: 12px; }
         .cam.is-active .cam__intro { display: none; }
         .cam.is-active .cam__stage { display: block; }
         .cam.is-active .cam__stop { display: inline-flex; }
-        .cam__status { margin-top: 12px; font-size: 14px; color: var(--warn); text-align: center; }
+        .cam__status { margin-top: 12px; font-size: 14px; color: var(--warn); }
         .cam__status:empty { display: none; }
 
-        .split { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; align-items: center; margin: 32px 0; }
-        .video--portrait { aspect-ratio: 9 / 16; width: 100%; max-width: 300px; margin: 0 auto; }
-        .split .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 20px 0 0; }
-        .split .stat { padding: 16px 14px; }
+        .split { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 28px; align-items: center; margin: 28px 0; }
+        .video--portrait { aspect-ratio: 9 / 16; width: 100%; max-width: 320px; margin: 0 auto; }
+
+        /* Architecture diagram: the SVG carries its own colours; these rules pull it to the page palette. */
         .arch svg { width: 100%; height: auto; display: block; }
+        .arch svg > rect { fill: var(--bg-alt); stroke: none; }
+        .arch rect { fill: var(--bg-alt); stroke: var(--line); }
+        .arch .sec rect { fill: var(--bg); }
+        .arch text { fill: var(--text-2); }
+        .arch .sec text { fill: var(--text-3); }
+        .arch line { stroke: var(--text-3); stroke-width: 1; }
+        .arch .safety rect { stroke: var(--warn); }
+        .arch .safety text, .arch text.safety { fill: var(--warn); }
 
         @media (max-width: 640px) {
             .widget { padding: 12px; }
             .ik__readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
             .split { grid-template-columns: 1fr; gap: 20px; }
-            .video--portrait { max-width: 260px; }
         }
     </style>
 
@@ -101,19 +107,17 @@
                     <a href="../index.html#projects" class="link link--back">Projects</a>
                     <span class="eyebrow">Final project · Olin College · Fall 2024</span>
                     <h1 class="detail-hero__title">Munchkin</h1>
-                    <p class="detail-hero__sub">A robotic feeding assistant that tracks your mouth and swaps its own utensils.</p>
+                    <p class="detail-hero__sub">An open-source robotic feeding device for people with limited upper-body mobility: a 4-DOF arm, camera-based mouth tracking and an automatic utensil changer.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2024-09">Fall 2024</time></span>
                         <span>Olin College</span>
                         <span>Munchkin LLC, Massachusetts</span>
                     </div>
                     <div class="pills">
-                        <span class="pill pill--accent">SAG Grant recipient</span>
-                        <span class="pill pill--accent">SEED Grant recipient</span>
-                        <span class="pill">4-DOF robotic arm</span>
-                        <span class="pill">Real-time face tracking</span>
-                        <span class="pill">Automatic utensil changing</span>
-                        <span class="pill pill--success pill--live">V3 in testing</span>
+                        <span class="pill pill--accent">Olin SAG Grant</span>
+                        <span class="pill pill--accent">Olin SEED Grant</span>
+                        <span class="pill">MediaPipe</span>
+                        <span class="pill">Raspberry Pi</span>
                     </div>
                 </div>
             </div>
@@ -121,111 +125,91 @@
 
         <div class="container detail-lead">
             <div class="video yt" data-yt="jkpbdXxJ8nk" data-autoplay data-loop data-title="Munchkin assistive feeding device demo: the arm tracks the user's mouth and delivers food"></div>
-            <p class="media__caption">V1 system demo: the arm scoops food and brings it to the user's tracked mouth position.</p>
+            <p class="media__caption">V1 demo. The arm scoops food and brings it to the tracked position of the user's mouth.</p>
         </div>
 
         <article class="container prose">
             <p class="lede">
-                Our assistive feeding device combines computer vision, robotics and embedded systems into an affordable
-                solution for individuals with limited upper-body mobility.
+                Munchkin is a robotic feeding device for people with limited upper-body mobility. A depth camera and
+                MediaPipe track the user's mouth, and a 4-DOF arm brings each bite to it. The V1 parts cost is under $600
+                and the design is open-source.
             </p>
             <p>
-                The system uses real-time mouth tracking to position food at the optimal location, giving users control over
-                their own feeding process. Built with accessibility in mind, the entire system costs under $600 and is fully
-                open-source so other teams can replicate it.
-            </p>
-            <p>
-                The project was awarded the <strong>Olin College SAG Grant</strong> for prototyping support and the
-                <strong>Olin College SEED Grant</strong> for continued development. We have since formed
-                <strong>Munchkin LLC</strong>, licensed in Massachusetts, to support structured user testing at
-                <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong> and future development.
+                The tracking puts the food where the user's mouth actually is, and open/closed detection lets the user set the
+                pace. Olin College funded the project with a <strong>SAG Grant</strong> for
+                prototyping and a <strong>SEED Grant</strong> for continued development. We have since formed
+                <strong>Munchkin LLC</strong>, licensed in Massachusetts, to run structured user testing at
+                <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong>.
             </p>
 
             <div class="stats">
-                <div class="stat"><div class="stat__value">&lt;$600</div><div class="stat__label">total system cost, fully open-source</div></div>
-                <div class="stat"><div class="stat__value">4-DOF</div><div class="stat__label">articulated arm: base, shoulder, elbow, wrist</div></div>
+                <div class="stat"><div class="stat__value">&lt;$600</div><div class="stat__label">parts cost, V1</div></div>
                 <div class="stat"><div class="stat__value">30 fps</div><div class="stat__label">mouth tracking on a Raspberry Pi 4</div></div>
-                <div class="stat"><div class="stat__value">468</div><div class="stat__label">facial landmarks from MediaPipe Face Mesh</div></div>
+                <div class="stat"><div class="stat__value">~45 ms</div><div class="stat__label">from mouth movement to arm response</div></div>
+                <div class="stat"><div class="stat__value">&lt;2 s</div><div class="stat__label">fork-to-spoon swap, V3</div></div>
             </div>
 
-            <h2>Munchkin V3: current development</h2>
+            <h2>V3, in development</h2>
             <p>
-                V3 is our current development version, rebuilding the system with higher-torque servos, an integrated plate
-                holder and a modular tool changer. User testing will hopefully be happening at
-                <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong> in Fall 2026.
+                V3 rebuilds the system with higher-torque servos, a plate holder built into the body and a modular tool
+                changer. User testing is planned at Briarwood in Fall 2026.
             </p>
 
-            <h3>Feature 01 · Automatic tool changer</h3>
+            <h3>Automatic tool changer</h3>
             <div class="split">
                 <div class="video yt video--portrait" data-yt="0s-LrVQN4e0" data-autoplay data-loop data-title="Munchkin V3 automatic tool changer swapping between fork and spoon"></div>
                 <div>
                     <p>
-                        V3 introduces a fully automatic fork-and-spoon switcher. The mechanism locks and releases each utensil in
-                        under 2 seconds, no hands required, and the correct tool is always selected based on what is being served.
+                        The end effector locks and releases a fork or a spoon on its own. A swap takes under 2 seconds and
+                        needs no help from the user or a caregiver, and the device picks the utensil based on what is being
+                        served.
                     </p>
-                    <div class="stats">
-                        <div class="stat"><div class="stat__value">&lt;2 s</div><div class="stat__label">tool swap</div></div>
-                        <div class="stat"><div class="stat__value">2</div><div class="stat__label">utensil modes</div></div>
-                        <div class="stat"><div class="stat__value">Auto</div><div class="stat__label">selection</div></div>
-                    </div>
                 </div>
             </div>
 
             <div class="features">
                 <div class="feature">
                     <div class="feature__media feature__media--contain"><img src="munchkin/assets/v3/servo.webp" alt="Cutaway of a V3 servo showing its control PCB, motor and gearbox inside the black housing" width="800" height="800" decoding="async"></div>
-                    <div class="feature__num">FEATURE 02</div>
-                    <h4>High-precision servos</h4>
-                    <p>Upgraded to 30 kg·cm servos with 0.1° angular precision. Smoother motion, more torque and far better positional accuracy than V1.</p>
-                    <div class="pills mt-2"><span class="pill">30 kg·cm</span><span class="pill">0.1° precision</span></div>
+                    <h4>Higher-torque servos</h4>
+                    <p>30 kg·cm servos with 0.1° angular resolution, up from 15 kg·cm on V1. Smoother motion and better repeatability at the end effector.</p>
                 </div>
                 <div class="feature">
                     <div class="feature__media"><img src="munchkin/assets/v3/PlateHolder.webp" alt="V3 prototype: white device body with the black ring-shaped plate holder folded out on a desk" width="1800" height="1350" decoding="async"></div>
-                    <div class="feature__num">FEATURE 03</div>
                     <h4>Integrated plate holder</h4>
-                    <p>The plate holder is now built into the device body and folds flush when not in use. No separate tray to carry, and no setup required.</p>
-                    <div class="pills mt-2"><span class="pill">Folds flat</span><span class="pill">No assembly</span></div>
+                    <p>The plate holder is part of the device body and folds flush when not in use, so there is no separate tray to carry or set up.</p>
                 </div>
                 <div class="feature">
                     <div class="feature__media"><img src="munchkin/assets/v3/foldingarm.webp" alt="V3 prototype clamped to a chair with the robotic arm folded down against the device body" width="1800" height="2400" loading="lazy" decoding="async"></div>
-                    <div class="feature__num">FEATURE 04</div>
-                    <h4>Folding robotic arm</h4>
-                    <p>The arm now folds completely within the device body, bringing the whole system to a compact footprint for easy transport and storage.</p>
-                    <div class="pills mt-2"><span class="pill">Self-contained</span><span class="pill">Travel-ready</span></div>
+                    <h4>Folding arm</h4>
+                    <p>The arm folds fully inside the body for transport and storage.</p>
                 </div>
                 <div class="feature">
                     <div class="feature__media"><img src="munchkin/assets/v3/Touchscreen.webp" alt="Top-down view of the V3 device with its onboard display and control electronics next to the folded plate holder" width="1800" height="2400" loading="lazy" decoding="async"></div>
-                    <div class="feature__num">FEATURE 05</div>
                     <h4>Onboard touchscreen</h4>
-                    <p>An integrated touchscreen lets users select feeding mode, speed and other settings directly on the device. No phone or laptop needed.</p>
-                    <div class="pills mt-2"><span class="pill">On-device UI</span><span class="pill">Mode selection</span></div>
+                    <p>Feeding mode, speed and other settings are set on the device. No phone or laptop is needed.</p>
                 </div>
                 <div class="feature">
                     <div class="feature__media"><img src="munchkin/assets/v3/ports.webp" alt="Inside the open V3 enclosure: servo motors, controller boards, battery and wiring routed to the external control ports" width="1800" height="2400" loading="lazy" decoding="async"></div>
-                    <div class="feature__num">FEATURE 06</div>
                     <h4>Adaptive control ports</h4>
-                    <p>New external ports support switches, sip-and-puff controllers and other assistive devices, enabling partial or full control depending on each user's capabilities.</p>
-                    <div class="pills mt-2"><span class="pill">Switch access</span><span class="pill">Sip &amp; puff</span><span class="pill">Modular</span></div>
+                    <p>External ports accept switches, sip-and-puff controllers and similar assistive devices, for partial or full control depending on what each user can operate.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature__num">FEATURE 07 · <span class="pill pill--accent">Coming soon</span></div>
-                    <h4>AI food tracking</h4>
-                    <p>Computer vision will identify what is on the plate, track portion sizes and provide nutritional estimates in real time, making Munchkin a smarter feeding companion.</p>
-                    <div class="pills mt-2"><span class="pill">Computer vision</span><span class="pill">Nutrition data</span><span class="pill">AI-powered</span></div>
+                    <h4>Food recognition (planned)</h4>
+                    <p>A camera over the plate to identify what is on it, track portion sizes and estimate nutrition. Not built yet.</p>
                 </div>
             </div>
 
-            <h2>V1 – original design: decisions and trade-offs</h2>
+            <h2>V1 design decisions</h2>
             <p>
-                We explored several design approaches before landing on our final solution. Our initial concepts included a
-                stationary arm with a rotating base, a gantry-style system, and a jointed arm similar to industrial robots.
+                We looked at several layouts before settling on the final one: a stationary arm on a rotating base, a
+                gantry, and a jointed arm like a small industrial robot.
             </p>
 
-            <h3>01 · Robotic arm configuration</h3>
+            <h3>Arm configuration</h3>
             <ul>
-                <li><strong>Options:</strong> 4-DOF articulated arm, 4-DOF SCARA-style, 2-DOF pan-tilt mechanism.</li>
-                <li><strong>Our choice:</strong> 4-DOF articulated arm with base rotation, shoulder, elbow and wrist joints.</li>
-                <li><strong>Rationale:</strong> we chose the 4-DOF articulated configuration for maximum workspace flexibility and natural motion. The additional wrist joint (vs. 3-DOF) allows proper utensil orientation regardless of approach angle, critical for smooth feeding. While more complex than simpler designs, the improved dexterity justified the added servos and control complexity.</li>
+                <li><strong>Options:</strong> 4-DOF articulated arm, 4-DOF SCARA, 2-DOF pan-tilt.</li>
+                <li><strong>Choice:</strong> 4-DOF articulated arm with base rotation, shoulder, elbow and wrist joints.</li>
+                <li><strong>Why:</strong> the largest workspace and the most natural approach path. The wrist joint (which a 3-DOF arm lacks) keeps the utensil level whatever the approach angle, which matters for not spilling food. It costs one more servo and more control complexity than the simpler options.</li>
             </ul>
 
             <div class="widget ik" id="ikDemo">
@@ -236,41 +220,41 @@
                     <div class="ik__cell"><span>Elbow</span><output id="elbowAngle">0°</output></div>
                     <div class="ik__cell"><span>Error</span><output id="distance">0px</output></div>
                 </div>
-                <p class="widget__note">Interactive inverse kinematics using the CCD algorithm. Move your pointer over the canvas to control the arm.</p>
+                <p class="widget__note">Planar inverse kinematics solved with cyclic coordinate descent (CCD). Move the pointer over the canvas to set the target.</p>
             </div>
 
-            <h3>02 · Mouth tracking approach</h3>
+            <h3>Mouth tracking</h3>
             <ul>
-                <li><strong>Options:</strong> MediaPipe Face Mesh, OpenCV Haar Cascades, custom CNN model, depth camera only.</li>
-                <li><strong>Our choice:</strong> MediaPipe Face Mesh with a RealSense depth camera.</li>
-                <li><strong>Rationale:</strong> MediaPipe provides 468 facial landmarks at 30 fps with excellent accuracy on a Raspberry Pi 4, and combines well with RealSense depth data for precise 3D positioning. Pre-trained models eliminated weeks of custom ML training, and the open-source implementation made debugging straightforward. Haar Cascades were too inaccurate, and custom CNNs would require extensive datasets we didn't have.</li>
+                <li><strong>Options:</strong> MediaPipe Face Mesh, OpenCV Haar cascades, a custom CNN, depth camera only.</li>
+                <li><strong>Choice:</strong> MediaPipe Face Mesh with an Intel RealSense depth camera.</li>
+                <li><strong>Why:</strong> MediaPipe gives 468 facial landmarks at 30 fps on a Raspberry Pi 4, and the RealSense depth frame turns the 2D mouth position into a 3D target. Using a pre-trained model saved weeks of training, and the open-source code was easy to debug. Haar cascades were not accurate enough, and a custom CNN would have needed a dataset we did not have.</li>
             </ul>
 
             <div class="widget cam" id="mediapipeDemo">
                 <div class="cam__intro">
-                    <p><strong>See mouth tracking in action.</strong></p>
-                    <p class="small muted">Runs the same MediaPipe Face Mesh model in your browser. Your camera feed never leaves your device. Tip: select "Always allow" for the best experience.</p>
-                    <button class="btn btn--primary" id="startDemoBtn" type="button">Try it out</button>
+                    <p><strong>Try the mouth tracking in your browser.</strong></p>
+                    <p class="small muted">Runs the same MediaPipe Face Mesh model. The camera feed stays on your device.</p>
+                    <button class="btn btn--primary" id="startDemoBtn" type="button">Start camera</button>
                 </div>
                 <div class="cam__stage">
                     <video id="demoVideo" autoplay playsinline muted></video>
                     <canvas id="demoCanvas"></canvas>
                 </div>
-                <button class="btn btn--secondary btn--small cam__stop" id="stopDemoBtn" type="button">Stop demo</button>
+                <button class="btn btn--secondary btn--small cam__stop" id="stopDemoBtn" type="button">Stop</button>
                 <p class="cam__status" id="demoStatus" role="status"></p>
             </div>
 
-            <h3>03 · Computing platform</h3>
+            <h3>Computing platform</h3>
             <ul>
-                <li><strong>Options:</strong> Raspberry Pi, Arduino + OpenCV on a laptop, Jetson Nano, microcontroller with cloud processing.</li>
-                <li><strong>Our choice:</strong> Raspberry Pi 4B (4 GB RAM).</li>
-                <li><strong>Rationale:</strong> the Raspberry Pi 4 offers the right balance of compute power and cost ($62 vs. $200+ for a Jetson). Its quad-core ARM processor handles MediaPipe at 30 fps while managing servo control and safety monitoring. Built-in USB 3.0 for the camera, GPIO for the safety buttons and strong community support made development smooth. Arduino lacked ML capability, and cloud processing introduced unacceptable latency for safety-critical feeding motions.</li>
+                <li><strong>Options:</strong> Raspberry Pi, Arduino with OpenCV on a laptop, Jetson Nano, microcontroller with cloud processing.</li>
+                <li><strong>Choice:</strong> Raspberry Pi 4B (4 GB RAM).</li>
+                <li><strong>Why:</strong> enough compute at the right price ($62 against $200+ for a Jetson). The quad-core ARM runs MediaPipe at 30 fps while also handling servo control and safety monitoring, and it has USB 3.0 for the camera and GPIO for the e-stops. An Arduino cannot run the model, and cloud processing adds latency we did not want in a motion that ends at someone's face.</li>
             </ul>
-
-            <div class="callout">
-                <p class="callout__title">Why latency matters</p>
-                <p>The Pi 4 responds to a tracked mouth movement in about 45 ms, and it does so consistently, 24/7, without fatigue. Average human reaction time is 200–300 ms. That consistent low latency is what lets Munchkin follow the mouth in real time without noticeable lag, which is critical for safe, reliable feeding assistance.</p>
-            </div>
+            <p>
+                Latency is the reason for keeping everything on the Pi. It responds to a tracked mouth movement in about
+                45 ms, consistently, against a human reaction time of 200 to 300 ms. That is what lets the arm follow the
+                mouth without visible lag.
+            </p>
 
             <h2>System architecture</h2>
             <p>
@@ -290,7 +274,7 @@
                         <rect width="1400" height="630" fill="#ffffff" rx="12" />
 
                         <!-- INPUT SECTION -->
-                        <g>
+                        <g class="sec">
                             <rect x="30" y="60" width="380" height="540" rx="12" fill="#F8FAFC"
                                 stroke="#E2E8F0" stroke-width="1.5" />
                             <text x="220" y="85" text-anchor="middle" fill="#475569" font-size="15"
@@ -308,7 +292,7 @@
                         </g>
 
                         <!-- E-Stop Primary -->
-                        <g>
+                        <g class="safety">
                             <rect x="60" y="205" width="320" height="65" rx="8" fill="#FEF2F2"
                                 stroke="#FCA5A5" stroke-width="1.2" />
                             <text x="220" y="231" text-anchor="middle" fill="#991B1B" font-size="14"
@@ -318,7 +302,7 @@
                         </g>
 
                         <!-- E-Stop Shoulder Mount -->
-                        <g>
+                        <g class="safety">
                             <rect x="60" y="285" width="320" height="65" rx="8" fill="#FEF2F2"
                                 stroke="#FCA5A5" stroke-width="1.2" />
                             <text x="220" y="311" text-anchor="middle" fill="#991B1B" font-size="14"
@@ -358,7 +342,7 @@
                         </g>
 
                         <!-- PROCESSING SECTION -->
-                        <g>
+                        <g class="sec">
                             <rect x="440" y="60" width="520" height="540" rx="12" fill="#F8FAFC"
                                 stroke="#E2E8F0" stroke-width="1.5" />
                             <text x="700" y="85" text-anchor="middle" fill="#475569" font-size="15"
@@ -400,7 +384,7 @@
                         </g>
 
                         <!-- Safety Monitor -->
-                        <g>
+                        <g class="safety">
                             <rect x="480" y="285" width="210" height="75" rx="8" fill="#FEF2F2"
                                 stroke="#FCA5A5" stroke-width="1.2" />
                             <text x="585" y="311" text-anchor="middle" fill="#991B1B" font-size="14"
@@ -446,7 +430,7 @@
                         </g>
 
                         <!-- OUTPUT SECTION -->
-                        <g>
+                        <g class="sec">
                             <rect x="990" y="60" width="380" height="540" rx="12" fill="#F8FAFC"
                                 stroke="#E2E8F0" stroke-width="1.5" />
                             <text x="1180" y="85" text-anchor="middle" fill="#475569" font-size="15"
@@ -520,9 +504,9 @@
                         <text x="425" y="132" fill="#475569" font-size="9" font-weight="600">USB 3.0</text>
 
                         <!-- E-Stops to Pi -->
-                        <line x1="380" y1="237" x2="470" y2="135" stroke="#FCA5A5" stroke-width="1.5" />
-                        <line x1="380" y1="317" x2="470" y2="135" stroke="#FCA5A5" stroke-width="1.5" />
-                        <text x="415" y="174" fill="#991B1B" font-size="9" font-weight="600">GPIO</text>
+                        <line class="safety" x1="380" y1="237" x2="470" y2="135" stroke="#FCA5A5" stroke-width="1.5" />
+                        <line class="safety" x1="380" y1="317" x2="470" y2="135" stroke="#FCA5A5" stroke-width="1.5" />
+                        <text class="safety" x="415" y="174" fill="#991B1B" font-size="9" font-weight="600">GPIO</text>
 
                         <!-- Power to Pi -->
                         <line x1="380" y1="402" x2="470" y2="135" stroke="#BBF7D0" stroke-width="2" />
@@ -544,7 +528,7 @@
                         <text x="955" y="230" fill="#92400E" font-size="9" font-weight="600">Serial Bus</text>
                     </svg>
                 </div>
-                <figcaption>V1 system architecture: input, processing and output components and how they connect.</figcaption>
+                <figcaption>V1 electronics: inputs on the left, the Raspberry Pi and BusLinker in the middle, the four servos and end effector on the right.</figcaption>
             </figure>
             </div>
 
@@ -553,32 +537,32 @@
                 <thead><tr><th scope="col">Component</th><th scope="col">Role</th><th scope="col">Specs</th></tr></thead>
                 <tbody>
                     <tr class="is-group"><td colspan="3">Input</td></tr>
-                    <tr><td>Intel RealSense depth camera</td><td>RGB-D camera providing real-time depth sensing and colour imaging for face detection and mouth tracking.</td><td>1920×1080 RGB, 1280×720 depth · 30 fps · range 0.3–3 m · USB 3.0 · 3–5 W</td></tr>
-                    <tr><td>E-stop (primary)</td><td>Main emergency stop for immediate system shutdown, hard-wired to Raspberry Pi GPIO for instant response.</td><td>Push-button · GPIO with pull-down resistor · response &lt;10 ms</td></tr>
-                    <tr><td>E-stop (shoulder mount)</td><td>Secondary emergency stop on a shoulder harness for hands-free accessibility and redundancy.</td><td>Push-button · pluggable GPIO · response &lt;10 ms</td></tr>
-                    <tr><td>5 V power supply</td><td>Dedicated 5 V rail for the computing components, isolated from motor power to prevent noise interference.</td><td>5 V @ 5 A (25 W) · powers Pi, camera, fan</td></tr>
-                    <tr><td>9 V power supply</td><td>Dedicated 9 V rail for the servo motors, isolated from the computing components for reliability.</td><td>9 V @ 3 A (27 W) · powers BusLinker and 4 servos</td></tr>
-                    <tr><td>Power switch</td><td>Physical switch controlling power to the BusLinker and servos, so the motors can be shut down while the Pi stays active.</td><td>Toggle switch · rated 9 V 3 A</td></tr>
+                    <tr><td>Intel RealSense depth camera</td><td>RGB-D camera for face detection and mouth tracking.</td><td>1920×1080 RGB, 1280×720 depth · 30 fps · range 0.3–3 m · USB 3.0 · 3–5 W</td></tr>
+                    <tr><td>E-stop (primary)</td><td>Main emergency stop, hard-wired to a Raspberry Pi GPIO pin.</td><td>Push-button · GPIO with pull-down resistor · response &lt;10 ms</td></tr>
+                    <tr><td>E-stop (shoulder mount)</td><td>Second emergency stop on a shoulder harness, within reach of the user.</td><td>Push-button · pluggable GPIO · response &lt;10 ms</td></tr>
+                    <tr><td>5 V power supply</td><td>Rail for the computing side, isolated from motor power to keep servo noise off the Pi.</td><td>5 V @ 5 A (25 W) · powers Pi, camera, fan</td></tr>
+                    <tr><td>9 V power supply</td><td>Rail for the servos, isolated from the computing side.</td><td>9 V @ 3 A (27 W) · powers BusLinker and 4 servos</td></tr>
+                    <tr><td>Power switch</td><td>Cuts power to the BusLinker and servos while the Pi stays up.</td><td>Toggle switch · rated 9 V 3 A</td></tr>
                     <tr class="is-group"><td colspan="3">Processing</td></tr>
-                    <tr><td>Raspberry Pi 4 Model B</td><td>Main processing unit running computer vision, motion control, safety monitoring and servo communication.</td><td>Quad-core ARM Cortex-A72 @ 1.5 GHz · 4 GB LPDDR4 · 5 V @ 3 A</td></tr>
-                    <tr><td>MediaPipe Face Mesh</td><td>Real-time face detection and 468-point facial landmark tracking for precise mouth position and open/close detection.</td><td>Google MediaPipe · 468 landmarks · 30 fps</td></tr>
-                    <tr><td>Motion control</td><td>Inverse-kinematics solver converting mouth coordinates into servo angles for smooth, precise arm movement.</td><td>Analytical IK solver · 4 DOF · 100 Hz update</td></tr>
-                    <tr><td>Safety monitor</td><td>Continuously polls both emergency stops via GPIO and triggers an immediate pause on activation.</td><td>2 e-stop inputs · 1000 Hz polling · response &lt;10 ms</td></tr>
-                    <tr><td>Serial control</td><td>Handles USB-to-serial-bus communication with the BusLinker, sending servo position commands at high frequency.</td><td>LX-15D serial bus protocol · 115200 baud · 100 Hz update</td></tr>
-                    <tr><td>Cooling fan</td><td>Active cooling that keeps the Raspberry Pi below 65 °C during continuous operation.</td><td>40 × 40 mm · 5 V DC · ~2 W</td></tr>
-                    <tr><td>BusLinker V2.2</td><td>USB-to-serial-bus converter letting the Pi control multiple LX-15D servos over daisy-chained communication.</td><td>USB 2.0 in · 4-channel serial bus out · LX-15D protocol</td></tr>
+                    <tr><td>Raspberry Pi 4 Model B</td><td>Runs computer vision, motion control, safety monitoring and servo communication.</td><td>Quad-core ARM Cortex-A72 @ 1.5 GHz · 4 GB LPDDR4 · 5 V @ 3 A</td></tr>
+                    <tr><td>MediaPipe Face Mesh</td><td>Face detection and 468-point landmark tracking for mouth position and open/closed state.</td><td>Google MediaPipe · 468 landmarks · 30 fps</td></tr>
+                    <tr><td>Motion control</td><td>Inverse-kinematics solver that turns the mouth coordinate into four servo angles.</td><td>Analytical IK solver · 4 DOF · 100 Hz update</td></tr>
+                    <tr><td>Safety monitor</td><td>Polls both e-stops over GPIO and pauses the arm on activation.</td><td>2 e-stop inputs · 1000 Hz polling · response &lt;10 ms</td></tr>
+                    <tr><td>Serial control</td><td>USB-to-serial-bus link to the BusLinker, sending servo position commands.</td><td>LX-15D serial bus protocol · 115200 baud · 100 Hz update</td></tr>
+                    <tr><td>Cooling fan</td><td>Keeps the Pi below 65 °C in continuous operation.</td><td>40 × 40 mm · 5 V DC · ~2 W</td></tr>
+                    <tr><td>BusLinker V2.2</td><td>USB-to-serial-bus converter; the four LX-15D servos are daisy-chained from it.</td><td>USB 2.0 in · 4-channel serial bus out · LX-15D protocol</td></tr>
                     <tr class="is-group"><td colspan="3">Output</td></tr>
-                    <tr><td>Servo ID 0 – base pan (joint 0)</td><td>Base rotation servo providing 360° panning motion for horizontal positioning of the arm.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
-                    <tr><td>Servo ID 1 – shoulder (joint 1)</td><td>Controls the vertical angle of the first arm segment for height adjustment.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
-                    <tr><td>Servo ID 2 – elbow (joint 2)</td><td>Controls the vertical angle of the second arm segment for reach extension.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
-                    <tr><td>Servo ID 3 – wrist (joint 3)</td><td>Controls the final vertical positioning and tilt angle of the end effector.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
-                    <tr><td>End effector – hybrid utensil holder</td><td>Custom holder accommodating both spoons and forks, with a quick-release mechanism for easy utensil swapping.</td><td>3D-printed PLA · hybrid spoon/fork holder · spring-loaded release</td></tr>
+                    <tr><td>Servo ID 0, base pan (joint 0)</td><td>Rotates the arm about the vertical axis.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>Servo ID 1, shoulder (joint 1)</td><td>Sets the angle of the first arm segment.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>Servo ID 2, elbow (joint 2)</td><td>Sets the angle of the second arm segment.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>Servo ID 3, wrist (joint 3)</td><td>Sets the tilt of the end effector.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>End effector, utensil holder</td><td>Holds a spoon or a fork, with a quick-release for swapping.</td><td>3D-printed PLA · hybrid spoon/fork holder · spring-loaded release</td></tr>
                 </tbody>
             </table></div>
 
+
             <div class="footer-nav">
                 <a href="../index.html#projects" class="link link--back">All projects</a>
-                <a href="../contact.html" class="link">Get in touch</a>
             </div>
         </article>
     </main>
@@ -595,7 +579,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=2.0"></script>
+    <script src="../script.js?v=2.1"></script>
 
     <!-- Widget 1: inverse-kinematics canvas demo (CCD solver). Page-specific by design. -->
     <script>

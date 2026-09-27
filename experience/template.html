@@ -4,27 +4,42 @@
     ========================
     Copy this file to experience/my-company.html and replace every ALL-CAPS
     PLACEHOLDER. Everything is styled by ../styles.css and wired by
-    ../script.js (nav, scroll reveal, lightbox, YouTube facade, tabs), so a
-    page should not need its own style or script block.
+    ../script.js (nav, scroll reveal, lightbox, YouTube facade), so a page
+    should not need its own style or script block.
 
     For a TEAM page (FRC, Baja, …) change the two back links to
     "../index.html#teams" with the text "Teams" / "All teams".
 
-    Component catalogue used below (delete any block you do not need):
-      .detail-hero   title, eyebrow (role), meta line, pills, company logo
-      .detail-lead   one showpiece image or video directly under the hero
+    Keep the page quiet. The default below is: hero, one lead image, a short
+    lede, h2 sections of plain prose with images between them, and the back
+    link. Write in a plain first-person engineering voice: what you worked on,
+    what you built, what came of it, with specific nouns and numbers. No
+    superlatives, no marketing phrasing, no em-dashes. Skills and tools are a
+    short <ul> or one paragraph, not a grid of tiles.
+
+    Blocks used by default:
+      .detail-hero   back link, eyebrow (your role), h1 (organisation), one-line sub, meta, up to 4 pills, logo
+      .detail-lead   the one best image or video, directly under the hero
       .prose         the article column: .lede, h2/h3, p, ul
-      .media         single image with caption
+      .media         single image with a plain caption
       .media-row     2 / 3 / 4 images side by side (media-row--3, media-row--4)
-      .features      grid of titled tiles (skills, tools, achievements)
-      .stats         big numbers (impact)
+      .footer-nav    the back link, always last inside the article
+
+    Optional blocks (markup in the OPTIONAL BLOCKS comment at the end of the
+    article). Add one only when the page needs it:
       .video.yt      lazy YouTube embed
-      .callout       note / NDA / status box (callout--accent for emphasis)
-      .footer-nav    closing links, always last inside the article
+      .stats         one block, only for measured results (units shipped, cost saved, accuracy)
+      .features      only for distinct items with substance (awards per season, design decisions)
+      .callout       only for a real note: NDA, confidentiality, ongoing status
+      .actions/.btn  download buttons, labelled plainly ("Technical report (PDF)")
 
     Images: keep placeholders pointing at ../Pics/webicon.png until you have
-    real files. Do NOT add width/height/loading attributes; an automated pass
-    adds them and converts images to WebP.
+    real files. width/height/loading attributes are added by an automated pass,
+    which also converts images to WebP, so do not write them by hand. Portrait
+    or very tall images should not stand alone as a .media: add
+    media__frame--fixed (16:10 crop) or media__frame--contain (letterbox), or
+    pair them in a .media-row. Diagrams and screenshots on white get
+    media__frame--white.
 -->
 <html lang="en">
 
@@ -33,19 +48,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Browser tab + search result title. Keep the "| Kilan Rougeot" suffix. -->
     <title>ORGANISATION NAME | Kilan Rougeot</title>
-    <!-- 150–160 characters. Say what you did, where, and the key result. -->
-    <meta name="description" content="EXPERIENCE DESCRIPTION: WHAT YOU DID, WHERE, AND THE KEY RESULT, IN 150–160 CHARACTERS.">
-    <meta name="theme-color" content="#ffffff">
+    <!-- 150 to 160 characters, plain: what you did, where, and the key result. -->
+    <meta name="description" content="EXPERIENCE DESCRIPTION: WHAT YOU DID, WHERE, AND THE KEY RESULT, IN 150 TO 160 CHARACTERS.">
+    <meta name="theme-color" content="#fafaf9">
     <!-- Canonical URL = this file's public address. Change the filename. -->
     <link rel="canonical" href="https://kilanrou.com/experience/FILENAME.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
 
     <!-- Social sharing card. Title and description should match the ones above. -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/experience/FILENAME.html">
     <meta property="og:title" content="ORGANISATION NAME | Kilan Rougeot">
-    <meta property="og:description" content="EXPERIENCE DESCRIPTION: WHAT YOU DID, WHERE, AND THE KEY RESULT, IN 150–160 CHARACTERS.">
+    <meta property="og:description" content="EXPERIENCE DESCRIPTION: WHAT YOU DID, WHERE, AND THE KEY RESULT, IN 150 TO 160 CHARACTERS.">
     <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -90,28 +105,27 @@
     </header>
 
     <main>
-        <!-- HERO: back link, eyebrow (your role), the single h1 (organisation), hook, meta facts, tags, logo. -->
+        <!-- HERO: back link, eyebrow (your role), the single h1 (organisation), one-line sub, meta facts, pills, logo. -->
         <section class="detail-hero">
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#experience" class="link link--back">Experience</a>
-                    <!-- Your role, e.g. "Engineering Intern", "Team Captain" -->
+                    <!-- Plain text: your role, e.g. "Engineering Intern", "Team Captain" -->
                     <span class="eyebrow">YOUR ROLE</span>
                     <h1 class="detail-hero__title">ORGANISATION NAME</h1>
-                    <!-- Optional one-sentence hook, 90 characters or fewer. Delete if not needed. -->
-                    <p class="detail-hero__sub">ONE-SENTENCE HOOK, 90 CHARACTERS OR FEWER.</p>
+                    <!-- One line that says what the organisation does or what you worked on, not a slogan. Delete if not needed. -->
+                    <p class="detail-hero__sub">WHAT THE ORGANISATION DOES, OR WHAT YOU WORKED ON, IN ONE PLAIN SENTENCE.</p>
                     <!-- Meta line: when, where, which team. <time datetime> is YYYY-MM (or YYYY-MM/YYYY-MM for a range). -->
                     <div class="detail-hero__meta">
                         <span><time datetime="YYYY-MM">SEASON YEAR</time></span>
                         <span>CITY, COUNTRY</span>
                         <span>DEPARTMENT OR TEAM</span>
                     </div>
-                    <!-- 3–6 tags. pill--accent for awards/patents, pill--success pill--live for "Ongoing". -->
+                    <!-- At most 4 pills, and only concrete tools, skills or awards. pill--accent for an award. -->
                     <div class="pills">
-                        <span class="pill">SKILL 1</span>
-                        <span class="pill">SKILL 2</span>
-                        <span class="pill">SKILL 3</span>
-                        <span class="pill pill--accent">AWARD OR HIGHLIGHT</span>
+                        <span class="pill">TOOL OR SKILL 1</span>
+                        <span class="pill">TOOL OR SKILL 2</span>
+                        <span class="pill">TOOL OR SKILL 3</span>
                     </div>
                 </div>
                 <!-- Organisation logo from /Pics (transparent PNG works best). alt = "NAME logo". Delete if none. -->
@@ -120,49 +134,47 @@
         </section>
 
         <!-- LEAD MEDIA: the single best image (or replace the figure with a <div class="video yt" …>).
-             Add media__frame--contain for renders / cut-outs on white; omit it for photos. Delete this block if you have none. -->
+             Add media__frame--contain for renders or cut-outs on white; omit it for photos. Delete this block if you have none. -->
         <div class="container detail-lead">
             <figure class="media">
                 <div class="media__frame media__frame--contain">
                     <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" decoding="async">
                 </div>
-                <figcaption>CAPTION FOR THE LEAD IMAGE.</figcaption>
+                <figcaption>WHAT THE LEAD IMAGE SHOWS.</figcaption>
             </figure>
         </div>
 
-        <!-- ARTICLE: all the text lives here in semantic HTML (one h1 above, h2 sections, h3 subsections). -->
+        <!-- ARTICLE: all the text lives here (one h1 above, h2 sections, h3 subsections). -->
         <article class="container prose">
-            <!-- 1–2 sentence summary in bigger type. -->
+            <!-- One or two sentences: what you did there and what came of it. Plain facts, no pitch. -->
             <p class="lede">
-                LEDE: WHAT YOU DID AT THE ORGANISATION AND WHY IT MATTERED, IN ONE OR TWO SENTENCES.
+                LEDE: WHAT YOU WORKED ON AT THE ORGANISATION AND WHAT CAME OF IT.
             </p>
 
             <h2>Overview</h2>
             <p>
-                DESCRIBE YOUR ROLE AND RESPONSIBILITIES. WHAT WAS THE ORGANISATION'S MISSION? WHAT TEAM WERE YOU PART OF?
-                WHAT WAS YOUR MAIN FOCUS?
+                WHAT THE ORGANISATION DOES, WHICH TEAM YOU WERE ON, AND WHAT YOU WERE RESPONSIBLE FOR.
             </p>
 
             <h2>Main project</h2>
             <p>
-                THE ONE PIECE OF WORK YOU WANT A READER TO REMEMBER. WHAT WAS THE PROBLEM, WHAT DID YOU BUILD, WHO DID YOU
-                REPORT TO?
+                THE ONE PIECE OF WORK A READER SHOULD REMEMBER: THE PROBLEM, WHAT YOU BUILT, WHO YOU WORKED WITH.
             </p>
 
-            <!-- SINGLE IMAGE: add class "wide" to the figure for one full-width showpiece per page. -->
+            <!-- SINGLE IMAGE. Figures directly inside .prose widen to 1100px on desktop. -->
             <figure class="media">
                 <div class="media__frame">
                     <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
                 </div>
-                <figcaption>CAPTION.</figcaption>
+                <figcaption>WHAT THE PICTURE SHOWS.</figcaption>
             </figure>
 
-            <h3>Subsection</h3>
-            <!-- Bulleted responsibilities or achievements: bold label, then text. -->
+            <h3>SUBSECTION</h3>
+            <!-- Short list of facts: bold label, then text. -->
             <ul>
-                <li><strong>LABEL:</strong> RESPONSIBILITY OR ACHIEVEMENT 1</li>
-                <li><strong>LABEL:</strong> RESPONSIBILITY OR ACHIEVEMENT 2</li>
-                <li><strong>LABEL:</strong> RESPONSIBILITY OR ACHIEVEMENT 3</li>
+                <li><strong>LABEL:</strong> WHAT YOU DID 1</li>
+                <li><strong>LABEL:</strong> WHAT YOU DID 2</li>
+                <li><strong>LABEL:</strong> WHAT YOU DID 3</li>
             </ul>
 
             <!-- IMAGE ROW: 2-up (add media-row--3 or media-row--4 for more). Rows crop to 4:3;
@@ -172,70 +184,62 @@
                     <div class="media__frame">
                         <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>CAPTION 1.</figcaption>
+                    <figcaption>WHAT PICTURE 1 SHOWS.</figcaption>
                 </figure>
                 <figure class="media">
                     <div class="media__frame">
                         <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>CAPTION 2.</figcaption>
+                    <figcaption>WHAT PICTURE 2 SHOWS.</figcaption>
                 </figure>
             </div>
 
-            <!-- YOUTUBE: replace VIDEO_ID with the 11-character id from the YouTube URL. Click-to-play by default;
-                 add data-autoplay data-loop for a muted ambient clip. Optional data-start="30". -->
-            <div class="video yt" data-yt="VIDEO_ID" data-title="WHAT THE VIDEO SHOWS"></div>
-            <p class="media__caption">VIDEO CAPTION.</p>
-
-            <!-- FEATURE GRID: skills and tools. Use features--3 for three columns. -->
-            <h2>Skills and technologies</h2>
-            <div class="features">
-                <div class="feature">
-                    <h4>SKILL OR TOOL</h4>
-                    <p>HOW YOU USED IT.</p>
-                </div>
-                <div class="feature">
-                    <h4>SKILL OR TOOL</h4>
-                    <p>HOW YOU USED IT.</p>
-                </div>
-                <div class="feature">
-                    <h4>SKILL OR TOOL</h4>
-                    <p>HOW YOU USED IT.</p>
-                </div>
-                <div class="feature">
-                    <h4>SKILL OR TOOL</h4>
-                    <p>HOW YOU USED IT.</p>
-                </div>
-            </div>
-
-            <!-- STATS: 2–4 big numbers that show impact. Delete if there are none. -->
-            <h2>Impact</h2>
-            <div class="stats">
-                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
-                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
-                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
-            </div>
-            <ul>
-                <li>OUTCOME 1</li>
-                <li>OUTCOME 2</li>
-                <li>OUTCOME 3</li>
-            </ul>
-
-            <h2>What I learned</h2>
+            <h2>Tools and skills</h2>
+            <!-- A short list or one paragraph. Not a feature grid. -->
             <p>
-                WHAT DID YOU LEARN FROM THIS EXPERIENCE? HOW DID IT SHAPE YOUR INTERESTS OR CAREER?
+                THE TOOLS, SOFTWARE AND METHODS YOU USED, AND WHAT YOU USED THEM FOR.
             </p>
 
-            <!-- CALLOUT: NDA note, status or disclaimer. Add callout--accent for a blue tint. -->
-            <div class="callout">
-                <p class="callout__title">Note on disclosure</p>
-                <p>CALLOUT TEXT, E.G. WHICH DETAILS ARE COVERED BY AN NDA.</p>
-            </div>
+            <h2>Outcome</h2>
+            <p>
+                WHAT CAME OF THE WORK, WITH NUMBERS WHERE THEY EXIST, AND WHAT YOU TOOK AWAY FROM IT.
+            </p>
 
-            <!-- FOOTER NAV: always the last thing inside the article. -->
+            <!-- OPTIONAL BLOCKS. Copy one out of this comment only when the page needs it.
+
+                 YouTube (replace VIDEO_ID with the 11-character id; add data-autoplay data-loop for a muted clip; optional data-start="30"):
+                 <div class="video yt" data-yt="VIDEO_ID" data-title="WHAT THE VIDEO SHOWS"></div>
+                 <p class="media__caption">WHAT THE VIDEO SHOWS.</p>
+
+                 Stats, at most one per page, only for measured results. Anything that restates the text goes in prose instead:
+                 <div class="stats">
+                     <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
+                     <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
+                 </div>
+
+                 Feature grid, only for distinct items with substance (not a skills list; that is a <ul>). features--3 for three columns:
+                 <div class="features">
+                     <div class="feature">
+                         <h4>ITEM TITLE</h4>
+                         <p>ONE OR TWO SENTENCES.</p>
+                     </div>
+                 </div>
+
+                 Callout, only for a real note (NDA, confidentiality, ongoing status):
+                 <div class="callout">
+                     <p class="callout__title">Note on disclosure</p>
+                     <p>WHICH DETAILS ARE COVERED BY AN NDA.</p>
+                 </div>
+
+                 Download or link buttons, labelled plainly ("Technical report (PDF)"):
+                 <div class="actions">
+                     <a class="btn btn--secondary" href="../Files/FILE.pdf" target="_blank" rel="noopener">DOCUMENT NAME (PDF)</a>
+                 </div>
+            -->
+
+            <!-- FOOTER NAV: only the back link, always last inside the article. -->
             <div class="footer-nav">
                 <a href="../index.html#experience" class="link link--back">All experience</a>
-                <a href="../contact.html" class="link">Get in touch</a>
             </div>
         </article>
     </main>
@@ -253,7 +257,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=2.0"></script>
+    <script src="../script.js?v=2.1"></script>
 </body>
 
 </html>

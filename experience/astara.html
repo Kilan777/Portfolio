@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Astara | Kilan Rougeot</title>
     <meta name="description" content="Data and CS intern at Astara Move, Madrid: Python fleet analytics, a scraper tracking 1,000+ competitors and automated weekly reports that cut prep time by 90%.">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/experience/astara.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/experience/astara.html">
@@ -61,9 +61,9 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#experience" class="link link--back">Experience</a>
-                    <span class="eyebrow">Data &amp; Computer Science Intern</span>
+                    <span class="eyebrow">Data and computer science intern</span>
                     <h1 class="detail-hero__title">Astara</h1>
-                    <p class="detail-hero__sub">Data automation for a 1,000-vehicle car subscription service.</p>
+                    <p class="detail-hero__sub">Python analytics, a competitor price scraper and automated weekly reports for Astara Move, a car subscription service.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2023-06">Summer 2023</time></span>
                         <span>Madrid, Spain</span>
@@ -71,10 +71,9 @@
                     </div>
                     <div class="pills">
                         <span class="pill">Python</span>
-                        <span class="pill">Pandas &amp; NumPy</span>
-                        <span class="pill">Web scraping</span>
+                        <span class="pill">Pandas</span>
+                        <span class="pill">Selenium</span>
                         <span class="pill">SQL</span>
-                        <span class="pill">Report automation</span>
                     </div>
                 </div>
                 <img class="detail-hero__logo" src="../Pics/astaralogo.webp" alt="Astara logo" width="300" height="52" decoding="async">
@@ -86,45 +85,35 @@
                 <div class="media__frame media__frame--white">
                     <img src="Astarapics/website.webp" alt="Screenshot of the Astara Move website: the car subscription platform's landing page with vehicle listings and monthly pricing" width="1800" height="905" decoding="async">
                 </div>
-                <figcaption>The Astara Move subscription platform, whose pricing and fleet decisions my tools supported.</figcaption>
+                <figcaption>The Astara Move subscription website.</figcaption>
             </figure>
         </div>
 
         <article class="container prose">
             <p class="lede">
-                I served as second-in-command for data analytics in Astara's newly launched Move department, a car subscription
-                service managing over 1,000 active vehicles. I developed Python automation tools and web scraping solutions that
-                transformed how the company made pricing decisions and prepared executive reports, cutting weekly report
-                preparation time by over 90%.
+                I was the second person on data analytics in Astara's newly launched Move department, a car subscription service
+                with over 1,000 active vehicles. I wrote Python tools for fleet analysis, a scraper that tracked prices across
+                1,000+ competitors, and an automated weekly report that cut preparation time by over 90%.
             </p>
 
             <h2>About Astara</h2>
             <p>
-                Astara is a major automotive distributor handling over $5 billion in annual revenue. The Move department launched a
-                subscription-based car rental service as an alternative to traditional car ownership, which required sophisticated
-                data analytics to compete in a crowded market.
+                Astara is an automotive distributor with over $5 billion in annual revenue. The Move department had just launched a
+                subscription-based alternative to car ownership and needed pricing and fleet data to compete.
             </p>
 
-            <h2>Impact and scale</h2>
-            <div class="stats">
-                <div class="stat"><div class="stat__value">90%</div><div class="stat__label">reduction in report prep time</div></div>
-                <div class="stat"><div class="stat__value">1,000+</div><div class="stat__label">competitors tracked</div></div>
-                <div class="stat"><div class="stat__value">1,000+</div><div class="stat__label">active fleet vehicles</div></div>
-            </div>
+            <h2>Projects</h2>
 
-            <h2>Key projects and contributions</h2>
-
-            <h3>1. Fleet analytics and vehicle demand forecasting</h3>
+            <h3>Fleet analytics and demand forecasting</h3>
             <p>
-                As a newly launched department, Astara Move needed data-driven insights to guide fleet expansion decisions. I analyzed
-                user subscription data to identify which vehicle models were most popular, helping inform purchasing decisions worth
-                millions of dollars.
+                Astara Move needed to know which vehicles to buy next. I analysed subscription data to find which models were most
+                popular and fed that into fleet purchasing decisions.
             </p>
             <ul>
-                <li>Analyzed customer preferences across vehicle categories (sedans, SUVs, luxury, economy).</li>
-                <li>Identified seasonal demand patterns and peak subscription periods.</li>
-                <li>Provided actionable recommendations on fleet composition and expansion priorities.</li>
-                <li>Used Python with Pandas and NumPy for statistical analysis of user behavior.</li>
+                <li>Compared demand across vehicle categories (sedans, SUVs, luxury, economy).</li>
+                <li>Found seasonal demand patterns and peak subscription periods.</li>
+                <li>Wrote up recommendations on fleet composition and expansion priorities.</li>
+                <li>Pandas and NumPy for the analysis.</li>
             </ul>
 
             <div class="code"><div class="code__head"><span>Python · fleet_analysis.py</span></div><pre><code>import pandas as pd
@@ -155,17 +144,16 @@ def find_peak_seasons(df):
 
     return monthly_demand</code></pre></div>
 
-            <h3>2. Automated competitor pricing intelligence</h3>
+            <h3>Competitor price scraper</h3>
             <p>
-                I developed a web scraping system that automatically tracked pricing across 1,000+ competitors. When Astara added a
-                new vehicle model to its fleet, the system immediately provided average subscription costs from all tracked
-                competitors, enabling data-driven pricing strategies.
+                I built a web scraper that tracked subscription pricing across 1,000+ competitors. When Astara added a new model to
+                the fleet, it returned the market average, median and range for that model from all tracked competitors.
             </p>
             <ul>
-                <li>Built robust web scrapers using BeautifulSoup and Selenium for dynamic content.</li>
-                <li>Implemented error handling and retry logic for reliable data collection.</li>
-                <li>Stored competitive data in a database for historical trend analysis.</li>
-                <li>Created automated alerts when competitors changed their pricing.</li>
+                <li>BeautifulSoup for static pages, Selenium for pages that render with JavaScript.</li>
+                <li>Error handling and retries so a single failed site did not stop the run.</li>
+                <li>Results stored in a database so price history could be plotted.</li>
+                <li>Alerts when a competitor changed a price.</li>
             </ul>
 
             <div class="code"><div class="code__head"><span>Python · competitor_scraper.py</span></div><pre><code>from selenium import webdriver
@@ -219,17 +207,16 @@ class CompetitorPriceScraper:
             'max': max(prices)
         }</code></pre></div>
 
-            <h3>3. Automated weekly reporting system</h3>
+            <h3>Automated weekly report</h3>
             <p>
-                I transformed the weekly executive reporting process from hours of manual data entry into an automated system that
-                pulled data directly from databases and generated presentation-ready reports. This 90%+ time reduction let the team
-                focus on strategic analysis rather than data compilation.
+                The weekly executive report used to take hours of manual data entry. I replaced it with a script that queries the
+                databases, builds the charts and writes the PowerPoint, which cut preparation time by over 90%.
             </p>
             <ul>
-                <li>Connected Python scripts to company databases using SQL queries.</li>
-                <li>Automated data extraction, transformation and loading (ETL) processes.</li>
-                <li>Generated charts and visualizations using Matplotlib and Seaborn.</li>
-                <li>Exported formatted reports directly into PowerPoint presentations.</li>
+                <li>SQL queries from Python against the company databases.</li>
+                <li>Extraction, cleaning and aggregation in Pandas.</li>
+                <li>Charts with Matplotlib and Seaborn.</li>
+                <li>Slides generated with python-pptx.</li>
             </ul>
 
             <div class="code"><div class="code__head"><span>Python · report_automation.py</span></div><pre><code>import sqlite3
@@ -282,63 +269,34 @@ class WeeklyReportGenerator:
 
         prs.save('weekly_report.pptx')</code></pre></div>
 
-            <h3>4. Platform quality assurance</h3>
+            <h3>Platform bugs</h3>
             <p>
-                I identified and reported critical bugs in the Astara Move platform, including pricing discrepancies across different
-                devices and platforms. These findings prevented potential revenue loss and improved the customer experience.
+                While working with the platform data I found and reported pricing bugs on the Astara Move site.
             </p>
             <ul>
-                <li>Discovered price inconsistencies between mobile and desktop platforms.</li>
-                <li>Found calculation errors in subscription renewal pricing.</li>
-                <li>Reported issues directly to the department head with detailed documentation.</li>
-                <li>Contributed to platform stability and reliability improvements.</li>
+                <li>Prices that differed between the mobile and desktop versions of the site.</li>
+                <li>Calculation errors in subscription renewal pricing.</li>
+                <li>Documented and reported both to the department head.</li>
             </ul>
 
-            <h2>Technical skills and tools</h2>
-            <ul>
-                <li><strong>Programming:</strong> Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
-                <li><strong>Web scraping:</strong> BeautifulSoup, Selenium, Requests</li>
-                <li><strong>Data analysis:</strong> statistical analysis, trend identification, forecasting</li>
-                <li><strong>Database:</strong> SQL queries, data extraction and manipulation</li>
-                <li><strong>Automation:</strong> ETL pipelines, scheduled tasks, report generation</li>
-                <li><strong>Visualization:</strong> Matplotlib, Seaborn, PowerPoint integration</li>
-                <li><strong>Business intelligence:</strong> competitor analysis, pricing strategy, market research</li>
-            </ul>
+            <h2>Tools</h2>
+            <p>
+                Python (Pandas, NumPy, Matplotlib, Seaborn, python-pptx), BeautifulSoup, Selenium, Requests, and SQL.
+            </p>
 
-            <h2>Industry insights</h2>
+            <h2>What I learned</h2>
             <p>
-                Working at a major automotive distributor handling over $5 billion in annual revenue gave me invaluable insight into
-                large-scale operations:
-            </p>
-            <ul>
-                <li>How distributors manage relationships with manufacturers and dealers.</li>
-                <li>The complexity of fleet management and vehicle lifecycle optimization.</li>
-                <li>How data analytics drives strategic business decisions at scale.</li>
-                <li>The importance of automation in high-volume operations.</li>
-                <li>The challenges of launching a new business unit within an established company.</li>
-            </ul>
-
-            <h2>Key learnings</h2>
-            <p>
-                This internship taught me the power of automation and data-driven decision making. By replacing manual processes with
-                automated systems, I helped a small team manage a rapidly growing operation without proportionally increasing its
-                workload. The 90% reduction in report preparation time showed that thoughtful automation isn't just about saving
-                time; it lets teams focus on high-value strategic work.
+                A small team can run a fast-growing operation if the routine work is automated. Replacing the manual weekly report
+                and the manual price checks freed the team for the analysis itself, and the scraper and analytics scripts kept being
+                used after I left as the fleet grew past 1,000 vehicles.
             </p>
             <p>
-                Working with a newly launched department showed me the importance of building scalable systems from the start. The web
-                scraping and analytics tools I developed continue to provide value as the fleet grows beyond 1,000 vehicles, proving
-                that good engineering creates lasting impact.
-            </p>
-            <p>
-                Most importantly, I learned that effective data analysis isn't just about writing code; it's about understanding
-                business needs and translating them into actionable insights. Every script I wrote solved a real business problem, and
-                seeing executives make million-dollar fleet decisions based on my analysis reinforced the real-world impact of data science.
+                Working inside a $5 billion distributor also showed me how a new business unit gets set up in an established
+                company, and how fleet purchasing decisions get made from the data.
             </p>
 
             <div class="footer-nav">
                 <a href="../index.html#experience" class="link link--back">All experience</a>
-                <a href="../contact.html" class="link">Get in touch</a>
             </div>
         </article>
     </main>
@@ -355,7 +313,7 @@ class WeeklyReportGenerator:
         </div>
     </footer>
 
-    <script src="../script.js?v=2.0"></script>
+    <script src="../script.js?v=2.1"></script>
 </body>
 
 </html>

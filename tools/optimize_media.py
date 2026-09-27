@@ -35,7 +35,7 @@ def role_for(path):
     base = os.path.basename(path).lower()
     if path.startswith('Pics/'):
         if 'logo' in base: return MAX_LOGO
-        if base == 'webicon.png': return None   # leave favicon alone
+        if base in ('webicon.png', 'og.jpg'): return None   # favicon and social image stay as-is
         return MAX_CARD if base != 'headshot.jpg' else MAX_HERO
     return MAX_CONTENT
 
@@ -189,7 +189,7 @@ def add_dims(page, txt):
         above_fold = seen_first['n'] <= 2 or 'fetchpriority' in tag or 'detail-hero__logo' in tag or 'hero__portrait' in tag
         if 'loading=' not in out and not above_fold:
             out = out[:-1] + ' loading="lazy" decoding="async">'
-        elif 'loading=' not in out:
+        elif 'loading=' not in out and 'decoding=' not in out:
             out = out[:-1] + ' decoding="async">'
         return out
     return IMG_TAG.sub(sub, txt)

@@ -36,12 +36,12 @@ python3 tools/optimize_media.py        # needs Pillow; ffmpeg only for GIFs
 
 It rewrites the `src` references for you and deletes the originals from the working tree (they stay in git history).
 
-## Design rules (Apple-style)
+## Design rules
 
-- One accent colour (`--accent`), near-black text, white pages, `#f5f5f7` tiles, 18 px radius.
-- System font stack, tight letter-spacing on headings, generous whitespace.
-- Motion is subtle: fade/rise on scroll, tile lift on hover, `prefers-reduced-motion` respected.
-- Everything must work at 390 px wide with no horizontal scroll.
+- Quiet and plain: warm off-white page (`--bg`), near-black text, slate-blue headings and buttons (`--accent`), hairlines instead of boxes.
+- Fluid widths: 1280 px container, 880 px text column, figures widen to 1100 px on desktop. Everything must work at 390 px wide with no horizontal scroll.
+- Copy is factual first-person engineering writing. No taglines, no superlatives, at most four "pills" per page, stats only for real measured numbers.
+- System font stack. Motion is subtle: fade on scroll, `prefers-reduced-motion` respected.
 
 ## Third-party services
 

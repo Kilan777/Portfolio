@@ -4,24 +4,37 @@
     =====================
     Copy this file to projects/my-project.html and replace every ALL-CAPS
     PLACEHOLDER. Everything is styled by ../styles.css and wired by
-    ../script.js (nav, scroll reveal, lightbox, YouTube facade, tabs), so a
-    page should not need its own style or script block.
+    ../script.js (nav, scroll reveal, lightbox, YouTube facade), so a page
+    should not need its own style or script block.
 
-    Component catalogue used below (delete any block you do not need):
-      .detail-hero   title, eyebrow, meta line, pills
-      .detail-lead   one showpiece image or video directly under the hero
+    Keep the page quiet. The default below is: hero, one lead image, a short
+    lede, h2 sections of plain prose with images between them, and the back
+    link. Write in a plain first-person engineering voice, with specific nouns
+    and numbers. No superlatives, no marketing phrasing, no em-dashes.
+
+    Blocks used by default:
+      .detail-hero   back link, eyebrow (course or category), h1, one-line sub, meta, up to 4 pills
+      .detail-lead   the one best image or video, directly under the hero
       .prose         the article column: .lede, h2/h3, p, ul
-      .media         single image with caption
+      .media         single image with a plain caption
       .media-row     2 / 3 / 4 images side by side (media-row--3, media-row--4)
-      .features      grid of titled tiles (skills, components, decisions)
-      .stats         big numbers
+      .footer-nav    the back link, always last inside the article
+
+    Optional blocks (markup in the OPTIONAL BLOCKS comment at the end of the
+    article). Add one only when the page needs it:
       .video.yt      lazy YouTube embed
-      .callout       note / status box (callout--accent for emphasis)
-      .footer-nav    closing links, always last inside the article
+      .stats         one block, only for measured results or key specs (lap time, cost, accuracy)
+      .features      only for distinct items with substance (product features, design decisions)
+      .callout       only for a real note: NDA, confidentiality, project status
+      .code          a short code listing
 
     Images: keep placeholders pointing at ../Pics/webicon.png until you have
-    real files. Do NOT add width/height/loading attributes; an automated pass
-    adds them and converts images to WebP.
+    real files. width/height/loading attributes are added by an automated pass,
+    which also converts images to WebP, so do not write them by hand. Portrait
+    or very tall images should not stand alone as a .media: add
+    media__frame--fixed (16:10 crop) or media__frame--contain (letterbox), or
+    pair them in a .media-row. Diagrams and screenshots on white get
+    media__frame--white.
 -->
 <html lang="en">
 
@@ -30,19 +43,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Browser tab + search result title. Keep the "| Kilan Rougeot" suffix. -->
     <title>PROJECT TITLE | Kilan Rougeot</title>
-    <!-- 150–160 characters. Say what was built, where, and the key result. -->
-    <meta name="description" content="PROJECT DESCRIPTION: WHAT WAS BUILT, WHERE, AND THE KEY RESULT, IN 150–160 CHARACTERS.">
-    <meta name="theme-color" content="#ffffff">
+    <!-- 150 to 160 characters, plain: what was built, where, and the key result. -->
+    <meta name="description" content="PROJECT DESCRIPTION: WHAT WAS BUILT, WHERE, AND THE KEY RESULT, IN 150 TO 160 CHARACTERS.">
+    <meta name="theme-color" content="#fafaf9">
     <!-- Canonical URL = this file's public address. Change the filename. -->
     <link rel="canonical" href="https://kilanrou.com/projects/FILENAME.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
 
     <!-- Social sharing card. Title and description should match the ones above. -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/FILENAME.html">
     <meta property="og:title" content="PROJECT TITLE | Kilan Rougeot">
-    <meta property="og:description" content="PROJECT DESCRIPTION: WHAT WAS BUILT, WHERE, AND THE KEY RESULT, IN 150–160 CHARACTERS.">
+    <meta property="og:description" content="PROJECT DESCRIPTION: WHAT WAS BUILT, WHERE, AND THE KEY RESULT, IN 150 TO 160 CHARACTERS.">
     <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -86,78 +99,70 @@
     </header>
 
     <main>
-        <!-- HERO: back link, eyebrow (category), the single h1, a one-line hook, meta facts, tags. -->
+        <!-- HERO: back link, eyebrow, the single h1, a one-line factual sub, meta facts, pills. -->
         <section class="detail-hero">
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#projects" class="link link--back">Projects</a>
-                    <!-- Category or role, e.g. "Personal project", "Final project · Olin College" -->
-                    <span class="eyebrow">CATEGORY OR ROLE</span>
+                    <!-- Plain text: the course or category, e.g. "Personal project", "Final project, Olin College" -->
+                    <span class="eyebrow">COURSE OR CATEGORY</span>
                     <h1 class="detail-hero__title">PROJECT TITLE</h1>
-                    <!-- Optional one-sentence hook, 90 characters or fewer. Delete if not needed. -->
-                    <p class="detail-hero__sub">ONE-SENTENCE HOOK, 90 CHARACTERS OR FEWER.</p>
+                    <!-- One line that says what the thing is, not a slogan. Delete if the title already says it. -->
+                    <p class="detail-hero__sub">WHAT IT IS, IN ONE PLAIN SENTENCE.</p>
                     <!-- Meta line: when, where, for what. Use <time datetime="YYYY-MM"> for dates. -->
                     <div class="detail-hero__meta">
                         <span><time datetime="YYYY-MM">SEASON YEAR</time></span>
                         <span>LOCATION</span>
                         <span>TEAM OR COURSE</span>
                     </div>
-                    <!-- 3–6 tags. pill--accent for awards/patents, pill--success pill--live for "Ongoing". -->
+                    <!-- At most 4 pills, and only concrete tools, skills or awards. pill--accent for an award. -->
                     <div class="pills">
-                        <span class="pill">SKILL 1</span>
-                        <span class="pill">SKILL 2</span>
-                        <span class="pill">SKILL 3</span>
-                        <span class="pill pill--accent">AWARD OR HIGHLIGHT</span>
+                        <span class="pill">TOOL OR SKILL 1</span>
+                        <span class="pill">TOOL OR SKILL 2</span>
+                        <span class="pill">TOOL OR SKILL 3</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- LEAD MEDIA: the single best image (or replace the figure with a <div class="video yt" …>).
-             Add media__frame--contain for renders / cut-outs on white; omit it for photos. Delete this block if you have none. -->
+             Add media__frame--contain for renders or cut-outs on white; omit it for photos. Delete this block if you have none. -->
         <div class="container detail-lead">
             <figure class="media">
                 <div class="media__frame media__frame--contain">
                     <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" decoding="async">
                 </div>
-                <figcaption>CAPTION FOR THE LEAD IMAGE.</figcaption>
+                <figcaption>WHAT THE LEAD IMAGE SHOWS.</figcaption>
             </figure>
         </div>
 
-        <!-- ARTICLE: all the text lives here in semantic HTML (one h1 above, h2 sections, h3 subsections). -->
+        <!-- ARTICLE: all the text lives here (one h1 above, h2 sections, h3 subsections). -->
         <article class="container prose">
-            <!-- 1–2 sentence summary in bigger type. -->
+            <!-- One or two sentences that state what was built and the main result. Plain facts, no pitch. -->
             <p class="lede">
-                LEDE: ONE OR TWO SENTENCES THAT SUMMARISE THE PROJECT AND WHY IT MATTERS.
+                LEDE: WHAT WAS BUILT, FOR WHAT, AND THE MAIN RESULT.
             </p>
-
-            <!-- STATS: 2–4 big numbers. Delete if the project has no headline numbers. -->
-            <div class="stats">
-                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
-                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
-                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
-            </div>
 
             <h2>Overview</h2>
             <p>
-                WHAT PROBLEM WERE YOU SOLVING? WHAT WAS THE GOAL? WHAT MADE THIS PROJECT INTERESTING OR CHALLENGING?
+                WHAT THE PROBLEM WAS, WHAT THE GOAL WAS, AND WHAT MADE IT HARD.
             </p>
 
-            <!-- SINGLE IMAGE: add class "wide" to the figure for one full-width showpiece per page. -->
+            <!-- SINGLE IMAGE. Figures directly inside .prose widen to 1100px on desktop. -->
             <figure class="media">
                 <div class="media__frame">
-                    <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" decoding="async">
+                    <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
                 </div>
-                <figcaption>CAPTION.</figcaption>
+                <figcaption>WHAT THE PICTURE SHOWS.</figcaption>
             </figure>
 
-            <h2>Technical details</h2>
+            <h2>How it was built</h2>
             <p>
-                HOW WAS IT BUILT? WHAT TOOLS, TECHNOLOGIES OR METHODS DID YOU USE? WHAT WERE THE KEY TECHNICAL CHALLENGES?
+                THE TOOLS, PARTS AND METHODS USED, AND THE MAIN TECHNICAL PROBLEMS AND HOW THEY WERE SOLVED.
             </p>
 
-            <h3>Subsection</h3>
-            <!-- Bulleted facts: bold label, then text. -->
+            <h3>SUBSECTION</h3>
+            <!-- Short list of facts: bold label, then text. -->
             <ul>
                 <li><strong>LABEL:</strong> DETAIL 1</li>
                 <li><strong>LABEL:</strong> DETAIL 2</li>
@@ -171,61 +176,62 @@
                     <div class="media__frame">
                         <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>CAPTION 1.</figcaption>
+                    <figcaption>WHAT PICTURE 1 SHOWS.</figcaption>
                 </figure>
                 <figure class="media">
                     <div class="media__frame">
                         <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>CAPTION 2.</figcaption>
+                    <figcaption>WHAT PICTURE 2 SHOWS.</figcaption>
                 </figure>
             </div>
 
-            <!-- YOUTUBE: replace VIDEO_ID with the 11-character id from the YouTube URL. Click-to-play by default;
-                 add data-autoplay data-loop for a muted ambient clip. Optional data-start="30". -->
-            <div class="video yt" data-yt="VIDEO_ID" data-title="WHAT THE VIDEO SHOWS"></div>
-            <p class="media__caption">VIDEO CAPTION.</p>
-
-            <!-- FEATURE GRID: skills, components, decisions or awards. Use features--3 for three columns. -->
-            <h2>Key components</h2>
-            <div class="features">
-                <div class="feature">
-                    <div class="feature__num">01</div>
-                    <h4>FEATURE TITLE</h4>
-                    <p>ONE OR TWO SENTENCES.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__num">02</div>
-                    <h4>FEATURE TITLE</h4>
-                    <p>ONE OR TWO SENTENCES.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__num">03</div>
-                    <h4>FEATURE TITLE</h4>
-                    <p>ONE OR TWO SENTENCES.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__num">04</div>
-                    <h4>FEATURE TITLE</h4>
-                    <p>ONE OR TWO SENTENCES.</p>
-                </div>
-            </div>
-
-            <h2>Results &amp; impact</h2>
+            <h2>Results</h2>
             <p>
-                WHAT WERE THE OUTCOMES? DID YOU MEET YOUR GOALS? WHAT DID YOU LEARN? WHAT IMPACT DID THIS PROJECT HAVE?
+                WHAT CAME OUT OF IT, WITH NUMBERS WHERE THEY EXIST, AND WHAT YOU WOULD CHANGE.
             </p>
 
-            <!-- CALLOUT: a note, status or disclaimer. Add callout--accent for a blue tint. -->
-            <div class="callout">
-                <p class="callout__title">CALLOUT TITLE</p>
-                <p>CALLOUT TEXT, E.G. PROJECT STATUS, NDA NOTE OR A CREDIT.</p>
-            </div>
+            <!-- OPTIONAL BLOCKS. Copy one out of this comment only when the page needs it.
 
-            <!-- FOOTER NAV: always the last thing inside the article. -->
+                 YouTube (replace VIDEO_ID with the 11-character id; add data-autoplay data-loop for a muted clip; optional data-start="30"):
+                 <div class="video yt" data-yt="VIDEO_ID" data-title="WHAT THE VIDEO SHOWS"></div>
+                 <p class="media__caption">WHAT THE VIDEO SHOWS.</p>
+
+                 Stats, at most one per page, only for measured results or key specs. Anything that restates the text goes in prose instead:
+                 <div class="stats">
+                     <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
+                     <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
+                 </div>
+
+                 Feature grid, only for distinct items with substance (not a skills list; that is a <ul>). features--3 for three columns:
+                 <div class="features">
+                     <div class="feature">
+                         <h4>ITEM TITLE</h4>
+                         <p>ONE OR TWO SENTENCES.</p>
+                     </div>
+                 </div>
+
+                 Callout, only for a real note (NDA, confidentiality, project status):
+                 <div class="callout">
+                     <p class="callout__title">NOTE TITLE</p>
+                     <p>NOTE TEXT.</p>
+                 </div>
+
+                 Code listing:
+                 <div class="code">
+                     <div class="code__head"><span>LANGUAGE · WHAT THE FILE IS</span></div>
+                     <pre><code>CODE</code></pre>
+                 </div>
+
+                 Download or link buttons, labelled plainly ("Technical report (PDF)"):
+                 <div class="actions">
+                     <a class="btn btn--secondary" href="../Files/FILE.pdf" target="_blank" rel="noopener">DOCUMENT NAME (PDF)</a>
+                 </div>
+            -->
+
+            <!-- FOOTER NAV: only the back link, always last inside the article. -->
             <div class="footer-nav">
                 <a href="../index.html#projects" class="link link--back">All projects</a>
-                <a href="../contact.html" class="link">Get in touch</a>
             </div>
         </article>
     </main>
@@ -243,7 +249,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=2.0"></script>
+    <script src="../script.js?v=2.1"></script>
 </body>
 
 </html>

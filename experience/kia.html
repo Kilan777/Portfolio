@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Kia (Hyundai Motor Group) | Kilan Rougeot</title>
     <meta name="description" content="Automating automotive production at Kia's Žilina plant: a robotic wheel-loading cell, PLC programming, Keyence vision and safety systems across five maintenance departments.">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/experience/kia.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/experience/kia.html">
@@ -45,7 +45,7 @@
                     <a href="../index.html#experience" class="link link--back">Experience</a>
                     <span class="eyebrow">Engineering Intern</span>
                     <h1 class="detail-hero__title">Kia (Hyundai Motor Group)</h1>
-                    <p class="detail-hero__sub">Automating a 300,000-car-a-year plant, one cell at a time.</p>
+                    <p class="detail-hero__sub">Maintenance and automation intern at Kia’s Žilina plant; led the design of an automated wheel-rim loading cell.</p>
                     <div class="detail-hero__meta">
                         <span>Summer 2025</span>
                         <span>Žilina, Slovakia</span>
@@ -67,28 +67,27 @@
                 <div class="media__frame media__frame--contain">
                     <img src="Kiapics/ConveyorCAD.webp" alt="CAD model of the automated wheel-rim loading cell: robotic arm, pallet conveyors and operator booth" width="1236" height="627" decoding="async">
                 </div>
-                <figcaption>The automated wheel-rim loading cell I led: a Hyundai arm with a Festo gripper feeding a bi-directional pallet conveyor network.</figcaption>
+                <figcaption>CAD layout of the wheel-rim loading cell: Hyundai arm with a Festo gripper, bi-directional pallet conveyors and the rim pallet stacks.</figcaption>
             </figure>
         </div>
 
         <article class="container prose">
             <p class="lede">
-                I spent the summer inside Kia's Žilina manufacturing facility, rotating through all five maintenance departments
-                (Press, Body, Paint, Assembly and Engine) and leading the design of a fully automated robotic wheel-loading system.
+                I spent the summer in the maintenance organisation of Kia's Žilina plant, rotating through its five departments
+                (Press, Body, Paint, Assembly and Engine). My main project was the design of an automated robotic wheel-rim loading cell.
             </p>
 
             <h2>Main project: automated wheel loading</h2>
             <p>
-                I led the design and implementation of a robotic wheel-rim loading system, reporting directly to the Head of Group
-                and the Assembly Manager. The cell removes three manual handling positions from the line and replaces them with a
-                single oversight station, making the area safer and more consistent.
+                I led the design of a robotic wheel-rim loading system, reporting to the Head of Group and the Assembly Manager.
+                The cell removes three manual handling positions from the line and replaces them with one oversight station.
             </p>
 
             <h3>System design</h3>
             <ul>
                 <li><strong>Robotic manipulation:</strong> Hyundai robotic arm with a Festo pneumatic gripper that grabs rim interiors, plus a suction-cup jig that strips the plastic layers between pallet stacks.</li>
-                <li><strong>Bi-directional conveyors:</strong> an intelligent conveyor network that lines up rim pallets in production order.</li>
-                <li><strong>Automated material handling:</strong> pallets are loaded and sequenced autonomously for the line.</li>
+                <li><strong>Bi-directional conveyors:</strong> a conveyor network that lines up rim pallets in production order.</li>
+                <li><strong>Material handling:</strong> pallets are loaded and sequenced for the line without an operator.</li>
                 <li><strong>Oversight station:</strong> one operator booth for monitoring, reducing staffing in the area from three people to one.</li>
             </ul>
 
@@ -114,22 +113,21 @@
             </ul>
 
             <figure class="media">
-                <div class="media__frame">
-                    <img src="Kiapics/armworkingoncar.webp" alt="Robotic arm working on a vehicle on the assembly line" width="900" height="600" loading="lazy" decoding="async">
+                <div class="media__frame media__frame--fixed">
+                    <img src="Kiapics/armworkingoncar.webp" alt="Yellow robots along the line, with car bodies on the overhead conveyor above" width="900" height="600" loading="lazy" decoding="async">
                 </div>
-                <figcaption>Assembly line automation during the new model ramp-up.</figcaption>
+                <figcaption>The line during the new model ramp-up.</figcaption>
             </figure>
 
             <h3>Engine</h3>
             <p>
-                I implemented a vision system for quality control in engine assembly, combining 3D scanning with automated
-                inspection.
+                I set up a vision system for quality control in engine assembly: a 3D scan of each engine block, checked automatically.
             </p>
             <ul>
                 <li>Installed a Keyence camera system to verify valve-spring alignment.</li>
                 <li>Programmed the PLC logic that ties the vision system into the line.</li>
                 <li>Developed the 3D-scan algorithm that flags misaligned springs.</li>
-                <li>Built the inspection workflow that catches defects before assembly continues.</li>
+                <li>Built the inspection step that stops a defective block before assembly continues.</li>
             </ul>
 
             <div class="media-row">
@@ -137,13 +135,13 @@
                     <div class="media__frame">
                         <img src="Kiapics/Engineblockscan.webp" alt="Engine block with valve springs under the 3D scanner" width="1800" height="1729" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>Engine block under the scanner.</figcaption>
+                    <figcaption>Engine block under the Keyence scanner.</figcaption>
                 </figure>
                 <figure class="media">
                     <div class="media__frame">
                         <img src="Kiapics/SpringAlignment.webp" alt="Spring alignment result from the vision system" width="1800" height="1350" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>Spring alignment check output.</figcaption>
+                    <figcaption>Valve-spring alignment result on the HMI.</figcaption>
                 </figure>
             </div>
 
@@ -160,12 +158,11 @@
 
             <h3>Body shop</h3>
             <p>
-                The body shop has the largest robotic workforce in the plant. I helped keep it running while building up my PLC
-                programming skills.
+                The body shop has the most robots in the plant. I helped keep it running and did most of my PLC programming here.
             </p>
             <ul>
                 <li>Maintained over 300 autonomous welding robots.</li>
-                <li>Learned PLC programming for robotic control at scale.</li>
+                <li>Learned PLC programming for robot control on a large line.</li>
                 <li>Troubleshot robot conflicts during the new model launch, where weld positions were millimetres off specification.</li>
             </ul>
 
@@ -183,61 +180,43 @@
             </ul>
 
             <h2>The full manufacturing process</h2>
-            <p>Rotating through every department gave me an end-to-end picture of how a car gets built:</p>
+            <p>Rotating through every department gave me the whole sequence of how a car gets built:</p>
             <ul>
                 <li><strong>Press shop:</strong> raw coils stamped into body panels by precision dies.</li>
                 <li><strong>Body shop:</strong> 400+ robots weld the stamped panels into a chassis.</li>
                 <li><strong>Paint shop:</strong> chemical baths, then robotic sealing and paint.</li>
-                <li><strong>Assembly:</strong> final assembly with rigorous documentation and quality control.</li>
+                <li><strong>Assembly:</strong> final assembly with documented quality control at each station.</li>
                 <li><strong>Quality systems:</strong> every tool torque is logged centrally with operator tracking for compliance.</li>
             </ul>
             <p>
-                I also observed the EV battery assembly station: automated intake from supplier trucks, autonomous transport to the
-                line, precision battery-to-vehicle alignment and a fully automated installation with verification.
+                I also observed the EV battery station: automated intake from supplier trucks, autonomous transport to the line,
+                battery-to-vehicle alignment and an automated installation with verification.
             </p>
 
             <h2>Skills and technologies</h2>
-            <div class="features">
-                <div class="feature">
-                    <h4>Robotic programming</h4>
-                    <p>Hyundai arm programming, motion planning and gripper control.</p>
-                </div>
-                <div class="feature">
-                    <h4>PLC programming</h4>
-                    <p>Logic for automated cells and machine control.</p>
-                </div>
-                <div class="feature">
-                    <h4>Vision systems</h4>
-                    <p>Keyence cameras, 3D scanning and automated inspection.</p>
-                </div>
-                <div class="feature">
-                    <h4>Safety systems</h4>
-                    <p>Keyence safety sensors and zone monitoring.</p>
-                </div>
-                <div class="feature">
-                    <h4>Pneumatics and conveyors</h4>
-                    <p>Festo grippers, actuation, and bi-directional conveyor programming.</p>
-                </div>
-                <div class="feature">
-                    <h4>CAD and layout</h4>
-                    <p>Cell layout and mechanical design for automation projects.</p>
-                </div>
-            </div>
+            <ul>
+                <li>Hyundai robot programming: motion planning and gripper control.</li>
+                <li>PLC programming for automated cells and machine control.</li>
+                <li>Keyence vision: cameras, 3D scanning and automated inspection.</li>
+                <li>Keyence safety sensors and zone monitoring.</li>
+                <li>Festo pneumatic grippers and bi-directional conveyor programming.</li>
+                <li>CAD cell layout and mechanical design.</li>
+            </ul>
 
             <h2>Impact</h2>
             <ul>
-                <li>Removed three manual handling positions through automation while improving safety.</li>
-                <li>Built redundant failsafes so production continues through single-point failures.</li>
-                <li>Improved engine assembly quality control with a new vision system.</li>
-                <li>Strengthened die-change safety in the press shop.</li>
-                <li>Supported a new model launch with minimal production disruption.</li>
+                <li>Removed three manual handling positions from the wheel line.</li>
+                <li>Designed the cell so production continues through a single conveyor or robot failure.</li>
+                <li>Added a vision check for valve-spring alignment in engine assembly.</li>
+                <li>Installed safety sensing for die changes in the press shop.</li>
+                <li>Supported a new model launch in the assembly and body shops.</li>
             </ul>
 
             <h2>What I learned</h2>
             <p>
-                Thousands of components, hundreds of robots and dozens of processes have to coordinate perfectly to build a car
-                efficiently and safely. The internship taught me how much redundancy matters in automation, how large PLC systems
-                are structured, and how quality control and legal compliance drive manufacturing decisions.
+                Thousands of components, hundreds of robots and dozens of processes have to line up to build a car. The internship
+                taught me how much redundancy matters in automation, how large PLC systems are structured, and how quality control
+                and legal compliance drive manufacturing decisions.
             </p>
             <p>
                 Seeing every department also showed how each stage constrains the next: press-shop tolerances affect body-shop
@@ -246,12 +225,11 @@
 
             <div class="callout">
                 <p class="callout__title">Note on disclosure</p>
-                <p>Some proprietary details, specifications and documentation are covered by an NDA. Everything here has been reviewed to respect those agreements while accurately representing the scope and impact of the work.</p>
+                <p>Some details, specifications and documentation are covered by an NDA and are left out here.</p>
             </div>
 
             <div class="footer-nav">
                 <a href="../index.html#experience" class="link link--back">All experience</a>
-                <a href="../contact.html" class="link">Get in touch</a>
             </div>
         </article>
     </main>
@@ -268,7 +246,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=2.0"></script>
+    <script src="../script.js?v=2.1"></script>
 </body>
 
 </html>

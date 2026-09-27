@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>EMG-Controlled Prosthetic Hand | Kilan Rougeot</title>
     <meta name="description" content="EMG-controlled 3D printed prosthetic hand built for under $50 at Westtown School: one muscle sensor, an Arduino Nano and five servos, powered by two 9V batteries.">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/prosthetic-hand.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <link rel="stylesheet" href="../styles.css?v=2.1">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/prosthetic-hand.html">
@@ -60,9 +60,9 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#projects" class="link link--back">Projects</a>
-                    <span class="eyebrow">Assistive Technology · Westtown School</span>
+                    <span class="eyebrow">Computer Science (Adv) project · Westtown School</span>
                     <h1 class="detail-hero__title">EMG-Controlled 3D Printed Prosthetic Hand</h1>
-                    <p class="detail-hero__sub">A prosthetic hand anyone can build, driven by muscle signals, for under $50.</p>
+                    <p class="detail-hero__sub">A 3D printed hand that opens and closes from one forearm EMG sensor, built for under $50.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2024">2024</time></span>
                         <span>Philadelphia, PA</span>
@@ -73,7 +73,6 @@
                         <span class="pill">Arduino</span>
                         <span class="pill">3D printing</span>
                         <span class="pill">Servo control</span>
-                        <span class="pill pill--accent">Under $50</span>
                     </div>
                 </div>
             </div>
@@ -84,28 +83,20 @@
                 <div class="media__frame">
                     <img src="Handpics/Hand.webp" alt="Project poster for the 3D printed prosthetic hand: photos of EMG electrodes on a forearm, the Arduino and servo test bench, fingers printing on an Original Prusa i3 MK3, the assembled black hand, the Arduino code, and the wiring diagram" width="1800" height="1350" decoding="async">
                 </div>
-                <figcaption>The project poster: 3D Printed Prosthetic Hand – Innovation for Accessibility (Westtown School, Computer Science Adv). Click to zoom.</figcaption>
+                <figcaption>The project poster from the Computer Science (Adv) course at Westtown School: electrodes, test bench, printing, the assembled hand, the code and the wiring diagram. Click to zoom.</figcaption>
             </figure>
         </div>
 
         <article class="container prose">
             <p class="lede">
-                I built a working prototype prosthetic hand controlled by the electrical activity of the user's own muscles,
-                using an EMG sensor, an Arduino and 3D printed parts, for under $50.
+                A working prototype prosthetic hand controlled by the electrical activity of the user's forearm muscle.
+                One EMG sensor, an Arduino Nano, five servos, two 9V batteries and 3D printed parts, for a total of under $50.
             </p>
-
-            <div class="stats">
-                <div class="stat"><div class="stat__value">&lt;$50</div><div class="stat__label">total cost of the working prototype</div></div>
-                <div class="stat"><div class="stat__value">1</div><div class="stat__label">EMG sensor reads the muscle</div></div>
-                <div class="stat"><div class="stat__value">5</div><div class="stat__label">servos move the fingers</div></div>
-                <div class="stat"><div class="stat__value">2</div><div class="stat__label">reusable 9V batteries make it portable</div></div>
-            </div>
 
             <h2>The idea</h2>
             <p>
-                I wanted to create a simple prosthetic hand that people could recreate themselves for a low cost. Not only
-                would this be an exciting project, but it would also let people build a prosthetic without spending thousands
-                of dollars like traditional prosthetics.
+                I wanted a simple prosthetic hand that other people could build themselves for a low cost, instead of
+                spending thousands of dollars on a traditional prosthetic.
             </p>
 
             <h2>First steps</h2>
@@ -143,22 +134,18 @@
             </p>
 
             <h2>Result</h2>
-            <div class="callout callout--accent">
-                <p class="callout__title">A working prototype for under 50 dollars</p>
-                <p>
-                    Now that I have achieved this, I want to make the prototype easier to build and print: the current
-                    hand has screws sticking out of it and is not easy to assemble. Once I have the new arm, I want to try
-                    another method of reading muscle activity, so that I no longer need three wires on the user's muscle
-                    and can instead use a wireless device attached to it.
-                </p>
-            </div>
+            <p>
+                The result is a working prototype for under 50 dollars. Next I want to make it easier to build and print:
+                the current hand has screws sticking out of it and is not easy to assemble. Once I have the new arm, I want
+                to try another method of reading muscle activity, so that I no longer need three wires on the user's
+                muscle and can instead use a wireless device attached to it.
+            </p>
 
             <h2>Findings and add-ons</h2>
             <h3>Controlling a computer with the EMG</h3>
             <p>
-                While using the EMG sensor, I realised I could also use it to control computer actions. This intrigued me,
-                so in parallel with the prosthetic hand I set out to control video games using the EMG sensor and an
-                Arduino.
+                While using the EMG sensor, I realised I could also use it to control computer actions. In parallel with
+                the prosthetic hand I used the EMG sensor and an Arduino to control video games.
             </p>
 
             <h3>Screen and remote control</h3>
@@ -260,7 +247,7 @@ void setColor(int redValue, int greenValue, int blueValue) {
             <p>
                 The wiring diagram on the poster shows how the electronics are connected, all relating back to the central
                 processing unit, an Arduino Nano (ATmega328P): the EMG sensor on an analog input, five servos on digital
-                pins 2–6, an RGB LED through 300 Ω resistors on pins 7–9, and two 9V batteries for power.
+                pins 2 to 6, an RGB LED through 300 Ω resistors on pins 7 to 9, and two 9V batteries for power.
             </p>
 
             <h2>References</h2>
@@ -274,7 +261,6 @@ void setColor(int redValue, int greenValue, int blueValue) {
 
             <div class="footer-nav">
                 <a href="../index.html#projects" class="link link--back">All projects</a>
-                <a href="../contact.html" class="link">Get in touch</a>
             </div>
         </article>
     </main>
@@ -291,7 +277,7 @@ void setColor(int redValue, int greenValue, int blueValue) {
         </div>
     </footer>
 
-    <script src="../script.js?v=2.0"></script>
+    <script src="../script.js?v=2.1"></script>
 </body>
 
 </html>
