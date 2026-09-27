@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /feed.html
+Disallow: /color-preview.html
+
+Sitemap: https://kilanrou.com/sitemap.xml

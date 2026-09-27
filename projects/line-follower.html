@@ -2,220 +2,118 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Line-Following Robot | Kilan Rougeot</title>
+    <meta name="description" content="Arduino line follower with a closed-loop PD controller, five IR sensors, custom chassis and a Python serial-tuning GUI: 30 s best lap, 15 of 15 runs.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/projects/line-follower.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/line-follower.html">
+    <meta property="og:title" content="Line-Following Robot | Kilan Rougeot">
+    <meta property="og:description" content="Arduino line follower with a closed-loop PD controller, five IR sensors, custom chassis and a Python serial-tuning GUI: 30 s best lap, 15 of 15 runs.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Line-Following Robot with Closed-Loop Control",
+      "headline": "Line-Following Robot with Closed-Loop Control",
+      "description": "Arduino line follower with a closed-loop PD controller, five IR sensors, custom chassis and a Python serial-tuning GUI: 30 s best lap, 15 of 15 runs.",
+      "url": "https://kilanrou.com/projects/line-follower.html",
+      "image": "https://kilanrou.com/Pics/LineFollower.webp",
+      "dateCreated": "2025-10",
+      "keywords": ["Arduino", "PD control", "line follower", "IR sensors", "finite state machine", "Python GUI", "robotics"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Line Follower Robot | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        /* Additional styles for detail pages */
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content h3 {
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background: var(--color-accent-light);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .video-container {
-            margin: var(--spacing-lg) 0;
-            position: relative;
-            padding-bottom: 56.25%;
-            /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        code {
-            background: var(--color-accent-light);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.95rem;
-        }
-
-        pre {
-            background: var(--color-accent-light);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-            margin: var(--spacing-md) 0;
-        }
-    </style>
-
-    <meta name="description" content="High-speed closed-loop PD control line-following robot with 5-sensor array, custom chassis, and real-time Python parameter tuning GUI.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/line-follower.html">
-    <meta property="og:title" content="Line Follower Robot | Kilan Rougeot">
-    <meta property="og:description" content="High-speed closed-loop PD control line-following robot with 5-sensor array, custom chassis, and real-time Python parameter tuning GUI.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/line-follower.html">
-    <meta property="twitter:title" content="Line Follower Robot | Kilan Rougeot">
-    <meta property="twitter:description" content="High-speed closed-loop PD control line-following robot with 5-sensor array, custom chassis, and real-time Python parameter tuning GUI.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Project Detail -->
-    <section class="detail-hero">
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Line-Following Robot with Closed-Loop Control</h1>
-            <p class="detail-meta">DC Motor Control Project • October 2025 • Principles of Integrated Engineering Class
-            </p>
-        </div>
-    </section>
-
-    <section class="detail-content">
-        <div class="container">
-            <!-- Video Demo -->
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/BfBkejzWG-k?autoplay=1&mute=1"
-                    title="Line Follower Robot Demo" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <span class="eyebrow">DC motor control project</span>
+                    <h1 class="detail-hero__title">Line-Following Robot</h1>
+                    <p class="detail-hero__sub">Closed-loop PD control that laps a taped course in 30 seconds, 15 runs out of 15.</p>
+                    <div class="detail-hero__meta">
+                        <span><time datetime="2025-10">October 2025</time></span>
+                        <span>Principles of Integrated Engineering class</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill">Arduino</span>
+                        <span class="pill">PD control</span>
+                        <span class="pill">IR sensors</span>
+                        <span class="pill">Custom chassis</span>
+                        <span class="pill">Python GUI</span>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <!-- Overview -->
-            <h2>Project Overview</h2>
-            <p>
+        <div class="container detail-lead">
+            <div class="video yt" data-yt="BfBkejzWG-k" data-autoplay data-loop data-title="Line-following robot completing the taped course"></div>
+            <p class="media__caption">The robot running the non-circular loop course.</p>
+        </div>
+
+        <article class="container prose">
+            <p class="lede">
                 This project integrated sensing and control with a two-wheeled robotic platform to autonomously follow a
                 taped track on the floor. The system uses a closed-loop PD controller on an Arduino that can navigate a
                 non-circular loop course. A key requirement was the ability to tune the controller and adjust robot
-                performance in real-time via serial communication, without recompiling code, to achieve the fastest
+                performance in real time over serial communication, without recompiling code, to achieve the fastest
                 possible run times.
             </p>
 
-            <!-- Image 1: Robot Overview -->
-            <div class="detail-image">
-                <img src="line-followerpics/linefollowerassemb.png" alt="Line Follower Robot Assembled"
-                    style="width: 75%; height: 75%; object-fit: contain;">
+            <div class="stats">
+                <div class="stat"><div class="stat__value">30 s</div><div class="stat__label">best lap time</div></div>
+                <div class="stat"><div class="stat__value">15/15</div><div class="stat__label">successful attempts (100%)</div></div>
+                <div class="stat"><div class="stat__value">5</div><div class="stat__label">TCRT5000 IR reflectance sensors</div></div>
+                <div class="stat"><div class="stat__value">10 ms</div><div class="stat__label">control loop time (~100 Hz)</div></div>
             </div>
 
-            <!-- Approach -->
-            <h2>Design Approach</h2>
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="line-followerpics/linefollowerassemb.webp" alt="The assembled line-following robot: an Arduino and motor shield on a breadboard chassis with two yellow wheels and a front caster, wired to five IR sensors" width="512" height="384" decoding="async">
+                </div>
+                <figcaption>The assembled robot with the Arduino, motor shield and solderless breadboard on the custom chassis.</figcaption>
+            </figure>
+
+            <h2>Design approach</h2>
             <p>
-                We designed a custom chassis to precisely control wheel-to-wheel distances, sensor placements and
-                heights, and other design elements that would optimize our code's performance. We implemented a
+                We designed a custom chassis to precisely control wheel-to-wheel distance, sensor placement and height,
+                and other design elements that would optimize our code's performance. We implemented a
                 proportional-derivative (PD) control scheme using five infrared sensors:
             </p>
             <ul>
-                <li><strong>Three center sensors:</strong> Positioned close together for main line following</li>
-                <li><strong>Two outer sensors:</strong> Positioned further out and less far forward for sharp corner
-                    detection</li>
+                <li><strong>Three center sensors:</strong> positioned close together for main line following</li>
+                <li><strong>Two outer sensors:</strong> positioned further out and less far forward for sharp corner detection</li>
             </ul>
             <p>
                 The control algorithm stays centered on the line using the main sensors, only using the far sensors when
@@ -223,16 +121,18 @@
                 corner navigation.
             </p>
 
-            <!-- Image 2: System Architecture -->
-            <div class="detail-image">
-                <img src="line-followerpics/systemdiagram.png" alt="System Architecture Diagram"
-                    style="width: 75%; height: 75%; object-fit: contain;">
+            <div class="wide">
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="line-followerpics/systemdiagram.webp" alt="System architecture diagram: laptop exchanges serial parameters and sensor data with the Arduino Uno and Motor Shield v2.3; a 12 V supply powers the Arduino and motors; five IR reflectance sensors feed analog voltages to the Arduino; PWM drives the DC motors, which move the robot over the tape line" width="1600" height="1228" decoding="async">
+                </div>
+                <figcaption>System architecture: data flow (blue) and power flow (red) between laptop, Arduino, sensors, motors and the environment.</figcaption>
+            </figure>
             </div>
 
-            <!-- Mechanical Design -->
-            <h2>Mechanical Design</h2>
+            <h2>Mechanical design</h2>
 
-            <h3>Chassis Configuration</h3>
+            <h3>Chassis configuration</h3>
             <p>
                 Our mechanical design focused on creating a stable, balanced platform. We positioned the motors and
                 wheels in the back to maximize sensor turning radius and concentrate weight over the drive wheels for
@@ -242,33 +142,46 @@
             <ul>
                 <li>Two driven wheels in the back for propulsion</li>
                 <li>One caster wheel in the front for balance</li>
-                <li>Sloped design to accommodate caster wheel without interference</li>
+                <li>Sloped design to accommodate the caster wheel without interference</li>
                 <li>Adjustable sensor height using caster wheel spacers</li>
             </ul>
 
-            <!-- Image 3: CAD Design -->
-            <div class="detail-image">
-                <img src="line-followerpics/ChassisCAD.png" alt="Chassis CAD Design"
-                    style="width: 75%; height: 75%; object-fit: contain;">
-            </div>
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="line-followerpics/ChassisCAD.webp" alt="CAD render of the blue chassis with four numbered callouts: motor nut clearance hole, Arduino mounting hole, sloped caster wheel cut-out and reinforced motor mounts" width="1600" height="986" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Chassis CAD with the four design features called out.</figcaption>
+            </figure>
 
-            <h4>Chassis Design Features</h4>
-            <ul>
-                <li><strong>Location 1 - Motor Nut Clearance:</strong> Hole to allow spacing for the nut that attaches
-                    to the screw holding the motor</li>
-                <li><strong>Location 2 - Arduino Mounting:</strong> Mounting hole for attaching the Arduino and motor
-                    shield to the chassis using a screw</li>
-                <li><strong>Location 3 - Caster Wheel Slope:</strong> Sloped design to give room for the caster wheel
-                    without hitting the chassis (only needed on the front since the robot moves forward)</li>
-                <li><strong>Location 4 - Reinforced Motor Mounts:</strong> Thick motor mounts chamfered to the base for
-                    additional structural support</li>
-            </ul>
+            <h4>Chassis design features</h4>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature__num">01</div>
+                    <h4>Motor nut clearance</h4>
+                    <p>Hole to allow spacing for the nut that attaches to the screw holding the motor.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">02</div>
+                    <h4>Arduino mounting</h4>
+                    <p>Mounting hole for attaching the Arduino and motor shield to the chassis using a screw.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">03</div>
+                    <h4>Caster wheel slope</h4>
+                    <p>Sloped design to give room for the caster wheel without hitting the chassis (only needed on the front since the robot moves forward).</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">04</div>
+                    <h4>Reinforced motor mounts</h4>
+                    <p>Thick motor mounts chamfered to the base for additional structural support.</p>
+                </div>
+            </div>
             <p>
                 All design choices were based on precise measurements of physical components using a caliper, with
                 appropriate tolerances for assembly.
             </p>
 
-            <h3>Sensor Array Evolution</h3>
+            <h3>Sensor array evolution</h3>
             <p>
                 Initially, we used three sensors positioned close together in the center. However, this design failed at
                 sharp turns greater than 90 degrees because the sensors couldn't see the line during tight corners. To
@@ -276,88 +189,91 @@
                 the center sensors lost contact.
             </p>
             <p>
-                The sensors were positioned with 8mm spacing between the three center sensors - slightly wider than the
+                The sensors were positioned with 8 mm spacing between the three center sensors, slightly wider than the
                 tape. This made programming easier: when perfectly following the line, the middle sensor sees full tape
                 color while the side sensors only partially see the line.
             </p>
 
-            <!-- Image 4: Sensor Mounting -->
-            <div class="detail-image">
-                <img src="line-followerpics/SensorLocationsCAD.png" alt="Sensor Array Configuration"
-                    style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="line-followerpics/SensorLocationsCAD.webp" alt="CAD render of the curved sensor mount with three center sensor slots circled in the middle and one outer sensor slot circled at each end" width="1232" height="515" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Sensor mount: three center slots at 8 mm spacing plus one outer slot on each side, set further back.</figcaption>
+            </figure>
 
-            <!-- Electronics -->
-            <h2>Electronic Design</h2>
+            <h2>Electronic design</h2>
 
-            <h3>Component Specifications</h3>
+            <h3>Component specifications</h3>
             <ul>
-                <li><strong>Infrared Sensors:</strong> TCRT5000 with analog voltage output (0-5V)</li>
-                <li><strong>Motors:</strong> 3-7.2V DC gearmotors, 210 RPM, 48:1 gear ratio, driven at 12V</li>
+                <li><strong>Infrared sensors:</strong> TCRT5000 with analog voltage output (0–5 V)</li>
+                <li><strong>Motors:</strong> 3–7.2 V DC gearmotors, 210 RPM, 48:1 gear ratio, driven at 12 V</li>
                 <li><strong>Microcontroller:</strong> Arduino Uno with ATmega328P</li>
-                <li><strong>Motor Control:</strong> Adafruit Motor Shield v2.3 with PWM speed control</li>
-                <li><strong>Power:</strong> 12V wall adapter split between Arduino and Motor Shield</li>
+                <li><strong>Motor control:</strong> Adafruit Motor Shield v2.3 with PWM speed control</li>
+                <li><strong>Power:</strong> 12 V wall adapter split between Arduino and Motor Shield</li>
             </ul>
 
-            <!-- Image 5: Circuit Diagram -->
-            <div class="detail-image">
-                <img src="line-followerpics/WiringDiagram.png" alt="Wiring Diagram"
-                    style="width: 75%; height: 75%; object-fit: contain;">
-            </div>
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="line-followerpics/WiringDiagram.webp" alt="Wiring schematic: 12 V power supply into the Adafruit Motor Shield driving two TT motors, Arduino Uno pins A0 to A4 reading five IR sensor circuits, each with a 200 Ω LED resistor and 10 kΩ phototransistor pull-up" width="1600" height="1200" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Wiring diagram for the power, motor shield and the five IR sensor circuits.</figcaption>
+            </figure>
 
-            <h3>Sensor Circuit</h3>
-            <p>
-                Each IR reflectance sensor includes:
-            </p>
+            <h3>Sensor circuit</h3>
+            <p>Each IR reflectance sensor includes:</p>
             <ul>
-                <li>IR LED with 200Ω current-limiting resistor (~15mA current)</li>
-                <li>Phototransistor with 10kΩ pull-up resistor</li>
+                <li>IR LED with a 200 Ω current-limiting resistor (~15 mA current)</li>
+                <li>Phototransistor with a 10 kΩ pull-up resistor</li>
                 <li>Analog voltage output proportional to surface reflectivity</li>
             </ul>
 
-            <!-- Control System -->
-            <h2>Control System Design</h2>
+            <h2>Control system design</h2>
 
-            <h3>PD Control Algorithm</h3>
-            <p>
-                We implemented a Finite State Machine (FSM) with two primary states:
-            </p>
-            <ul>
-                <li><strong>PD Control State:</strong> Active when center sensors detect the line</li>
-                <li><strong>Line Search State:</strong> Active when center sensors lose the line, uses outer sensors to
-                    reacquire</li>
-            </ul>
-
-            <p>
-                The PD controller calculates an error signal and applies proportional and derivative corrections:
-            </p>
-            <pre>ERROR = (LEFT_READING - RIGHT_READING)
+            <h3>PD control algorithm</h3>
+            <p>We implemented a finite state machine (FSM) with two primary states:</p>
+            <div class="features">
+                <div class="feature">
+                    <h4>PD control state</h4>
+                    <p>Active when the center sensors detect the line.</p>
+                </div>
+                <div class="feature">
+                    <h4>Line search state</h4>
+                    <p>Active when the center sensors lose the line; uses the outer sensors to reacquire it.</p>
+                </div>
+            </div>
+            <p>The PD controller calculates an error signal and applies proportional and derivative corrections:</p>
+            <div class="code">
+                <div class="code__head"><span>PD controller · pseudocode</span></div>
+                <pre><code>ERROR = (LEFT_READING - RIGHT_READING)
 CORRECTION = Kp * ERROR + Kd * (ERROR - LAST_ERROR)
 LEFT_SPEED = BASE_SPEED + CORRECTION
-RIGHT_SPEED = BASE_SPEED - CORRECTION</pre>
-
-            <h3>Tuned Parameters</h3>
-            <ul>
-                <li><strong>Kp (Proportional Gain):</strong> 10 - provides immediate response to error</li>
-                <li><strong>Kd (Derivative Gain):</strong> 15 - provides damping to reduce oscillation</li>
-                <li><strong>Base Speed:</strong> 50 (0-255 PWM range)</li>
-            </ul>
-
-            <!-- Image 6: GUI Interface -->
-            <div class="detail-image">
-                <img src="line-followerpics/UI.png" alt="Python GUI Interface"
-                    style="width: 75%; height: 75%; object-fit: contain;">
+RIGHT_SPEED = BASE_SPEED - CORRECTION</code></pre>
             </div>
 
-            <!-- Real-Time Tuning -->
-            <h2>Real-Time Parameter Tuning</h2>
+            <h3>Tuned parameters</h3>
+            <div class="table-wrap"><table class="table">
+                <thead><tr><th>Parameter</th><th class="num">Value</th><th>Role</th></tr></thead>
+                <tbody>
+                    <tr><td>Kp (proportional gain)</td><td class="num">10</td><td>Provides immediate response to error</td></tr>
+                    <tr><td>Kd (derivative gain)</td><td class="num">15</td><td>Provides damping to reduce oscillation</td></tr>
+                    <tr><td>Base speed</td><td class="num">50</td><td>On the 0–255 PWM range</td></tr>
+                </tbody>
+            </table></div>
+
+            <h2>Real-time parameter tuning</h2>
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="line-followerpics/UI.webp" alt="Dark-themed Python Robot GUI window with a live plot of five normalized IR sensor readings and sliders for kP, kD, left and right base speed and left and right lost-line speed" width="1600" height="947" loading="lazy" decoding="async">
+                </div>
+                <figcaption>The Python tuning GUI: live sensor plot plus sliders for Kp, Kd and motor speeds.</figcaption>
+            </figure>
             <p>
                 We created a Python GUI with serial communication that enabled runtime parameter adjustment without code
                 recompilation. The interface features:
             </p>
             <ul>
                 <li>Real-time normalized IR sensor readings plotted over time</li>
-                <li>Adjustable sliders for Kp, Kd, and motor speeds</li>
+                <li>Adjustable sliders for Kp, Kd and motor speeds</li>
                 <li>Bidirectional serial protocol for sending commands and receiving sensor data</li>
             </ul>
             <p>
@@ -365,105 +281,89 @@ RIGHT_SPEED = BASE_SPEED - CORRECTION</pre>
                 iteration.
             </p>
 
-            <!-- Image 7: Sensor Data Plot -->
-            <div class="detail-image">
-                <img src="line-followerpics/Graphs.png" alt="Sensor Data and Performance Graphs"
-                    style="width: 75%; height: 75%; object-fit: contain;">
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="line-followerpics/Graphs.webp" alt="Three stacked plots over a 10 second run: left sensor readings, right sensor readings and left and right motor PWM speeds, showing the speeds diverging at each corner" width="1200" height="989" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Logged sensor readings and motor speeds over a 10-second run.</figcaption>
+            </figure>
+
+            <h2>Performance results</h2>
+            <ul>
+                <li><strong>Best lap time:</strong> 30 seconds</li>
+                <li><strong>Success rate:</strong> 15/15 attempts (100%)</li>
+                <li><strong>Sensor calibration:</strong> highly reliable across different surfaces</li>
+                <li><strong>Sharp corner handling:</strong> successfully navigates turns of more than 90°</li>
+            </ul>
+
+            <h2>Challenges overcome</h2>
+
+            <h3>Challenge 1: sharp corners</h3>
+            <p><strong>Problem:</strong> Sharp corners (especially the "armpit") caused the 3-sensor design to lose the line.</p>
+            <p><strong>Solution:</strong> Added 2 outer sensors and implemented an FSM to detect and correct for line loss.</p>
+
+            <h3>Challenge 2: prototype iteration</h3>
+            <p><strong>Problem:</strong> The initial solderable breadboard made component changes difficult.</p>
+            <p><strong>Solution:</strong> Switched to a solderless breadboard for rapid prototyping, then planned a PCB for the final version.</p>
+
+            <h3>Challenge 3: parameter tuning speed</h3>
+            <p><strong>Problem:</strong> Recompiling and re-uploading code for each tuning adjustment was time-consuming.</p>
+            <p><strong>Solution:</strong> Developed a Python GUI with serial communication for real-time parameter adjustment.</p>
+
+            <h2>Key learnings</h2>
+            <div class="features">
+                <div class="feature">
+                    <h4>Calibration is critical</h4>
+                    <p>Thorough sensor calibration resulted in reliable operation.</p>
+                </div>
+                <div class="feature">
+                    <h4>Iterative design</h4>
+                    <p>Rapid chassis iteration enabled optimization of sensor locations.</p>
+                </div>
+                <div class="feature">
+                    <h4>Real-time tools</h4>
+                    <p>The GUI dramatically improved tuning efficiency over code recompilation.</p>
+                </div>
+                <div class="feature">
+                    <h4>State machines</h4>
+                    <p>The FSM approach cleanly separated normal operation from corner handling.</p>
+                </div>
             </div>
 
-            <!-- Results -->
-            <h2>Performance Results</h2>
-            <ul>
-                <li><strong>Best Lap Time:</strong> 30 seconds</li>
-                <li><strong>Success Rate:</strong> 15/15 attempts (100%)</li>
-                <li><strong>Sensor Calibration:</strong> Highly reliable across different surfaces</li>
-                <li><strong>Sharp Corner Handling:</strong> Successfully navigates turns >90 degrees</li>
+            <h2>Technical specifications</h2>
+            <div class="table-wrap"><table class="table">
+                <thead><tr><th>Specification</th><th>Value</th></tr></thead>
+                <tbody>
+                    <tr><td>Dimensions</td><td>5" W × 6.5" L chassis</td></tr>
+                    <tr><td>Sensors</td><td>5× TCRT5000 IR reflectance sensors</td></tr>
+                    <tr><td>Sensor height</td><td>5 mm above ground (optimized via testing)</td></tr>
+                    <tr><td>Sensor spacing</td><td>8 mm between center sensors</td></tr>
+                    <tr><td>Motors</td><td>2× DC gearmotors, 210 RPM, 48:1 ratio</td></tr>
+                    <tr><td>Control frequency</td><td>~100 Hz (10 ms loop time)</td></tr>
+                    <tr><td>Power</td><td>12 V DC supply</td></tr>
+                </tbody>
+            </table></div>
+
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
             </ul>
-
-            <!-- Challenges & Solutions -->
-            <h2>Challenges Overcome</h2>
-
-            <h3>Challenge 1: Sharp Corners</h3>
-            <p>
-                <strong>Problem:</strong> Sharp corners (especially the "armpit") caused the 3-sensor design to lose the
-                line.
-            </p>
-            <p>
-                <strong>Solution:</strong> Added 2 outer sensors and implemented FSM to detect and correct for line
-                loss.
-            </p>
-
-            <h3>Challenge 2: Prototype Iteration</h3>
-            <p>
-                <strong>Problem:</strong> Initial solderable breadboard made component changes difficult.
-            </p>
-            <p>
-                <strong>Solution:</strong> Switched to solderless breadboard for rapid prototyping, then planned PCB for
-                final version.
-            </p>
-
-            <h3>Challenge 3: Parameter Tuning Speed</h3>
-            <p>
-                <strong>Problem:</strong> Recompiling and re-uploading code for each tuning adjustment was
-                time-consuming.
-            </p>
-            <p>
-                <strong>Solution:</strong> Developed Python GUI with serial communication for real-time parameter
-                adjustment.
-            </p>
-
-            <!-- Key Learnings -->
-            <h2>Key Learnings</h2>
-            <ul>
-                <li><strong>Calibration is Critical:</strong> Thorough sensor calibration resulted in reliable operation
-                </li>
-                <li><strong>Iterative Design:</strong> Rapid chassis iteration enabled optimization of sensor locations
-                </li>
-                <li><strong>Real-Time Tools:</strong> GUI dramatically improved tuning efficiency over code
-                    recompilation</li>
-                <li><strong>State Machines:</strong> FSM approach cleanly separated normal operation from corner
-                    handling</li>
-            </ul>
-
-            <!-- Technical Specifications -->
-            <h2>Technical Specifications</h2>
-            <ul>
-                <li><strong>Dimensions:</strong> 5" W × 6.5" L chassis</li>
-                <li><strong>Sensors:</strong> 5× TCRT5000 IR reflectance sensors</li>
-                <li><strong>Sensor Height:</strong> 5mm above ground (optimized via testing)</li>
-                <li><strong>Sensor Spacing:</strong> 8mm between center sensors</li>
-                <li><strong>Motors:</strong> 2× DC gearmotors, 210 RPM, 48:1 ratio</li>
-                <li><strong>Control Frequency:</strong> ~100 Hz (10ms loop time)</li>
-                <li><strong>Power:</strong> 12V DC supply</li>
-            </ul>
-
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=2.0"></script>
 </body>
 
 </html>

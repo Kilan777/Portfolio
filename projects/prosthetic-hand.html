@@ -2,207 +2,296 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>EMG-Controlled Prosthetic Hand | Kilan Rougeot</title>
+    <meta name="description" content="EMG-controlled 3D printed prosthetic hand built for under $50 at Westtown School: one muscle sensor, an Arduino Nano and five servos, powered by two 9V batteries.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/projects/prosthetic-hand.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/prosthetic-hand.html">
+    <meta property="og:title" content="EMG-Controlled Prosthetic Hand | Kilan Rougeot">
+    <meta property="og:description" content="EMG-controlled 3D printed prosthetic hand built for under $50 at Westtown School: one muscle sensor, an Arduino Nano and five servos, powered by two 9V batteries.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "EMG-Controlled 3D Printed Prosthetic Hand",
+      "headline": "EMG-Controlled 3D Printed Prosthetic Hand",
+      "description": "EMG-controlled 3D printed prosthetic hand built for under $50 at Westtown School: one muscle sensor, an Arduino Nano and five servos, powered by two 9V batteries.",
+      "url": "https://kilanrou.com/projects/prosthetic-hand.html",
+      "image": "https://kilanrou.com/Pics/hand.webp",
+      "dateCreated": "2024",
+      "locationCreated": { "@type": "Place", "name": "Philadelphia, PA" },
+      "keywords": ["EMG", "Electromyography", "Prosthetic hand", "3D printing", "Arduino", "Servo motors", "Assistive technology", "Low-cost prosthetics"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMG-Controlled Prosthetic Hand | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        /* Poster width variable - adjust this to change poster size */
-        :root {
-            --poster-max-width: 80vw;
-        }
-
-        /* Additional styles for detail pages */
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: none;
-            /* Allow full width for poster display */
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content h3 {
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .cost-highlight {
-            background: var(--color-accent-light);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--color-accent);
-            margin: var(--spacing-md) 0;
-        }
-
-        .cost-highlight strong {
-            color: var(--color-accent);
-            font-size: 1.5rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        @keyframes growIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .poster-image {
-            animation: growIn 1.2s ease-out forwards;
-            max-width: none !important;
-            /* Override container limits to allow variable control */
-        }
-    </style>
-
-    <meta name="description" content="EMG-controlled 3D printed prosthetic hand using muscle signal amplification and Arduino control for low-cost accessibility.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/prosthetic-hand.html">
-    <meta property="og:title" content="EMG-Controlled Prosthetic Hand | Kilan Rougeot">
-    <meta property="og:description" content="EMG-controlled 3D printed prosthetic hand using muscle signal amplification and Arduino control for low-cost accessibility.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/prosthetic-hand.html">
-    <meta property="twitter:title" content="EMG-Controlled Prosthetic Hand | Kilan Rougeot">
-    <meta property="twitter:description" content="EMG-controlled 3D printed prosthetic hand using muscle signal amplification and Arduino control for low-cost accessibility.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Project Detail -->
-    <section class="detail-hero">
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>EMG-Controlled 3D Printed Prosthetic Hand</h1>
-            <p class="detail-meta">Assistive Technology • 2024 • Philadelphia, PA</p>
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <span class="eyebrow">Assistive Technology · Westtown School</span>
+                    <h1 class="detail-hero__title">EMG-Controlled 3D Printed Prosthetic Hand</h1>
+                    <p class="detail-hero__sub">A prosthetic hand anyone can build, driven by muscle signals, for under $50.</p>
+                    <div class="detail-hero__meta">
+                        <span><time datetime="2024">2024</time></span>
+                        <span>Philadelphia, PA</span>
+                        <span>Computer Science (Adv)</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill">EMG sensing</span>
+                        <span class="pill">Arduino</span>
+                        <span class="pill">3D printing</span>
+                        <span class="pill">Servo control</span>
+                        <span class="pill pill--accent">Under $50</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container detail-lead">
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="Handpics/Hand.webp" alt="Project poster for the 3D printed prosthetic hand: photos of EMG electrodes on a forearm, the Arduino and servo test bench, fingers printing on an Original Prusa i3 MK3, the assembled black hand, the Arduino code, and the wiring diagram" width="1800" height="1350" decoding="async">
+                </div>
+                <figcaption>The project poster: 3D Printed Prosthetic Hand – Innovation for Accessibility (Westtown School, Computer Science Adv). Click to zoom.</figcaption>
+            </figure>
         </div>
-    </section>
 
-    <section class="detail-content">
-        <div class="container">
-            <!-- Project Poster Image -->
-            <div style="margin: var(--spacing-lg) 0; text-align: center;">
-                <img src="Handpics/Hand.png" alt="EMG-Controlled Prosthetic Hand Project Poster" class="poster-image"
-                    style="width: var(--poster-max-width); height: auto; object-fit: contain; border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+        <article class="container prose">
+            <p class="lede">
+                I built a working prototype prosthetic hand controlled by the electrical activity of the user's own muscles,
+                using an EMG sensor, an Arduino and 3D printed parts, for under $50.
+            </p>
+
+            <div class="stats">
+                <div class="stat"><div class="stat__value">&lt;$50</div><div class="stat__label">total cost of the working prototype</div></div>
+                <div class="stat"><div class="stat__value">1</div><div class="stat__label">EMG sensor reads the muscle</div></div>
+                <div class="stat"><div class="stat__value">5</div><div class="stat__label">servos move the fingers</div></div>
+                <div class="stat"><div class="stat__value">2</div><div class="stat__label">reusable 9V batteries make it portable</div></div>
             </div>
 
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
+            <h2>The idea</h2>
+            <p>
+                I wanted to create a simple prosthetic hand that people could recreate themselves for a low cost. Not only
+                would this be an exciting project, but it would also let people build a prosthetic without spending thousands
+                of dollars like traditional prosthetics.
             </p>
+
+            <h2>First steps</h2>
+            <p>
+                To start, I needed to purchase the equipment to make the arm work. Researching DIY prosthetics, I found I
+                needed an EMG (electromyograph) to measure electrical muscle activity. This tells you whether the muscle is
+                being tensioned or not, and based on that the hand's fingers would move.
+            </p>
+            <p>
+                Once I had all the components, I attempted to move a single servo motor using the EMG readings. This proved
+                far more complicated than I had thought: I could not power the EMG, and I did not know how to convert the
+                EMG data into something usable. After more research I decided to power the EMG with two reusable 9V
+                batteries, which I would eventually also use to power the Arduino, letting the device be fully portable.
+                With the 9V batteries the power was finally suitable for the EMG, but I still could not get any data from
+                it. To solve this I downloaded multiple Arduino libraries made for EMG sensors and tuned them to detect the
+                readings from my sensor. After around two weeks of work, I could finally move a servo based on my muscle's
+                electrical signals.
+            </p>
+
+            <h2>Progress</h2>
+            <p>
+                Next, I added more servos, an LED and more EMG sensors to see how many I wanted for the prosthetic hand. I
+                decided to use only one EMG, because each one needs three cables attached to a person's muscle and more
+                would be too much of a hassle. The LED indicates when the sensor is receiving data: green means the motor
+                was turned to 180 degrees, red means it was turned to 10 degrees. The motor angles were based on the EMG
+                readings.
+            </p>
+            <p>
+                Finally, I needed to make the hand. This was also much more complex than I had assumed. I first 3D printed a
+                test finger, which broke immediately. I knew what changes the finger needed but was running out of time to
+                turn in the project, so I decided to find a prosthetic hand design online and modify it to work with my
+                components; my goal would still be accomplished and I wanted a working hand. The first hand I printed was
+                far too complicated and did not work. The second one worked, but I had issues with wrong screw sizes and
+                nowhere to put the motors and electronics. I stuck with this hand and modified it for my use.
+            </p>
+
+            <h2>Result</h2>
+            <div class="callout callout--accent">
+                <p class="callout__title">A working prototype for under 50 dollars</p>
+                <p>
+                    Now that I have achieved this, I want to make the prototype easier to build and print: the current
+                    hand has screws sticking out of it and is not easy to assemble. Once I have the new arm, I want to try
+                    another method of reading muscle activity, so that I no longer need three wires on the user's muscle
+                    and can instead use a wireless device attached to it.
+                </p>
+            </div>
+
+            <h2>Findings and add-ons</h2>
+            <h3>Controlling a computer with the EMG</h3>
+            <p>
+                While using the EMG sensor, I realised I could also use it to control computer actions. This intrigued me,
+                so in parallel with the prosthetic hand I set out to control video games using the EMG sensor and an
+                Arduino.
+            </p>
+
+            <h3>Screen and remote control</h3>
+            <p>
+                I wanted the hand to remain simple but still be usable in a more advanced configuration if the user wants.
+                To do this I added a screen and a remote control. The remote manually adjusts the threshold value of the
+                device and turns the hand on and off; the screen displays the current EMG value compared to the threshold.
+                This makes adjusting the hand possible without changing the code.
+            </p>
+
+            <h3>Self-calibrating threshold</h3>
+            <p>
+                As well as physical add-ons, I wrote different versions of the code. One version records the highest and
+                lowest values read within a 10-second window of the hand being used, adds them together and divides by two,
+                and uses that number as the threshold. The user no longer needs to change the value on the computer between
+                users; the hand finds its own threshold.
+            </p>
+
+            <h2>Code</h2>
+            <p>
+                I made the code as simple as possible so anyone can recreate it and change the values to suit their arm.
+                The EMG value is printed to the Serial Monitor; once the user determines their "maximum" and "minimum"
+                muscle levels, a threshold can be set, giving the Arduino a clear separation between tensioned and not
+                tensioned. More complicated versions of this code exist for more experienced users.
+            </p>
+            <div class="code">
+                <div class="code__head"><span>Arduino · prosthetic hand</span></div>
+<pre><code>#include &lt;Servo.h>
+//The threshold is used to check the reading of the EMG and decide if it counts as muscle flexed or not
+#define THRESHOLD 500
+#define EMG_PIN 1
+
+//Declares all servos
+Servo servo1;
+Servo servo2;
+Servo servo3;
+Servo servo4;
+Servo servo5;
+
+//Gives all servos and LEDs their pins on the arduino
+int redPin= 7;
+int greenPin = 8;
+int bluePin = 9;
+int servoPin1 = 2;
+int servoPin2 = 3;
+int servoPin3 = 4;
+int servoPin4 = 5;
+int servoPin5 = 6;
+
+void setup() {
+//Tells the arduino what type of pins they each are and what they are attached to
+  Serial.begin(115200);
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+  servo1.attach(servoPin1);
+  servo2.attach(servoPin2);
+  servo3.attach(servoPin3);
+  servo4.attach(servoPin4);
+  servo5.attach(servoPin5);
+}
+
+void loop() {
+ //If the sensor is MORE than the THRESHOLD, the servo motor will turn to 180 degrees
+  int value = analogRead(EMG_PIN);
+  if(value > THRESHOLD){
+    servo1.write(1);
+    servo2.write(1);
+    servo3.write(1);
+    servo4.write(1);
+    servo5.write(1);
+    setColor(0, 255, 0); // Green Color
+    delay(500);
+  }
+
+ //If the sensor is LESS than the THRESHOLD, the servo motor will turn to 10 degrees
+ if(value &lt; THRESHOLD){
+    servo1.write(90);
+    servo2.write(90);
+    servo3.write(90);
+    servo4.write(90);
+    servo5.write(90);
+    setColor(255, 0, 0); // Red Color
+    delay(500);
+  }
+
+  //Shows the values read by the EMG, to make it easier to find the threshold
+  Serial.println(value);
+}
+
+void setColor(int redValue, int greenValue, int blueValue) {
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin, greenValue);
+  analogWrite(bluePin, blueValue);
+}</code></pre>
+            </div>
+
+            <h2>Wiring</h2>
+            <p>
+                The wiring diagram on the poster shows how the electronics are connected, all relating back to the central
+                processing unit, an Arduino Nano (ATmega328P): the EMG sensor on an analog input, five servos on digital
+                pins 2–6, an RGB LED through 300 Ω resistors on pins 7–9, and two 9V batteries for power.
+            </p>
+
+            <h2>References</h2>
+            <ol>
+                <li>Agnihotri, Nikhil. "Designing an Arduino-Based EMG Monitor." <em>Engineers Garage</em>, <a href="https://www.engineersgarage.com/arduino-based-emg-monitor-ad8226/" target="_blank" rel="noopener">engineersgarage.com/arduino-based-emg-monitor-ad8226</a>. Chowdhury, Rubana H, et al. "Surface Electromyography Signal Processing and Classification Techniques." <em>Sensors (Basel, Switzerland)</em>, U.S. National Library of Medicine, 17 Sept. 2013, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3821366/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/pmc/articles/PMC3821366</a>.</li>
+                <li>Dunai, Larisa, et al. "Human Hand Anatomy-Based Prosthetic Hand." <em>Sensors (Basel, Switzerland)</em>, U.S. National Library of Medicine, 28 Dec. 2020, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7795667/" target="_blank" rel="noopener">ncbi.nlm.nih.gov/pmc/articles/PMC7795667</a>.</li>
+                <li><em>Low Cost Robotic Hand That Senses Heat and Pressure</em>. <a href="https://personal.utdallas.edu/~yonas.tadesse/data/ASEE_David.pdf" target="_blank" rel="noopener">personal.utdallas.edu/<wbr>~yonas.tadesse/<wbr>data/<wbr>ASEE_David.pdf</a>.</li>
+                <li>Saraf, Veena, and Humera Tabassum. "A Low Cost Prosthetic Hand Using Arduino and Servo Motors." <em>International Journal of Engineering Research &amp; Technology</em>, IJERT, 7 Aug. 2020, <a href="https://www.ijert.org/a-low-cost-prosthetic-hand-using-arduino-and-servo-motors" target="_blank" rel="noopener">ijert.org/a-low-cost-prosthetic-hand-using-arduino-and-servo-motors</a>.</li>
+                <li><em>YouTube</em>, 21 Mar. 2018, <a href="https://www.youtube.com/watch?v=D-6GDlvAMCI" target="_blank" rel="noopener">youtube.com/watch?v=D-6GDlvAMCI</a>. Accessed 25 Mar. 2023.</li>
+            </ol>
+
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=2.0"></script>
 </body>
 
 </html>

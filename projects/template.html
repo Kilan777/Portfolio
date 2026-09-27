@@ -1,195 +1,249 @@
 <!DOCTYPE html>
+<!--
+    PROJECT PAGE TEMPLATE
+    =====================
+    Copy this file to projects/my-project.html and replace every ALL-CAPS
+    PLACEHOLDER. Everything is styled by ../styles.css and wired by
+    ../script.js (nav, scroll reveal, lightbox, YouTube facade, tabs), so a
+    page should not need its own style or script block.
+
+    Component catalogue used below (delete any block you do not need):
+      .detail-hero   title, eyebrow, meta line, pills
+      .detail-lead   one showpiece image or video directly under the hero
+      .prose         the article column: .lede, h2/h3, p, ul
+      .media         single image with caption
+      .media-row     2 / 3 / 4 images side by side (media-row--3, media-row--4)
+      .features      grid of titled tiles (skills, components, decisions)
+      .stats         big numbers
+      .video.yt      lazy YouTube embed
+      .callout       note / status box (callout--accent for emphasis)
+      .footer-nav    closing links, always last inside the article
+
+    Images: keep placeholders pointing at ../Pics/webicon.png until you have
+    real files. Do NOT add width/height/loading attributes; an automated pass
+    adds them and converts images to WebP.
+-->
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- Browser tab + search result title. Keep the "| Kilan Rougeot" suffix. -->
+    <title>PROJECT TITLE | Kilan Rougeot</title>
+    <!-- 150–160 characters. Say what was built, where, and the key result. -->
+    <meta name="description" content="PROJECT DESCRIPTION: WHAT WAS BUILT, WHERE, AND THE KEY RESULT, IN 150–160 CHARACTERS.">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Canonical URL = this file's public address. Change the filename. -->
+    <link rel="canonical" href="https://kilanrou.com/projects/FILENAME.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <!-- Social sharing card. Title and description should match the ones above. -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/FILENAME.html">
+    <meta property="og:title" content="PROJECT TITLE | Kilan Rougeot">
+    <meta property="og:description" content="PROJECT DESCRIPTION: WHAT WAS BUILT, WHERE, AND THE KEY RESULT, IN 150–160 CHARACTERS.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Structured data for search engines. Fill in every PLACEHOLDER; dates are YYYY or YYYY-MM;
+         "image" should be the card image for this project in /Pics. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "PROJECT TITLE",
+      "headline": "PROJECT TITLE",
+      "description": "PROJECT DESCRIPTION: SAME TEXT AS THE META DESCRIPTION.",
+      "url": "https://kilanrou.com/projects/FILENAME.html",
+      "image": "https://kilanrou.com/Pics/CARD-IMAGE.png",
+      "dateCreated": "YYYY-MM",
+      "keywords": ["KEYWORD 1", "KEYWORD 2", "KEYWORD 3"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        /* Additional styles for detail pages */
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
-
-    <meta name="description" content="Project details and engineering engineering drawings for Kilan Rougeot.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/template.html">
-    <meta property="og:title" content="Project Name | Kilan Rougeot">
-    <meta property="og:description" content="Project details and engineering engineering drawings for Kilan Rougeot.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/template.html">
-    <meta property="twitter:title" content="Project Name | Kilan Rougeot">
-    <meta property="twitter:description" content="Project details and engineering engineering drawings for Kilan Rougeot.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">Kilan Rougeot</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <!-- Site navigation: identical on every page, do not edit. -->
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Project Detail -->
-    <section class="detail-hero">
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Project Name</h1>
-            <p class="detail-meta">Category • Date • Location</p>
+    <main>
+        <!-- HERO: back link, eyebrow (category), the single h1, a one-line hook, meta facts, tags. -->
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <!-- Category or role, e.g. "Personal project", "Final project · Olin College" -->
+                    <span class="eyebrow">CATEGORY OR ROLE</span>
+                    <h1 class="detail-hero__title">PROJECT TITLE</h1>
+                    <!-- Optional one-sentence hook, 90 characters or fewer. Delete if not needed. -->
+                    <p class="detail-hero__sub">ONE-SENTENCE HOOK, 90 CHARACTERS OR FEWER.</p>
+                    <!-- Meta line: when, where, for what. Use <time datetime="YYYY-MM"> for dates. -->
+                    <div class="detail-hero__meta">
+                        <span><time datetime="YYYY-MM">SEASON YEAR</time></span>
+                        <span>LOCATION</span>
+                        <span>TEAM OR COURSE</span>
+                    </div>
+                    <!-- 3–6 tags. pill--accent for awards/patents, pill--success pill--live for "Ongoing". -->
+                    <div class="pills">
+                        <span class="pill">SKILL 1</span>
+                        <span class="pill">SKILL 2</span>
+                        <span class="pill">SKILL 3</span>
+                        <span class="pill pill--accent">AWARD OR HIGHLIGHT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEAD MEDIA: the single best image (or replace the figure with a <div class="video yt" …>).
+             Add media__frame--contain for renders / cut-outs on white; omit it for photos. Delete this block if you have none. -->
+        <div class="container detail-lead">
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" decoding="async">
+                </div>
+                <figcaption>CAPTION FOR THE LEAD IMAGE.</figcaption>
+            </figure>
         </div>
-    </section>
 
-    <section class="detail-content">
-        <div class="container">
-            <!-- Main project image -->
-            <div class="detail-image">
-                <div class="image-placeholder">Main Project Image</div>
+        <!-- ARTICLE: all the text lives here in semantic HTML (one h1 above, h2 sections, h3 subsections). -->
+        <article class="container prose">
+            <!-- 1–2 sentence summary in bigger type. -->
+            <p class="lede">
+                LEDE: ONE OR TWO SENTENCES THAT SUMMARISE THE PROJECT AND WHY IT MATTERS.
+            </p>
+
+            <!-- STATS: 2–4 big numbers. Delete if the project has no headline numbers. -->
+            <div class="stats">
+                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
+                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
+                <div class="stat"><div class="stat__value">NUMBER</div><div class="stat__label">WHAT IT MEASURES</div></div>
             </div>
 
-            <!-- Overview -->
             <h2>Overview</h2>
             <p>
-                Describe the project overview here. What problem were you solving?
-                What was the goal? What made this project interesting or challenging?
+                WHAT PROBLEM WERE YOU SOLVING? WHAT WAS THE GOAL? WHAT MADE THIS PROJECT INTERESTING OR CHALLENGING?
             </p>
 
-            <!-- Technical Details -->
-            <h2>Technical Details</h2>
+            <!-- SINGLE IMAGE: add class "wide" to the figure for one full-width showpiece per page. -->
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" decoding="async">
+                </div>
+                <figcaption>CAPTION.</figcaption>
+            </figure>
+
+            <h2>Technical details</h2>
             <p>
-                Explain the technical implementation. What tools, technologies, or
-                methods did you use? What were the key technical challenges?
+                HOW WAS IT BUILT? WHAT TOOLS, TECHNOLOGIES OR METHODS DID YOU USE? WHAT WERE THE KEY TECHNICAL CHALLENGES?
             </p>
 
+            <h3>Subsection</h3>
+            <!-- Bulleted facts: bold label, then text. -->
             <ul>
-                <li>Technology/tool 1</li>
-                <li>Technology/tool 2</li>
-                <li>Technology/tool 3</li>
+                <li><strong>LABEL:</strong> DETAIL 1</li>
+                <li><strong>LABEL:</strong> DETAIL 2</li>
+                <li><strong>LABEL:</strong> DETAIL 3</li>
             </ul>
 
-            <!-- Additional image -->
-            <div class="detail-image">
-                <div class="image-placeholder">Detail Image</div>
+            <!-- IMAGE ROW: 2-up (add media-row--3 or media-row--4 for more). Rows crop to 4:3;
+                 add media__frame--contain on a frame to letterbox instead of crop. -->
+            <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>CAPTION 1.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="../Pics/webicon.png" alt="DESCRIBE WHAT IS IN THE PICTURE" width="99" height="96" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>CAPTION 2.</figcaption>
+                </figure>
             </div>
 
-            <!-- Results -->
-            <h2>Results & Impact</h2>
+            <!-- YOUTUBE: replace VIDEO_ID with the 11-character id from the YouTube URL. Click-to-play by default;
+                 add data-autoplay data-loop for a muted ambient clip. Optional data-start="30". -->
+            <div class="video yt" data-yt="VIDEO_ID" data-title="WHAT THE VIDEO SHOWS"></div>
+            <p class="media__caption">VIDEO CAPTION.</p>
+
+            <!-- FEATURE GRID: skills, components, decisions or awards. Use features--3 for three columns. -->
+            <h2>Key components</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature__num">01</div>
+                    <h4>FEATURE TITLE</h4>
+                    <p>ONE OR TWO SENTENCES.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">02</div>
+                    <h4>FEATURE TITLE</h4>
+                    <p>ONE OR TWO SENTENCES.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">03</div>
+                    <h4>FEATURE TITLE</h4>
+                    <p>ONE OR TWO SENTENCES.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">04</div>
+                    <h4>FEATURE TITLE</h4>
+                    <p>ONE OR TWO SENTENCES.</p>
+                </div>
+            </div>
+
+            <h2>Results &amp; impact</h2>
             <p>
-                What were the outcomes? Did you meet your goals? What did you learn?
-                What impact did this project have?
+                WHAT WERE THE OUTCOMES? DID YOU MEET YOUR GOALS? WHAT DID YOU LEARN? WHAT IMPACT DID THIS PROJECT HAVE?
             </p>
 
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
-        </div>
-    </section>
+            <!-- CALLOUT: a note, status or disclaimer. Add callout--accent for a blue tint. -->
+            <div class="callout">
+                <p class="callout__title">CALLOUT TITLE</p>
+                <p>CALLOUT TEXT, E.G. PROJECT STATUS, NDA NOTE OR A CREDIT.</p>
+            </div>
 
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
+            <!-- FOOTER NAV: always the last thing inside the article. -->
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Site footer: identical on every page, do not edit. -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=2.0"></script>
 </body>
+
 </html>

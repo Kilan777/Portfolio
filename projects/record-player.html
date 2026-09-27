@@ -2,176 +2,98 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CNC Record Player | Kilan Rougeot</title>
+    <meta name="description" content="Ongoing build of a custom record player CNC-machined from a solid aluminum billet, with in-house manufactured components and a high-accuracy tonearm design.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/projects/record-player.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/record-player.html">
+    <meta property="og:title" content="CNC Record Player | Kilan Rougeot">
+    <meta property="og:description" content="Ongoing build of a custom record player CNC-machined from a solid aluminum billet, with in-house manufactured components and a high-accuracy tonearm design.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "CNC Record Player",
+      "headline": "CNC Record Player",
+      "description": "Ongoing build of a custom record player CNC-machined from a solid aluminum billet, with in-house manufactured components and a high-accuracy tonearm design.",
+      "url": "https://kilanrou.com/projects/record-player.html",
+      "image": "https://kilanrou.com/Pics/og.jpg",
+      "creativeWorkStatus": "Incomplete",
+      "keywords": ["CNC machining", "Record player", "Turntable", "Aluminum billet", "Tonearm", "Precision machining"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNC Record Player | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        /* Additional styles for detail pages */
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background: var(--color-accent-light);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .ongoing-badge {
-            display: inline-block;
-            background: var(--color-accent);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-left: 1rem;
-        }
-    </style>
-
-    <meta name="description" content="CNC precision-machined custom record player milled from solid aluminum billet, utilizing high-accuracy tonearm design.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/record-player.html">
-    <meta property="og:title" content="CNC Record Player | Kilan Rougeot">
-    <meta property="og:description" content="CNC precision-machined custom record player milled from solid aluminum billet, utilizing high-accuracy tonearm design.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/record-player.html">
-    <meta property="twitter:title" content="CNC Record Player | Kilan Rougeot">
-    <meta property="twitter:description" content="CNC precision-machined custom record player milled from solid aluminum billet, utilizing high-accuracy tonearm design.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Project Detail -->
-    <section class="detail-hero">
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>CNC Record Player <span class="ongoing-badge">Ongoing Project</span></h1>
-            <p class="detail-meta">Precision Machining • [Add year/timeframe]</p>
-        </div>
-    </section>
-
-    <section class="detail-content">
-        <div class="container">
-            <!-- Main project image -->
-            <div class="detail-image">
-                [Add main record player image here - 1200x600px recommended]
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <span class="eyebrow">Precision Machining</span>
+                    <h1 class="detail-hero__title">CNC Record Player</h1>
+                    <p class="detail-hero__sub">A turntable milled from a single block of aluminum.</p>
+                    <div class="detail-hero__meta">
+                        <span>[Add year/timeframe]</span>
+                        <span>Personal project</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill pill--success pill--live">Ongoing</span>
+                        <span class="pill">CNC machining</span>
+                        <span class="pill">Aluminum billet</span>
+                        <span class="pill">Tonearm design</span>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <!-- Overview -->
-            <h2>Overview</h2>
-            <p>
-                Custom record player machined from solid aluminum block. This project showcases precision
-                CNC machining with in-house manufactured components.
+        <!-- TODO: add image (main record player image, lead media under the hero) -->
+
+        <article class="container prose">
+            <p class="lede">
+                A custom record player machined from a solid aluminum block, showcasing precision CNC machining with
+                in-house manufactured components and a high-accuracy tonearm design.
             </p>
+
+            <h2>Overview</h2>
             <p>
                 [Add more details about project goals, inspiration, design philosophy]
             </p>
 
-            <!-- Image 2 -->
-            <div class="detail-image">
-                [Add CAD design or technical drawing image]
-            </div>
+            <!-- TODO: add image (CAD design or technical drawing) -->
 
-            <!-- Design -->
-            <h2>Design Process</h2>
+            <h2>Design process</h2>
             <p>
-                [Describe the design process - CAD modeling, material selection, design decisions]
+                [Describe the design process – CAD modeling, material selection, design decisions]
             </p>
             <ul>
                 <li>[Design element 1]</li>
@@ -179,32 +101,24 @@
                 <li>[Design element 3]</li>
             </ul>
 
-            <!-- Image 3 -->
-            <div class="detail-image">
-                [Add CNC machining process image]
-            </div>
+            <!-- TODO: add image (CNC machining process) -->
 
-            <!-- Manufacturing -->
-            <h2>CNC Machining Process</h2>
+            <h2>CNC machining process</h2>
             <p>
-                [Describe the CNC machining process - toolpaths, operations, challenges]
+                [Describe the CNC machining process – toolpaths, operations, challenges]
             </p>
             <ul>
-                <li>Solid aluminum block stock</li>
+                <li><strong>Stock:</strong> solid aluminum block</li>
                 <li>[Machining operation 1]</li>
                 <li>[Machining operation 2]</li>
                 <li>[Finishing processes]</li>
             </ul>
 
-            <!-- Image 4 -->
-            <div class="detail-image">
-                [Add detail image of machined components]
-            </div>
+            <!-- TODO: add image (detail of machined components) -->
 
-            <!-- Components -->
-            <h2>Components & Assembly</h2>
+            <h2>Components &amp; assembly</h2>
             <p>
-                [Describe key components - platter, tonearm, motor, electronics]
+                [Describe key components – platter, tonearm, motor, electronics]
             </p>
             <ul>
                 <li>[Component 1]</li>
@@ -212,16 +126,13 @@
                 <li>[Component 3]</li>
             </ul>
 
-            <!-- Image 5 -->
-            <div class="detail-image">
-                [Add assembly or current progress image]
-            </div>
+            <!-- TODO: add image (assembly or current progress) -->
 
-            <!-- Status -->
-            <h2>Current Status & Next Steps</h2>
-            <p>
-                [Describe current state of the project and what's left to complete]
-            </p>
+            <h2>Current status &amp; next steps</h2>
+            <div class="callout">
+                <p class="callout__title">Ongoing project</p>
+                <p>[Describe current state of the project and what's left to complete]</p>
+            </div>
             <ul>
                 <li>[Completed milestone 1]</li>
                 <li>[Completed milestone 2]</li>
@@ -229,38 +140,28 @@
                 <li>[Next step 2]</li>
             </ul>
 
-            <!-- Image 6 -->
-            <div class="detail-image">
-                [Add final/current state image]
+            <!-- TODO: add image (final / current state) -->
+
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
             </div>
+        </article>
+    </main>
 
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=2.0"></script>
 </body>
 
 </html>

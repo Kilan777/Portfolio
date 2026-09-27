@@ -1,59 +1,50 @@
-# Kilan Rougeot - Portfolio Website
+# kilanrou.com
 
-Clean, modern portfolio website built with HTML, CSS, and JavaScript.
+Personal engineering portfolio of Kilan Rougeot. Plain HTML/CSS/JS, no build step, hosted on GitHub Pages (custom domain in `CNAME`).
 
-## Color Palette - Slate Blue Theme
-
-- **Background**: `#FAFAF9` (Warm off-white)
-- **Text Primary**: `#1A1A1A` (Almost black)
-- **Text Secondary**: `#666666` (Medium gray)
-- **Accent**: `#334155` (Slate blue)
-- **Accent Light**: `#E2E8F0` (Pale slate)
-- **Border/Lines**: `#E5E5E5` (Light gray)
-
-## Structure
+## Layout
 
 ```
-Portfolio/
-├── index.html              # Main homepage
-├── styles.css              # All styling
-├── script.js               # JavaScript interactions
-├── assets/
-│   └── images/
-│       ├── hero/           # Hero section images
-│       ├── projects/       # Project images
-│       └── experience/     # Experience images
-├── projects/               # Individual project pages
-└── experience/             # Individual experience pages
+index.html            home: hero, experience, teams, projects
+contact.html          contact form (Formspree) + details
+404.html              custom not-found page
+feed.html             legacy redirect → projects/munchkin.html
+styles.css            THE design system: every page uses only this file
+script.js             shared behaviour: nav, reveal-on-scroll, lightbox, lazy YouTube, tabs
+experience/*.html     work experience and team pages
+projects/*.html       project pages
+experience/template.html, projects/template.html   copy one of these to start a new page
+Pics/                 card images, logos, headshot, og.jpg (social preview)
+Files/ResumeKilan.pdf
+robots.txt, sitemap.xml, llms.txt   search-engine and AI-crawler files
 ```
 
-## Adding Images
+## Adding a page
 
-1. **Hero Image**: Add to `assets/images/hero/` and update the `.hero-image` div in `index.html`
-2. **Project Images**: Add to `assets/images/projects/` and update respective `.card-image` divs
-3. **Experience Images**: Add to `assets/images/experience/` and update respective `.card-image` divs
+1. Copy `projects/template.html` (or `experience/template.html`) to a new file and follow the comments inside. Keep to the components already in `styles.css` (`.media`, `.media-row`, `.features`, `.stats`, `.video.yt`, `.callout`, `.table`, `.tabs` …). Don't add page-level `<style>` blocks or inline styles.
+2. Put images in a folder next to the page (e.g. `projects/foo-pics/`). Any size is fine; then run the optimizer (below) which converts them to WebP, resizes, and adds `width/height/loading` attributes.
+3. Add a tile to `index.html` (copy an existing `<a class="tile">`), a `<url>` to `sitemap.xml`, and a line to `llms.txt`.
+4. Fill in `<title>`, `<meta name="description">`, `<link rel="canonical">` and the JSON-LD block. These are what Google and AI crawlers read.
 
-## Creating Individual Project/Experience Pages
+## Image optimizer
 
-Create new HTML files in `projects/` or `experience/` folders following this template structure. Each page should link back to the main portfolio.
+Images referenced from HTML are stored as WebP (max 1600 px wide for content, 900 px for cards, 400 px for logos). GIFs become muted looping MP4s. To process new images, run from the repo root:
 
-## Customization
+```
+python3 tools/optimize_media.py        # needs Pillow; ffmpeg only for GIFs
+```
 
-- **Colors**: Edit CSS variables in `:root` section of `styles.css`
-- **Content**: Update text directly in `index.html`
-- **Layout**: Modify grid settings in `styles.css`
+It rewrites the `src` references for you and deletes the originals from the working tree (they stay in git history).
 
-## To Do
+## Design rules (Apple-style)
 
-- [ ] Add your hero image
-- [ ] Add project images
-- [ ] Add experience images
-- [ ] Create individual project detail pages
-- [ ] Create individual experience detail pages
-- [ ] Add your resume PDF
-- [ ] Replace placeholder content with actual descriptions
-- [ ] Test on different browsers and devices
+- One accent colour (`--accent`), near-black text, white pages, `#f5f5f7` tiles, 18 px radius.
+- System font stack, tight letter-spacing on headings, generous whitespace.
+- Motion is subtle: fade/rise on scroll, tile lift on hover, `prefers-reduced-motion` respected.
+- Everything must work at 390 px wide with no horizontal scroll.
 
-## Browser Support
+## Third-party services
 
-Works on all modern browsers (Chrome, Firefox, Safari, Edge)
+- Contact form: Formspree endpoint in `contact.html` (`action="https://formspree.io/f/…"`).
+- Analytics: Google Analytics 4 tag (`G-KL9QFYJ377`) in every page head.
+- YouTube embeds load only on click or when scrolled into view (`.video.yt`), via youtube-nocookie.com.

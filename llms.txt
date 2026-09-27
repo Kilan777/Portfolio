@@ -1,0 +1,34 @@
+# Kilan Rougeot
+
+> Engineering portfolio of Kilan Rougeot: mechanical engineering student at Olin College of Engineering (mechatronics and robotics), founding engineer at YC-backed AutoPallet Robotics, former automation intern at Kia (Hyundai Motor Group). Co-author of a filed utility patent for agricultural drone soil sampling. Trilingual.
+
+Contact: kilanrou@gmail.com · https://kilanrou.com/contact.html · Resume: https://kilanrou.com/Files/ResumeKilan.pdf
+
+Every page is plain semantic HTML with schema.org JSON-LD in the head. The `.prose` article on each page holds the full write-up.
+
+## Work experience
+
+- [AutoPallet Robotics](https://kilanrou.com/#experience): Founding Engineer (ongoing). YC-backed warehouse automation; mechanical design and mechatronic prototyping.
+- [Kia (Hyundai Motor Group)](https://kilanrou.com/experience/kia.html): Engineering Intern, Summer 2025, Žilina, Slovakia. Led an automated robotic wheel-loading cell; PLC, robotic arm, Keyence vision and safety work across Press, Body, Paint, Assembly and Engine departments.
+- [AT Dev Inc](https://kilanrou.com/experience/at-dev.html): Robotics Engineering Intern. Assistive technology; leg brace with a novel fastening system, CNC and lathe work, FDA compliance.
+- [Astara](https://kilanrou.com/experience/astara.html): Data & Computer Science Intern. Python automation and scraping; 90%+ reduction in weekly reporting time.
+
+## Project teams
+
+- [HydroFleet, Farm Robotics Challenge](https://kilanrou.com/experience/farm-robotics.html): Autonomous soil-moisture-mapping drone swarm with MIT. Designed the auger soil-sampling module. Excellence in Drone Applications award; utility patent filed 2026.
+- [FIRST Robotics Competition, Team 1391](https://kilanrou.com/experience/frc.html): Team Captain, Lead Builder and Operator, 2022–2024. Three World Championship appearances, top 3% globally.
+- [Baja SAE](https://kilanrou.com/experience/baja.html): Chassis Lead. Frame design, ANSYS FEA, welding jigs, BOM management.
+
+## Projects
+
+- [Munchkin robotic assistive feeding device](https://kilanrou.com/projects/munchkin.html): 4-DOF arm, real-time face tracking, automatic utensil changer. Olin final project, Fall 2024; SAG and SEED grants; Munchkin LLC.
+- [Motorized beach wheelchair](https://kilanrou.com/projects/beach-wheelchair.html): Waterproof electric wheelchair for sand, under $1,500.
+- [DIY 3D scanner](https://kilanrou.com/projects/3d-scanner.html): Arduino pan-tilt IR scanner with Python point-cloud processing.
+- [Line follower robot](https://kilanrou.com/projects/line-follower.html): PD control with live tuning GUI; 100% success rate, 30-second laps.
+- [EMG prosthetic hand](https://kilanrou.com/projects/prosthetic-hand.html): 3D-printed, muscle-signal controlled, under $50.
+- [Spring Cliches kinetic sculpture](https://kilanrou.com/projects/laser-cut-mechanics.html): Five laser-cut mechanisms on one belt drive with cams and linkages.
+- [Barn in a Box](https://kilanrou.com/projects/farm-house.html): Laser-cut plywood barn from a single sheet; five joint types, four fastening methods.
+
+## Optional
+
+- [Sitemap](https://kilanrou.com/sitemap.xml)

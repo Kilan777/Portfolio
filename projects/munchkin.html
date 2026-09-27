@@ -2,1282 +2,295 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Munchkin - Assistive Feeding Device | Kilan Rougeot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Munchkin – Robotic Assistive Feeding Device | Kilan Rougeot</title>
+    <meta name="description" content="Munchkin: an affordable, open-source robotic feeding device from Olin College with MediaPipe mouth tracking, a 4-DOF arm and an automatic utensil changer.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/projects/munchkin.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
 
-    <!-- Dark mode favicon -->
-    <link rel="icon" type="image/svg+xml" href="munchkin/assets/favidark.svg" media="(prefers-color-scheme: light)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/munchkin.html">
+    <meta property="og:title" content="Munchkin – Robotic Assistive Feeding Device | Kilan Rougeot">
+    <meta property="og:description" content="Munchkin: an affordable, open-source robotic feeding device from Olin College with MediaPipe mouth tracking, a 4-DOF arm and an automatic utensil changer.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Light mode favicon -->
-    <link rel="icon" type="image/svg+xml" href="munchkin/assets/favilight.svg" media="(prefers-color-scheme: dark)">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Munchkin – Robotic Assistive Feeding Device",
+      "headline": "Munchkin – Robotic Assistive Feeding Device",
+      "description": "Munchkin: an affordable, open-source robotic feeding device from Olin College with MediaPipe mouth tracking, a 4-DOF arm and an automatic utensil changer.",
+      "url": "https://kilanrou.com/projects/munchkin.html",
+      "image": "https://kilanrou.com/Pics/Munchkin.webp",
+      "dateCreated": "2024-12",
+      "keywords": ["assistive technology", "robotic arm", "computer vision", "MediaPipe", "Raspberry Pi", "inverse kinematics", "Olin College"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
 
-    <link rel="stylesheet" href="munchkin/assets/styles.css">
-
-
-
-    <meta name="description" content="Affordable assistive feeding device combining OpenCV computer vision mouth-tracking, 4-DOF robotic control, and automatic utensil swappers.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/munchkin.html">
-    <meta property="og:title" content="Munchkin - Assistive Feeding Device | Kilan Rougeot">
-    <meta property="og:description" content="Affordable assistive feeding device combining OpenCV computer vision mouth-tracking, 4-DOF robotic control, and automatic utensil swappers.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/munchkin.html">
-    <meta property="twitter:title" content="Munchkin - Assistive Feeding Device | Kilan Rougeot">
-    <meta property="twitter:description" content="Affordable assistive feeding device combining OpenCV computer vision mouth-tracking, 4-DOF robotic control, and automatic utensil swappers.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-</head>
-
-<body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Section 1: Hero -->
-    <section class="hero" id="home">
-        <!-- Background video removed for clean layout and performance -->
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <div class="hero-badges">
-                <span class="hero-badge">Final Project · Olin College · Fall 2024</span>
-                <span class="hero-badge hero-badge-grant">SAG Grant Recipient</span>
-                <span class="hero-badge hero-badge-grant">SEED Grant Recipient</span>
-                <span class="hero-badge">Munchkin LLC · Massachusetts</span>
-            </div>
-            <h1 class="hero-title">Robotic Assistive Feeding Device</h1>
-            <p class="hero-meta">Real-time face tracking · Automatic utensil changing · 4-DOF robotic arm · Olin College</p>
-        </div>
-    </section>
-
-    <!-- Section 3: Demo -->
-    
-
+    <!-- Page-scoped styles: only for the two interactive widgets (inverse-kinematics canvas, webcam
+         mouth-tracking demo), the portrait V3 clip, the feature-01 split and the inline architecture SVG.
+         Everything else is the shared design system. Tokens only. -->
     <style>
-        /* Demo Video */
-        .demo-media {
-            margin: 0 0 2rem 0;
-            width: 100%;
-            max-width: 100%;
-        }
+        .widget { background: var(--tile); border-radius: var(--radius); padding: 20px; margin: 32px 0; }
+        .widget__note { margin-top: 12px; font-size: 14px; color: var(--text-3); text-align: center; text-wrap: pretty; }
 
-        .video-wrapper {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(51, 65, 85, 0.3);
-            aspect-ratio: 16/9;
-            width: 100%;
-        }
+        .ik canvas { width: 100%; height: auto; background: #fff; border-radius: var(--radius-sm); cursor: crosshair; touch-action: none; }
+        .ik__readout { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+        .ik__cell { background: #fff; border-radius: var(--radius-xs); padding: 10px 8px; text-align: center; }
+        .ik__cell span { display: block; font-size: 12px; font-weight: 500; color: var(--text-3); margin-bottom: 2px; }
+        .ik__cell output { display: block; font-size: 16px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
 
-        .demo-video {
-            width: 100% !important;
-            height: 100% !important;
-            aspect-ratio: 16/9 !important;
-        }
+        .cam__intro { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 32px 8px; text-align: center; }
+        .cam__intro p { margin: 0; }
+        .cam__intro .btn { margin-top: 8px; }
+        .cam__stage { position: relative; display: none; border-radius: var(--radius-sm); overflow: hidden; background: #000; }
+        .cam__stage video { width: 100%; height: auto; display: block; }
+        .cam__stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+        .cam__stop { display: none; margin: 12px auto 0; }
+        .cam.is-active .cam__intro { display: none; }
+        .cam.is-active .cam__stage { display: block; }
+        .cam.is-active .cam__stop { display: inline-flex; }
+        .cam__status { margin-top: 12px; font-size: 14px; color: var(--warn); text-align: center; }
+        .cam__status:empty { display: none; }
 
-        .video-hover-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
+        .split { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; align-items: center; margin: 32px 0; }
+        .video--portrait { aspect-ratio: 9 / 16; width: 100%; max-width: 300px; margin: 0 auto; }
+        .split .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 20px 0 0; }
+        .split .stat { padding: 16px 14px; }
+        .arch svg { width: 100%; height: auto; display: block; }
 
-        .video-wrapper:hover .video-hover-overlay {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .pause-play-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            transition: transform 0.2s ease;
-        }
-
-        .pause-play-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .pause-play-btn svg {
-            display: block;
-        }
-
-        /* Video Controls Bar */
-        .video-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .video-wrapper:hover .video-controls {
-            opacity: 1;
-        }
-
-        .restart-btn {
-            background: rgba(51, 65, 85, 0.2);
-            border: 1px solid rgba(51, 65, 85, 0.5);
-            border-radius: 6px;
-            padding: 0.5rem;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .restart-btn:hover {
-            background: rgba(51, 65, 85, 0.4);
-            border-color: rgba(51, 65, 85, 0.8);
-            transform: scale(1.1);
-        }
-
-        .progress-bar-container {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: rgba(51, 65, 85, 0.9);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .progress-handle {
-            position: absolute;
-            top: 50%;
-            left: 0%;
-            width: 14px;
-            height: 14px;
-            background: white;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .progress-bar-container:hover .progress-handle {
-            opacity: 1;
-        }
-
-        .time-display {
-            color: white;
-            font-size: 0.85rem;
-            font-family: monospace;
-            white-space: nowrap;
-            min-width: 90px;
-        }
-
-        /* Demo Specs Grid */
-        .demo-specs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .spec-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .spec-item:hover {
-            background: var(--bg-primary);
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .spec-item h4 {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin: 0 0 0.5rem 0;
-        }
-
-        .spec-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .demo-specs {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .demo-specs {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .spec-item {
-                padding: 1rem;
-            }
+        @media (max-width: 640px) {
+            .widget { padding: 12px; }
+            .ik__readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .split { grid-template-columns: 1fr; gap: 20px; }
+            .video--portrait { max-width: 260px; }
         }
     </style>
 
-    <!-- YouTube IFrame API -->
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-        // YouTube Player API with custom controls for Munchkin demo
-        let munchkinPlayer;
-        let userPaused = false;
-        let isDragging = false;
-        let observerSetup = false;
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
+</head>
 
-        function onYouTubeIframeAPIReady() {
-            munchkinPlayer = new YT.Player('systemDemoVideo', {
-                height: '470',
-                width: '100%',
-                videoId: 'jkpbdXxJ8nk',
-                playerVars: {
-                    autoplay: 0,
-                    mute: 1,
-                    loop: 1,
-                    playlist: 'jkpbdXxJ8nk',
-                    controls: 0,
-                    modestbranding: 1,
-                    playsinline: 1,
-                    rel: 0,
-                    hd: 1,
-                    vq: 'hd1080'
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            console.log('✅ Munchkin player ready');
-            const pausePlayBtn = document.getElementById('pausePlayBtn');
-            const restartBtn = document.getElementById('restartBtn');
-            const progressBarContainer = document.getElementById('progressBarContainer');
-
-            // Update progress bar periodically
-            setInterval(updateProgress, 100);
-
-            // Play/pause button
-            pausePlayBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                const state = munchkinPlayer.getPlayerState();
-                if (state === YT.PlayerState.PLAYING) {
-                    munchkinPlayer.pauseVideo();
-                    userPaused = true;
-                } else {
-                    munchkinPlayer.playVideo();
-                    userPaused = false;
-                }
-            });
-
-            // Restart button
-            restartBtn.addEventListener('click', function (e) {
-                e.stopPropagation();
-                munchkinPlayer.seekTo(0);
-                munchkinPlayer.playVideo();
-                userPaused = false;
-            });
-
-            // Progress bar click
-            progressBarContainer.addEventListener('click', setProgressFromClick);
-
-            // Progress bar drag
-            progressBarContainer.addEventListener('mousedown', function (e) {
-                isDragging = true;
-                setProgressFromClick(e);
-            });
-
-            document.addEventListener('mousemove', function (e) {
-                if (isDragging) {
-                    setProgressFromClick(e);
-                }
-            });
-
-            document.addEventListener('mouseup', function () {
-                isDragging = false;
-            });
-
-            // Setup intersection observer for autoplay
-            if (!observerSetup) {
-                setupIntersectionObserver();
-                observerSetup = true;
-            }
-
-            updateButtonIcon();
-        }
-
-        function onPlayerStateChange(event) {
-            updateButtonIcon();
-        }
-
-        function setupIntersectionObserver() {
-            const container = document.querySelector('.video-wrapper');
-            if (!container) return;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !userPaused) {
-                        munchkinPlayer.playVideo();
-                    } else if (!entry.isIntersecting) {
-                        munchkinPlayer.pauseVideo();
-                        userPaused = false;
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            observer.observe(container);
-        }
-
-        function updateButtonIcon() {
-            const pauseIcon = document.querySelector('.pause-icon');
-            const playIcon = document.querySelector('.play-icon');
-            const state = munchkinPlayer.getPlayerState();
-
-            if (state === YT.PlayerState.PLAYING) {
-                pauseIcon.style.display = 'block';
-                playIcon.style.display = 'none';
-            } else {
-                pauseIcon.style.display = 'none';
-                playIcon.style.display = 'block';
-            }
-        }
-
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return mins + ':' + (secs < 10 ? '0' : '') + secs;
-        }
-
-        function updateProgress() {
-            if (!munchkinPlayer || !munchkinPlayer.getDuration) return;
-            if (isDragging) return;
-
-            const currentTime = munchkinPlayer.getCurrentTime();
-            const duration = munchkinPlayer.getDuration();
-
-            if (duration > 0) {
-                const percent = (currentTime / duration) * 100;
-                document.getElementById('progressBar').style.width = percent + '%';
-                document.getElementById('progressHandle').style.left = percent + '%';
-                document.getElementById('timeDisplay').textContent =
-                    formatTime(currentTime) + ' / ' + formatTime(duration);
-            }
-        }
-
-        function setProgressFromClick(e) {
-            const progressBarContainer = document.getElementById('progressBarContainer');
-            const rect = progressBarContainer.getBoundingClientRect();
-            const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-            const duration = munchkinPlayer.getDuration();
-            munchkinPlayer.seekTo(pos * duration);
-        }
-    </script>
-
-    <!-- About the Project -->
-
-    <!-- Section 2: Demo of V1 -->
-    
-
-    <!-- Section 3: About the Project -->
-    <section class="section-overview" id="overview">
-        <div class="container">
-
-            <div class="overview-grid">
-                <div class="overview-left">
-                    <div class="demo-media">
-                        <div class="video-wrapper">
-                            <div id="systemDemoVideo" class="demo-video"></div>
-                            <div class="video-hover-overlay">
-                                <button class="pause-play-btn" id="pausePlayBtn">
-                                    <svg class="pause-icon" width="60" height="60" viewBox="0 0 100 100" fill="none">
-                                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="rgba(0,0,0,0.6)" />
-                                        <rect x="35" y="30" width="10" height="40" fill="white" />
-                                        <rect x="55" y="30" width="10" height="40" fill="white" />
-                                    </svg>
-                                    <svg class="play-icon" width="60" height="60" viewBox="0 0 100 100" fill="none"
-                                        style="display: none;">
-                                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="rgba(0,0,0,0.6)" />
-                                        <path d="M40 30 L40 70 L70 50 Z" fill="white" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="video-controls">
-                                <button class="restart-btn" id="restartBtn" title="Restart video">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <polyline points="1 4 1 10 7 10"></polyline>
-                                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-                                    </svg>
-                                </button>
-                                <div class="progress-bar-container" id="progressBarContainer">
-                                    <div class="progress-bar" id="progressBar"></div>
-                                    <div class="progress-handle" id="progressHandle"></div>
-                                </div>
-                                <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="overview-text">
-                        <p class="large-text">
-                            Our assistive feeding device combines computer vision, robotics, and embedded systems
-                            to create an affordable solution for individuals with limited upper body mobility.
-                        </p>
-                        <p>
-                            The system uses real-time mouth tracking to position food at the optimal location,
-                            giving users control over their feeding process. Built with accessibility in mind,
-                            the entire system costs under $600 and is fully open-source so other teams can replicate it.
-                        </p>
-                        <p>
-                            The project was awarded the <strong>Olin College SAG Grant</strong> for prototyping
-                            support and the <strong>Olin College SEED Grant</strong> for continued development.
-                            We have since formed <strong>Munchkin LLC</strong>, licensed in Massachusetts, to
-                            support structured user testing at
-                            <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong> and future
-                            development.
-                        </p>
-                    </div>
-                </div>
-            </div>
+<body>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
+            </ul>
         </div>
-    </section>
+    </header>
 
-    <!-- Section 2: Munchkin V3 -->
-    <section class="section-v3" id="v3">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Current Development
-                    <span class="testing-pill"><span class="testing-dot"></span>In Testing</span>
-                </span>
-                <h2 class="section-title">Munchkin V3</h2>
-                <p class="section-subtitle">V3 is our current development version, rebuilding the system with higher-torque servos, an integrated plate holder, and a modular tool-changer. User testing will hopefully be happening at <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong> in Fall 2026.</p>
-            </div>
-
-            <!-- Tool Changer: featured row -->
-            <div class="v3-hero-feature">
-                <div class="v3-hero-media" style="position: relative; overflow: hidden;">
-                    <iframe class="v3-video" src="https://www.youtube.com/embed/0s-LrVQN4e0?autoplay=1&mute=1&loop=1&playlist=0s-LrVQN4e0&controls=0&showinfo=0&rel=0&playsinline=1&enablejsapi=1&vq=hd1080" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: none; height: 380px; aspect-ratio: 9/16; max-height: 380px; display: block; margin: 0 auto; background: #000000; transform: scale(1.35); transform-origin: center; pointer-events: none;"></iframe>
-                    <!-- Transparent layer blocking click/hover interactions to prevent YouTube overlays -->
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent; pointer-events: auto;"></div>
-                </div>
-                <div class="v3-hero-content">
-                    <div class="v3-feature-tag">Feature 01</div>
-                    <h3>Automatic Tool Changer</h3>
-                    <p>V3 introduces a fully automatic fork-and-spoon switcher. The mechanism locks and releases each utensil in under 2 seconds — no hands required, and the correct tool is always selected based on what's being served.</p>
-                    <div class="v3-stat-row">
-                        <div class="v3-stat"><span class="v3-stat-num">&lt;2s</span><span class="v3-stat-lbl">tool swap</span></div>
-                        <div class="v3-stat"><span class="v3-stat-num">2</span><span class="v3-stat-lbl">utensil modes</span></div>
-                        <div class="v3-stat"><span class="v3-stat-num">Auto</span><span class="v3-stat-lbl">selection</span></div>
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <span class="eyebrow">Final project · Olin College · Fall 2024</span>
+                    <h1 class="detail-hero__title">Munchkin</h1>
+                    <p class="detail-hero__sub">A robotic feeding assistant that tracks your mouth and swaps its own utensils.</p>
+                    <div class="detail-hero__meta">
+                        <span><time datetime="2024-09">Fall 2024</time></span>
+                        <span>Olin College</span>
+                        <span>Munchkin LLC, Massachusetts</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill pill--accent">SAG Grant recipient</span>
+                        <span class="pill pill--accent">SEED Grant recipient</span>
+                        <span class="pill">4-DOF robotic arm</span>
+                        <span class="pill">Real-time face tracking</span>
+                        <span class="pill">Automatic utensil changing</span>
+                        <span class="pill pill--success pill--live">V3 in testing</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- V3 Feature Grid -->
-            <div class="v3-grid">
-
-                <div class="v3-card">
-                    <div class="v3-card-img-wrap">
-                        <img src="munchkin/assets/v3/servo.png" alt="High-precision servos" class="v3-card-img">
-                    </div>
-                    <div class="v3-card-body">
-                        <span class="v3-feature-tag">Feature 02</span>
-                        <h3>High-Precision Servos</h3>
-                        <p>Upgraded to 30 kg·cm servos with 0.1° angular precision. Smoother motion, more torque, and far better positional accuracy than v1.</p>
-                        <div class="v3-tag-row">
-                            <span class="v3-tag">30 kg·cm</span>
-                            <span class="v3-tag">0.1° precision</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="v3-card">
-                    <div class="v3-card-img-wrap">
-                        <img src="munchkin/assets/v3/PlateHolder.jpeg" alt="Integrated folding plate holder" class="v3-card-img">
-                    </div>
-                    <div class="v3-card-body">
-                        <span class="v3-feature-tag">Feature 03</span>
-                        <h3>Integrated Plate Holder</h3>
-                        <p>The plate holder is now built into the device body and folds flush when not in use — no separate tray to carry, and no setup required.</p>
-                        <div class="v3-tag-row">
-                            <span class="v3-tag">Folds flat</span>
-                            <span class="v3-tag">No assembly</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="v3-card">
-                    <div class="v3-card-img-wrap">
-                        <img src="munchkin/assets/v3/foldingarm.jpeg" alt="Folding robotic arm" class="v3-card-img">
-                    </div>
-                    <div class="v3-card-body">
-                        <span class="v3-feature-tag">Feature 04</span>
-                        <h3>Folding Robotic Arm</h3>
-                        <p>The arm now folds completely within the device body, bringing the whole system to a compact footprint for easy transport and storage.</p>
-                        <div class="v3-tag-row">
-                            <span class="v3-tag">Self-contained</span>
-                            <span class="v3-tag">Travel-ready</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="v3-card">
-                    <div class="v3-card-img-wrap">
-                        <img src="munchkin/assets/v3/Touchscreen.jpeg" alt="Onboard touchscreen" class="v3-card-img">
-                    </div>
-                    <div class="v3-card-body">
-                        <span class="v3-feature-tag">Feature 05</span>
-                        <h3>Onboard Touchscreen</h3>
-                        <p>An integrated touchscreen lets users select feeding mode, speed, and other settings directly on the device — no phone or laptop needed.</p>
-                        <div class="v3-tag-row">
-                            <span class="v3-tag">On-device UI</span>
-                            <span class="v3-tag">Mode selection</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="v3-card">
-                    <div class="v3-card-img-wrap">
-                        <img src="munchkin/assets/v3/ports.jpeg" alt="Adaptive control ports" class="v3-card-img">
-                    </div>
-                    <div class="v3-card-body">
-                        <span class="v3-feature-tag">Feature 06</span>
-                        <h3>Adaptive Control Ports</h3>
-                        <p>New external ports support switches, sip-and-puff controllers, and other assistive devices — enabling partial or full control depending on each user's capabilities.</p>
-                        <div class="v3-tag-row">
-                            <span class="v3-tag">Switch access</span>
-                            <span class="v3-tag">Sip &amp; puff</span>
-                            <span class="v3-tag">Modular</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="v3-card v3-card-coming-soon">
-                    <div class="v3-card-body">
-                        <span class="coming-soon-badge">Coming Soon</span>
-                        <span class="v3-feature-tag" style="margin-top: 0.75rem;">Feature 07</span>
-                        <h3>AI Food Tracking</h3>
-                        <p>Computer vision will identify what's on the plate, track portion sizes, and provide nutritional estimates in real-time — making Munchkin a smarter feeding companion.</p>
-                        <div class="v3-tag-row">
-                            <span class="v3-tag">Computer vision</span>
-                            <span class="v3-tag">Nutrition data</span>
-                            <span class="v3-tag">AI-powered</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="container detail-lead">
+            <div class="video yt" data-yt="jkpbdXxJ8nk" data-autoplay data-loop data-title="Munchkin assistive feeding device demo: the arm tracks the user's mouth and delivers food"></div>
+            <p class="media__caption">V1 system demo: the arm scoops food and brings it to the user's tracked mouth position.</p>
         </div>
-    </section>
 
-    <!-- V1 Original Design Divider -->
-    <div class="v1-divider">
-        <div class="container">
-            <div class="v1-divider-inner">
-                <div class="v1-divider-line"></div>
-                <span class="v1-divider-label">V1 — Original Design</span>
-                <div class="v1-divider-line"></div>
+        <article class="container prose">
+            <p class="lede">
+                Our assistive feeding device combines computer vision, robotics and embedded systems into an affordable
+                solution for individuals with limited upper-body mobility.
+            </p>
+            <p>
+                The system uses real-time mouth tracking to position food at the optimal location, giving users control over
+                their own feeding process. Built with accessibility in mind, the entire system costs under $600 and is fully
+                open-source so other teams can replicate it.
+            </p>
+            <p>
+                The project was awarded the <strong>Olin College SAG Grant</strong> for prototyping support and the
+                <strong>Olin College SEED Grant</strong> for continued development. We have since formed
+                <strong>Munchkin LLC</strong>, licensed in Massachusetts, to support structured user testing at
+                <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong> and future development.
+            </p>
+
+            <div class="stats">
+                <div class="stat"><div class="stat__value">&lt;$600</div><div class="stat__label">total system cost, fully open-source</div></div>
+                <div class="stat"><div class="stat__value">4-DOF</div><div class="stat__label">articulated arm: base, shoulder, elbow, wrist</div></div>
+                <div class="stat"><div class="stat__value">30 fps</div><div class="stat__label">mouth tracking on a Raspberry Pi 4</div></div>
+                <div class="stat"><div class="stat__value">468</div><div class="stat__label">facial landmarks from MediaPipe Face Mesh</div></div>
             </div>
-        </div>
-    </div>
 
+            <h2>Munchkin V3: current development</h2>
+            <p>
+                V3 is our current development version, rebuilding the system with higher-torque servos, an integrated plate
+                holder and a modular tool changer. User testing will hopefully be happening at
+                <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong> in Fall 2026.
+            </p>
 
-
-    <!-- Section 4: Design Process -->
-    <section class="section-process" id="process">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Our Process</span>
-                <h2 class="section-title single-line">Design decisions and trade-offs</h2>
-            </div>
-
-            <div class="process-intro">
-                <p class="large-text">
-                    We explored several design approaches before landing on our final solution.
-                    Our initial concepts included a stationary arm with rotating base, a gantry-style system,
-                    and a jointed arm similar to industrial robots.
-                </p>
-            </div>
-            <div class="decisions-grid">
-                <div class="decision-card">
-                    <div class="decision-content">
-                        <div class="decision-number">01</div>
-                        <h3>Robotic Arm Configuration</h3>
-                        <div class="decision-details">
-                            <div class="detail-item">
-                                <strong>OPTIONS</strong>
-                                <p>4-DOF articulated arm, 4-DOF SCARA-style, 2-DOF pan-tilt mechanism</p>
-                            </div>
-                            <div class="detail-item">
-                                <strong>OUR CHOICE</strong>
-                                <p>4-DOF articulated arm with base rotation, shoulder, elbow, and wrist joints</p>
-                            </div>
-                            <div class="detail-item">
-                                <strong>RATIONALE</strong>
-                                <p>We chose the 4-DOF articulated configuration for maximum workspace flexibility and
-                                    natural motion. The additional wrist joint (vs. 3-DOF) allows proper utensil
-                                    orientation regardless of approach angle, critical for smooth feeding. While more
-                                    complex than simpler designs, the improved dexterity justified the added servos and
-                                    control complexity.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="decision-showcase">
-                        <div class="showcase-content" id="ikDemo">
-                            <canvas id="ikCanvas" width="700" height="400"
-                                style="width: 100%; background: #ffffff; border: 1px solid var(--border); border-radius: 8px; cursor: crosshair; display: block;"></canvas>
-
-                            <div class="ik-info"
-                                style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem; width: 100%;">
-                                <div
-                                    style="background: #ffffff; border: 1px solid var(--border); padding: 0.75rem; border-radius: 6px; text-align: center;">
-                                    <div
-                                        style="color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.25rem; font-weight: 500;">
-                                        Base</div>
-                                    <div style="color: var(--text-primary); font-size: 1rem; font-weight: 600;"
-                                        id="baseAngle">0°</div>
-                                </div>
-                                <div
-                                    style="background: #ffffff; border: 1px solid var(--border); padding: 0.75rem; border-radius: 6px; text-align: center;">
-                                    <div
-                                        style="color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.25rem; font-weight: 500;">
-                                        Shoulder</div>
-                                    <div style="color: var(--text-primary); font-size: 1rem; font-weight: 600;"
-                                        id="shoulderAngle">0°</div>
-                                </div>
-                                <div
-                                    style="background: #ffffff; border: 1px solid var(--border); padding: 0.75rem; border-radius: 6px; text-align: center;">
-                                    <div
-                                        style="color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.25rem; font-weight: 500;">
-                                        Elbow</div>
-                                    <div style="color: var(--text-primary); font-size: 1rem; font-weight: 600;"
-                                        id="elbowAngle">0°</div>
-                                </div>
-                                <div
-                                    style="background: #ffffff; border: 1px solid var(--border); padding: 0.75rem; border-radius: 6px; text-align: center;">
-                                    <div
-                                        style="color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 0.25rem; font-weight: 500;">
-                                        Error</div>
-                                    <div style="color: var(--text-primary); font-size: 1rem; font-weight: 600;"
-                                        id="distance">0px</div>
-                                </div>
-                            </div>
-
-                            <p
-                                style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem; text-align: center; margin-bottom: 0;">
-                                Interactive inverse kinematics using CCD algorithm • Move your mouse to control the
-                                arm</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="decision-card">
-                    <div class="decision-content">
-                        <div class="decision-number">02</div>
-                        <h3>Mouth Tracking Approach</h3>
-                        <div class="decision-details">
-                            <div class="detail-item">
-                                <strong>OPTIONS</strong>
-                                <p>MediaPipe Face Mesh, OpenCV Haar Cascades, custom CNN model, depth camera only</p>
-                            </div>
-                            <div class="detail-item">
-                                <strong>OUR CHOICE</strong>
-                                <p>MediaPipe Face Mesh with RealSense depth camera</p>
-                            </div>
-                            <div class="detail-item">
-                                <strong>RATIONALE</strong>
-                                <p>MediaPipe provides 468 facial landmarks at 30fps with excellent accuracy on Raspberry
-                                    Pi
-                                    4. Combines well with RealSense depth data for precise 3D positioning. Pre-trained
-                                    models eliminated weeks of custom ML training, and open-source implementation made
-                                    debugging straightforward. Haar Cascades were too inaccurate, and custom CNNs would
-                                    require extensive datasets we didn't have.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="decision-showcase">
-                        <div class="showcase-content live-demo" id="mediapipeDemo">
-                            <div class="demo-placeholder">
-                                <div class="demo-icon">📹</div>
-                                <p>See mouth tracking in action</p>
-                                <p class="demo-hint">Tip: Select "Always allow" for best experience</p>
-                                <button class="demo-button" id="startDemoBtn">Try It Out</button>
-                            </div>
-                            <div class="demo-video-container">
-                                <video id="demoVideo" class="demo-video" autoplay playsinline></video>
-                                <canvas id="demoCanvas" class="demo-canvas"></canvas>
-                            </div>
-                            <button class="demo-stop" id="stopDemoBtn">Stop Demo</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="decision-card">
-                    <div class="decision-content">
-                        <div class="decision-number">03</div>
-                        <h3>Computing Platform</h3>
-                        <div class="decision-details">
-                            <div class="detail-item">
-                                <strong>OPTIONS</strong>
-                                <p>Raspberry Pi, Arduino + OpenCV on laptop, Jetson Nano, microcontroller with cloud
-                                    processing</p>
-                            </div>
-                            <div class="detail-item">
-                                <strong>OUR CHOICE</strong>
-                                <p>Raspberry Pi 4B (4GB RAM)</p>
-                            </div>
-                            <div class="detail-item">
-                                <strong>RATIONALE</strong>
-                                <p>Raspberry Pi 4 offers the perfect balance of compute power and cost ($62 vs. $200+
-                                    for
-                                    Jetson). Quad-core ARM processor handles MediaPipe at 30fps while managing servo
-                                    control
-                                    and safety monitoring. Built-in USB 3.0 for camera, GPIO for safety buttons, and
-                                    strong
-                                    community support made development smooth. Arduino lacked ML capability, and cloud
-                                    processing introduced unacceptable latency for safety-critical feeding motions.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="decision-showcase">
-                        <div class="showcase-content" id="reactionGame">
-                            <div class="game-area" id="gameArea">
-                                <div id="gameContent">
-                                    <div class="demo-icon">⚡</div>
-                                    <p>Test your reaction time vs Raspberry Pi 4</p>
-                                    <p class="demo-hint">Click when the screen turns green!</p>
-                                    <button class="demo-button" id="startGameBtn">Start Challenge</button>
-                                </div>
-                            </div>
-                            <div class="game-results" id="gameResults" style="display: none;">
-                                <div class="result-item">
-                                    <span class="result-label">You</span>
-                                    <span class="result-value" id="yourTime">---</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">Pi 4</span>
-                                    <span class="result-value pi">45ms</span>
-                                </div>
-                            </div>
-                            <p class="game-message" id="gameMessage"></p>
-                        </div>
+            <h3>Feature 01 · Automatic tool changer</h3>
+            <div class="split">
+                <div class="video yt video--portrait" data-yt="0s-LrVQN4e0" data-autoplay data-loop data-title="Munchkin V3 automatic tool changer swapping between fork and spoon"></div>
+                <div>
+                    <p>
+                        V3 introduces a fully automatic fork-and-spoon switcher. The mechanism locks and releases each utensil in
+                        under 2 seconds, no hands required, and the correct tool is always selected based on what is being served.
+                    </p>
+                    <div class="stats">
+                        <div class="stat"><div class="stat__value">&lt;2 s</div><div class="stat__label">tool swap</div></div>
+                        <div class="stat"><div class="stat__value">2</div><div class="stat__label">utensil modes</div></div>
+                        <div class="stat"><div class="stat__value">Auto</div><div class="stat__label">selection</div></div>
                     </div>
                 </div>
             </div>
-            <script>
-                (function () {
-                    const canvas = document.getElementById('ikCanvas');
-                    if (!canvas) return;
 
-                    const ctx = canvas.getContext('2d');
-
-                    // Arm segment lengths
-                    const segments = [
-                        { length: 80 },  // 8 units
-                        { length: 80 },  // 8 units
-                        { length: 60 }   // 6 units
-                    ];
-
-                    // Base position (center bottom)
-                    const baseX = canvas.width / 2;
-                    const baseY = canvas.height - 50;
-
-                    // Joint angles (this is how CCD works - track angles, not positions)
-                    let angles = [0, -Math.PI / 2, 0]; // Start pointing up
-
-                    // Target position
-                    let targetX = baseX;
-                    let targetY = baseY - 220;
-                    let mouseHasMoved = false;
-
-                    // Calculate joint positions from angles
-                    function getJointPositions() {
-                        const joints = [{ x: baseX, y: baseY }];
-
-                        let currentAngle = 0;
-                        let currentX = baseX;
-                        let currentY = baseY;
-
-                        for (let i = 0; i < segments.length; i++) {
-                            currentAngle += angles[i];
-                            currentX += Math.cos(currentAngle) * segments[i].length;
-                            currentY += Math.sin(currentAngle) * segments[i].length;
-                            joints.push({ x: currentX, y: currentY });
-                        }
-
-                        return joints;
-                    }
-
-                    // CCD Algorithm - naturally avoids self-collision
-                    function solveCCD(target, iterations = 10) {
-                        for (let iter = 0; iter < iterations; iter++) {
-                            let joints = getJointPositions();
-
-                            // Work backwards from end effector
-                            for (let i = segments.length - 1; i >= 0; i--) {
-                                joints = getJointPositions();
-
-                                const endEffector = joints[joints.length - 1];
-                                const joint = joints[i];
-
-                                // Vector from joint to end effector
-                                const toEnd = {
-                                    x: endEffector.x - joint.x,
-                                    y: endEffector.y - joint.y
-                                };
-
-                                // Vector from joint to target
-                                const toTarget = {
-                                    x: target.x - joint.x,
-                                    y: target.y - joint.y
-                                };
-
-                                // Calculate angle between these vectors
-                                const angleToEnd = Math.atan2(toEnd.y, toEnd.x);
-                                const angleToTarget = Math.atan2(toTarget.y, toTarget.x);
-
-                                // Rotate this joint to point toward target
-                                let deltaAngle = angleToTarget - angleToEnd;
-
-                                // Normalize to -PI to PI
-                                while (deltaAngle > Math.PI) deltaAngle -= 2 * Math.PI;
-                                while (deltaAngle < -Math.PI) deltaAngle += 2 * Math.PI;
-
-                                // Apply rotation with damping for smoothness
-                                angles[i] += deltaAngle * 0.5;
-
-                                // Constrain each joint angle to prevent unrealistic poses
-                                // Joint 0 (base): can rotate freely
-                                // Joint 1 (shoulder): -170° to +170°
-                                // Joint 2 (elbow): -170° to +170°
-                                if (i === 1 || i === 2) {
-                                    const maxAngle = Math.PI * 0.94; // 170 degrees
-                                    if (angles[i] > maxAngle) angles[i] = maxAngle;
-                                    if (angles[i] < -maxAngle) angles[i] = -maxAngle;
-                                }
-                            }
-
-                            // Check if close enough
-                            joints = getJointPositions();
-                            const endEffector = joints[joints.length - 1];
-                            const dist = Math.sqrt(
-                                Math.pow(endEffector.x - target.x, 2) +
-                                Math.pow(endEffector.y - target.y, 2)
-                            );
-
-                            if (dist < 1) break;
-                        }
-                    }
-
-                    function distance(p1, p2) {
-                        const dx = p2.x - p1.x;
-                        const dy = p2.y - p1.y;
-                        return Math.sqrt(dx * dx + dy * dy);
-                    }
-
-                    function calculateDisplayAngles() {
-                        const joints = getJointPositions();
-                        const displayAngles = [];
-
-                        displayAngles.push(Math.atan2(joints[1].x - joints[0].x, -(joints[1].y - joints[0].y)) * 180 / Math.PI);
-                        displayAngles.push(Math.atan2(joints[2].y - joints[1].y, joints[2].x - joints[1].x) * 180 / Math.PI);
-                        displayAngles.push(Math.atan2(joints[3].y - joints[2].y, joints[3].x - joints[2].x) * 180 / Math.PI);
-
-                        return displayAngles;
-                    }
-
-                    function drawArm() {
-                        const joints = getJointPositions();
-
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                        // Grid
-                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.04)';
-                        ctx.lineWidth = 1;
-                        for (let i = 0; i < canvas.width; i += 50) {
-                            ctx.beginPath();
-                            ctx.moveTo(i, 0);
-                            ctx.lineTo(i, canvas.height);
-                            ctx.stroke();
-                        }
-                        for (let i = 0; i < canvas.height; i += 50) {
-                            ctx.beginPath();
-                            ctx.moveTo(0, i);
-                            ctx.lineTo(canvas.width, i);
-                            ctx.stroke();
-                        }
-
-                        // Workspace circle
-                        const maxReach = segments.reduce((sum, seg) => sum + seg.length, 0);
-                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.06)';
-                        ctx.lineWidth = 2;
-                        ctx.beginPath();
-                        ctx.arc(baseX, baseY, maxReach, 0, Math.PI * 2);
-                        ctx.stroke();
-
-                        // Base
-                        ctx.fillStyle = '#475569';
-                        ctx.fillRect(baseX - 30, baseY - 10, 60, 20);
-                        ctx.beginPath();
-                        ctx.arc(baseX, baseY, 15, 0, Math.PI * 2);
-                        ctx.fill();
-
-                        // Arm segments
-                        const colors = ['rgba(71, 85, 105, 0.7)', 'rgba(51, 65, 85, 0.85)', 'rgba(30, 41, 59, 1)'];
-                        ctx.lineCap = 'round';
-
-                        for (let i = 0; i < segments.length; i++) {
-                            ctx.strokeStyle = colors[i];
-                            ctx.lineWidth = 12 - i * 2;
-                            ctx.beginPath();
-                            ctx.moveTo(joints[i].x, joints[i].y);
-                            ctx.lineTo(joints[i + 1].x, joints[i + 1].y);
-                            ctx.stroke();
-                        }
-
-                        // Joints
-                        ctx.lineWidth = 3;
-                        for (let i = 0; i < joints.length; i++) {
-                            ctx.beginPath();
-                            ctx.arc(joints[i].x, joints[i].y, i === joints.length - 1 ? 10 : 8, 0, Math.PI * 2);
-                            if (i === joints.length - 1) {
-                                ctx.fillStyle = '#f59e0b';
-                                ctx.strokeStyle = '#d97706';
-                            } else {
-                                ctx.fillStyle = 'white';
-                                ctx.strokeStyle = '#334155';
-                            }
-                            ctx.fill();
-                            ctx.stroke();
-                        }
-
-                        // Target crosshair
-                        if (mouseHasMoved) {
-                            ctx.strokeStyle = '#d97706';
-                            ctx.lineWidth = 2;
-                            ctx.beginPath();
-                            ctx.moveTo(targetX - 10, targetY);
-                            ctx.lineTo(targetX + 10, targetY);
-                            ctx.moveTo(targetX, targetY - 10);
-                            ctx.lineTo(targetX, targetY + 10);
-                            ctx.stroke();
-                        }
-
-                        // Update info
-                        const displayAngles = calculateDisplayAngles();
-                        const baseAngleEl = document.getElementById('baseAngle');
-                        const shoulderAngleEl = document.getElementById('shoulderAngle');
-                        const elbowAngleEl = document.getElementById('elbowAngle');
-                        const distanceEl = document.getElementById('distance');
-
-                        if (baseAngleEl) baseAngleEl.textContent = displayAngles[0].toFixed(1) + '°';
-                        if (shoulderAngleEl) shoulderAngleEl.textContent = displayAngles[1].toFixed(1) + '°';
-                        if (elbowAngleEl) elbowAngleEl.textContent = displayAngles[2].toFixed(1) + '°';
-
-                        const dist = distance(joints[joints.length - 1], { x: targetX, y: targetY });
-                        if (distanceEl) distanceEl.textContent = dist.toFixed(1) + 'px';
-                    }
-
-                    canvas.addEventListener('mousemove', (e) => {
-                        mouseHasMoved = true;
-                        const rect = canvas.getBoundingClientRect();
-                        const scaleX = canvas.width / rect.width;
-                        const scaleY = canvas.height / rect.height;
-                        targetX = (e.clientX - rect.left) * scaleX;
-                        targetY = (e.clientY - rect.top) * scaleY;
-                    });
-
-                    function animate() {
-                        solveCCD({ x: targetX, y: targetY });
-                        drawArm();
-                        requestAnimationFrame(animate);
-                    }
-
-                    animate();
-                })();
-            </script>
-
-            <style>
-                .game-area {
-                    background: var(--bg-secondary);
-                    border: 1px solid var(--border);
-                    border-radius: 8px;
-                    padding: 3rem 2rem;
-                    text-align: center;
-                    min-height: 300px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    user-select: none;
-                    transition: all 0.3s ease;
-                    width: 100%;
-                }
-
-                .game-area.waiting {
-                    background: rgba(239, 68, 68, 0.08);
-                    border: 2px solid rgba(239, 68, 68, 0.4);
-                }
-
-                .game-area.ready {
-                    background: rgba(34, 197, 94, 0.08);
-                    border: 2px solid rgba(34, 197, 94, 0.4);
-                }
-
-                .game-area .demo-icon {
-                    font-size: 3rem;
-                    margin-bottom: 1rem;
-                }
-
-                .game-area p {
-                    color: var(--text-primary);
-                    margin: 0.5rem 0;
-                }
-
-                .game-area .demo-hint {
-                    color: var(--text-secondary);
-                    font-size: 0.9rem;
-                }
-
-                .game-countdown {
-                    font-size: 5rem;
-                    font-weight: 700;
-                    color: var(--accent);
-                    margin: 1rem 0;
-                }
-
-                .game-results {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 1rem;
-                    margin-top: 1rem;
-                    padding: 1rem;
-                    background: var(--bg-secondary);
-                    border-radius: 8px;
-                    border: 1px solid var(--border);
-                }
-
-                .result-item {
-                    text-align: center;
-                    padding: 1rem;
-                    background: var(--bg-primary);
-                    border-radius: 6px;
-                    border: 1px solid var(--border);
-                }
-
-                .result-label {
-                    display: block;
-                    font-size: 0.75rem;
-                    color: var(--text-secondary);
-                    margin-bottom: 0.5rem;
-                    text-transform: uppercase;
-                }
-
-                .result-value {
-                    display: block;
-                    font-size: 2rem;
-                    font-weight: 700;
-                    color: var(--accent);
-                }
-
-                .result-value.pi {
-                    color: var(--accent-light);
-                }
-
-                .game-message {
-                    margin-top: 1rem;
-                    padding: 1rem;
-                    background: var(--accent-soft);
-                    border-radius: 6px;
-                    color: var(--text-secondary);
-                    font-size: 0.9rem;
-                    line-height: 1.6;
-                    text-align: center;
-                }
-            </style>
-
-            <script>
-                (function () {
-                    const gameArea = document.getElementById('gameArea');
-                    const gameContent = document.getElementById('gameContent');
-                    const startBtn = document.getElementById('startGameBtn');
-                    const gameResults = document.getElementById('gameResults');
-                    const gameMessage = document.getElementById('gameMessage');
-
-                    if (!gameArea) return;
-
-                    let gameState = 'idle';
-                    let startTime = 0;
-                    let timeoutId = null;
-
-                    const PI_LATENCY = 45;
-
-                    function attachStartListener() {
-                        const btn = document.getElementById('startGameBtn');
-                        if (btn) {
-                            btn.addEventListener('click', startGame);
-                        }
-                    }
-
-                    attachStartListener();
-
-                    function startGame() {
-                        gameState = 'waiting';
-                        gameArea.classList.remove('ready');
-                        gameArea.classList.add('waiting');
-                        gameResults.style.display = 'none';
-                        gameMessage.textContent = '';
-
-                        gameContent.innerHTML = `
-            <div class="demo-icon">⏱️</div>
-            <p style="font-size: 1.5rem; font-weight: 600;">Wait for it...</p>
-            <p class="demo-hint">Click when it turns green!</p>
-        `;
-
-                        const delay = 1000 + Math.random() * 3000;
-
-                        timeoutId = setTimeout(() => {
-                            showGo();
-                        }, delay);
-                    }
-
-                    function showGo() {
-                        gameState = 'ready';
-                        gameArea.classList.remove('waiting');
-                        gameArea.classList.add('ready');
-                        gameContent.innerHTML = `
-            <div class="game-countdown">GO!</div>
-            <p style="font-size: 1.3rem; font-weight: 600;">CLICK NOW!</p>
-        `;
-                        startTime = Date.now();
-                    }
-
-                    gameArea.addEventListener('click', (e) => {
-                        if (e.target.classList.contains('demo-button') || e.target.closest('.demo-button')) return;
-
-                        if (gameState === 'ready') {
-                            const reactionTime = Date.now() - startTime;
-                            showResults(reactionTime);
-                        } else if (gameState === 'waiting') {
-                            clearTimeout(timeoutId);
-                            gameState = 'idle';
-                            gameArea.classList.remove('waiting', 'ready');
-                            gameContent.innerHTML = `
-                <div class="game-countdown" style="color: rgba(239, 68, 68, 1); font-size: 3rem;">TOO EARLY!</div>
-                <p style="color: var(--text-secondary);">Wait for the green screen</p>
-                <button class="demo-button" id="startGameBtn">Try Again</button>
-            `;
-                            attachStartListener();
-                        }
-                    });
-
-                    function showResults(yourTime) {
-                        gameState = 'complete';
-                        gameArea.classList.remove('ready', 'waiting');
-
-                        const faster = yourTime < PI_LATENCY;
-                        const ratio = (yourTime / PI_LATENCY).toFixed(1);
-
-                        gameContent.innerHTML = `
-            <div class="game-countdown" style="font-size: 3rem;">${yourTime}ms</div>
-            <p style="font-size: 1.2rem; font-weight: 600;">${faster ? '🎉 Impressive!' : 'Good try!'}</p>
-            <button class="demo-button" id="startGameBtn">Play Again</button>
-        `;
-
-                        attachStartListener();
-
-                        gameResults.style.display = 'grid';
-                        document.getElementById('yourTime').textContent = yourTime + 'ms';
-
-                        let message;
-                        if (faster) {
-                            message = `Amazing! You beat the Pi by ${PI_LATENCY - yourTime}ms. However, the Pi maintains ${PI_LATENCY}ms response time consistently 24/7 without fatigue—critical for reliable feeding assistance.`;
-                        } else if (yourTime < 100) {
-                            message = `Great reflexes! You're only ${yourTime - PI_LATENCY}ms slower. The Pi's consistent ${PI_LATENCY}ms latency makes it perfect for real-time, safety-critical feeding motions.`;
-                        } else if (yourTime < 200) {
-                            message = `You're ${ratio}x slower than the Pi's ${PI_LATENCY}ms processing time. This speed is why the Pi can track mouth movements in real-time without any noticeable lag.`;
-                        } else {
-                            message = `You're ${ratio}x slower than the Pi! Average human reaction is 200-300ms. The Pi's ${PI_LATENCY}ms latency ensures smooth, responsive feeding every single time.`;
-                        }
-
-                        gameMessage.textContent = message;
-                    }
-                })();
-            </script>
-
-            <!-- System Architecture Diagram -->
-            <div class="diagram-section">
-                <h3>System Architecture</h3>
-                <div class="interactive-diagram-wrapper">
-                    <svg viewBox="0 0 1400 630" class="system-diagram" id="systemDiagram">
+            <div class="features">
+                <div class="feature">
+                    <div class="feature__media feature__media--contain"><img src="munchkin/assets/v3/servo.webp" alt="Cutaway of a V3 servo showing its control PCB, motor and gearbox inside the black housing" width="800" height="800" decoding="async"></div>
+                    <div class="feature__num">FEATURE 02</div>
+                    <h4>High-precision servos</h4>
+                    <p>Upgraded to 30 kg·cm servos with 0.1° angular precision. Smoother motion, more torque and far better positional accuracy than V1.</p>
+                    <div class="pills mt-2"><span class="pill">30 kg·cm</span><span class="pill">0.1° precision</span></div>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/PlateHolder.webp" alt="V3 prototype: white device body with the black ring-shaped plate holder folded out on a desk" width="1800" height="1350" decoding="async"></div>
+                    <div class="feature__num">FEATURE 03</div>
+                    <h4>Integrated plate holder</h4>
+                    <p>The plate holder is now built into the device body and folds flush when not in use. No separate tray to carry, and no setup required.</p>
+                    <div class="pills mt-2"><span class="pill">Folds flat</span><span class="pill">No assembly</span></div>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/foldingarm.webp" alt="V3 prototype clamped to a chair with the robotic arm folded down against the device body" width="1800" height="2400" loading="lazy" decoding="async"></div>
+                    <div class="feature__num">FEATURE 04</div>
+                    <h4>Folding robotic arm</h4>
+                    <p>The arm now folds completely within the device body, bringing the whole system to a compact footprint for easy transport and storage.</p>
+                    <div class="pills mt-2"><span class="pill">Self-contained</span><span class="pill">Travel-ready</span></div>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/Touchscreen.webp" alt="Top-down view of the V3 device with its onboard display and control electronics next to the folded plate holder" width="1800" height="2400" loading="lazy" decoding="async"></div>
+                    <div class="feature__num">FEATURE 05</div>
+                    <h4>Onboard touchscreen</h4>
+                    <p>An integrated touchscreen lets users select feeding mode, speed and other settings directly on the device. No phone or laptop needed.</p>
+                    <div class="pills mt-2"><span class="pill">On-device UI</span><span class="pill">Mode selection</span></div>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/ports.webp" alt="Inside the open V3 enclosure: servo motors, controller boards, battery and wiring routed to the external control ports" width="1800" height="2400" loading="lazy" decoding="async"></div>
+                    <div class="feature__num">FEATURE 06</div>
+                    <h4>Adaptive control ports</h4>
+                    <p>New external ports support switches, sip-and-puff controllers and other assistive devices, enabling partial or full control depending on each user's capabilities.</p>
+                    <div class="pills mt-2"><span class="pill">Switch access</span><span class="pill">Sip &amp; puff</span><span class="pill">Modular</span></div>
+                </div>
+                <div class="feature">
+                    <div class="feature__num">FEATURE 07 · <span class="pill pill--accent">Coming soon</span></div>
+                    <h4>AI food tracking</h4>
+                    <p>Computer vision will identify what is on the plate, track portion sizes and provide nutritional estimates in real time, making Munchkin a smarter feeding companion.</p>
+                    <div class="pills mt-2"><span class="pill">Computer vision</span><span class="pill">Nutrition data</span><span class="pill">AI-powered</span></div>
+                </div>
+            </div>
+
+            <h2>V1 – original design: decisions and trade-offs</h2>
+            <p>
+                We explored several design approaches before landing on our final solution. Our initial concepts included a
+                stationary arm with a rotating base, a gantry-style system, and a jointed arm similar to industrial robots.
+            </p>
+
+            <h3>01 · Robotic arm configuration</h3>
+            <ul>
+                <li><strong>Options:</strong> 4-DOF articulated arm, 4-DOF SCARA-style, 2-DOF pan-tilt mechanism.</li>
+                <li><strong>Our choice:</strong> 4-DOF articulated arm with base rotation, shoulder, elbow and wrist joints.</li>
+                <li><strong>Rationale:</strong> we chose the 4-DOF articulated configuration for maximum workspace flexibility and natural motion. The additional wrist joint (vs. 3-DOF) allows proper utensil orientation regardless of approach angle, critical for smooth feeding. While more complex than simpler designs, the improved dexterity justified the added servos and control complexity.</li>
+            </ul>
+
+            <div class="widget ik" id="ikDemo">
+                <canvas id="ikCanvas" width="700" height="400" aria-label="Interactive inverse-kinematics demo: a three-segment planar arm follows the pointer"></canvas>
+                <div class="ik__readout" aria-live="off">
+                    <div class="ik__cell"><span>Base</span><output id="baseAngle">0°</output></div>
+                    <div class="ik__cell"><span>Shoulder</span><output id="shoulderAngle">0°</output></div>
+                    <div class="ik__cell"><span>Elbow</span><output id="elbowAngle">0°</output></div>
+                    <div class="ik__cell"><span>Error</span><output id="distance">0px</output></div>
+                </div>
+                <p class="widget__note">Interactive inverse kinematics using the CCD algorithm. Move your pointer over the canvas to control the arm.</p>
+            </div>
+
+            <h3>02 · Mouth tracking approach</h3>
+            <ul>
+                <li><strong>Options:</strong> MediaPipe Face Mesh, OpenCV Haar Cascades, custom CNN model, depth camera only.</li>
+                <li><strong>Our choice:</strong> MediaPipe Face Mesh with a RealSense depth camera.</li>
+                <li><strong>Rationale:</strong> MediaPipe provides 468 facial landmarks at 30 fps with excellent accuracy on a Raspberry Pi 4, and combines well with RealSense depth data for precise 3D positioning. Pre-trained models eliminated weeks of custom ML training, and the open-source implementation made debugging straightforward. Haar Cascades were too inaccurate, and custom CNNs would require extensive datasets we didn't have.</li>
+            </ul>
+
+            <div class="widget cam" id="mediapipeDemo">
+                <div class="cam__intro">
+                    <p><strong>See mouth tracking in action.</strong></p>
+                    <p class="small muted">Runs the same MediaPipe Face Mesh model in your browser. Your camera feed never leaves your device. Tip: select "Always allow" for the best experience.</p>
+                    <button class="btn btn--primary" id="startDemoBtn" type="button">Try it out</button>
+                </div>
+                <div class="cam__stage">
+                    <video id="demoVideo" autoplay playsinline muted></video>
+                    <canvas id="demoCanvas"></canvas>
+                </div>
+                <button class="btn btn--secondary btn--small cam__stop" id="stopDemoBtn" type="button">Stop demo</button>
+                <p class="cam__status" id="demoStatus" role="status"></p>
+            </div>
+
+            <h3>03 · Computing platform</h3>
+            <ul>
+                <li><strong>Options:</strong> Raspberry Pi, Arduino + OpenCV on a laptop, Jetson Nano, microcontroller with cloud processing.</li>
+                <li><strong>Our choice:</strong> Raspberry Pi 4B (4 GB RAM).</li>
+                <li><strong>Rationale:</strong> the Raspberry Pi 4 offers the right balance of compute power and cost ($62 vs. $200+ for a Jetson). Its quad-core ARM processor handles MediaPipe at 30 fps while managing servo control and safety monitoring. Built-in USB 3.0 for the camera, GPIO for the safety buttons and strong community support made development smooth. Arduino lacked ML capability, and cloud processing introduced unacceptable latency for safety-critical feeding motions.</li>
+            </ul>
+
+            <div class="callout">
+                <p class="callout__title">Why latency matters</p>
+                <p>The Pi 4 responds to a tracked mouth movement in about 45 ms, and it does so consistently, 24/7, without fatigue. Average human reaction time is 200–300 ms. That consistent low latency is what lets Munchkin follow the mouth in real time without noticeable lag, which is critical for safe, reliable feeding assistance.</p>
+            </div>
+
+            <h2>System architecture</h2>
+            <p>
+                The V1 electronics split into three groups: inputs (a depth camera, two emergency stops and two isolated power
+                rails), processing on the Raspberry Pi (face tracking, inverse kinematics, safety monitoring and serial servo
+                control through a BusLinker board) and outputs (four daisy-chained serial-bus servos and the utensil end effector).
+            </p>
+
+            <!-- Wrapped in a div on purpose: script.js gives every direct .prose > .media a .reveal class whose
+                 "transform: none" would cancel the .wide translateX and push the figure off to the right. -->
+            <div class="arch">
+            <figure class="media wide">
+                <div class="media__frame media__frame--white">
+                    <svg viewBox="0 0 1400 630" role="img" aria-labelledby="archTitle">
+                    <title id="archTitle">Munchkin V1 system architecture: input, processing and output components and how they connect</title>
                         <!-- Background -->
                         <rect width="1400" height="630" fill="#ffffff" rx="12" />
 
-                        <!-- Title -->
-                        <text x="700" y="30" text-anchor="middle" fill="#475569" font-size="14" font-weight="500">
-                            Hover over components for detailed specifications
-                        </text>
-
                         <!-- INPUT SECTION -->
-                        <g class="section-group">
+                        <g>
                             <rect x="30" y="60" width="380" height="540" rx="12" fill="#F8FAFC"
                                 stroke="#E2E8F0" stroke-width="1.5" />
                             <text x="220" y="85" text-anchor="middle" fill="#475569" font-size="15"
@@ -1285,19 +298,17 @@
                         </g>
 
                         <!-- Intel RealSense Camera -->
-                        <g class="component" data-component="realsense">
+                        <g>
                             <rect x="60" y="105" width="320" height="85" rx="8" fill="#F1F5F9"
                                 stroke="#CBD5E1" stroke-width="1.2" />
                             <text x="220" y="133" text-anchor="middle" fill="#334155" font-size="14"
                                 font-weight="600">Intel RealSense Depth Camera</text>
-                            <text x="220" y="153" text-anchor="middle" fill="#475569" font-size="12">RGB-D
-                                Video Stream</text>
-                            <text x="220" y="172" text-anchor="middle" fill="#64748B" font-size="11">USB
-                                3.0</text>
+                            <text x="220" y="153" text-anchor="middle" fill="#475569" font-size="12">RGB-D Video Stream</text>
+                            <text x="220" y="172" text-anchor="middle" fill="#64748B" font-size="11">USB 3.0</text>
                         </g>
 
                         <!-- E-Stop Primary -->
-                        <g class="component" data-component="estop-primary">
+                        <g>
                             <rect x="60" y="205" width="320" height="65" rx="8" fill="#FEF2F2"
                                 stroke="#FCA5A5" stroke-width="1.2" />
                             <text x="220" y="231" text-anchor="middle" fill="#991B1B" font-size="14"
@@ -1307,7 +318,7 @@
                         </g>
 
                         <!-- E-Stop Shoulder Mount -->
-                        <g class="component" data-component="estop-shoulder">
+                        <g>
                             <rect x="60" y="285" width="320" height="65" rx="8" fill="#FEF2F2"
                                 stroke="#FCA5A5" stroke-width="1.2" />
                             <text x="220" y="311" text-anchor="middle" fill="#991B1B" font-size="14"
@@ -1317,31 +328,27 @@
                         </g>
 
                         <!-- Power Supply 5V -->
-                        <g class="component" data-component="power-5v">
+                        <g>
                             <rect x="60" y="365" width="150" height="75" rx="8" fill="#F0FDF4"
                                 stroke="#BBF7D0" stroke-width="1.2" />
                             <text x="135" y="391" text-anchor="middle" fill="#166534" font-size="14"
                                 font-weight="600">Power Supply</text>
-                            <text x="135" y="411" text-anchor="middle" fill="#15803D" font-size="12">5V
-                                5A</text>
-                            <text x="135" y="428" text-anchor="middle" fill="#166534" font-size="11">Pi
-                                Power</text>
+                            <text x="135" y="411" text-anchor="middle" fill="#15803D" font-size="12">5V 5A</text>
+                            <text x="135" y="428" text-anchor="middle" fill="#166534" font-size="11">Pi Power</text>
                         </g>
 
                         <!-- Power Supply 9V -->
-                        <g class="component" data-component="power-9v">
+                        <g>
                             <rect x="230" y="365" width="150" height="75" rx="8" fill="#F0FDF4"
                                 stroke="#BBF7D0" stroke-width="1.2" />
                             <text x="305" y="391" text-anchor="middle" fill="#166534" font-size="14"
                                 font-weight="600">Power Supply</text>
-                            <text x="305" y="411" text-anchor="middle" fill="#15803D" font-size="12">9V
-                                3A</text>
-                            <text x="305" y="428" text-anchor="middle" fill="#166534" font-size="11">Servo
-                                Power</text>
+                            <text x="305" y="411" text-anchor="middle" fill="#15803D" font-size="12">9V 3A</text>
+                            <text x="305" y="428" text-anchor="middle" fill="#166534" font-size="11">Servo Power</text>
                         </g>
 
                         <!-- Power Switch -->
-                        <g class="component" data-component="power-switch">
+                        <g>
                             <rect x="60" y="455" width="320" height="65" rx="8" fill="#F0FDF4"
                                 stroke="#BBF7D0" stroke-width="1.2" />
                             <text x="220" y="481" text-anchor="middle" fill="#166534" font-size="14"
@@ -1351,7 +358,7 @@
                         </g>
 
                         <!-- PROCESSING SECTION -->
-                        <g class="section-group">
+                        <g>
                             <rect x="440" y="60" width="520" height="540" rx="12" fill="#F8FAFC"
                                 stroke="#E2E8F0" stroke-width="1.5" />
                             <text x="700" y="85" text-anchor="middle" fill="#475569" font-size="15"
@@ -1359,31 +366,28 @@
                         </g>
 
                         <!-- Raspberry Pi 4 Model B -->
-                        <g class="component" data-component="raspberry-pi">
+                        <g>
                             <rect x="470" y="105" width="460" height="60" rx="8" fill="#F5F3FF"
                                 stroke="#DDD6FE" stroke-width="1.5" />
                             <text x="700" y="128" text-anchor="middle" fill="#5B21B6" font-size="15"
                                 font-weight="600">Raspberry Pi 4 Model B</text>
-                            <text x="700" y="148" text-anchor="middle" fill="#6D28D9" font-size="12">Main
-                                Processing Unit</text>
+                            <text x="700" y="148" text-anchor="middle" fill="#6D28D9" font-size="12">Main Processing Unit</text>
                         </g>
 
                         <!-- MediaPipe -->
-                        <g class="component" data-component="mediapipe">
+                        <g>
                             <rect x="480" y="180" width="210" height="90" rx="8" fill="#F5F3FF"
                                 stroke="#DDD6FE" stroke-width="1.2" />
                             <text x="585" y="205" text-anchor="middle" fill="#5B21B6" font-size="14"
                                 font-weight="600">MediaPipe</text>
-                            <text x="585" y="223" text-anchor="middle" fill="#6D28D9" font-size="11">Face
-                                Detection</text>
-                            <text x="585" y="239" text-anchor="middle" fill="#6D28D9" font-size="11">Mouth
-                                Tracking</text>
+                            <text x="585" y="223" text-anchor="middle" fill="#6D28D9" font-size="11">Face Detection</text>
+                            <text x="585" y="239" text-anchor="middle" fill="#6D28D9" font-size="11">Mouth Tracking</text>
                             <text x="585" y="255" text-anchor="middle" fill="#6D28D9"
                                 font-size="11">Open/Close Detection</text>
                         </g>
 
                         <!-- Motion Control -->
-                        <g class="component" data-component="motion-control">
+                        <g>
                             <rect x="710" y="180" width="210" height="90" rx="8" fill="#F5F3FF"
                                 stroke="#DDD6FE" stroke-width="1.2" />
                             <text x="815" y="205" text-anchor="middle" fill="#5B21B6" font-size="14"
@@ -1392,12 +396,11 @@
                                 font-size="11">Inverse Kinematics</text>
                             <text x="815" y="239" text-anchor="middle" fill="#6D28D9"
                                 font-size="11">Position Calculation</text>
-                            <text x="815" y="255" text-anchor="middle" fill="#6D28D9" font-size="11">Servo
-                                Commands</text>
+                            <text x="815" y="255" text-anchor="middle" fill="#6D28D9" font-size="11">Servo Commands</text>
                         </g>
 
                         <!-- Safety Monitor -->
-                        <g class="component" data-component="safety-monitor">
+                        <g>
                             <rect x="480" y="285" width="210" height="75" rx="8" fill="#FEF2F2"
                                 stroke="#FCA5A5" stroke-width="1.2" />
                             <text x="585" y="311" text-anchor="middle" fill="#991B1B" font-size="14"
@@ -1409,19 +412,17 @@
                         </g>
 
                         <!-- Serial Control -->
-                        <g class="component" data-component="serial-control">
+                        <g>
                             <rect x="710" y="285" width="210" height="75" rx="8" fill="#F5F3FF"
                                 stroke="#DDD6FE" stroke-width="1.2" />
                             <text x="815" y="311" text-anchor="middle" fill="#5B21B6" font-size="14"
                                 font-weight="600">Serial Control</text>
-                            <text x="815" y="329" text-anchor="middle" fill="#6D28D9" font-size="11">USB
-                                Communication</text>
-                            <text x="815" y="345" text-anchor="middle" fill="#6D28D9" font-size="11">Servo
-                                Protocol</text>
+                            <text x="815" y="329" text-anchor="middle" fill="#6D28D9" font-size="11">USB Communication</text>
+                            <text x="815" y="345" text-anchor="middle" fill="#6D28D9" font-size="11">Servo Protocol</text>
                         </g>
 
                         <!-- Cooling Fan -->
-                        <g class="component" data-component="cooling-fan">
+                        <g>
                             <rect x="480" y="375" width="440" height="60" rx="8" fill="#F0FDF4"
                                 stroke="#BBF7D0" stroke-width="1.2" />
                             <text x="700" y="399" text-anchor="middle" fill="#166534" font-size="14"
@@ -1431,7 +432,7 @@
                         </g>
 
                         <!-- BusLinker V2.2 -->
-                        <g class="component" data-component="buslinker">
+                        <g>
                             <rect x="480" y="450" width="440" height="85" rx="8" fill="#FFFBEB"
                                 stroke="#FDE68A" stroke-width="1.2" />
                             <text x="700" y="476" text-anchor="middle" fill="#92400E" font-size="14"
@@ -1445,7 +446,7 @@
                         </g>
 
                         <!-- OUTPUT SECTION -->
-                        <g class="section-group">
+                        <g>
                             <rect x="990" y="60" width="380" height="540" rx="12" fill="#F8FAFC"
                                 stroke="#E2E8F0" stroke-width="1.5" />
                             <text x="1180" y="85" text-anchor="middle" fill="#475569" font-size="15"
@@ -1453,7 +454,7 @@
                         </g>
 
                         <!-- Servo ID 0 - Base Pan -->
-                        <g class="component" data-component="servo-0">
+                        <g>
                             <rect x="1020" y="105" width="320" height="70" rx="8" fill="#FFFBEB"
                                 stroke="#FDE68A" stroke-width="1.2" />
                             <text x="1180" y="129" text-anchor="middle" fill="#92400E" font-size="14"
@@ -1465,7 +466,7 @@
                         </g>
 
                         <!-- Servo ID 1 - Shoulder -->
-                        <g class="component" data-component="servo-1">
+                        <g>
                             <rect x="1020" y="190" width="320" height="70" rx="8" fill="#FFFBEB"
                                 stroke="#FDE68A" stroke-width="1.2" />
                             <text x="1180" y="214" text-anchor="middle" fill="#92400E" font-size="14"
@@ -1477,7 +478,7 @@
                         </g>
 
                         <!-- Servo ID 2 - Elbow -->
-                        <g class="component" data-component="servo-2">
+                        <g>
                             <rect x="1020" y="275" width="320" height="70" rx="8" fill="#FFFBEB"
                                 stroke="#FDE68A" stroke-width="1.2" />
                             <text x="1180" y="299" text-anchor="middle" fill="#92400E" font-size="14"
@@ -1489,7 +490,7 @@
                         </g>
 
                         <!-- Servo ID 3 - Wrist -->
-                        <g class="component" data-component="servo-3">
+                        <g>
                             <rect x="1020" y="360" width="320" height="70" rx="8" fill="#FFFBEB"
                                 stroke="#FDE68A" stroke-width="1.2" />
                             <text x="1180" y="384" text-anchor="middle" fill="#92400E" font-size="14"
@@ -1501,7 +502,7 @@
                         </g>
 
                         <!-- End Effector -->
-                        <g class="component" data-component="end-effector">
+                        <g>
                             <rect x="1020" y="445" width="320" height="80" rx="8" fill="#FDF2F8"
                                 stroke="#FBCFE8" stroke-width="1.2" />
                             <text x="1180" y="471" text-anchor="middle" fill="#9D174D" font-size="14"
@@ -1510,8 +511,7 @@
                                 font-size="11">Hybrid Spoon &amp; Fork Holder</text>
                             <text x="1180" y="505" text-anchor="middle" fill="#9D174D"
                                 font-size="10">Quick-release mechanism</text>
-                            <text x="1180" y="519" text-anchor="middle" fill="#9D174D" font-size="10">3D
-                                Printed PLA</text>
+                            <text x="1180" y="519" text-anchor="middle" fill="#9D174D" font-size="10">3D Printed PLA</text>
                         </g>
 
                         <!-- Connection Lines -->
@@ -1544,785 +544,362 @@
                         <text x="955" y="230" fill="#92400E" font-size="9" font-weight="600">Serial Bus</text>
                     </svg>
                 </div>
-
-                <!-- Hover Info Panel -->
-                <div class="hover-info-panel" id="hoverInfo">
-                    <div class="hover-arrow" id="hoverArrow"></div>
-                    <h4 id="componentTitle"></h4>
-                    <p id="componentDescription"></p>
-                    <div id="componentSpecs"></div>
-                </div>
+                <figcaption>V1 system architecture: input, processing and output components and how they connect.</figcaption>
+            </figure>
             </div>
-        </div>
-    </section>
-        <!-- ADD MEDIAPIPE LIBRARIES -->
-        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
 
-        <!-- ADD ALL THE CSS -->
-        <style>
-            /* Process Section - Decision Cards */
-            .decisions-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 3rem;
-                /* <--- CHANGE THIS VALUE */
-                margin: 3rem 0;
-            }
-
-            .decision-card {
-                background: var(--bg-secondary);
-                border: 1px solid var(--border);
-                border-radius: 16px;
-                padding: 2.5rem;
-                margin: 0 !important;
-            }
-
-            .decision-card:has(.decision-showcase) {
-                display: grid;
-                grid-template-columns: 1.2fr 0.8fr;
-                gap: 2rem;
-                /* <--- CHANGE THIS VALUE */
-                align-items: start;
-            }
-
-            .decision-content {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .decision-number {
-                font-size: 3rem;
-                font-weight: 700;
-                color: var(--accent-soft);
-                line-height: 1;
-                letter-spacing: -0.02em;
-            }
-
-            .decision-card h3 {
-                color: var(--text-primary);
-                font-size: 2rem;
-                margin: 0;
-                line-height: 1.2;
-            }
-
-            .decision-details {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .detail-item {
-                padding-left: 1rem;
-                border-left: 2px solid var(--accent-soft);
-            }
-
-            .detail-item strong {
-                display: block;
-                color: var(--accent);
-                font-size: 0.85rem;
-                letter-spacing: 0.05em;
-                margin-bottom: 0.5rem;
-            }
-
-            .detail-item p {
-                color: var(--text-secondary);
-                line-height: 1.7;
-                margin: 0;
-            }
-
-            /* Showcase Area */
-            .decision-showcase {
-                position: sticky;
-                top: 120px;
-                height: fit-content;
-            }
-
-            .showcase-content {
-                background: #F1F5F9;
-                border: 1px solid var(--border);
-                border-radius: 12px;
-                padding: 1.5rem;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                min-height: 300px;
-                justify-content: center;
-            }
-
-            /* Live Demo Styles */
-            .live-demo {
-                position: relative;
-                background: linear-gradient(135deg, rgba(51, 65, 85, 0.05), rgba(59, 130, 246, 0.05));
-            }
-
-            .demo-placeholder {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .demo-icon {
-                font-size: 3rem;
-            }
-
-            .demo-placeholder p {
-                color: var(--text-secondary);
-                margin: 0;
-            }
-
-            .demo-hint {
-                font-size: 0.85rem;
-                color: var(--accent);
-                font-style: italic;
-            }
-
-            .demo-button {
-                background: var(--accent);
-                color: white;
-                border: none;
-                padding: 0.75rem 2rem;
-                border-radius: 8px;
-                font-size: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.2s ease;
-            }
-
-            .demo-button:hover {
-                background: var(--accent-light);
-                transform: translateY(-2px);
-            }
-
-            .demo-video {
-                width: 100%;
-                height: auto;
-                border-radius: 8px;
-                /* REMOVED display: none; - was hiding YouTube iframe */
-                position: relative;
-            }
-
-            .demo-video-container {
-                position: relative;
-                width: 100%;
-                display: none;
-            }
-
-            .live-demo.active .demo-video-container {
-                display: block;
-            }
-
-            .demo-canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 8px;
-                display: none;
-                pointer-events: none;
-            }
-
-            .live-demo.active .demo-placeholder {
-                display: none;
-            }
-
-            .live-demo.active .demo-video,
-            .live-demo.active .demo-canvas {
-                display: block;
-            }
-
-            .demo-stop {
-                display: none;
-                background: rgba(239, 68, 68, 0.9);
-                color: white;
-                border: none;
-                padding: 0.5rem 1.5rem;
-                border-radius: 6px;
-                font-size: 0.9rem;
-                cursor: pointer;
-                margin-top: 0.5rem;
-            }
-
-            .live-demo.active .demo-stop {
-                display: block;
-            }
-
-            /* System Diagram */
-            .interactive-diagram-wrapper {
-                position: relative;
-                width: 100%;
-                background: #F1F5F9;
-                border-radius: 12px;
-                border: 1px solid var(--border);
-                overflow: visible;
-                margin: 2rem 0 1rem 0;
-                padding: 1rem;
-            }
-
-            .system-diagram {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-
-            .flow-svg {
-                display: block;
-                width: 100%;
-            }
-
-            .component {
-                cursor: pointer;
-                transition: all 0.2s ease;
-            }
-
-            .component:hover rect {
-                filter: brightness(1.4);
-                stroke-width: 3;
-            }
-
-            .hover-info-panel {
-                position: fixed;
-                background: #ffffff;
-                border: 1px solid var(--border);
-                border-radius: 12px;
-                padding: 1.25rem;
-                backdrop-filter: blur(10px);
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.2s ease;
-                max-width: 400px;
-                z-index: 10000;
-                box-shadow: 0 8px 30px rgba(51, 65, 85, 0.12);
-            }
-
-            .hover-info-panel.active {
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .hover-arrow {
-                position: absolute;
-                width: 12px;
-                height: 12px;
-                background: #ffffff;
-                transform: rotate(45deg);
-                left: 50%;
-                margin-left: -6px;
-            }
-
-            .hover-arrow.arrow-top {
-                border-right: 1px solid var(--border);
-                border-bottom: 1px solid var(--border);
-                bottom: -7px;
-            }
-
-            .hover-arrow.arrow-bottom {
-                border-left: 1px solid var(--border);
-                border-top: 1px solid var(--border);
-                top: -7px;
-            }
-
-            .hover-info-panel h4 {
-                color: var(--text-primary);
-                margin: 0 0 0.5rem 0;
-                font-weight: 600;
-                font-size: 1.1rem;
-            }
-
-            .hover-info-panel p {
-                color: var(--text-secondary);
-                margin: 0 0 0.75rem 0;
-                line-height: 1.6;
-                font-size: 0.95rem;
-            }
-
-            .hover-info-panel #componentSpecs {
-                color: var(--text-secondary);
-                font-size: 0.85rem;
-                line-height: 1.7;
-            }
-
-            .hover-info-panel #componentSpecs strong {
-                color: var(--text-primary);
-            }
-
-            /* Flow Diagram */
-            .flow-diagram {
-                background: #F1F5F9;
-                border-radius: 12px;
-                border: 1px solid var(--border);
-                padding: 2rem;
-                margin: 2rem 0;
-            }
-
-            .flow-svg {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-
-            .flow-description-compact {
-                margin-top: 1.5rem;
-            }
-
-            .flow-column-compact h4 {
-                color: var(--text-primary);
-                margin-bottom: 1rem;
-                font-size: 1.1rem;
-            }
-
-            .flow-list-compact {
-                list-style: none;
-                padding: 0;
-                line-height: 1.8;
-                color: var(--text-secondary);
-            }
-
-            .flow-list-compact li {
-                margin-bottom: 0.75rem;
-                padding-left: 1.5rem;
-                position: relative;
-            }
-
-            .flow-list-compact li:before {
-                content: "→";
-                position: absolute;
-                left: 0;
-                color: var(--accent);
-            }
-
-            .flow-list-compact strong {
-                color: var(--text-primary);
-            }
-
-            /* Responsive */
-            @media (max-width: 1024px) {
-                .decision-card:has(.decision-showcase) {
-                    grid-template-columns: 1fr;
-                }
-
-                .decision-showcase {
-                    position: static;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .decision-card {
-                    padding: 1.5rem;
-                }
-
-                .decision-number {
-                    font-size: 2rem;
-                }
-
-                .decision-card h3 {
-                    font-size: 1.5rem;
-                }
-
-                .hover-info-panel {
-                    max-width: 300px;
-                    padding: 1rem;
-                }
-
-                .flow-diagram {
-                    padding: 1rem;
-                }
-            }
-        </style>
-
-        <!-- ADD ALL THE JAVASCRIPT -->
-        <script>
-            // Component data with detailed specifications
-            const componentData = {
-                'realsense': {
-                    title: 'Intel RealSense Depth Camera',
-                    description: 'RGB-D camera providing real-time depth sensing and color imaging for face detection and mouth tracking.',
-                    specs: '<strong>Resolution:</strong> 1920×1080 RGB, 1280×720 Depth<br><strong>Frame Rate:</strong> 30 fps<br><strong>Range:</strong> 0.3m - 3m<br><strong>Interface:</strong> USB 3.0<br><strong>Power:</strong> 3-5W'
-                },
-                'estop-primary': {
-                    title: 'Emergency Stop (Primary)',
-                    description: 'Main emergency stop button for immediate system shutdown. Hard-wired to Raspberry Pi GPIO for instant response.',
-                    specs: '<strong>Type:</strong> Push-button E-Stop<br><strong>Connection:</strong> GPIO (pull-down resistor)<br><strong>Response Time:</strong> <10ms'
-                },
-                'estop-shoulder': {
-                    title: 'Emergency Stop (Shoulder Mount)',
-                    description: 'Secondary emergency stop mounted on shoulder harness for hands-free accessibility and redundancy.',
-                    specs: '<strong>Type:</strong> Push-button E-Stop<br><strong>Connection:</strong> Pluggable GPIO<br><strong>Response Time:</strong> <10ms'
-                },
-                'power-5v': {
-                    title: '5V Power Supply',
-                    description: 'Dedicated 5V power rail for computing components. Isolated from motor power to prevent noise interference.',
-                    specs: '<strong>Output:</strong> 5V @ 5A (25W)<br><strong>Powers:</strong> Raspberry Pi, Camera, Fan'
-                },
-                'power-9v': {
-                    title: '9V Power Supply',
-                    description: 'Dedicated 9V power rail for servo motors. Isolated from computing components for reliability.',
-                    specs: '<strong>Output:</strong> 9V @ 3A (27W)<br><strong>Powers:</strong> BusLinker, 4x Servos'
-                },
-                'power-switch': {
-                    title: 'Power Switch',
-                    description: 'Physical switch controlling power to the BusLinker and servo system. Allows motor shutdown while keeping Pi active.',
-                    specs: '<strong>Type:</strong> Toggle switch<br><strong>Rating:</strong> 9V 3A'
-                },
-                'raspberry-pi': {
-                    title: 'Raspberry Pi 4 Model B',
-                    description: 'Main processing unit running computer vision, motion control, safety monitoring, and servo communication.',
-                    specs: '<strong>CPU:</strong> Quad-core ARM Cortex-A72 @ 1.5GHz<br><strong>RAM:</strong> 4GB LPDDR4<br><strong>Power:</strong> 5V @ 3A'
-                },
-                'mediapipe': {
-                    title: 'MediaPipe Face Mesh',
-                    description: 'Real-time face detection and 468-point facial landmark tracking for precise mouth position detection.',
-                    specs: '<strong>Framework:</strong> Google MediaPipe<br><strong>Landmarks:</strong> 468 facial points<br><strong>Processing Rate:</strong> 30 fps'
-                },
-                'motion-control': {
-                    title: 'Motion Control System',
-                    description: 'Inverse kinematics solver converting mouth coordinates to servo angles for smooth, precise arm movement.',
-                    specs: '<strong>Algorithm:</strong> Analytical IK solver<br><strong>DOF:</strong> 4 degrees of freedom<br><strong>Update Rate:</strong> 100 Hz'
-                },
-                'safety-monitor': {
-                    title: 'Safety Monitor',
-                    description: 'Continuously monitors emergency stop buttons via GPIO and triggers immediate system shutdown on activation.',
-                    specs: '<strong>Inputs:</strong> 2x E-Stop buttons<br><strong>Polling Rate:</strong> 1000 Hz<br><strong>Response Time:</strong> <10ms'
-                },
-                'serial-control': {
-                    title: 'Serial Control Interface',
-                    description: 'Handles USB to serial bus communication with BusLinker, sending servo position commands at high frequency.',
-                    specs: '<strong>Protocol:</strong> LX-15D Serial Bus<br><strong>Baud Rate:</strong> 115200<br><strong>Update Rate:</strong> 100 Hz'
-                },
-                'cooling-fan': {
-                    title: 'Cooling Fan',
-                    description: 'Active cooling system maintaining Raspberry Pi temperature below 65°C during continuous operation.',
-                    specs: '<strong>Size:</strong> 40mm × 40mm<br><strong>Voltage:</strong> 5V DC<br><strong>Power:</strong> ~2W'
-                },
-                'buslinker': {
-                    title: 'BusLinker V2.2 Serial Bus Controller',
-                    description: 'USB to Serial Bus converter enabling Raspberry Pi to control multiple LX-15D servos via daisy-chained communication.',
-                    specs: '<strong>Inputs:</strong> USB 2.0 from Pi<br><strong>Outputs:</strong> Serial Bus (4 channels)<br><strong>Protocol:</strong> LX-15D Serial Bus'
-                },
-                'servo-0': {
-                    title: 'Servo ID 0 - Base Pan (Joint 0)',
-                    description: 'Base rotation servo providing 360° panning motion for horizontal positioning of the arm.',
-                    specs: '<strong>Model:</strong> HiWonder LX-15D<br><strong>Torque:</strong> 15 kg·cm @ 9V<br><strong>Range:</strong> 240°'
-                },
-                'servo-1': {
-                    title: 'Servo ID 1 - Shoulder (Joint 1)',
-                    description: 'Shoulder servo controlling vertical angle of the first arm segment for height adjustment.',
-                    specs: '<strong>Model:</strong> HiWonder LX-15D<br><strong>Torque:</strong> 15 kg·cm @ 9V<br><strong>Range:</strong> 240°'
-                },
-                'servo-2': {
-                    title: 'Servo ID 2 - Elbow (Joint 2)',
-                    description: 'Elbow servo controlling vertical angle of the second arm segment for reach extension.',
-                    specs: '<strong>Model:</strong> HiWonder LX-15D<br><strong>Torque:</strong> 15 kg·cm @ 9V<br><strong>Range:</strong> 240°'
-                },
-                'servo-3': {
-                    title: 'Servo ID 3 - Wrist (Joint 3)',
-                    description: 'Wrist servo controlling final vertical positioning and tilt angle of the end effector.',
-                    specs: '<strong>Model:</strong> HiWonder LX-15D<br><strong>Torque:</strong> 15 kg·cm @ 9V<br><strong>Range:</strong> 240°'
-                },
-                'end-effector': {
-                    title: 'End Effector - Hybrid Utensil Holder',
-                    description: 'Custom-designed holder accommodating both spoons and forks with quick-release mechanism for easy utensil swapping.',
-                    specs: '<strong>Material:</strong> 3D printed PLA<br><strong>Design:</strong> Hybrid spoon/fork holder<br><strong>Release:</strong> Spring-loaded'
-                }
-            };
-
-            // Hover functionality for system diagram
-            const components = document.querySelectorAll('.component');
-            const hoverInfo = document.getElementById('hoverInfo');
-            const hoverArrow = document.getElementById('hoverArrow');
-            const componentTitle = document.getElementById('componentTitle');
-            const componentDescription = document.getElementById('componentDescription');
-            const componentSpecs = document.getElementById('componentSpecs');
-
-            components.forEach(component => {
-                component.addEventListener('mouseenter', function (e) {
-                    const componentId = this.getAttribute('data-component');
-                    const data = componentData[componentId];
-
-                    if (data) {
-                        componentTitle.textContent = data.title;
-                        componentDescription.textContent = data.description;
-                        componentSpecs.innerHTML = data.specs;
-
-                        hoverInfo.classList.add('active');
-                        updateTooltipPosition(e);
-                    }
-                });
-
-                component.addEventListener('mousemove', function (e) {
-                    updateTooltipPosition(e);
-                });
-
-                component.addEventListener('mouseleave', function () {
-                    hoverInfo.classList.remove('active');
-                });
-            });
-
-            function updateTooltipPosition(e) {
-                const rect = e.target.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                const tooltipX = rect.left + rect.width / 2;
-
-                const estimatedTooltipHeight = 350;
-                const spaceAbove = rect.top;
-                const spaceBelow = windowHeight - rect.bottom;
-
-                let tooltipY;
-                let arrowClass;
-
-                if (spaceAbove > estimatedTooltipHeight && spaceAbove > spaceBelow) {
-                    tooltipY = rect.top - 10;
-                    hoverInfo.style.transform = 'translate(-50%, -100%)';
-                    arrowClass = 'arrow-top';
-                } else {
-                    tooltipY = rect.bottom + 10;
-                    hoverInfo.style.transform = 'translate(-50%, 0)';
-                    arrowClass = 'arrow-bottom';
-                }
-
-                hoverInfo.style.left = tooltipX + 'px';
-                hoverInfo.style.top = tooltipY + 'px';
-                hoverArrow.className = 'hover-arrow ' + arrowClass;
-            }
-
-            // MediaPipe Live Demo - FULLY FIXED VERSION
-            let demoInitialized = false;
-
-            document.addEventListener('DOMContentLoaded', () => {
-                const demoContainer = document.getElementById('mediapipeDemo');
-                const startBtn = document.getElementById('startDemoBtn');
-                const stopBtn = document.getElementById('stopDemoBtn');
-                const video = document.getElementById('demoVideo');
-                const canvas = document.getElementById('demoCanvas');
-                const ctx = canvas.getContext('2d');
-
-                let camera = null;
-                let faceMesh = null;
-                let stream = null;
-
-                startBtn.addEventListener('click', async () => {
-                    if (demoInitialized) return;
-
-                    try {
-                        stream = await navigator.mediaDevices.getUserMedia({
-                            video: {
-                                width: { ideal: 640 },
-                                height: { ideal: 480 },
-                                facingMode: 'user'
-                            }
-                        });
-
-                        video.srcObject = stream;
-                        demoInitialized = true;
-                        demoContainer.classList.add('active');
-
-                        await new Promise((resolve) => {
-                            video.onloadedmetadata = () => {
-                                video.play();
-                                resolve();
-                            };
-                        });
-
-                        canvas.width = video.videoWidth;
-                        canvas.height = video.videoHeight;
-
-                        faceMesh = new FaceMesh({
-                            locateFile: (file) => {
-                                return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
-                            }
-                        });
-
-                        faceMesh.setOptions({
-                            maxNumFaces: 1,
-                            refineLandmarks: true,
-                            minDetectionConfidence: 0.5,
-                            minTrackingConfidence: 0.5
-                        });
-
-                        faceMesh.onResults(onResults);
-                        processFrame();
-
-                    } catch (error) {
-                        console.error('Camera error:', error);
-                        alert('Camera access denied. Please allow camera access and refresh the page.');
-                        demoInitialized = false;
-                    }
-                });
-
-                async function processFrame() {
-                    if (!demoInitialized) return;
-
-                    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-                        await faceMesh.send({ image: video });
-                    }
-
-                    requestAnimationFrame(processFrame);
-                }
-
-                stopBtn.addEventListener('click', () => {
-                    stopDemo();
-                });
-
-                function stopDemo() {
-                    demoInitialized = false;
-
-                    if (stream) {
-                        stream.getTracks().forEach(track => track.stop());
-                        stream = null;
-                    }
-
-                    if (video.srcObject) {
-                        video.srcObject = null;
-                    }
-
-                    if (faceMesh) {
-                        faceMesh.close();
-                        faceMesh = null;
-                    }
-
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    demoContainer.classList.remove('active');
-                }
-
-                function onResults(results) {
-                    if (!demoInitialized) return;
-
-                    canvas.width = video.videoWidth;
-                    canvas.height = video.videoHeight;
-
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
-                        const landmarks = results.multiFaceLandmarks[0];
-
-                        ctx.strokeStyle = 'rgba(51, 65, 85, 0.2)';
-                        ctx.lineWidth = 1;
-
-                        const LIPS = [
-                            [61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291],
-                            [78, 191, 80, 81, 82, 13, 312, 311, 310, 415, 308]
-                        ];
-
-                        LIPS.forEach(lipLine => {
-                            ctx.beginPath();
-                            lipLine.forEach((idx, i) => {
-                                const point = landmarks[idx];
-                                const x = point.x * canvas.width;
-                                const y = point.y * canvas.height;
-                                if (i === 0) {
-                                    ctx.moveTo(x, y);
-                                } else {
-                                    ctx.lineTo(x, y);
-                                }
-                            });
-                            ctx.closePath();
-                            ctx.stroke();
-                        });
-
-                        const mouthKeyPoints = [61, 291, 0, 17];
-                        ctx.fillStyle = 'rgba(59, 130, 246, 0.8)';
-
-                        mouthKeyPoints.forEach(index => {
-                            const landmark = landmarks[index];
-                            ctx.beginPath();
-                            ctx.arc(
-                                landmark.x * canvas.width,
-                                landmark.y * canvas.height,
-                                4,
-                                0,
-                                2 * Math.PI
-                            );
-                            ctx.fill();
-                        });
-
-                        // Use THE EXACT SAME CALCULATION AS THE REAL ARM
-                        // Landmark 13 = top lip, Landmark 14 = bottom lip
-                        const topLip = landmarks[13];
-                        const bottomLip = landmarks[14];
-
-                        // Simple average - EXACTLY like the arm code
-                        const mouthCenterX = (topLip.x + bottomLip.x) / 2;
-                        const mouthCenterY = (topLip.y + bottomLip.y) / 2;
-
-                        ctx.fillStyle = 'rgba(34, 197, 94, 1)';
-                        ctx.strokeStyle = 'rgba(34, 197, 94, 1)';
-                        ctx.lineWidth = 2;
-
-                        const centerX = mouthCenterX * canvas.width;
-                        const centerY = mouthCenterY * canvas.height;
-                        const size = 8;
-
-                        ctx.beginPath();
-                        ctx.arc(centerX, centerY, 6, 0, 2 * Math.PI);
-                        ctx.fill();
-
-                        ctx.beginPath();
-                        ctx.moveTo(centerX - size, centerY);
-                        ctx.lineTo(centerX + size, centerY);
-                        ctx.moveTo(centerX, centerY - size);
-                        ctx.lineTo(centerX, centerY + size);
-                        ctx.stroke();
-
-                        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                        ctx.font = 'bold 13px sans-serif';
-                        ctx.fillText('Mouth Target', centerX + 15, centerY - 10);
-                    }
-                }
-            });
-        </script>
-
-
-        <!-- Back to Projects Button -->
-        <div class="back-to-projects-container" style="text-align: center; margin: 4rem 0 2rem 0;">
-            <a href="../index.html#projects" class="btn-primary">← Back to All Projects</a>
-        </div>
-
-        <!-- Footer -->
-            <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
+            <h3>Component specifications</h3>
+            <div class="table-wrap"><table class="table">
+                <thead><tr><th scope="col">Component</th><th scope="col">Role</th><th scope="col">Specs</th></tr></thead>
+                <tbody>
+                    <tr class="is-group"><td colspan="3">Input</td></tr>
+                    <tr><td>Intel RealSense depth camera</td><td>RGB-D camera providing real-time depth sensing and colour imaging for face detection and mouth tracking.</td><td>1920×1080 RGB, 1280×720 depth · 30 fps · range 0.3–3 m · USB 3.0 · 3–5 W</td></tr>
+                    <tr><td>E-stop (primary)</td><td>Main emergency stop for immediate system shutdown, hard-wired to Raspberry Pi GPIO for instant response.</td><td>Push-button · GPIO with pull-down resistor · response &lt;10 ms</td></tr>
+                    <tr><td>E-stop (shoulder mount)</td><td>Secondary emergency stop on a shoulder harness for hands-free accessibility and redundancy.</td><td>Push-button · pluggable GPIO · response &lt;10 ms</td></tr>
+                    <tr><td>5 V power supply</td><td>Dedicated 5 V rail for the computing components, isolated from motor power to prevent noise interference.</td><td>5 V @ 5 A (25 W) · powers Pi, camera, fan</td></tr>
+                    <tr><td>9 V power supply</td><td>Dedicated 9 V rail for the servo motors, isolated from the computing components for reliability.</td><td>9 V @ 3 A (27 W) · powers BusLinker and 4 servos</td></tr>
+                    <tr><td>Power switch</td><td>Physical switch controlling power to the BusLinker and servos, so the motors can be shut down while the Pi stays active.</td><td>Toggle switch · rated 9 V 3 A</td></tr>
+                    <tr class="is-group"><td colspan="3">Processing</td></tr>
+                    <tr><td>Raspberry Pi 4 Model B</td><td>Main processing unit running computer vision, motion control, safety monitoring and servo communication.</td><td>Quad-core ARM Cortex-A72 @ 1.5 GHz · 4 GB LPDDR4 · 5 V @ 3 A</td></tr>
+                    <tr><td>MediaPipe Face Mesh</td><td>Real-time face detection and 468-point facial landmark tracking for precise mouth position and open/close detection.</td><td>Google MediaPipe · 468 landmarks · 30 fps</td></tr>
+                    <tr><td>Motion control</td><td>Inverse-kinematics solver converting mouth coordinates into servo angles for smooth, precise arm movement.</td><td>Analytical IK solver · 4 DOF · 100 Hz update</td></tr>
+                    <tr><td>Safety monitor</td><td>Continuously polls both emergency stops via GPIO and triggers an immediate pause on activation.</td><td>2 e-stop inputs · 1000 Hz polling · response &lt;10 ms</td></tr>
+                    <tr><td>Serial control</td><td>Handles USB-to-serial-bus communication with the BusLinker, sending servo position commands at high frequency.</td><td>LX-15D serial bus protocol · 115200 baud · 100 Hz update</td></tr>
+                    <tr><td>Cooling fan</td><td>Active cooling that keeps the Raspberry Pi below 65 °C during continuous operation.</td><td>40 × 40 mm · 5 V DC · ~2 W</td></tr>
+                    <tr><td>BusLinker V2.2</td><td>USB-to-serial-bus converter letting the Pi control multiple LX-15D servos over daisy-chained communication.</td><td>USB 2.0 in · 4-channel serial bus out · LX-15D protocol</td></tr>
+                    <tr class="is-group"><td colspan="3">Output</td></tr>
+                    <tr><td>Servo ID 0 – base pan (joint 0)</td><td>Base rotation servo providing 360° panning motion for horizontal positioning of the arm.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>Servo ID 1 – shoulder (joint 1)</td><td>Controls the vertical angle of the first arm segment for height adjustment.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>Servo ID 2 – elbow (joint 2)</td><td>Controls the vertical angle of the second arm segment for reach extension.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>Servo ID 3 – wrist (joint 3)</td><td>Controls the final vertical positioning and tilt angle of the end effector.</td><td>HiWonder LX-15D · 15 kg·cm @ 9 V · 240° range</td></tr>
+                    <tr><td>End effector – hybrid utensil holder</td><td>Custom holder accommodating both spoons and forks, with a quick-release mechanism for easy utensil swapping.</td><td>3D-printed PLA · hybrid spoon/fork holder · spring-loaded release</td></tr>
+                </tbody>
+            </table></div>
+
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
         </div>
     </footer>
 
-        <!-- 3D Model Viewer Modal -->
-        <div id="model3DModal"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 9999; align-items: center; justify-content: center;">
-            <button id="closeModalBtn"
-                style="position: absolute; top: 2rem; right: 2rem; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: #fff; width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10000;">
-                ✕
-            </button>
-            <div style="width: 90%; height: 90%; max-width: 1200px; max-height: 800px; position: relative;">
-                <canvas id="model3DCanvas" style="width: 100%; height: 100%; border-radius: 20px;"></canvas>
-                <div id="modelLoadingText"
-                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 1.2rem; text-align: center;">
-                    <div style="margin-bottom: 1rem;">Loading 3D Model...</div>
-                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6);">Drag to rotate • Scroll to zoom</div>
-                </div>
-            </div>
-        </div>
+    <script src="../script.js?v=2.0"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-        <script src="munchkin/assets/main.js"></script>
+    <!-- Widget 1: inverse-kinematics canvas demo (CCD solver). Page-specific by design. -->
+    <script>
+    (function () {
+        'use strict';
+        var canvas = document.getElementById('ikCanvas');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var root = getComputedStyle(document.documentElement);
+        var tok = function (name, fallback) { return (root.getPropertyValue(name) || '').trim() || fallback; };
+        var C_TEXT = tok('--text', '#1d1d1f');
+        var C_TEXT2 = tok('--text-2', '#6e6e73');
+        var C_TEXT3 = tok('--text-3', '#86868b');
+        var C_ACCENT = tok('--accent', '#0066cc');
 
+        /* Arm segment lengths (8 / 8 / 6 units) */
+        var segments = [{ length: 80 }, { length: 80 }, { length: 60 }];
+        var baseX = canvas.width / 2;
+        var baseY = canvas.height - 50;
+
+        /* CCD tracks joint angles, not positions. Start pointing up. */
+        var angles = [0, -Math.PI / 2, 0];
+        var targetX = baseX;
+        var targetY = baseY - 220;
+        var pointerMoved = false;
+
+        function getJointPositions() {
+            var joints = [{ x: baseX, y: baseY }];
+            var a = 0, x = baseX, y = baseY;
+            for (var i = 0; i < segments.length; i++) {
+                a += angles[i];
+                x += Math.cos(a) * segments[i].length;
+                y += Math.sin(a) * segments[i].length;
+                joints.push({ x: x, y: y });
+            }
+            return joints;
+        }
+
+        /* Cyclic Coordinate Descent: rotate each joint, from the end effector back, toward the target. */
+        function solveCCD(target, iterations) {
+            iterations = iterations || 10;
+            for (var iter = 0; iter < iterations; iter++) {
+                var joints;
+                for (var i = segments.length - 1; i >= 0; i--) {
+                    joints = getJointPositions();
+                    var end = joints[joints.length - 1];
+                    var joint = joints[i];
+                    var angleToEnd = Math.atan2(end.y - joint.y, end.x - joint.x);
+                    var angleToTarget = Math.atan2(target.y - joint.y, target.x - joint.x);
+                    var delta = angleToTarget - angleToEnd;
+                    while (delta > Math.PI) delta -= 2 * Math.PI;
+                    while (delta < -Math.PI) delta += 2 * Math.PI;
+                    angles[i] += delta * 0.5; /* damping for smoothness */
+                    /* Base rotates freely; shoulder and elbow are limited to ±170° to avoid unrealistic poses. */
+                    if (i === 1 || i === 2) {
+                        var maxAngle = Math.PI * 0.94;
+                        if (angles[i] > maxAngle) angles[i] = maxAngle;
+                        if (angles[i] < -maxAngle) angles[i] = -maxAngle;
+                    }
+                }
+                joints = getJointPositions();
+                var e = joints[joints.length - 1];
+                if (Math.hypot(e.x - target.x, e.y - target.y) < 1) break;
+            }
+        }
+
+        function displayAngles() {
+            var j = getJointPositions();
+            return [
+                Math.atan2(j[1].x - j[0].x, -(j[1].y - j[0].y)) * 180 / Math.PI,
+                Math.atan2(j[2].y - j[1].y, j[2].x - j[1].x) * 180 / Math.PI,
+                Math.atan2(j[3].y - j[2].y, j[3].x - j[2].x) * 180 / Math.PI
+            ];
+        }
+
+        var elBase = document.getElementById('baseAngle');
+        var elShoulder = document.getElementById('shoulderAngle');
+        var elElbow = document.getElementById('elbowAngle');
+        var elDist = document.getElementById('distance');
+
+        function draw() {
+            var joints = getJointPositions();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            /* Grid */
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.lineWidth = 1;
+            for (var gx = 0; gx < canvas.width; gx += 50) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, canvas.height); ctx.stroke(); }
+            for (var gy = 0; gy < canvas.height; gy += 50) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(canvas.width, gy); ctx.stroke(); }
+
+            /* Workspace circle */
+            var reach = segments.reduce(function (s, seg) { return s + seg.length; }, 0);
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.06)';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(baseX, baseY, reach, 0, Math.PI * 2); ctx.stroke();
+
+            /* Base */
+            ctx.fillStyle = C_TEXT2;
+            ctx.fillRect(baseX - 30, baseY - 10, 60, 20);
+            ctx.beginPath(); ctx.arc(baseX, baseY, 15, 0, Math.PI * 2); ctx.fill();
+
+            /* Segments */
+            var colors = [C_TEXT3, C_TEXT2, C_TEXT];
+            ctx.lineCap = 'round';
+            for (var i = 0; i < segments.length; i++) {
+                ctx.strokeStyle = colors[i];
+                ctx.lineWidth = 12 - i * 2;
+                ctx.beginPath(); ctx.moveTo(joints[i].x, joints[i].y); ctx.lineTo(joints[i + 1].x, joints[i + 1].y); ctx.stroke();
+            }
+
+            /* Joints; the end effector is highlighted in the accent colour */
+            ctx.lineWidth = 3;
+            for (var k = 0; k < joints.length; k++) {
+                var isEnd = k === joints.length - 1;
+                ctx.beginPath(); ctx.arc(joints[k].x, joints[k].y, isEnd ? 10 : 8, 0, Math.PI * 2);
+                ctx.fillStyle = isEnd ? C_ACCENT : '#fff';
+                ctx.strokeStyle = isEnd ? C_ACCENT : C_TEXT;
+                ctx.fill(); ctx.stroke();
+            }
+
+            /* Target crosshair */
+            if (pointerMoved) {
+                ctx.strokeStyle = C_ACCENT;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(targetX - 10, targetY); ctx.lineTo(targetX + 10, targetY);
+                ctx.moveTo(targetX, targetY - 10); ctx.lineTo(targetX, targetY + 10);
+                ctx.stroke();
+            }
+
+            var d = displayAngles();
+            if (elBase) elBase.textContent = d[0].toFixed(1) + '°';
+            if (elShoulder) elShoulder.textContent = d[1].toFixed(1) + '°';
+            if (elElbow) elElbow.textContent = d[2].toFixed(1) + '°';
+            var end = joints[joints.length - 1];
+            if (elDist) elDist.textContent = Math.hypot(end.x - targetX, end.y - targetY).toFixed(1) + 'px';
+        }
+
+        canvas.addEventListener('pointermove', function (e) {
+            pointerMoved = true;
+            var r = canvas.getBoundingClientRect();
+            targetX = (e.clientX - r.left) * (canvas.width / r.width);
+            targetY = (e.clientY - r.top) * (canvas.height / r.height);
+        });
+
+        /* Only animate while the canvas is on screen. */
+        var running = false;
+        function frame() {
+            if (!running) return;
+            solveCCD({ x: targetX, y: targetY });
+            draw();
+            requestAnimationFrame(frame);
+        }
+        draw();
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    var was = running;
+                    running = en.isIntersecting;
+                    if (running && !was) requestAnimationFrame(frame);
+                });
+            }).observe(canvas);
+        } else { running = true; requestAnimationFrame(frame); }
+    })();
+    </script>
+
+    <!-- Widget 2: MediaPipe Face Mesh webcam demo. The MediaPipe library is only fetched from the CDN
+         when the user presses "Try it out", so it never affects page load. Page-specific by design. -->
+    <script>
+    (function () {
+        'use strict';
+        var box = document.getElementById('mediapipeDemo');
+        var startBtn = document.getElementById('startDemoBtn');
+        var stopBtn = document.getElementById('stopDemoBtn');
+        var video = document.getElementById('demoVideo');
+        var canvas = document.getElementById('demoCanvas');
+        var status = document.getElementById('demoStatus');
+        if (!box || !startBtn || !video || !canvas) return;
+        var ctx = canvas.getContext('2d');
+        var root = getComputedStyle(document.documentElement);
+        var C_ACCENT = (root.getPropertyValue('--accent') || '').trim() || '#0066cc';
+        var C_SUCCESS = (root.getPropertyValue('--success') || '').trim() || '#1f7a4d';
+
+        var MP_BASE = 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh';
+        var libPromise = null;
+        var active = false;
+        var stream = null;
+        var faceMesh = null;
+
+        function loadLib() {
+            if (window.FaceMesh) return Promise.resolve();
+            if (libPromise) return libPromise;
+            libPromise = new Promise(function (resolve, reject) {
+                var s = document.createElement('script');
+                s.src = MP_BASE;
+                s.async = true;
+                s.onload = resolve;
+                s.onerror = function () { libPromise = null; reject(new Error('Could not load MediaPipe')); };
+                document.head.appendChild(s);
+            });
+            return libPromise;
+        }
+
+        function setStatus(msg) { if (status) status.textContent = msg || ''; }
+
+        startBtn.addEventListener('click', function () {
+            if (active) return;
+            startBtn.disabled = true;
+            startBtn.textContent = 'Loading…';
+            setStatus('');
+            Promise.all([
+                loadLib(),
+                navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' } })
+            ]).then(function (res) {
+                stream = res[1];
+                video.srcObject = stream;
+                active = true;
+                box.classList.add('is-active');
+                return new Promise(function (resolve) {
+                    video.onloadedmetadata = function () { video.play(); resolve(); };
+                });
+            }).then(function () {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                faceMesh = new window.FaceMesh({ locateFile: function (file) { return MP_BASE + '/' + file; } });
+                faceMesh.setOptions({ maxNumFaces: 1, refineLandmarks: true, minDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
+                faceMesh.onResults(onResults);
+                processFrame();
+            }).catch(function (err) {
+                console.error('Demo error:', err);
+                stopDemo();
+                setStatus(err && err.name === 'NotAllowedError'
+                    ? 'Camera access was denied. Allow camera access for this site and try again.'
+                    : 'Could not start the demo: ' + (err && err.message ? err.message : err));
+            }).then(function () {
+                startBtn.disabled = false;
+                startBtn.textContent = 'Try it out';
+            });
+        });
+
+        function processFrame() {
+            if (!active || !faceMesh) return;
+            var p = video.readyState === video.HAVE_ENOUGH_DATA ? faceMesh.send({ image: video }) : Promise.resolve();
+            Promise.resolve(p).then(function () { requestAnimationFrame(processFrame); });
+        }
+
+        function stopDemo() {
+            active = false;
+            if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
+            if (video.srcObject) video.srcObject = null;
+            if (faceMesh) { faceMesh.close(); faceMesh = null; }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            box.classList.remove('is-active');
+        }
+        if (stopBtn) stopBtn.addEventListener('click', stopDemo);
+        document.addEventListener('visibilitychange', function () { if (document.hidden && active) stopDemo(); });
+
+        /* Lip outlines and the mouth-centre target, computed exactly like the real arm code:
+           landmark 13 = top lip, landmark 14 = bottom lip, target = their average. */
+        var LIPS = [
+            [61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291],
+            [78, 191, 80, 81, 82, 13, 312, 311, 310, 415, 308]
+        ];
+        var KEY_POINTS = [61, 291, 0, 17];
+
+        function onResults(results) {
+            if (!active) return;
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (!results.multiFaceLandmarks || !results.multiFaceLandmarks.length) return;
+            var lm = results.multiFaceLandmarks[0];
+            var W = canvas.width, H = canvas.height;
+
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = 1;
+            LIPS.forEach(function (line) {
+                ctx.beginPath();
+                line.forEach(function (idx, i) {
+                    var p = lm[idx];
+                    if (i === 0) ctx.moveTo(p.x * W, p.y * H); else ctx.lineTo(p.x * W, p.y * H);
+                });
+                ctx.closePath(); ctx.stroke();
+            });
+
+            ctx.fillStyle = C_ACCENT;
+            KEY_POINTS.forEach(function (idx) {
+                ctx.beginPath(); ctx.arc(lm[idx].x * W, lm[idx].y * H, 4, 0, 2 * Math.PI); ctx.fill();
+            });
+
+            var cx = (lm[13].x + lm[14].x) / 2 * W;
+            var cy = (lm[13].y + lm[14].y) / 2 * H;
+            ctx.fillStyle = C_SUCCESS; ctx.strokeStyle = C_SUCCESS; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(cx, cy, 6, 0, 2 * Math.PI); ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(cx - 8, cy); ctx.lineTo(cx + 8, cy);
+            ctx.moveTo(cx, cy - 8); ctx.lineTo(cx, cy + 8);
+            ctx.stroke();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.font = 'bold 13px sans-serif';
+            ctx.fillText('Mouth target', cx + 15, cy - 10);
+        }
+    })();
+    </script>
 </body>
 
 </html>

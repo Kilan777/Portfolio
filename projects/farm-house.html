@@ -2,226 +2,112 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Barn in a Box | Kilan Rougeot</title>
+    <meta name="description" content="A laser-cut 1/4-inch plywood barn from one 18 × 24 in sheet: six joint types, four fastening methods, a hinged door and engraved farm scenes. Fall 2024.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/projects/farm-house.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/farm-house.html">
+    <meta property="og:title" content="Barn in a Box | Kilan Rougeot">
+    <meta property="og:description" content="A laser-cut 1/4-inch plywood barn from one 18 × 24 in sheet: six joint types, four fastening methods, a hinged door and engraved farm scenes. Fall 2024.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Barn in a Box",
+      "headline": "Barn in a Box",
+      "description": "A laser-cut 1/4-inch plywood barn from one 18 × 24 in sheet: six joint types, four fastening methods, a hinged door and engraved farm scenes. Fall 2024.",
+      "url": "https://kilanrou.com/projects/farm-house.html",
+      "image": "https://kilanrou.com/Pics/house.webp",
+      "dateCreated": "2024-09",
+      "keywords": ["laser cutting", "plywood", "joinery", "CAD", "woodworking", "box joint", "lattice hinge"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barn in a Box | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        /* Additional styles for detail pages */
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content h3 {
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background: var(--color-accent-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .detail-image img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .image-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-md);
-            margin: var(--spacing-lg) 0;
-        }
-
-        .image-row .detail-image {
-            margin: 0;
-            min-height: 300px;
-        }
-
-        /* Assembly grid - 6 images in upper section, 5 in lower */
-        .assembly-grid-top {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: var(--spacing-sm);
-            margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
-        }
-
-        .assembly-grid-bottom {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: var(--spacing-sm);
-            margin: var(--spacing-sm) 0 var(--spacing-lg) 0;
-        }
-
-        .assembly-grid-top .detail-image,
-        .assembly-grid-bottom .detail-image {
-            margin: 0;
-            min-height: 150px;
-        }
-
-        @media (max-width: 768px) {
-            .assembly-grid-top {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .assembly-grid-bottom {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
-
-    <meta name="description" content="Laser-cut precision model miniature barn demonstrating custom wood joining, architectural structures, and structural prototyping.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/farm-house.html">
-    <meta property="og:title" content="Barn in a Box | Kilan Rougeot">
-    <meta property="og:description" content="Laser-cut precision model miniature barn demonstrating custom wood joining, architectural structures, and structural prototyping.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/farm-house.html">
-    <meta property="twitter:title" content="Barn in a Box | Kilan Rougeot">
-    <meta property="twitter:description" content="Laser-cut precision model miniature barn demonstrating custom wood joining, architectural structures, and structural prototyping.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Project Detail -->
-    <section class="detail-hero">
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Barn in a Box</h1>
-            <p class="detail-meta">Laser-Cut Design • Fall 2024 • Boston, MA</p>
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <span class="eyebrow">Laser-cut design</span>
+                    <h1 class="detail-hero__title">Barn in a Box</h1>
+                    <p class="detail-hero__sub">A miniature plywood barn with a hinged door, cut from one sheet.</p>
+                    <div class="detail-hero__meta">
+                        <span><time datetime="2024-09">Fall 2024</time></span>
+                        <span>Boston, MA</span>
+                        <span>Personal project</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill">Laser cutting</span>
+                        <span class="pill">CAD</span>
+                        <span class="pill">Joinery</span>
+                        <span class="pill">1/4" plywood</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container detail-lead">
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Housepics/Final.webp" alt="Finished laser-cut plywood barn with a weather vane, dormer windows, engraved farm tools on the walls and a 'Kilan's Farm' sign over the door" width="700" height="700" decoding="async">
+                </div>
+                <figcaption>The completed Barn in a Box: engraved walls, a slatted roof, a working door and the mortise-and-tenon farm sign.</figcaption>
+            </figure>
         </div>
-    </section>
 
-    <section class="detail-content">
-        <div class="container">
-            <!-- Overview -->
-            <h2>Overview</h2>
-            <p>
-                A laser-cut plywood box designed as a miniature barn, featuring functional doors, decorative farm
-                engravings, and detailed architectural elements. This project links to the memory of my grandfather's
-                farmhouse and is similar to the one found in the mobile game "Hay Day".
+        <article class="container prose">
+            <p class="lede">
+                A laser-cut plywood box designed as a miniature barn, with functional doors, decorative farm engravings
+                and detailed architectural elements. It links to the memory of my grandfather's farmhouse and resembles
+                the barn in the mobile game "Hay Day".
             </p>
 
-            <!-- Final Product Image -->
-            <div class="detail-image">
-                <img src="Housepics/Final.png" alt="Completed Barn in a Box"
-                    style="width: 50%; height: 50%; object-fit: contain;">
-            </div>
-
-            <!-- Project Objective -->
-            <h2>Project Objective</h2>
+            <h2>Project objective</h2>
             <p>
                 Create a functional box that links to the memory of my grandfather's farmhouse while demonstrating
-                mastery of various joinery techniques and laser-cutting capabilities. Key requirements included:
+                mastery of various joinery techniques and laser-cutting capabilities. Key requirements:
             </p>
             <ul>
-                <li>Incorporating at least 5 different joint types</li>
-                <li>Using at least 4 fastening methods</li>
-                <li>Manufacturing from a single piece of 1/4" plywood, 18" x 24"</li>
-                <li>Including personal design elements that reflect the farm's character</li>
+                <li>Incorporate at least 5 different joint types</li>
+                <li>Use at least 4 fastening methods</li>
+                <li>Manufacture from a single piece of 1/4" plywood, 18" × 24"</li>
+                <li>Include personal design elements that reflect the farm's character</li>
             </ul>
 
-            <!-- Design Process -->
-            <h2>Design Process</h2>
+            <h2>Design process</h2>
 
-            <h3>Initial Concept</h3>
-
+            <h3>Initial concept</h3>
             <p>
                 Early sketches explored various barn architectural elements and how to translate them into a functional
                 box design. Key considerations included:
@@ -232,26 +118,28 @@
                 <li>Joint placements and box opening mechanism</li>
             </ul>
 
-            <!-- Joint and Fastener Sketches Side by Side -->
-            <div class="image-row">
-                <div class="detail-image">
-                    <img src="Housepics/Sketch1.png" alt="Joint Sketch"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Sketch2.png" alt="Fastener Sketch"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/Sketch1.webp" alt="Pencil sketch of the barn with a weather vane, dormer window and a 'Tools' sign above the double doors" width="1000" height="1022" decoding="async">
+                    </div>
+                    <figcaption>Concept sketch of the barn's proportions and features.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/Sketch2.webp" alt="Annotated sketch of the barn labelling where each joint and fastener goes: rabbet joint, box joint, mortise and tenon, dowel, nails, screws, glue and tape" width="1000" height="1090" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Joint and fastener planning sketch, mapping each technique to a location.</figcaption>
+                </figure>
             </div>
 
             <h3>Prototyping</h3>
-
-            <!-- Cardboard Prototype -->
-            <div class="detail-image">
-                <img src="Housepics/Cardboard.png" alt="Cardboard Prototype"
-                    style="width:40%; height: 40%; object-fit: contain;">
-            </div>
-
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Housepics/Cardboard.webp" alt="Cardboard prototype of the barn with a slatted roof and cut-out windows on a workshop table" width="1000" height="1333" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Cardboard prototype used to check proportions, joint fit and the opening mechanism.</figcaption>
+            </figure>
             <p>The cardboard prototype phase revealed:</p>
             <ul>
                 <li>Optimal dimensions for the box proportions</li>
@@ -261,165 +149,161 @@
                 <li>More ideas for patterns and things to include</li>
             </ul>
 
-            <h3>CAD Development</h3>
-
-            <!-- CAD Images Side by Side -->
-            <div class="image-row">
-                <div class="detail-image">
-                    <img src="Housepics/CAD1.png" alt="CAD Model View 1"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/CAD2.png" alt="CAD Model View 2"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <h3>CAD development</h3>
+            <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/CAD1.webp" alt="CAD render of the barn from the front-left showing the orange lower roof, gray upper roof, windows and door" width="500" height="452" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>CAD model, front view.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/CAD2.webp" alt="CAD render of the barn from the front-right with the dormer, weather vane and 'Kilan's Farm' sign" width="500" height="495" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>CAD model, opposite corner with the dormer and sign.</figcaption>
+                </figure>
             </div>
-
             <p>The CAD model refined the design through:</p>
             <ul>
                 <li>Precise joint specifications</li>
                 <li>Material thickness compensation</li>
             </ul>
-            <p>
-                Although, the roof couldn't be made with the curve because it would be inaccurate.
-            </p>
+            <p>The roof could not be modelled with its curve, though, because it would have been inaccurate.</p>
 
-            <h3>Laser Cutting</h3>
-
-            <!-- Laser Cutter Image -->
-            <div class="detail-image">
-                <img src="Housepics/Lasercutter.png" alt="Laser Cutter in Action"
-                    style="width: 85%; height: 85%; object-fit: contain;">
-            </div>
-
+            <h3>Laser cutting</h3>
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="Housepics/Lasercutter.webp" alt="Epilog laser cutter bed with the nested barn parts cut and engraved into a plywood sheet" width="1000" height="750" loading="lazy" decoding="async">
+                </div>
+                <figcaption>All parts nested onto the single 18" × 24" sheet on the laser cutter.</figcaption>
+            </figure>
             <p>The laser-cutting layout included:</p>
             <ul>
-                <li>Nested sketches in layout for efficient material use</li>
+                <li>Nested sketches in the layout for efficient material use</li>
                 <li>Integration of decorative elements using AI</li>
             </ul>
 
-            <!-- Final Product Pictures -->
-            <h2>Final Product</h2>
-
-            <!-- 3 Final Product Images Side by Side -->
-            <div
-                style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--spacing-md); margin: var(--spacing-lg) 0;">
-                <div class="detail-image" style="margin: 0; min-height: 300px;">
-                    <img src="Housepics/Final1.png" alt="Final Product View 1"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image" style="margin: 0; min-height: 300px;">
-                    <img src="Housepics/Final2.png" alt="Final Product View 2"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image" style="margin: 0; min-height: 300px;">
-                    <img src="Housepics/Final3.png" alt="Final Product View 3"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <h2>Final product</h2>
+            <div class="wide">
+            <div class="media-row media-row--3">
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/Final1.webp" alt="Finished barn from the front-left with engraved farm tools beside the door and the 'Kilan's Farm' sign" width="652" height="683" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Front, with the tool engraving and sign.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/Final2.webp" alt="Finished barn from the side showing the slatted lattice roof, dormer windows and engraved animal silhouettes" width="750" height="665" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Side view with the lattice roof and dormers.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain media__frame--white">
+                        <img src="Housepics/Final3.webp" alt="Finished barn from the back-right with engraved farm animals along the lower wall" width="750" height="711" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Rear corner with the animal engraving.</figcaption>
+                </figure>
+            </div>
+            </div>
+            <div class="actions">
+                <a class="btn btn--secondary" href="https://drive.google.com/drive/folders/1XVPD8YCXgbF_bdpsELTMU2votm_UHgA4?usp=sharing" target="_blank" rel="noopener">View more pictures</a>
             </div>
 
-            <!-- Button to View More Pictures -->
-            <div style="text-align: center; margin: var(--spacing-lg) 0;">
-                <a href="https://drive.google.com/drive/folders/1XVPD8YCXgbF_bdpsELTMU2votm_UHgA4?usp=sharing"
-                    class="btn btn-primary" target="_blank" style="display: inline-block;">
-                    📸 View More Pictures
-                </a>
-            </div>
+            <h2>Technical challenges and solutions</h2>
 
-            <!-- Technical Challenges & Solutions -->
-            <h2>Technical Challenges & Solutions</h2>
-
-            <h3>1. Roof Assembly Complexity</h3>
-
-            <!-- Technical Issue Pic 1 -->
-            <div class="detail-image">
-                <img src="Housepics/Issue1.png" alt="Roof Assembly Challenge"
-                    style="width: 50%; height: 50%; object-fit: contain;">
-            </div>
-
+            <h3>1. Roof assembly complexity</h3>
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Housepics/Issue1.webp" alt="Hand holding the barn while a hammer drives small nails through the lattice roof into the body" width="1000" height="1333" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Nailing the lattice roof to the body after soaking and clamping it into its curve.</figcaption>
+            </figure>
             <p>
-                <strong>Challenge:</strong> The straight lattice joint roof required precise measurements, alignment,
+                <strong>Challenge:</strong> The straight lattice joint roof required precise measurements, alignment
                 and creative connections while maintaining visual appeal.
             </p>
             <p>
-                <strong>Solution:</strong> Researched proper lattice sketch distances and measurements and found the
-                ideal ones for my material and used nails to secure roof as it held down much better than glue and did
-                not distract from the visual appeal as much as other methods. Additionally, to help the curve form, I
-                sprayed water on the joint and clamped it down to the body overnight.
+                <strong>Solution:</strong> I researched proper lattice sketch distances and measurements, found the ideal
+                ones for my material, and used nails to secure the roof, as they held it down much better than glue and
+                did not distract from the visual appeal as much as other methods. To help the curve form, I sprayed water
+                on the joint and clamped it down to the body overnight.
             </p>
 
-            <h3>2. Material Optimization</h3>
-
-            <!-- Technical Issue Pic 2 -->
-            <div class="detail-image">
-                <img src="Housepics/Issue2.png" alt="Material Optimization"
-                    style="width: 75%; height: 75%; object-fit: contain;">
-            </div>
-
+            <h3>2. Material optimization</h3>
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="Housepics/Issue2.webp" alt="Monitor showing the barn parts nested in Adobe Illustrator for the laser cutter" width="1000" height="726" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Nesting the parts in Adobe Illustrator to fit the sheet.</figcaption>
+            </figure>
             <p>
-                <strong>Challenge:</strong> Fitting all components within the 18" x 24" plywood constraint while
+                <strong>Challenge:</strong> Fitting all components within the 18" × 24" plywood constraint while
                 maintaining proper grain orientation for strength.
             </p>
             <p>
-                <strong>Solution:</strong> Created a model and then nested the sketches in Adobe Illustrator to ensure
-                maximized material usage. (The barn ended up being bigger than the material, so I had to reduce its
-                overall size thanks to the CAD being entirely based on equations)
+                <strong>Solution:</strong> I created a model and then nested the sketches in Adobe Illustrator to
+                maximize material usage. The barn ended up being bigger than the material, so I had to reduce its overall
+                size, which was straightforward because the CAD was entirely based on equations.
             </p>
 
-            <h3>3. Joint Selection</h3>
-
-            <!-- Technical Issue Pic 3 -->
-            <div class="detail-image">
-                <img src="Housepics/Issue3.png" alt="Joint Selection"
-                    style="width: 40%; height: 40%; object-fit: contain;">
-            </div>
-
+            <h3>3. Joint selection</h3>
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Housepics/Issue3.webp" alt="Close-up of the 'Kilan's Farm' sign fitted into the barn wall with a mortise-and-tenon joint next to a box-jointed corner" width="500" height="500" loading="lazy" decoding="async">
+                </div>
+                <figcaption>The farm sign was added specifically to include a mortise-and-tenon joint.</figcaption>
+            </figure>
             <p>
-                <strong>Challenge:</strong> Needed to incorporate multiple joint types while ensuring box stability and
+                <strong>Challenge:</strong> I needed to incorporate multiple joint types while ensuring box stability and
                 ease of assembly.
             </p>
             <p>
-                <strong>Solution:</strong> Strategically used different joints based on requirements and locations as
-                well as adding components specifically to add joints such as the mortise & tenon sign.
+                <strong>Solution:</strong> I strategically used different joints based on requirements and locations, and
+                added components specifically to add joints, such as the mortise-and-tenon sign.
             </p>
-
             <p><strong>The list came down to the following:</strong></p>
-            <p><strong>Joints:</strong></p>
-            <ul>
-                <li>Box Joint (Front Corners of Barn)</li>
-                <li>Half Lap Joint (Window Frame)</li>
-                <li>Basic Butt Joint (Back Side of Barn)</li>
-                <li>Mortise & Tenon Joint (Barn Name Sign)</li>
-                <li>Straight Lattice Joint (Curved Barn Roof)</li>
-                <li>Hinge (Door Opening)</li>
-            </ul>
-            <p><strong>Fasteners:</strong></p>
-            <ul>
-                <li>Wood Glue (Everywhere)</li>
-                <li>Screws (Back Left Barn Wall & Hinges on Door)</li>
-                <li>Nails (Roof Attachment)</li>
-                <li>Tape and Rivet (Wind Vane Attachment)</li>
-            </ul>
-
-            <!-- Workspace Image -->
-            <div class="detail-image">
-                <img src="Housepics/Workspace.png" alt="Workspace"
-                    style="width: 50%; height: 50%; object-fit: contain;">
+            <div class="features">
+                <div class="feature">
+                    <h4>Joints</h4>
+                    <ul>
+                        <li>Box joint (front corners of barn)</li>
+                        <li>Half lap joint (window frame)</li>
+                        <li>Basic butt joint (back side of barn)</li>
+                        <li>Mortise and tenon joint (barn name sign)</li>
+                        <li>Straight lattice joint (curved barn roof)</li>
+                        <li>Hinge (door opening)</li>
+                    </ul>
+                </div>
+                <div class="feature">
+                    <h4>Fasteners</h4>
+                    <ul>
+                        <li>Wood glue (everywhere)</li>
+                        <li>Screws (back left barn wall and hinges on door)</li>
+                        <li>Nails (roof attachment)</li>
+                        <li>Tape and rivet (wind vane attachment)</li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Results -->
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Housepics/Workspace.webp" alt="Workshop table covered with cut plywood parts, glue, pliers and the partly assembled barn" width="1000" height="1333" loading="lazy" decoding="async">
+                </div>
+                <figcaption>The workspace mid-build.</figcaption>
+            </figure>
+
             <h2>Results</h2>
             <p>The final product successfully merged form and function through:</p>
             <ul>
                 <li>A distinctive barn-shaped design featuring windows and a detailed roof structure</li>
-                <li>Decorative engraving showing farm tools and animal silhouettes that tell the story of farm life
-                </li>
+                <li>Decorative engraving showing farm tools and animal silhouettes that tell the story of farm life</li>
                 <li>Strong construction using multiple joint techniques and fasteners</li>
                 <li>Integration of both traditional woodworking techniques and modern digital fabrication</li>
             </ul>
 
-            <!-- Skills Developed -->
-            <h2>Skills Developed</h2>
+            <h2>Skills developed</h2>
             <ul>
                 <li>CAD modeling and assembly planning</li>
                 <li>Laser cutter operation and file preparation</li>
@@ -428,88 +312,98 @@
                 <li>Integration of aesthetic and functional elements</li>
             </ul>
 
-            <!-- Assembly Pictures -->
-            <h2>Assembly Pictures</h2>
-
-            <!-- Top Row: 6 Images -->
-            <div class="assembly-grid-top">
-                <div class="detail-image">
-                    <img src="Housepics/Assemb1.png" alt="Assembly Step 1"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb2.png" alt="Assembly Step 2"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb3.png" alt="Assembly Step 3"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb4.png" alt="Assembly Step 4"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb5.png" alt="Assembly Step 5"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb6.png" alt="Assembly Step 6"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <h2>Assembly pictures</h2>
+            <div class="wide">
+            <div class="media-row media-row--4 media-row--keep">
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb1.webp" alt="Barn body standing on cardboard with the roof and walls dry-fitted together" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Body and roof standing on the cutting mat.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb2.webp" alt="Sanding the plywood roof panel by hand on the assembled barn" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Sanding the roof panels.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb3.webp" alt="Four barn walls joined at the corners with loose window frames beside them" width="500" height="375" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Walls joined, window frames waiting.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb4.webp" alt="Barn walls with window openings and small plywood offcuts scattered on the table" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Fitting the window cut-outs.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb5.webp" alt="Barn walls being glued with a bottle of Titebond wood glue in the foreground" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Gluing the wall joints.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb6.webp" alt="Digital caliper, screwdriver and an engraved horse silhouette panel on the workbench" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Caliper, screwdriver and the horse engraving.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb7.webp" alt="Attaching the roof to the barn with a roll of tape in hand" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Test-fitting the roof.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb8.webp" alt="Nearly finished barn with the 'Kilan's Farm' sign fitted, wood glue and pliers beside it" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Fitting the sign and dormers.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb9.webp" alt="Barn on the workbench next to a pile of leftover plywood offcuts from the sheet" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Leftover offcuts from the single sheet.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb10.webp" alt="Barn shell with loose parts and paper towel on the table during assembly" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Walls assembled, loose parts still on the table.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="Housepics/Assemb11.webp" alt="Freshly cut plywood sheet with the barn parts still in the frame, pieces piled on top" width="500" height="666" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Parts straight off the laser cutter.</figcaption>
+                </figure>
+            </div>
             </div>
 
-            <!-- Bottom Row: 5 Images -->
-            <div class="assembly-grid-bottom">
-                <div class="detail-image">
-                    <img src="Housepics/Assemb7.png" alt="Assembly Step 7"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb8.png" alt="Assembly Step 8"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb9.png" alt="Assembly Step 9"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb10.png" alt="Assembly Step 10"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="detail-image">
-                    <img src="Housepics/Assemb11.png" alt="Assembly Step 11"
-                        style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
             </div>
+        </article>
+    </main>
 
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=2.0"></script>
 </body>
 
 </html>

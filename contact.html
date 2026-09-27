@@ -2,456 +2,125 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact | Kilan Rougeot</title>
+    <meta name="description" content="Get in touch with Kilan Rougeot, mechanical engineering and robotics student at Olin College and founding engineer at AutoPallet Robotics. Email, phone and a contact form.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/contact.html">
+    <link rel="icon" type="image/png" href="Pics/webicon.png">
+    <link rel="stylesheet" href="styles.css?v=2.0">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kilanrou.com/contact.html">
+    <meta property="og:title" content="Contact | Kilan Rougeot">
+    <meta property="og:description" content="Get in touch with Kilan Rougeot, mechanical engineering and robotics student at Olin College and founding engineer at AutoPallet Robotics.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "url": "https://kilanrou.com/contact.html",
+      "name": "Contact Kilan Rougeot",
+      "mainEntity": { "@type": "Person", "@id": "https://kilanrou.com/#person", "name": "Kilan Rougeot", "email": "mailto:kilanrou@gmail.com", "telephone": "+1-445-942-6585", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "@id": "https://kilanrou.com/#website", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="Pics/webicon.png">
-    <link rel="stylesheet" href="styles.css?v=1.2">
-    <style>
-        /* Contact page nav styling */
-        .nav {
-            --nav-bg-opacity: 0;
-            background-color: transparent;
-            border-bottom: none;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #334155;
-            opacity: var(--nav-bg-opacity);
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .nav-logo {
-            color: white;
-            position: relative;
-            z-index: 1;
-        }
-
-        .nav-logo:hover {
-            opacity: 0.8;
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.95);
-            position: relative;
-            z-index: 1;
-        }
-
-        .nav-link:hover {
-            color: white;
-        }
-
-        .nav-link::after {
-            background-color: white;
-        }
-
-        .contact-hero {
-            position: relative;
-            width: 100%;
-            height: 350px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            overflow: hidden;
-            margin-bottom: var(--spacing-md);
-            padding-bottom: 2rem;
-            --bg-opacity: 1.0;
-            --top-opacity: 0.6;
-            --bottom-opacity: 0.4;
-        }
-
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('Pics/OlinBackground.png');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        .contact-hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, var(--top-opacity)), rgba(0, 0, 0, var(--bottom-opacity)));
-            z-index: 2;
-        }
-
-        .contact-hero .contact-header {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            padding: 0 var(--spacing-lg);
-        }
-
-        .contact-page {
-            padding-top: 0;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 0;
-        }
-
-        .contact-header h1 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: var(--spacing-md);
-            font-weight: 400;
-            font-family: var(--font-sans);
-        }
-
-
-        .contact-header p {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: var(--spacing-md);
-            font-weight: 400;
-            font-family: var(--font-sans);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .contact-header p:last-of-type {
-            margin-top: 1rem;
-        }
-
-        .contact-header a {
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 400;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-header a:hover {
-            opacity: 0.8;
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: var(--spacing-xl);
-            max-width: 1000px;
-            margin: 0 auto;
-            align-items: start;
-        }
-
-        .contact-info-section {
-            padding-top: var(--spacing-sm);
-        }
-
-        .contact-info-section h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: var(--color-text-primary);
-            margin-bottom: var(--spacing-md);
-            font-family: var(--font-sans);
-        }
-
-        .contact-info-section p {
-            font-size: 1rem;
-            color: var(--color-text-primary);
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.6;
-            font-family: var(--font-sans);
-        }
-
-        .contact-info-section a {
-            color: var(--color-text-primary);
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-info-section a:hover {
-            color: var(--color-accent);
-        }
-
-        .contact-form-section {
-            background: transparent;
-        }
-
-        .contact-form {
-            background: transparent;
-            padding: 0;
-        }
-
-        .form-group {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 400;
-            color: var(--color-text-primary);
-            margin-bottom: var(--spacing-xs);
-            font-size: 0.9rem;
-            font-family: var(--font-sans);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            font-family: var(--font-sans);
-            font-size: 1rem;
-            transition: var(--transition);
-            background: #F5F5F5;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-text-primary);
-            background: white;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            padding: 0.75rem 2rem;
-            background: var(--color-accent);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .submit-btn:hover {
-            background: #475569;
-            transform: translateY(-1px);
-        }
-
-        .success-message {
-            display: none;
-            background: #10b981;
-            color: white;
-            padding: var(--spacing-md);
-            border-radius: 4px;
-            margin-bottom: var(--spacing-md);
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-    </style>
-
-    <meta name="description" content="Get in touch with Kilan Rougeot, a mechanical engineering and robotics student at Olin College of Engineering.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/contact.html">
-    <meta property="og:title" content="Contact | Kilan Rougeot">
-    <meta property="og:description" content="Get in touch with Kilan Rougeot, a mechanical engineering and robotics student at Olin College of Engineering.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/contact.html">
-    <meta property="twitter:title" content="Contact | Kilan Rougeot">
-    <meta property="twitter:description" content="Get in touch with Kilan Rougeot, a mechanical engineering and robotics student at Olin College of Engineering.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="index.html#home" class="nav-link">Home</a></li>
-                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="contact.html" class="nav__link is-active">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Contact Page -->
-    <section class="contact-page">
-        <div class="contact-hero">
-            <div class="contact-header">
-                <h1>Contact me</h1>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="contact-wrapper">
-                <!-- Left Column: Contact Info -->
-                <div class="contact-info-section">
-                    <h2>Get in touch.</h2>
-                    <p>You can get in contact with me at <a href="mailto:kilanrou@gmail.com">Kilanrou@gmail.com</a> or
-                        <a href="tel:+14459426585">(445) 942-6585</a>
-                    </p>
-                    <p>Alternatively, use this form.</p>
+    <main>
+        <section class="contact">
+            <div class="container contact__grid">
+                <div data-stagger>
+                    <h1 class="section__title">Get in touch.</h1>
+                    <p class="section__sub">Robotics, automation, hardware startups, or just to say hello. I read everything.</p>
+                    <ul class="contact__list">
+                        <li><span>Email</span><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                        <li><span>Phone</span><a href="tel:+14459426585">(445)&nbsp;942&#8209;6585</a></li>
+                        <li><span>Resume</span><a href="Files/ResumeKilan.pdf" target="_blank" rel="noopener">ResumeKilan.pdf</a></li>
+                        <li><span>Location</span>Olin College of Engineering, Needham, Massachusetts</li>
+                    </ul>
                 </div>
 
-                <!-- Right Column: Contact Form -->
-                <div class="contact-form-section">
-                    <div id="successMessage" class="success-message">
-                        Thank you for your message! I'll get back to you soon.
-                    </div>
-
-                    <!--
-                        IMPORTANT: To make this form work, you need to:
-                        1. Go to https://formspree.io and create a free account
-                        2. Create a new form and get your form endpoint
-                        3. Replace YOUR_FORM_ID below with your actual Formspree form ID
-
-                        Example: action="https://formspree.io/f/YOUR_FORM_ID"
-
-                        Alternative: You can also use EmailJS, Web3Forms, or any other form service
-                    -->
-                    <form class="contact-form" action="https://formspree.io/f/mbddjwej" method="POST" id="contactForm">
-                        <div class="form-group">
-                            <label for="email">Email (required)</label>
-                            <input type="email" id="email" name="email" required>
+                <div>
+                    <form class="form" action="https://formspree.io/f/mbddjwej" method="POST" id="contactForm">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" autocomplete="name">
                         </div>
-
-                        <div class="form-group">
-                            <label for="message">Message (required)</label>
+                        <div>
+                            <label for="email">Email <span class="muted">(required)</span></label>
+                            <input type="email" id="email" name="email" required autocomplete="email" inputmode="email">
+                        </div>
+                        <div>
+                            <label for="message">Message <span class="muted">(required)</span></label>
                             <textarea id="message" name="message" rows="6" required></textarea>
                         </div>
-
-                        <button type="submit" class="submit-btn">Send</button>
+                        <div id="formOk" class="form__note form__note--ok" role="status">Thanks, your message is on its way. I'll get back to you soon.</div>
+                        <div id="formErr" class="form__note form__note--err" role="alert">Something went wrong sending that. Please try again or email me directly.</div>
+                        <div>
+                            <button type="submit" class="btn btn--primary" id="sendBtn">Send message</button>
+                        </div>
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
+            </ul>
         </div>
     </footer>
 
+    <script src="script.js?v=2.0"></script>
     <script>
-        // Nav bar scroll effect
-        const nav = document.querySelector('.nav');
-
-        window.addEventListener('scroll', function () {
-            // Get scroll position
-            const scrollPosition = window.scrollY;
-            // Calculate opacity based on scroll (0 at top, 1 at 20% of viewport)
-            const maxScroll = window.innerHeight * 0.2;
-            const bgOpacity = Math.min(scrollPosition / maxScroll, 1);
-
-            // Apply background opacity via CSS variable
-            nav.style.setProperty('--nav-bg-opacity', bgOpacity);
-        });
-
-        // Background gradient fade control for hero section
-        const contactHero = document.querySelector('.contact-hero');
-
-        // Adjust background image opacity (0 to 1)
-        // bgOpacity: opacity of the background image
-        function setBackgroundImageOpacity(bgOpacity) {
-            if (contactHero) {
-                const opacity = Math.max(0, Math.min(1, bgOpacity));
-                contactHero.style.setProperty('--bg-opacity', opacity);
-            }
-        }
-
-        // Adjust these values to control the fade gradient (0 to 1)
-        // topOpacity: opacity at the top of the hero section
-        // bottomOpacity: opacity at the bottom of the hero section
-        function setBackgroundFade(topOpacity, bottomOpacity) {
-            if (contactHero) {
-                const top = Math.max(0, Math.min(1, topOpacity));
-                const bottom = Math.max(0, Math.min(1, bottomOpacity));
-                contactHero.style.setProperty('--top-opacity', top);
-                contactHero.style.setProperty('--bottom-opacity', bottom);
-            }
-        }
-
-        // Set initial opacity values on page load
-        setBackgroundFade(0.6, 0.4);
-
-        // Form submission handling
-        const form = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Stop standard redirect to Formspree Success Page!
-            const data = new FormData(form);
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    successMessage.classList.add('show');
-                    form.reset();
-                    setTimeout(function () {
-                        successMessage.classList.remove('show');
-                    }, 5000);
-                } else {
-                    alert("Oops! There was a problem submitting your form. Please try again or email directly.");
-                }
-            }).catch(error => {
-                alert("Oops! There was a problem submitting your form. Please try again or email directly.");
+        (function () {
+            var form = document.getElementById('contactForm');
+            var ok = document.getElementById('formOk');
+            var err = document.getElementById('formErr');
+            var btn = document.getElementById('sendBtn');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                ok.classList.remove('is-visible'); err.classList.remove('is-visible');
+                btn.disabled = true; btn.textContent = 'Sending…';
+                fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+                    .then(function (r) {
+                        if (r.ok) { ok.classList.add('is-visible'); form.reset(); }
+                        else { err.classList.add('is-visible'); }
+                    })
+                    .catch(function () { err.classList.add('is-visible'); })
+                    .finally(function () { btn.disabled = false; btn.textContent = 'Send message'; });
             });
-        });
+        })();
     </script>
-    <script src="script.js"></script>
 </body>
 
 </html>

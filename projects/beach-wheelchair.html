@@ -2,478 +2,236 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Motorized Beach Wheelchair | Kilan Rougeot</title>
+    <meta name="description" content="Electric beach wheelchair built for under $1,500 with Avalon Beach Patrol, NJ: PVC frame, joystick control, waterproof motors, LiFePO4 batteries, 9/10 in testing.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/projects/beach-wheelchair.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/projects/beach-wheelchair.html">
+    <meta property="og:title" content="Motorized Beach Wheelchair | Kilan Rougeot">
+    <meta property="og:description" content="Electric beach wheelchair built for under $1,500 with Avalon Beach Patrol, NJ: PVC frame, joystick control, waterproof motors, LiFePO4 batteries, 9/10 in testing.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Motorized Beach Wheelchair",
+      "headline": "Motorized Beach Wheelchair",
+      "description": "Electric beach wheelchair built for under $1,500 with Avalon Beach Patrol, NJ: PVC frame, joystick control, waterproof motors, LiFePO4 batteries, 9/10 in testing.",
+      "url": "https://kilanrou.com/projects/beach-wheelchair.html",
+      "image": "https://kilanrou.com/Pics/Wheelchair.webp",
+      "dateCreated": "2024",
+      "keywords": ["Beach wheelchair", "Accessibility", "Assistive technology", "Fusion 360", "PVC frame", "Electric motors", "LiFePO4"],
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motorized Beach Wheelchair | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content h3 {
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background: var(--color-accent-light);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .detail-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Poster Modal Styles */
-        .poster-clickable {
-            cursor: zoom-in;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .poster-clickable:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .poster-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            cursor: zoom-out;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .poster-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .poster-modal img {
-            max-width: 95%;
-            max-height: 95vh;
-            object-fit: contain;
-            animation: zoomIn 0.3s ease;
-            transition: transform 0.2s ease;
-            cursor: zoom-in;
-        }
-
-        .poster-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            z-index: 10000;
-        }
-
-        .poster-close:hover {
-            color: var(--color-accent);
-        }
-
-        .zoom-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            z-index: 10001;
-            pointer-events: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-    </style>
-
-    <meta name="description" content="Low-cost, user-controlled electric beach wheelchair designed for rugged terrain and sand navigation, built for under $1,500.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/projects/beach-wheelchair.html">
-    <meta property="og:title" content="Motorized Beach Wheelchair | Kilan Rougeot">
-    <meta property="og:description" content="Low-cost, user-controlled electric beach wheelchair designed for rugged terrain and sand navigation, built for under $1,500.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/projects/beach-wheelchair.html">
-    <meta property="twitter:title" content="Motorized Beach Wheelchair | Kilan Rougeot">
-    <meta property="twitter:description" content="Low-cost, user-controlled electric beach wheelchair designed for rugged terrain and sand navigation, built for under $1,500.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Project Detail -->
-    <section class="detail-hero">
-        <div class="container">
-            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
-            <h1>Motorized Beach Wheelchair</h1>
-            <p class="detail-meta">Accessibility Design • 2024 • Avalon Beach Patrol, NJ</p>
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#projects" class="link link--back">Projects</a>
+                    <span class="eyebrow">Accessibility design</span>
+                    <h1 class="detail-hero__title">Motorized Beach Wheelchair</h1>
+                    <p class="detail-hero__sub">Independent beach access for under $1,500.</p>
+                    <div class="detail-hero__meta">
+                        <span><time datetime="2024">2024</time></span>
+                        <span>Avalon Beach Patrol, NJ</span>
+                        <span>Westtown School · Scientific Research (Adv)</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill">Fusion 360</span>
+                        <span class="pill">PVC frame</span>
+                        <span class="pill">Waterproof motors</span>
+                        <span class="pill">LiFePO4 batteries</span>
+                        <span class="pill pill--accent">Under $1,500</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container detail-lead">
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="wheelchair-pics/Final_First_View.webp" alt="The finished motorized beach wheelchair in front of a brick wall: a white PVC frame with a navy cushioned seat and back, a joystick on the armrest, four wide gray balloon beach tires and a chain drive to the rear axle" width="1000" height="750" decoding="async">
+                </div>
+                <figcaption>The finished motorized beach wheelchair: PVC frame, balloon tires, chain-driven rear axle and an armrest joystick.</figcaption>
+            </figure>
         </div>
-    </section>
 
-    <section class="detail-content">
-        <div class="container">
-            <!-- Overview -->
-            <h2>Project Overview</h2>
+        <article class="container prose">
+            <p class="lede">
+                This project set out to improve beach accessibility with a cost-effective motorized beach wheelchair.
+                Working with Avalon Beach Patrol in New Jersey, who provided the original manual wheelchair as a model, I
+                designed and built a motorized version that significantly improves user independence while staying
+                affordable.
+            </p>
+
+            <h2>Design process</h2>
+
+            <h3>Initial research and planning</h3>
+            <p>I began by analysing the existing manual beach wheelchair donated by Avalon Beach Patrol and identifying its key limitations:</p>
+            <ul>
+                <li>Difficulty navigating sand, and the user's dependence on caregivers.</li>
+                <li>Set a target budget of $1,500 to keep the design accessible.</li>
+                <li>Conducted material research focused on durability and water resistance.</li>
+            </ul>
+
+            <h3>CAD design phase</h3>
+            <p>I fully modelled the wheelchair in Fusion 360, focusing on:</p>
+            <ul>
+                <li>Custom mounts for the motors and battery systems.</li>
+                <li>Component placement optimised for weight distribution.</li>
+                <li>Detailed assembly instructions.</li>
+                <li>Waterproofing considerations integrated throughout the design.</li>
+            </ul>
+
+            <figure class="media">
+                <div class="media__frame media__frame--white media__frame--contain">
+                    <img src="wheelchair-pics/CAD_Models_Wheelchair_Different_Angles.webp" alt="Four-view technical drawing of the wheelchair frame from Fusion 360: front, isometric, top and side views with dimensions in inches, including a 19.25 inch frame width, 23.45 inch track, 25 inch length and 17.75 inch seat height" width="872" height="184" decoding="async">
+                </div>
+                <figcaption>Four-view technical drawing of the frame with dimensions, from the Fusion 360 model.</figcaption>
+            </figure>
+
+            <h2>Build process</h2>
+
+            <h3>Frame construction</h3>
+            <ul>
+                <li>Cut and assembled the PVC frame to the CAD specifications.</li>
+                <li>Used marine-grade materials for durability.</li>
+                <li>Reinforced the joints for structural integrity.</li>
+            </ul>
+
+            <h3>Motorization system</h3>
+            <ul>
+                <li>Installed dual waterproof electric motors.</li>
+                <li>Integrated 12V 50Ah LiFePO4 batteries for extended use.</li>
+                <li>Added emergency stop functionality.</li>
+                <li>Implemented a joystick control system.</li>
+            </ul>
+
+            <h3>Safety features</h3>
+            <ul>
+                <li>Waterproof electronics enclosure.</li>
+                <li>User safety belt system.</li>
+                <li>Water sensor integration.</li>
+                <li>Redundant emergency stops.</li>
+            </ul>
+
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="wheelchair-pics/Build_Process.webp" alt="The wheelchair mid-build on a workshop bench: the PVC frame with seat cushion and joystick fitted, a silver electric motor and battery box mounted under the seat, one balloon tire attached, and a drill, chain and sprocket on the bench" width="1000" height="1333" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Mid-build: motor, battery and drive chain going onto the PVC frame.</figcaption>
+            </figure>
+
+            <h2>Key improvements over the traditional design</h2>
+            <p>Independent user control via joystick, plus:</p>
+            <ul>
+                <li><strong>Enhanced stability on sandy terrain.</strong></li>
+                <li><strong>Waterproof electrical systems.</strong></li>
+                <li><strong>Improved maneuverability:</strong> 9.0/10 vs 2.0/10 in testing.</li>
+                <li><strong>Significant cost savings and additional motorized features</strong> compared to commercial options ($1,500 vs $3,000+).</li>
+            </ul>
+
+            <div class="stats">
+                <div class="stat"><div class="stat__value">9.0/10</div><div class="stat__label">maneuverability in testing, vs 2.0/10 for the manual chair</div></div>
+                <div class="stat"><div class="stat__value">$1,500</div><div class="stat__label">build cost, vs $3,000+ for commercial options</div></div>
+                <div class="stat"><div class="stat__value">50%</div><div class="stat__label">lower cost than commercial alternatives</div></div>
+            </div>
+
+            <h2>Technical skills demonstrated</h2>
+            <ul>
+                <li>CAD modelling and assembly design (Fusion 360).</li>
+                <li>Electromechanical system integration.</li>
+                <li>Material selection for marine environments.</li>
+                <li>User-centred design and accessibility considerations.</li>
+                <li>Waterproofing and environmental protection design.</li>
+                <li>Cost optimisation and design for manufacturing.</li>
+            </ul>
+
+            <h2>Project impact</h2>
             <p>
-                This project aimed to enhance beach accessibility by developing a cost-effective motorized beach
-                wheelchair. Working with Avalon Beach Patrol in New Jersey, who provided the original manual wheelchair
-                model, I designed and constructed a motorized version that significantly improves user independence
-                while maintaining affordability.
+                This project shows that accessible design can be both affordable and effective. The motorized beach
+                wheelchair improved user independence while cutting costs by 50% compared to commercial alternatives.
+                Most importantly, it gives beach access to people who would otherwise need constant caregiver
+                assistance, significantly enhancing their beach experience and autonomy.
             </p>
 
-            <!-- Final Wheelchair Photo -->
-            <div class="detail-image">
-                <img src="wheelchair-pics/Final First View.png" alt="Final Motorized Beach Wheelchair"
-                    style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="wheelchair-pics/Final_Other_View.webp" alt="Side view of the finished motorized beach wheelchair against a brick wall, showing the chain drive from the motor to the rear balloon tire, the battery box under the seat and the joystick on the right armrest" width="750" height="562" loading="lazy" decoding="async">
+                </div>
+                <figcaption>The finished wheelchair from the drive side, showing the chain drive and under-seat battery box.</figcaption>
+            </figure>
 
-            <!-- Design Process -->
-            <h2>Design Process</h2>
-
-            <h3>Initial Research & Planning</h3>
+            <h2>Research poster</h2>
             <p>
-                I began by analyzing the existing manual beach wheelchair donated by Avalon Beach Patrol, identifying
-                key limitations:
+                The poster presented the project for Westtown School's Scientific Research (Adv) course, asking whether
+                motorization and upgrades improve user independence on beach wheelchairs. Six testers compared the manual
+                and motorized chairs in sand pit and lake environments. The new wheelchair took 55.6% of total rating
+                points against 44.4% for the old one, with the biggest gains in maneuverability (9.0 vs 2.0), stability
+                and safety (8.0 vs 3.0) and speed control (9.0 vs 4.0); the old chair still scored higher on maintenance
+                (8.0 vs 7.0) and durability (6.0 vs 5.0). Tap the poster to zoom.
             </p>
-            <ul>
-                <li>Difficulty navigating sand, user-dependence on caregivers</li>
-                <li>Identified key limitations</li>
-                <li>Set target budget of $1,500 to ensure accessibility</li>
-                <li>Conducted material research focusing on durability and water resistance</li>
-            </ul>
-
-
-
-            <h3>CAD Design Phase</h3>
-            <p>
-                I fully modeled the wheelchair in Fusion 360, focusing on:
-            </p>
-            <ul>
-                <li>Designed custom mounts for motors and battery systems</li>
-                <li>Optimized component placement for weight distribution</li>
-                <li>Created detailed assembly instructions</li>
-                <li>Integrated waterproofing considerations throughout design</li>
-            </ul>
-
-            <!-- CAD 4 Views -->
-            <div class="detail-image">
-                <img src="wheelchair-pics/CAD Models Wheelchair Different Angles.png"
-                    alt="CAD Four-View Technical Drawing" style="width: 100%; height: 100%; object-fit: contain;">
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="wheelchair-pics/WheelchairPoster.webp" alt="Research poster titled Can Motorization and Upgrades Improve User Independence on Beach Wheelchairs? by Kilan Rougeot, Westtown School Scientific Research (Adv), with sections for introduction, methods, build procedure, results bar chart, results analysis, conclusion, future steps, references and acknowledgments, plus photos of the manual chair, the motorized chair and the 3D model" width="1800" height="1350" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Research poster: Can Motorization and Upgrades Improve User Independence on Beach Wheelchairs?</figcaption>
+            </figure>
+            <div class="actions">
+                <a class="btn btn--secondary btn--small" href="wheelchair-pics/WheelchairPoster.webp" target="_blank" rel="noopener">Open full-size poster</a>
             </div>
 
-            <!-- Build Process -->
-            <h2>Build Process</h2>
-
-            <h3>Frame Construction</h3>
-            <ul>
-                <li>Cut and assembled PVC frame based on CAD specifications</li>
-                <li>Used marine-grade materials for enhanced durability</li>
-                <li>Implemented reinforced joints for structural integrity</li>
-            </ul>
-
-            <h3>Motorization System</h3>
-            <ul>
-                <li>Installed dual waterproof electric motors</li>
-                <li>Integrated 12V 50Ah LiFePO4 batteries for extended use</li>
-                <li>Added emergency stop functionality</li>
-                <li>Implemented joystick control system</li>
-            </ul>
-
-            <h3>Safety Features</h3>
-            <ul>
-                <li>Waterproof electronics enclosure</li>
-                <li>User safety belt system</li>
-                <li>Water sensor integration</li>
-                <li>Redundant emergency stops</li>
-            </ul>
-
-            <!-- Build Process Photo -->
-            <div class="detail-image">
-                <img src="wheelchair-pics/Build Process.png" alt="Wheelchair During Construction"
-                    style="width: 100%; height: 100%; object-fit: contain;">
+            <div class="footer-nav">
+                <a href="../index.html#projects" class="link link--back">All projects</a>
+                <a href="../contact.html" class="link">Get in touch</a>
             </div>
+        </article>
+    </main>
 
-            <!-- Key Improvements -->
-            <h2>Key Improvements Over Traditional Design</h2>
-            <p>
-                Independent user control via joystick:
-            </p>
-            <ul>
-                <li><strong>Enhanced stability on sandy terrain</strong></li>
-                <li><strong>Waterproof electrical systems</strong></li>
-                <li><strong>Improved maneuverability (9.0/10 vs 2.0/10 in testing)</strong></li>
-                <li><strong>Significant cost savings and additional motorized features compared to commercial options
-                        ($1,500 vs $3,000+)</strong></li>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
             </ul>
-
-            <!-- Technical Skills -->
-            <h2>Technical Skills Demonstrated</h2>
-            <ul>
-                <li>CAD modeling and assembly design (Fusion 360)</li>
-                <li>Electromechanical system integration</li>
-                <li>Material selection for marine environments</li>
-                <li>User-centered design and accessibility considerations</li>
-                <li>Waterproofing and environmental protection design</li>
-                <li>Cost optimization and design for manufacturing</li>
-            </ul>
-
-            <!-- Impact -->
-            <h2>Project Impact</h2>
-            <p>
-                This project demonstrates that accessible design can be both affordable and effective. The motorized
-                beach wheelchair successfully improved user independence while reducing costs by 50% compared to
-                commercial alternatives. Most importantly, it provides beach access to individuals who would otherwise
-                require constant caregiver assistance, significantly enhancing their beach experience and autonomy.
-            </p>
-
-            <!-- Final Wheelchair View 2 -->
-            <div class="detail-image">
-                <img src="wheelchair-pics/Final Other View. png.png" alt="Motorized Beach Wheelchair - Alternate Angle"
-                    style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-
-
-
-            <!-- Research Poster -->
-            <h2>Research Poster</h2>
-            <p style="color: var(--color-text-secondary); font-style: italic; margin-bottom: var(--spacing-sm);">
-                Click to view full screen
-            </p>
-            <div class="detail-image">
-                <img src="wheelchair-pics/WheelchairPoster.png" alt="Motorized Beach Wheelchair Research Poster"
-                    class="poster-clickable" id="posterImage" style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-
-            <!-- Poster Modal -->
-            <div id="posterModal" class="poster-modal">
-                <span class="poster-close" id="closeModal">&times;</span>
-                <img src="wheelchair-pics/WheelchairPoster.png"
-                    alt="Motorized Beach Wheelchair Research Poster - Full Screen" id="modalImage">
-                <div class="zoom-indicator" id="zoomIndicator">Scroll to zoom • Click outside to close</div>
-            </div>
-
-            <!-- Link back -->
-            <a href="../index.html#projects" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Projects
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
-    <script>
-        // Poster Modal Functionality
-        const posterImage = document.getElementById('posterImage');
-        const posterModal = document.getElementById('posterModal');
-        const closeModal = document.getElementById('closeModal');
-        const modalImage = document.getElementById('modalImage');
-        const zoomIndicator = document.getElementById('zoomIndicator');
-        let currentZoom = 1;
-
-        // Open modal on poster click
-        posterImage.addEventListener('click', () => {
-            posterModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-            currentZoom = 1;
-            modalImage.style.transform = 'scale(1)';
-        });
-
-        // Close modal function
-        function closeModalFunc() {
-            posterModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            currentZoom = 1;
-            modalImage.style.transform = 'scale(1)';
-        }
-
-        // Close modal on X click
-        closeModal.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeModalFunc();
-        });
-
-        // Close modal on background click
-        posterModal.addEventListener('click', (e) => {
-            if (e.target === posterModal) {
-                closeModalFunc();
-            }
-        });
-
-        // Prevent image click from closing modal
-        modalImage.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-
-        // Close modal on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && posterModal.classList.contains('active')) {
-                closeModalFunc();
-            }
-        });
-
-        // Zoom functionality with mouse wheel
-        modalImage.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const zoomSpeed = 0.1;
-            const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
-            currentZoom = Math.min(Math.max(1, currentZoom + delta), 4); // Limit zoom between 1x and 4x
-
-            modalImage.style.transform = `scale(${currentZoom})`;
-
-            // Update zoom indicator
-            if (currentZoom > 1) {
-                zoomIndicator.textContent = `Zoom: ${Math.round(currentZoom * 100)}% • Scroll to zoom • Click outside to close`;
-            } else {
-                zoomIndicator.textContent = 'Scroll to zoom • Click outside to close';
-            }
-        });
-    </script>
+    <script src="../script.js?v=2.0"></script>
 </body>
 
 </html>

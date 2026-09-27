@@ -2,517 +2,350 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Baja SAE | Kilan Rougeot</title>
+    <meta name="description" content="Chassis Lead for Olin College's Baja SAE off-road racer: SolidWorks space-frame design, ANSYS FEA, BOM management and TIG welding of 1018 steel tubing, 15% lighter for September 2026.">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://kilanrou.com/experience/baja.html">
+    <link rel="icon" type="image/png" href="../Pics/webicon.png">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://kilanrou.com/experience/baja.html">
+    <meta property="og:title" content="Baja SAE | Kilan Rougeot">
+    <meta property="og:description" content="Chassis Lead for Olin College's Baja SAE off-road racer: SolidWorks space-frame design, ANSYS FEA, BOM management and TIG welding of 1018 steel tubing, 15% lighter for September 2026.">
+    <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "name": "Baja SAE – Olin College Chassis Lead",
+      "headline": "Baja SAE – Olin College Chassis Lead",
+      "description": "Chassis Lead for Olin College's Baja SAE off-road racer: SolidWorks space-frame design, ANSYS FEA, BOM management and TIG welding of 1018 steel tubing, 15% lighter for September 2026.",
+      "url": "https://kilanrou.com/experience/baja.html",
+      "image": "https://kilanrou.com/Pics/Baja.webp",
+      "datePublished": "2026-09",
+      "dateCreated": "2024",
+      "keywords": ["Baja SAE", "Olin College", "chassis design", "TIG welding", "ANSYS FEA", "SolidWorks", "space frame", "bill of materials"],
+      "about": { "@type": "Organization", "name": "Olin Baja SAE" },
+      "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
+      "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baja SAE | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=1.2">
-    <style>
-        /* Additional styles for detail pages */
-        .detail-hero {
-            padding-top: 120px;
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .detail-hero h1 {
-            font-size: 3rem;
-            color: var(--color-accent);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-meta {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-bottom: var(--spacing-xl);
-        }
-
-        .detail-content h2 {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-            border-bottom: 3px solid var(--color-accent);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .detail-content h3 {
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .detail-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content ul {
-            margin-left: 2rem;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .detail-content li {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .detail-image {
-            margin: var(--spacing-lg) 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background: var(--color-accent-light);
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            border: 2px dashed var(--color-border);
-        }
-
-        .image-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-md);
-            margin: var(--spacing-lg) 0;
-        }
-
-        .image-row .detail-image {
-            margin: 0;
-            min-height: 300px;
-        }
-
-        .image-triple {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: var(--spacing-md);
-            margin: var(--spacing-lg) 0;
-        }
-
-        .image-triple .detail-image {
-            margin: 0;
-            min-height: 250px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .video-container {
-            margin: var(--spacing-lg) 0;
-            position: relative;
-            padding-bottom: 56.25%;
-            /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            background: #1a1a1a;
-        }
-
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        @media (max-width: 768px) {
-            .image-row {
-                grid-template-columns: 1fr;
-            }
-
-            .image-triple {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
-    <meta name="description" content="Lead Chassis Designer and builder for Olin College Baja SAE off-road racing vehicle. Fabricating high-performance suspension and frames.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/experience/baja.html">
-    <meta property="og:title" content="Baja SAE | Kilan Rougeot">
-    <meta property="og:description" content="Lead Chassis Designer and builder for Olin College Baja SAE off-road racing vehicle. Fabricating high-performance suspension and frames.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/experience/baja.html">
-    <meta property="twitter:title" content="Baja SAE | Kilan Rougeot">
-    <meta property="twitter:description" content="Lead Chassis Designer and builder for Olin College Baja SAE off-road racing vehicle. Fabricating high-performance suspension and frames.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">KILAN ROUGEOT</a>
-            <ul class="nav-menu">
-                <li><a href="../index.html#home" class="nav-link">Home</a></li>
-                <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="../index.html#teams" class="nav-link">Teams</a></li>
-                <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="../Files/ResumeKilan.pdf" class="nav-link" target="_blank">Resume</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="../index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="../index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="../index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="../index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="../contact.html" class="nav__link">Contact</a></li>
             </ul>
         </div>
-    </nav>
+    </header>
 
-    <!-- Experience Detail -->
-    <section class="detail-hero" style="position: relative;">
-        <img src="../Pics/Bajalogo.png" alt="Baja SAE Logo"
-            style="position: absolute; top: 140px; right: 5%; width: 180px; height: auto; z-index: 2;">
-        <div class="container">
-            <a href="../index.html#teams" class="back-link">← Back to Teams</a>
-            <h1>Baja SAE</h1>
-            <p class="detail-meta">Olin Baja SAE Team • Chassis Lead • 2024-Present</p>
-        </div>
-    </section>
-
-    <section class="detail-content">
-        <div class="container">
-            <!-- Overview -->
-            <h2>Overview</h2>
-            <p>
-                As a sophomore in Baja SAE, I have served as Chassis Lead for over a year, managing the design,
-                fabrication, and assembly of the vehicle's structural foundation. I lead chassis fabrication, onboard
-                new members to welding and manufacturing processes, and coordinate with other subsystems to ensure
-                seamless integration. Our team is currently preparing for competition in September 2026, where we'll
-                compete against universities from across the country in endurance, maneuverability, and hill climb
-                events.
-            </p>
-
-            <!-- Team Photo -->
-            <div class="detail-image">
-                <img src="Bajapics/teampic.jpg" alt="Baja SAE Team Photo"
-                    style="width: 100%; height: 100%; object-fit: contain;">
+    <main>
+        <section class="detail-hero">
+            <div class="container detail-hero__inner">
+                <div>
+                    <a href="../index.html#teams" class="link link--back">Teams</a>
+                    <span class="eyebrow">Chassis Lead</span>
+                    <h1 class="detail-hero__title">Baja SAE</h1>
+                    <p class="detail-hero__sub">Designing and welding the space frame for Olin's off-road racer.</p>
+                    <div class="detail-hero__meta">
+                        <span><time datetime="2024">2024</time>–Present</span>
+                        <span>Olin College</span>
+                        <span>Olin Baja SAE Team</span>
+                    </div>
+                    <div class="pills">
+                        <span class="pill">SolidWorks</span>
+                        <span class="pill">TIG welding</span>
+                        <span class="pill">ANSYS FEA</span>
+                        <span class="pill">BOM management</span>
+                        <span class="pill pill--success pill--live">Competing <time datetime="2026-09">September 2026</time></span>
+                    </div>
+                </div>
+                <img class="detail-hero__logo" src="../Pics/Bajalogo.webp" alt="Baja SAE logo" width="400" height="248" decoding="async">
             </div>
+        </section>
 
-            <!-- Competition Overview -->
-            <h2>Competition & Mission</h2>
-            <p>
-                Baja SAE challenges teams to design, build, and race an off-road vehicle capable of handling the most
-                brutal terrain. Each year, teams compete in dynamic events testing acceleration, maneuverability, hill
-                climbing, and a grueling 4-hour endurance race. The vehicle must survive jumps, mud, rocks, and constant
-                abuse while maintaining performance and reliability.
+        <div class="container detail-lead">
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="Bajapics/teampic.webp" alt="The Olin Baja SAE team in matching blue and red shirts posing outdoors around the off-road car, with a wheel held in front" width="1800" height="1012" decoding="async">
+                </div>
+                <figcaption>The Olin Baja SAE team with the car.</figcaption>
+            </figure>
+        </div>
+
+        <article class="container prose">
+            <p class="lede">
+                As a sophomore in Baja SAE I have served as Chassis Lead for over a year, managing the design, fabrication and
+                assembly of the vehicle's structural foundation. I lead chassis fabrication, onboard new members to welding and
+                manufacturing, and coordinate with the other subsystems so everything integrates cleanly. We are preparing to
+                compete in September 2026 against universities from across the country in endurance, maneuverability and hill-climb events.
             </p>
 
-            <!-- Role & Responsibilities -->
+            <h2>Competition and mission</h2>
+            <p>
+                Baja SAE challenges teams to design, build and race an off-road vehicle that can handle the most brutal terrain.
+                Each year teams compete in dynamic events testing acceleration, maneuverability, hill climbing, and a grueling
+                4-hour endurance race. The vehicle has to survive jumps, mud, rocks and constant abuse while staying fast and reliable.
+            </p>
+
             <h2>Role as Chassis Lead</h2>
-            <p>
-                As Chassis Lead for over a year, I oversee all aspects of chassis design, manufacturing, and
-                integration:
-            </p>
+            <p>As Chassis Lead for over a year, I oversee all aspects of chassis design, manufacturing and integration:</p>
             <ul>
-                <li><strong>Design Leadership:</strong> Lead CAD design of tubular space frame chassis using SolidWorks,
-                    ensuring compliance with SAE rules and integration with all subsystems</li>
-                <li><strong>Fabrication Management:</strong> Coordinate chassis fabrication using TIG and MIG welding,
-                    jig design, and tube cutting operations</li>
-                <li><strong>Bill of Materials:</strong> Manage complete BOM for chassis components, order all tubes and
-                    materials, cross-check specifications with SAE rulebook requirements</li>
-                <li><strong>Member Onboarding:</strong> Train new members in welding techniques, fabrication processes,
-                    safety protocols, and design for manufacturing principles</li>
-                <li><strong>Cross-Subsystem Integration:</strong> Coordinate with suspension, powertrain, and controls
-                    teams to ensure proper mounting points and clearances</li>
-                <li><strong>Structural Analysis:</strong> Perform ANSYS FEA simulations to validate chassis strength,
-                    identify high-stress areas, and optimize tube sizing</li>
+                <li><strong>Design leadership:</strong> lead CAD design of the tubular space-frame chassis in SolidWorks, ensuring compliance with SAE rules and integration with every subsystem.</li>
+                <li><strong>Fabrication management:</strong> coordinate chassis fabrication using TIG and MIG welding, jig design and tube-cutting operations.</li>
+                <li><strong>Bill of materials:</strong> manage the complete BOM for chassis components, order all tubes and materials, and cross-check specifications against SAE rulebook requirements.</li>
+                <li><strong>Member onboarding:</strong> train new members in welding techniques, fabrication processes, safety protocols and design-for-manufacturing principles.</li>
+                <li><strong>Cross-subsystem integration:</strong> coordinate with the suspension, powertrain and controls teams on mounting points and clearances.</li>
+                <li><strong>Structural analysis:</strong> run ANSYS FEA simulations to validate chassis strength, identify high-stress areas and optimize tube sizing.</li>
             </ul>
 
-            <!-- Bill of Materials -->
-            <h2>Bill of Materials Management</h2>
+            <h2>Bill of materials management</h2>
             <p>
-                I oversee the complete bill of materials for chassis fabrication, ensuring all components meet SAE
-                specifications and are ordered on schedule:
+                I oversee the complete bill of materials for chassis fabrication, ensuring every component meets SAE
+                specifications and is ordered on schedule.
             </p>
-
-            <div class="detail-image">
-                <img src="Bajapics/BOM.png" alt="Bill of Materials with VR3 Tube Balloon"
-                    style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-
-            <p>
-                The BOM includes detailed specifications for every tube in the chassis - material grade, wall thickness,
-                outer diameter, and length. Each component is cross-referenced with SAE rulebook requirements to ensure
-                competition compliance. I coordinate with VR3 Tubes and other suppliers to source materials, manage
-                delivery timelines, and verify quality upon receipt.
-            </p>
-
-            <!-- ANSYS Simulations -->
-            <h2>Structural Analysis & ANSYS Simulations</h2>
-            <p>
-                To validate chassis strength and optimize weight, I perform extensive finite element analysis using
-                ANSYS. These simulations model worst-case loading scenarios including jumps, side impacts, and rollover
-                events:
-            </p>
-
-            <div class="detail-image">
-                <img src="Bajapics/BAJA_FEA.gif" alt="ANSYS Simulation Animation"
-                    style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-
-            <p>
-                The FEA results identify high-stress regions where additional gussets or larger diameter tubes are
-                needed. This data-driven approach allows us to optimize the chassis for strength-to-weight ratio,
-                reducing unnecessary mass while maintaining structural integrity during competition abuse.
-            </p>
-
-            <!-- Fabrication Process -->
-            <h2>Fabrication & Manufacturing</h2>
-            <p>
-                Chassis fabrication requires precision TIG welding, careful jig design, and meticulous quality control
-                to ensure the final structure matches CAD specifications:
-            </p>
-
-            <h3>Welding Jig Design</h3>
-            <p>
-                To maintain accuracy during fabrication, I designed custom welding jigs that hold tubes in precise
-                alignment during tack welding and final welding operations. These jigs are critical for ensuring the
-                chassis geometry matches our CAD model:
-            </p>
-
-            <div class="detail-image">
-                <img src="Bajapics/Jig.png" alt="Welding Jig" style="width: 50%; height: 50%; object-fit: contain;">
-            </div>
-
-            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
-                Custom welding jig in use during chassis fabrication
-            </p>
-
-            <h3>TIG Welding</h3>
-            <p>
-                All primary structural joints use TIG welding for maximum strength and penetration. I've developed
-                advanced TIG welding skills for thin-wall AISI 1018 Steel tubing, including proper heat management,
-                filler
-                rod technique, and post-weld inspection:
-            </p>
-
-            <div class="image-row">
-                <div class="detail-image">
-                    <img src="Bajapics/Welding.png" alt="TIG Welding Chassis Joints"
-                        style="width: 100%; height: 100%; object-fit: contain;">
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="Bajapics/BOM.webp" alt="Engineering drawing of the Olin Baja SAE chassis with numbered balloons on every tube and a bill-of-materials table listing cut lengths and tube types" width="1800" height="1273" loading="lazy" decoding="async">
                 </div>
-                <div class="detail-image">
-                    <img src="Bajapics/Welded.png" alt="Completed Weld Joints"
-                        style="width: 100%; height: 100%; object-fit: contain;">
+                <figcaption>Chassis drawing with tube balloons and the bill of materials for VR3 Tubes.</figcaption>
+            </figure>
+            <p>
+                The BOM includes detailed specifications for every tube in the chassis: material grade, wall thickness, outer
+                diameter and length. Each component is cross-referenced with the SAE rulebook to ensure competition compliance.
+                I coordinate with VR3 Tubes and other suppliers to source materials, manage delivery timelines and verify quality on receipt.
+            </p>
+
+            <h2>Structural analysis and ANSYS simulations</h2>
+            <p>
+                To validate chassis strength and optimize weight, I run finite element analysis in ANSYS. The simulations model
+                worst-case loading scenarios including jumps, side impacts and rollover events.
+            </p>
+            <figure class="media">
+                <div class="media__frame">
+                    <video src="Bajapics/BAJA_FEA.mp4" poster="Bajapics/BAJA_FEA.webp" autoplay muted loop playsinline preload="metadata" aria-label="Animated ANSYS Explicit Dynamics simulation of the green wireframe chassis deforming under load, with a directional deformation color legend" title="Animated ANSYS Explicit Dynamics simulation of the green wireframe chassis deforming under load, with a directional deformation color legend"></video>
+                </div>
+                <figcaption>ANSYS Explicit Dynamics simulation of the chassis under load.</figcaption>
+            </figure>
+            <p>
+                The FEA results identify high-stress regions where additional gussets or larger-diameter tubes are needed. This
+                data-driven approach lets us optimize the chassis for strength-to-weight, removing unnecessary mass while keeping
+                structural integrity through competition abuse.
+            </p>
+
+            <h2>Fabrication and manufacturing</h2>
+            <p>
+                Chassis fabrication requires precision TIG welding, careful jig design and meticulous quality control so the final
+                structure matches the CAD.
+            </p>
+
+            <h3>Welding jig design</h3>
+            <p>
+                To maintain accuracy during fabrication I designed custom welding jigs that hold the tubes in precise alignment
+                during tack welding and final welding. These jigs are critical for making the chassis geometry match our CAD model.
+            </p>
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Bajapics/Jig.webp" alt="CAD model of the chassis tubes, colored blue, green and cyan, held in a set of gray laser-cut sheet welding jigs" width="512" height="429" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Custom welding jig in use during chassis fabrication.</figcaption>
+            </figure>
+
+            <h3>TIG welding</h3>
+            <p>
+                All primary structural joints use TIG welding for maximum strength and penetration. I have developed advanced TIG
+                skills for thin-wall AISI 1018 steel tubing, including heat management, filler-rod technique and post-weld inspection.
+            </p>
+            <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="Bajapics/Welding.webp" alt="A team member in a welding helmet TIG welding the chassis frame inside a curtained welding booth, arc glowing" width="750" height="563" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>TIG welding chassis joints in the booth.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="Bajapics/Welded.webp" alt="The fully welded bare-steel tubular space-frame chassis standing outdoors on asphalt" width="611" height="564" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The completed welded chassis.</figcaption>
+                </figure>
+            </div>
+            <ul>
+                <li>Proper tungsten selection and electrode grinding for penetration control.</li>
+                <li>Back-purging to prevent oxidation on the inside of the tube.</li>
+                <li>Heat-input management to prevent warping and preserve material properties.</li>
+                <li>Filler-rod selection and technique for full-penetration welds.</li>
+                <li>Visual inspection and dye-penetrant testing to verify weld quality.</li>
+            </ul>
+
+            <h2>Key design improvements</h2>
+
+            <h3>Cockpit ergonomics and driver safety</h3>
+            <p>I redesigned the cockpit section to improve driver ergonomics while maintaining rollover protection. The new design features:</p>
+            <ul>
+                <li>Lower seat position for an improved center of gravity and driver visibility.</li>
+                <li>Adjustable pedal box to accommodate drivers of different heights.</li>
+                <li>Reinforced roll hoop with side-impact protection exceeding SAE requirements.</li>
+                <li>Improved ingress/egress clearance for faster driver changes during endurance.</li>
+            </ul>
+
+            <h3>Engine integration and serviceability</h3>
+            <p>I worked closely with the powertrain team to optimize engine mounting and maintenance access. The chassis now includes:</p>
+            <ul>
+                <li>Removable engine-bay panels for quick CVT belt changes during competition.</li>
+                <li>Vibration-isolated engine mounts to reduce fatigue on the chassis and components.</li>
+                <li>Clearance between tubes to allow a worst-case engine swap.</li>
+            </ul>
+
+            <h3>Suspension geometry and clearance</h3>
+            <p>Coordinated with the suspension team to optimize A-arm mounting points and maximize wheel travel:</p>
+            <ul>
+                <li>Relocated suspension pickup points to improve anti-dive and anti-squat characteristics.</li>
+                <li>Increased wheel travel from 8" to 10" for better obstacle handling.</li>
+                <li>Designed clearance for full suspension droop during jumps and rough terrain.</li>
+                <li>Integrated shock-mounting tabs directly into the chassis for reduced weight.</li>
+            </ul>
+
+            <h2>Design evolution</h2>
+            <p>
+                Comparison of the previous chassis design against the current optimized design, showing improvements in weight,
+                strength and serviceability.
+            </p>
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="Bajapics/OldVsNew1.webp" alt="Side-view line drawings of the old and new chassis with the front marked; the new frame is 4.5 inches shorter" width="1000" height="405" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Old versus new chassis, side view: the new frame is 4.5 inches shorter.</figcaption>
+            </figure>
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="Bajapics/OldVsNew2.webp" alt="Isometric line drawings of the old and new front chassis sections with red annotations showing plus 2 inches and plus 4.5 inches of added clearance on the new design" width="1000" height="336" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Old versus new front section: +2 inches and +4.5 inches of clearance on the new design.</figcaption>
+            </figure>
+
+            <h2>Vehicle performance</h2>
+            <p>Testing the Baja vehicle on challenging terrain to validate chassis strength and suspension integration.</p>
+            <figure class="media">
+                <div class="media__frame">
+                    <img src="Bajapics/cinematic.webp" alt="The Olin Baja car with a helmeted driver cresting a dirt mound on a rough off-road course" width="1800" height="1463" loading="lazy" decoding="async">
+                </div>
+                <figcaption>Chassis performance testing on rough terrain.</figcaption>
+            </figure>
+
+            <h2>Technical skills and expertise</h2>
+            <div class="features">
+                <div class="feature">
+                    <h4>Advanced welding</h4>
+                    <p>TIG welding AISI 1018 steel tubing, MIG welding mild steel, heat management and back-purging.</p>
+                </div>
+                <div class="feature">
+                    <h4>CAD design</h4>
+                    <p>SolidWorks assemblies, weldments and detailed fabrication drawings.</p>
+                </div>
+                <div class="feature">
+                    <h4>Structural analysis</h4>
+                    <p>ANSYS FEA for stress analysis, fatigue-life prediction and optimization.</p>
+                </div>
+                <div class="feature">
+                    <h4>Manufacturing</h4>
+                    <p>Tube notching, jig design, fixture fabrication and quality control.</p>
+                </div>
+                <div class="feature">
+                    <h4>Project management</h4>
+                    <p>Bill-of-materials management, supplier coordination and timeline planning.</p>
+                </div>
+                <div class="feature">
+                    <h4>Design for manufacturing</h4>
+                    <p>Optimizing designs for fabrication constraints and assembly.</p>
+                </div>
+                <div class="feature">
+                    <h4>Rules compliance</h4>
+                    <p>SAE Baja rulebook interpretation and design validation.</p>
+                </div>
+                <div class="feature">
+                    <h4>Team leadership</h4>
+                    <p>Training new members and coordinating cross-functional work.</p>
                 </div>
             </div>
 
+            <h2>Preparing for the <time datetime="2026-09">September 2026</time> competition</h2>
+            <p>The team is in the final stages of preparation for the September 2026 Baja SAE competition. We are focused on:</p>
             <ul>
-                <li>Proper tungsten selection and electrode grinding for penetration control</li>
-                <li>Back purging techniques to prevent oxidation on inside of tube</li>
-                <li>Heat input management to prevent warping and maintain material properties</li>
-                <li>Filler rod selection and technique for full-penetration welds</li>
-                <li>Visual inspection and dye penetrant testing to verify weld quality</li>
+                <li>Completing chassis fabrication and final welding operations.</li>
+                <li>Integrating all subsystems and performing full vehicle assembly.</li>
+                <li>Extensive testing to validate reliability under competition conditions.</li>
+                <li>Preparing technical documentation and design reports for the judges.</li>
+                <li>Training drivers and practicing quick repairs for endurance-race pit stops.</li>
+                <li>Finalizing the spare-parts inventory and competition logistics.</li>
             </ul>
 
-            <!-- Design Improvements -->
-            <h2>Key Design Improvements</h2>
-
-            <h3>Cockpit Ergonomics & Driver Safety</h3>
-            <p>
-                I redesigned the cockpit section to improve driver ergonomics while maintaining rollover protection. The
-                new design features:
-            </p>
-            <ul>
-                <li>Lower seat position for improved center of gravity and driver visibility</li>
-                <li>Adjustable pedal box to accommodate drivers of different heights</li>
-                <li>Reinforced roll hoop with side impact protection exceeding SAE requirements</li>
-                <li>Improved ingress/egress clearance for faster driver changes during endurance</li>
-            </ul>
-
-            <h3>Engine Integration & Serviceability</h3>
-            <p>
-                Worked closely with the powertrain team to optimize engine mounting and access for maintenance. The
-                chassis design now includes:
-            </p>
-            <ul>
-                <li>Removable engine bay panels for quick CVT belt changes during competition</li>
-                <li>Vibration-isolated engine mounts to reduce fatigue on chassis and components</li>
-                <li>Clearance between tubes to allow for worst case scenario engine swap</li>
-            </ul>
-
-            <h3>Suspension Geometry & Clearance</h3>
-            <p>
-                Coordinated with suspension team to optimize A-arm mounting points and maximize wheel travel:
-            </p>
-            <ul>
-                <li>Relocated suspension pickup points to improve anti-dive and anti-squat characteristics</li>
-                <li>Increased wheel travel from 8" to 10" for better obstacle handling</li>
-                <li>Designed clearance for full suspension droop during jumps and rough terrain</li>
-                <li>Integrated shock mounting tabs directly into chassis for reduced weight</li>
-            </ul>
-
-            <!-- Before/After Comparison -->
-            <h2>Design Evolution</h2>
-            <p>
-                Comparison of previous chassis design versus current optimized design showing improvements in weight,
-                strength, and serviceability:
-            </p>
-
-            <div class="detail-image">
-                <img src="Bajapics/OldVsNew1.png" alt="Old Vs New Design 1"
-                    style="width: 100%; height: 100%; object-fit: contain;">
+            <h2>Impact and achievements</h2>
+            <div class="stats">
+                <div class="stat"><div class="stat__value">15%</div><div class="stat__label">lighter chassis through FEA-driven optimization, at the same strength</div></div>
+                <div class="stat"><div class="stat__value">25%</div><div class="stat__label">more suspension travel through optimized mounting geometry</div></div>
+                <div class="stat"><div class="stat__value">8+</div><div class="stat__label">new members trained in TIG welding and fabrication</div></div>
+                <div class="stat"><div class="stat__value">40%</div><div class="stat__label">fewer weld defects after new quality-control processes</div></div>
             </div>
-            <div class="detail-image">
-                <img src="Bajapics/OldVsNew2.png" alt="Old Vs New Design 2"
-                    style="width: 100%; height: 100%; object-fit: contain;">
+            <ul>
+                <li>Improved serviceability with redesigned engine-bay access panels.</li>
+                <li>Developed standardized jig designs, improving fabrication accuracy and speed.</li>
+            </ul>
+
+            <h2>Key learnings</h2>
+            <p>
+                Leading chassis design and fabrication for Baja SAE has taught me the importance of design for manufacturing:
+                creating designs that are not only optimal on paper but actually buildable with the equipment and expertise we
+                have. The best design is worthless if the team cannot fabricate it accurately and consistently.
+            </p>
+            <p>
+                Working with new members has reinforced that knowledge transfer is critical for team sustainability. By documenting
+                processes, creating training materials and mentoring newcomers, we make sure the team's knowledge base grows each
+                year instead of being lost to graduation.
+            </p>
+            <p>
+                The iterative loop of CAD, simulation, fabrication, testing and refinement has shown me how engineering decisions
+                play out in real-world performance. Seeing the chassis survive brutal testing validates our analysis, and failures
+                give us valuable lessons for the next iteration.
+            </p>
+
+            <div class="footer-nav">
+                <a href="../index.html#teams" class="link link--back">All teams</a>
+                <a href="../contact.html" class="link">Get in touch</a>
             </div>
+        </article>
+    </main>
 
-            <!-- Vehicle in Action -->
-            <h2>Vehicle Performance</h2>
-            <p>
-                Testing our Baja vehicle in challenging terrain to validate chassis strength and suspension integration:
-            </p>
-
-            <div class="detail-image">
-                <img src="Bajapics/cinematic.jpeg" alt="Car Running"
-                    style="width: 60%; height: 60%; object-fit: contain;">
-            </div>
-
-            <p style="text-align: center; font-style: italic; color: var(--color-text-secondary); margin-top: -1rem;">
-                Chassis performance testing on rough terrain
-            </p>
-
-            <!-- Technical Skills -->
-            <h2>Technical Skills & Expertise</h2>
-            <ul>
-                <li><strong>Advanced Welding:</strong> TIG welding AISI 1018 Steel tubing, MIG welding mild steel,
-                    proper
-                    heat management and back purging</li>
-                <li><strong>CAD Design:</strong> SolidWorks assemblies, weldments, detailed fabrication drawings</li>
-                <li><strong>Structural Analysis:</strong> ANSYS FEA for stress analysis, fatigue life prediction, and
-                    optimization</li>
-                <li><strong>Manufacturing:</strong> Tube notching, jig design, fixture fabrication, quality control</li>
-                <li><strong>Project Management:</strong> Bill of materials management, supplier coordination, timeline
-                    planning</li>
-                <li><strong>Design for Manufacturing:</strong> Optimizing designs for fabrication constraints and
-                    assembly</li>
-                <li><strong>Rules Compliance:</strong> SAE Baja rulebook interpretation and design validation</li>
-                <li><strong>Team Leadership:</strong> Training new members, coordinating cross-functional work</li>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
+            <ul class="footer__links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a></li>
+                <li><a href="../Files/ResumeKilan.pdf" target="_blank" rel="noopener">Resume</a></li>
             </ul>
-
-            <!-- Competition Preparation -->
-            <h2>Preparing for September 2026 Competition</h2>
-            <p>
-                Our team is currently in the final stages of preparation for the September 2026 Baja SAE competition.
-                We're focused on:
-            </p>
-            <ul>
-                <li>Completing chassis fabrication and final welding operations</li>
-                <li>Integrating all subsystems and performing full vehicle assembly</li>
-                <li>Conducting extensive testing to validate reliability under competition conditions</li>
-                <li>Preparing technical documentation and design reports for judges</li>
-                <li>Training drivers and practicing quick repairs for endurance race pit stops</li>
-                <li>Finalizing spare parts inventory and competition logistics</li>
-            </ul>
-
-            <!-- Impact & Results -->
-            <h2>Impact & Achievements</h2>
-            <ul>
-                <li>Reduced chassis weight by 15% through FEA-driven optimization while maintaining strength</li>
-                <li>Improved serviceability with redesigned engine bay access panels</li>
-                <li>Increased suspension travel by 25% through optimized mounting geometry</li>
-                <li>Trained 8+ new members in TIG welding and fabrication techniques</li>
-                <li>Implemented quality control processes reducing weld defects by 40%</li>
-                <li>Developed standardized jig designs improving fabrication accuracy and speed</li>
-            </ul>
-
-            <!-- Key Learnings -->
-            <h2>Key Learnings</h2>
-            <p>
-                Leading chassis design and fabrication for Baja SAE has taught me the importance of design for
-                manufacturing - creating designs that are not only optimal on paper but actually buildable with
-                available equipment and expertise. I've learned that the best design is worthless if the team can't
-                fabricate it accurately and consistently.
-            </p>
-            <p>
-                Working with new members has reinforced that knowledge transfer is critical for team sustainability. By
-                documenting processes, creating training materials, and mentoring newcomers, we ensure the team's
-                knowledge base grows each year rather than being lost to graduation.
-            </p>
-            <p>
-                The iterative design process - CAD, simulation, fabrication, testing, refinement - has shown me how
-                engineering decisions impact real-world performance. Seeing the chassis survive brutal testing validates
-                our analysis, while failures provide valuable lessons for improvement.
-            </p>
-
-            <!-- Link back -->
-            <a href="../index.html#teams" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                ← Back to All Teams
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-        <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p
-                style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                <span>&copy; 2026 Kilan Rougeot</span>
-                <span>•</span>
-                <a href="../contact.html"
-                    style="color: var(--color-accent); text-decoration: none; font-weight: 600;">Contact</a>
-                <span>•</span>
-                <a href="mailto:kilanrou@gmail.com"
-                    style="color: var(--color-text-secondary); text-decoration: none;">kilanrou@gmail.com</a>
-                <span>•</span>
-                <a href="tel:+14459426585" style="color: var(--color-text-secondary); text-decoration: none;">(445)
-                    942-6585</a>
-            </p>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
-    <script>
-        // Autoplay videos when they come into view
-        const videos = document.querySelectorAll('#jigVideo, #testingVideo');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.play();
-                } else {
-                    entry.target.pause();
-                }
-            });
-        }, {
-            threshold: 0.5 // Video plays when 50% visible
-        });
-
-        videos.forEach(video => {
-            observer.observe(video);
-        });
-    </script>
+    <script src="../script.js?v=2.0"></script>
 </body>
 
 </html>

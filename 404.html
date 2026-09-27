@@ -2,227 +2,55 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Page not found | Kilan Rougeot</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="/Pics/webicon.png">
+    <link rel="stylesheet" href="/styles.css?v=2.0">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-KL9QFYJ377');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | Kilan Rougeot</title>
-    <link rel="icon" type="image/png" href="Pics/webicon.png">
-    <link rel="stylesheet" href="styles.css?v=1.2">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .error-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--color-bg);
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .error-code {
-            font-size: 6rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            margin: 0;
-            line-height: 1;
-        }
-
-        .error-title {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin: 0.5rem 0;
-        }
-
-        .error-message {
-            font-size: 1.125rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 1rem;
-            max-width: 600px;
-        }
-
-        .crash-scene {
-            margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 300px;
-            max-width: 90%;
-            height: 180px;
-        }
-
-        .baja-car {
-            width: 200px;
-            height: auto;
-            transform: rotate(180deg);
-        }
-
-        .countdown-container {
-            margin-top: 1rem;
-        }
-
-        .countdown-text {
-            font-size: 1.125rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            font-family: 'Courier New', monospace;
-            animation: pulse 1s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.7;
-                transform: scale(1.05);
-            }
-        }
-
-        .manual-link {
-            margin-top: 1rem;
-        }
-
-        .manual-link a {
-            color: var(--color-accent);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.125rem;
-            border-bottom: 2px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .manual-link a:hover {
-            border-bottom-color: var(--color-accent);
-        }
-
-        .error-logo {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .error-logo:hover {
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            .error-logo {
-                font-size: 1rem;
-                top: 1rem;
-                left: 1rem;
-            }
-
-            .error-code {
-                font-size: 5rem;
-            }
-
-            .error-title {
-                font-size: 1.5rem;
-            }
-
-            .error-message {
-                font-size: 1rem;
-            }
-
-            .countdown-number {
-                font-size: 3rem;
-            }
-
-            .crash-scene {
-                width: 250px;
-                height: 150px;
-            }
-
-            .baja-car {
-                width: 150px;
-            }
-        }
-    </style>
-
-    <meta name="description" content="Page Not Found | Kilan Rougeot - Mechanical Engineering Student Portfolio.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kilanrougeot.com/404.html">
-    <meta property="og:title" content="404 - Page Not Found | Kilan Rougeot">
-    <meta property="og:description" content="Page Not Found | Kilan Rougeot - Mechanical Engineering Student Portfolio.">
-    <meta property="og:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://kilanrougeot.com/404.html">
-    <meta property="twitter:title" content="404 - Page Not Found | Kilan Rougeot">
-    <meta property="twitter:description" content="Page Not Found | Kilan Rougeot - Mechanical Engineering Student Portfolio.">
-    <meta property="twitter:image" content="https://kilanrougeot.com/Pics/Headshot.jpg">
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-KL9QFYJ377');</script>
 </head>
 
 <body>
-    <a href="/index.html" class="error-logo">KILAN ROUGEOT</a>
-    <div class="error-container">
-        <h1 class="error-code">404</h1>
-        <h2 class="error-title">Page Not Found</h2>
-        <p class="error-message">
-            Oops! Looks like you took a wrong turn. The page you're looking for doesn't exist or has been moved.
-        </p>
-
-        <div class="crash-scene">
-            <img src="/Pics/Baja.png" alt="Baja Car" class="baja-car">
+    <header class="nav">
+        <div class="container nav__inner">
+            <a href="/index.html" class="nav__logo">Kilan Rougeot</a>
+            <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="/index.html#experience" class="nav__link">Experience</a></li>
+                <li><a href="/index.html#teams" class="nav__link">Teams</a></li>
+                <li><a href="/index.html#projects" class="nav__link">Projects</a></li>
+                <li><a href="/Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
+                <li><a href="/contact.html" class="nav__link">Contact</a></li>
+            </ul>
         </div>
+    </header>
 
-        <div class="countdown-container">
-            <p class="countdown-text">Returning to home page in</p>
-            <div class="countdown-number" id="countdown">10</div>
+    <main class="error">
+        <div data-stagger>
+            <h1 class="error__code">404</h1>
+            <p><strong>Wrong turn.</strong> That page doesn't exist or has moved.</p>
+            <img class="error__art" src="/Pics/Baja.webp" alt="Baja SAE car, upside down" width="900" height="900" decoding="async">
+            <p>Heading home in <strong id="countdown">10</strong> seconds.</p>
+            <div class="hero__actions hero__actions--center">
+                <a href="/index.html" class="btn btn--primary">Go home now</a>
+            </div>
         </div>
+    </main>
 
-        <div class="manual-link">
-            <p>Don't want to wait? <a href="/index.html">Click here to go home now</a></p>
-        </div>
-    </div>
-
+    <script src="/script.js?v=2.0"></script>
     <script>
-        // Countdown and redirect
-        let timeLeft = 10;
-        const countdownElement = document.getElementById('countdown');
-
-        const countdownInterval = setInterval(() => {
-            timeLeft--;
-            countdownElement.textContent = timeLeft;
-
-            if (timeLeft <= 0) {
-                clearInterval(countdownInterval);
-                window.location.href = '/index.html';
-            }
-        }, 1000);
+        (function () {
+            var t = 10, el = document.getElementById('countdown');
+            var iv = setInterval(function () {
+                t--; el.textContent = t;
+                if (t <= 0) { clearInterval(iv); window.location.href = '/index.html'; }
+            }, 1000);
+        })();
     </script>
 </body>
 
