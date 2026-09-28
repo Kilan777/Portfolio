@@ -39,7 +39,8 @@ It rewrites the `src` references for you and deletes the originals from the work
 ## Design rules
 
 - Quiet and plain: warm off-white page (`--bg`), near-black text, slate-blue headings and buttons (`--accent`), hairlines instead of boxes.
-- Fluid widths: 1280 px container, 880 px text column, figures widen to 1100 px on desktop. Everything must work at 390 px wide with no horizontal scroll.
+- Home page: wide fluid container (up to 1600 px), underline section titles, hover cards (`.card`) with the org logo always visible; two cards per row on phones.
+- Detail pages: 1280 px container, 880 px text column, figures widen to 1100 px on desktop. Every page follows the same order: hero, one lead image or video, lede, Overview, body sections, What I learned, back link. Everything must work at 390 px wide with no horizontal scroll.
 - Copy is factual first-person engineering writing. No taglines, no superlatives, at most four "pills" per page, stats only for real measured numbers.
 - System font stack. Motion is subtle: fade on scroll, `prefers-reduced-motion` respected.
 

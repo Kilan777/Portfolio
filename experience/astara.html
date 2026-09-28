@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/experience/astara.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.1">
+    <link rel="stylesheet" href="../styles.css?v=2.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/experience/astara.html">
@@ -61,9 +61,9 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#experience" class="link link--back">Experience</a>
-                    <span class="eyebrow">Data and computer science intern</span>
+                    <span class="eyebrow">Data and Computer Science Intern</span>
                     <h1 class="detail-hero__title">Astara</h1>
-                    <p class="detail-hero__sub">Python analytics, a competitor price scraper and automated weekly reports for Astara Move, a car subscription service.</p>
+                    <p class="detail-hero__sub">Astara Move is a car subscription service, for which I wrote fleet analytics, a competitor price scraper and an automated weekly report.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2023-06">Summer 2023</time></span>
                         <span>Madrid, Spain</span>
@@ -82,7 +82,7 @@
 
         <div class="container detail-lead">
             <figure class="media">
-                <div class="media__frame media__frame--white">
+                <div class="media__frame media__frame--contain media__frame--white">
                     <img src="Astarapics/website.webp" alt="Screenshot of the Astara Move website: the car subscription platform's landing page with vehicle listings and monthly pricing" width="1800" height="905" decoding="async">
                 </div>
                 <figcaption>The Astara Move subscription website.</figcaption>
@@ -96,55 +96,14 @@
                 1,000+ competitors, and an automated weekly report that cut preparation time by over 90%.
             </p>
 
-            <h2>About Astara</h2>
+            <h2>The role</h2>
             <p>
                 Astara is an automotive distributor with over $5 billion in annual revenue. The Move department had just launched a
-                subscription-based alternative to car ownership and needed pricing and fleet data to compete.
+                subscription-based alternative to car ownership and needed pricing and fleet data to compete. As the second person
+                on data analytics, I built the tools the department used to price the fleet and report on it.
             </p>
 
-            <h2>Projects</h2>
-
-            <h3>Fleet analytics and demand forecasting</h3>
-            <p>
-                Astara Move needed to know which vehicles to buy next. I analysed subscription data to find which models were most
-                popular and fed that into fleet purchasing decisions.
-            </p>
-            <ul>
-                <li>Compared demand across vehicle categories (sedans, SUVs, luxury, economy).</li>
-                <li>Found seasonal demand patterns and peak subscription periods.</li>
-                <li>Wrote up recommendations on fleet composition and expansion priorities.</li>
-                <li>Pandas and NumPy for the analysis.</li>
-            </ul>
-
-            <div class="code"><div class="code__head"><span>Python · fleet_analysis.py</span></div><pre><code>import pandas as pd
-import numpy as np
-from datetime import datetime
-
-# Load subscription data from database
-def analyze_vehicle_popularity(df):
-    # Group by vehicle model and calculate key metrics
-    popularity = df.groupby('vehicle_model').agg({
-        'subscription_id': 'count',
-        'subscription_duration': 'mean',
-        'revenue': 'sum'
-    })
-
-    # Calculate utilization rate
-    popularity['utilization_rate'] = (
-        popularity['subscription_id'] /
-        df.groupby('vehicle_model')['available_units'].first()
-    )
-
-    return popularity.sort_values('utilization_rate', ascending=False)
-
-# Identify peak seasons
-def find_peak_seasons(df):
-    df['month'] = pd.to_datetime(df['start_date']).dt.month
-    monthly_demand = df.groupby('month')['subscription_id'].count()
-
-    return monthly_demand</code></pre></div>
-
-            <h3>Competitor price scraper</h3>
+            <h2>Main project</h2>
             <p>
                 I built a web scraper that tracked subscription pricing across 1,000+ competitors. When Astara added a new model to
                 the fleet, it returned the market average, median and range for that model from all tracked competitors.
@@ -206,6 +165,49 @@ class CompetitorPriceScraper:
             'min': min(prices),
             'max': max(prices)
         }</code></pre></div>
+
+            <h2>Other work</h2>
+            <p>Alongside the scraper I worked on fleet analytics, the weekly executive report and bugs on the platform itself.</p>
+
+            <h3>Fleet analytics and demand forecasting</h3>
+            <p>
+                Astara Move needed to know which vehicles to buy next. I analysed subscription data to find which models were most
+                popular and fed that into fleet purchasing decisions.
+            </p>
+            <ul>
+                <li>Compared demand across vehicle categories (sedans, SUVs, luxury, economy).</li>
+                <li>Found seasonal demand patterns and peak subscription periods.</li>
+                <li>Wrote up recommendations on fleet composition and expansion priorities.</li>
+                <li>Pandas and NumPy for the analysis.</li>
+            </ul>
+
+            <div class="code"><div class="code__head"><span>Python · fleet_analysis.py</span></div><pre><code>import pandas as pd
+import numpy as np
+from datetime import datetime
+
+# Load subscription data from database
+def analyze_vehicle_popularity(df):
+    # Group by vehicle model and calculate key metrics
+    popularity = df.groupby('vehicle_model').agg({
+        'subscription_id': 'count',
+        'subscription_duration': 'mean',
+        'revenue': 'sum'
+    })
+
+    # Calculate utilization rate
+    popularity['utilization_rate'] = (
+        popularity['subscription_id'] /
+        df.groupby('vehicle_model')['available_units'].first()
+    )
+
+    return popularity.sort_values('utilization_rate', ascending=False)
+
+# Identify peak seasons
+def find_peak_seasons(df):
+    df['month'] = pd.to_datetime(df['start_date']).dt.month
+    monthly_demand = df.groupby('month')['subscription_id'].count()
+
+    return monthly_demand</code></pre></div>
 
             <h3>Automated weekly report</h3>
             <p>
@@ -284,6 +286,15 @@ class WeeklyReportGenerator:
                 Python (Pandas, NumPy, Matplotlib, Seaborn, python-pptx), BeautifulSoup, Selenium, Requests, and SQL.
             </p>
 
+            <h2>Results</h2>
+            <ul>
+                <li>The scraper tracked pricing across 1,000+ competitors and returned the market average, median and range for any new model.</li>
+                <li>The automated weekly report cut preparation time by over 90%.</li>
+                <li>The fleet analysis fed the department's decisions on which vehicles to buy next.</li>
+                <li>Two pricing bugs on the Astara Move site were found, documented and reported.</li>
+                <li>The scraper and analytics scripts kept being used after I left as the fleet grew past 1,000 vehicles.</li>
+            </ul>
+
             <h2>What I learned</h2>
             <p>
                 A small team can run a fast-growing operation if the routine work is automated. Replacing the manual weekly report
@@ -313,7 +324,7 @@ class WeeklyReportGenerator:
         </div>
     </footer>
 
-    <script src="../script.js?v=2.1"></script>
+    <script src="../script.js?v=2.2"></script>
 </body>
 
 </html>

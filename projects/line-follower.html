@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/line-follower.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.1">
+    <link rel="stylesheet" href="../styles.css?v=2.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/line-follower.html">
@@ -59,12 +59,13 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#projects" class="link link--back">Projects</a>
-                    <span class="eyebrow">Class project, DC motor control</span>
+                    <span class="eyebrow">Class project</span>
                     <h1 class="detail-hero__title">Line-Following Robot</h1>
                     <p class="detail-hero__sub">A two-wheeled robot with closed-loop PD control and live parameter tuning.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2025-10">October 2025</time></span>
-                        <span>Principles of Integrated Engineering class</span>
+                        <span>Boston, MA</span>
+                        <span>Principles of Integrated Engineering</span>
                     </div>
                     <div class="pills">
                         <span class="pill">Arduino</span>
@@ -84,9 +85,8 @@
         <article class="container prose">
             <p class="lede">
                 A two-wheeled robot that follows a taped track on the floor. An Arduino runs a closed-loop PD controller
-                on five IR reflectance sensors and drives the wheels through a motor shield. The course was a
-                non-circular loop with corners tighter than 90 degrees. One requirement was tuning the controller over
-                serial while the robot ran, without recompiling, so we could push for the fastest lap.
+                on five IR reflectance sensors and drives the wheels through a motor shield, while a Python GUI tunes
+                the gains over serial as the robot runs. The best lap was 30 s, with 15 of 15 successful runs.
             </p>
 
             <div class="stats">
@@ -96,14 +96,20 @@
                 <div class="stat"><div class="stat__value">10 ms</div><div class="stat__label">control loop time (~100 Hz)</div></div>
             </div>
 
+            <h2>Overview</h2>
+            <p>
+                The course was a non-circular loop with corners tighter than 90 degrees. One requirement was tuning
+                the controller over serial while the robot ran, without recompiling, so we could push for the fastest
+                lap.
+            </p>
+
             <figure class="media">
                 <div class="media__frame media__frame--contain">
                     <img src="line-followerpics/linefollowerassemb.webp" alt="The assembled line-following robot: an Arduino and motor shield on a breadboard chassis with two yellow wheels and a front caster, wired to five IR sensors" width="512" height="384" decoding="async">
                 </div>
-                <figcaption>The assembled robot with the Arduino, motor shield and solderless breadboard on the custom chassis.</figcaption>
+                <figcaption>The assembled robot, with the Arduino, motor shield and solderless breadboard on the custom chassis.</figcaption>
             </figure>
 
-            <h2>Design approach</h2>
             <p>
                 We designed our own chassis so we could set the wheel-to-wheel distance, sensor placement and sensor
                 height ourselves. The controller is proportional-derivative (PD) and reads five infrared sensors:
@@ -118,18 +124,16 @@
                 corners reliably.
             </p>
 
-            <div class="wide">
             <figure class="media">
                 <div class="media__frame media__frame--white">
                     <img src="line-followerpics/systemdiagram.webp" alt="System architecture diagram: laptop exchanges serial parameters and sensor data with the Arduino Uno and Motor Shield v2.3; a 12 V supply powers the Arduino and motors; five IR reflectance sensors feed analog voltages to the Arduino; PWM drives the DC motors, which move the robot over the tape line" width="1600" height="1228" decoding="async">
                 </div>
-                <figcaption>System architecture: data flow (blue) and power flow (red) between laptop, Arduino, sensors, motors and the environment.</figcaption>
+                <figcaption>System architecture, with data flow in blue and power flow in red between the laptop, Arduino, sensors, motors and the environment.</figcaption>
             </figure>
-            </div>
 
-            <h2>Mechanical design</h2>
+            <h2>Design</h2>
 
-            <h3>Chassis configuration</h3>
+            <h3>Chassis</h3>
             <p>
                 The motors and wheels sit at the back, which puts the sensors on a longer arm for turning and keeps the
                 weight over the drive wheels for traction. The chassis is 5 inches wide by 6.5 inches long and rests on
@@ -146,7 +150,7 @@
                 <div class="media__frame media__frame--white">
                     <img src="line-followerpics/ChassisCAD.webp" alt="CAD render of the blue chassis with four numbered callouts: motor nut clearance hole, Arduino mounting hole, sloped caster wheel cut-out and reinforced motor mounts" width="1600" height="986" loading="lazy" decoding="async">
                 </div>
-                <figcaption>Chassis CAD with the four design features called out.</figcaption>
+                <figcaption>The chassis CAD with its four design features numbered.</figcaption>
             </figure>
 
             <p>The numbered features in the CAD render:</p>
@@ -161,7 +165,7 @@
                 assembly.
             </p>
 
-            <h3>Sensor array evolution</h3>
+            <h3>Sensor array</h3>
             <p>
                 The first version had three sensors close together in the center. It failed on turns sharper than 90
                 degrees because none of the sensors could see the line in the corner. We added one sensor on each side,
@@ -176,12 +180,12 @@
                 <div class="media__frame media__frame--white">
                     <img src="line-followerpics/SensorLocationsCAD.webp" alt="CAD render of the curved sensor mount with three center sensor slots circled in the middle and one outer sensor slot circled at each end" width="1232" height="515" loading="lazy" decoding="async">
                 </div>
-                <figcaption>Sensor mount: three center slots at 8 mm spacing plus one outer slot on each side, set further back.</figcaption>
+                <figcaption>The sensor mount, with three center slots at 8 mm spacing and one outer slot on each side set further back.</figcaption>
             </figure>
 
-            <h2>Electronic design</h2>
+            <h2>Electronics and control</h2>
 
-            <h3>Component specifications</h3>
+            <h3>Components</h3>
             <ul>
                 <li><strong>Infrared sensors:</strong> TCRT5000 with analog voltage output (0–5 V)</li>
                 <li><strong>Motors:</strong> 3–7.2 V DC gearmotors, 210 RPM, 48:1 gear ratio, driven at 12 V</li>
@@ -194,7 +198,7 @@
                 <div class="media__frame media__frame--white">
                     <img src="line-followerpics/WiringDiagram.webp" alt="Wiring schematic: 12 V power supply into the Adafruit Motor Shield driving two TT motors, Arduino Uno pins A0 to A4 reading five IR sensor circuits, each with a 200 Ω LED resistor and 10 kΩ phototransistor pull-up" width="1600" height="1200" loading="lazy" decoding="async">
                 </div>
-                <figcaption>Wiring diagram for the power, motor shield and the five IR sensor circuits.</figcaption>
+                <figcaption>Wiring diagram for the power, the motor shield and the five IR sensor circuits.</figcaption>
             </figure>
 
             <h3>Sensor circuit</h3>
@@ -205,9 +209,7 @@
                 <li>Analog voltage output proportional to surface reflectivity</li>
             </ul>
 
-            <h2>Control system design</h2>
-
-            <h3>PD control algorithm</h3>
+            <h3>PD control</h3>
             <p>The firmware is a finite state machine (FSM) with two states:</p>
             <ul>
                 <li><strong>PD control:</strong> active while the center sensors see the line.</li>
@@ -232,12 +234,12 @@ RIGHT_SPEED = BASE_SPEED - CORRECTION</code></pre>
                 </tbody>
             </table></div>
 
-            <h2>Real-time parameter tuning</h2>
+            <h2>Software</h2>
             <figure class="media">
                 <div class="media__frame">
                     <img src="line-followerpics/UI.webp" alt="Dark-themed Python Robot GUI window with a live plot of five normalized IR sensor readings and sliders for kP, kD, left and right base speed and left and right lost-line speed" width="1600" height="947" loading="lazy" decoding="async">
                 </div>
-                <figcaption>The Python tuning GUI: live sensor plot plus sliders for Kp, Kd and motor speeds.</figcaption>
+                <figcaption>The Python tuning GUI, with a live sensor plot and sliders for Kp, Kd and the motor speeds.</figcaption>
             </figure>
             <p>
                 I wrote a Python GUI that talks to the Arduino over serial, so we could change parameters while the
@@ -260,15 +262,13 @@ RIGHT_SPEED = BASE_SPEED - CORRECTION</code></pre>
                 <figcaption>Logged sensor readings and motor speeds over a 10-second run.</figcaption>
             </figure>
 
-            <h2>Performance results</h2>
+            <h2>Results</h2>
             <ul>
                 <li><strong>Best lap time:</strong> 30 seconds</li>
                 <li><strong>Success rate:</strong> 15/15 attempts (100%)</li>
                 <li><strong>Sensor calibration:</strong> consistent readings across the surfaces we tested on</li>
                 <li><strong>Sharp corners:</strong> takes turns of more than 90°</li>
             </ul>
-
-            <h2>Challenges</h2>
 
             <h3>Sharp corners</h3>
             <p><strong>Problem:</strong> Sharp corners (especially the "armpit" of the course) made the 3-sensor design lose the line.</p>
@@ -282,15 +282,7 @@ RIGHT_SPEED = BASE_SPEED - CORRECTION</code></pre>
             <p><strong>Problem:</strong> Recompiling and re-uploading for every gain change was slow.</p>
             <p><strong>Fix:</strong> The Python serial GUI, described above.</p>
 
-            <h2>What I took from it</h2>
-            <ul>
-                <li>Sensor calibration mattered more than the gains. Once the readings were normalized the robot was reliable.</li>
-                <li>Being able to re-cut the chassis quickly is what let us move the sensors until they worked.</li>
-                <li>Live tuning tools pay for themselves on the first day.</li>
-                <li>A two-state FSM kept corner handling separate from normal line following, which made both easier to debug.</li>
-            </ul>
-
-            <h2>Technical specifications</h2>
+            <h3>Specifications</h3>
             <div class="table-wrap"><table class="table">
                 <thead><tr><th>Specification</th><th>Value</th></tr></thead>
                 <tbody>
@@ -303,6 +295,14 @@ RIGHT_SPEED = BASE_SPEED - CORRECTION</code></pre>
                     <tr><td>Power</td><td>12 V DC supply</td></tr>
                 </tbody>
             </table></div>
+
+            <h2>What I learned</h2>
+            <ul>
+                <li>Sensor calibration mattered more than the gains. Once the readings were normalized the robot was reliable.</li>
+                <li>Being able to re-cut the chassis quickly is what let us move the sensors until they worked.</li>
+                <li>Live tuning tools pay for themselves on the first day.</li>
+                <li>A two-state FSM kept corner handling separate from normal line following, which made both easier to debug.</li>
+            </ul>
 
             <div class="footer-nav">
                 <a href="../index.html#projects" class="link link--back">All projects</a>
@@ -322,7 +322,7 @@ RIGHT_SPEED = BASE_SPEED - CORRECTION</code></pre>
         </div>
     </footer>
 
-    <script src="../script.js?v=2.1"></script>
+    <script src="../script.js?v=2.2"></script>
 </body>
 
 </html>

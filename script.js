@@ -57,7 +57,7 @@
 
     /* ---------------- Reveal on scroll ---------------- */
     var autoReveal = [
-        '.section__head', '.grid > .tile', '.prose > h2', '.prose > .media', '.prose > .media-row',
+        '.section__head', '.grid > .tile', '.cards > .card', '.prose > h2', '.prose > .media', '.prose > .media-row',
         '.prose > .video', '.prose > .stats', '.prose > .features', '.prose > .resources',
         '.prose > .callout', '.prose > .code', '.prose > .table-wrap', '.prose > .timeline',
         '.detail-lead > *'
@@ -76,7 +76,7 @@
                 /* stagger siblings that enter together */
                 var parent = el.parentElement;
                 if (parent && (parent.classList.contains('grid') || parent.classList.contains('stats') ||
-                    parent.classList.contains('features') || parent.classList.contains('media-row'))) {
+                    parent.classList.contains('features') || parent.classList.contains('media-row') || parent.classList.contains('cards'))) {
                     var idx = Array.prototype.indexOf.call(parent.children, el);
                     el.style.setProperty('--reveal-delay', Math.min(idx, 8) * 0.07 + 's');
                 }
@@ -231,6 +231,34 @@
             });
         });
     });
+
+    /* ---------------- Lazy images fade in ---------------- */
+    document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+        var done = function () { img.classList.add('is-loaded'); };
+        if (img.complete && img.naturalWidth > 0) { done(); }
+        else { img.addEventListener('load', done); img.addEventListener('error', done); }
+    });
+
+    /* ---------------- Page transitions (same-site links) ---------------- */
+    if (!reduceMotion) {
+        document.body.classList.add('is-entering');
+        requestAnimationFrame(function () { requestAnimationFrame(function () { document.body.classList.remove('is-entering'); }); });
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest('a[href]');
+            if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+            if (a.target === '_blank' || a.hasAttribute('download')) return;
+            var href = a.getAttribute('href');
+            if (!href || href.charAt(0) === '#' || /^(mailto|tel|javascript):/.test(href)) return;
+            var url = new URL(a.href, location.href);
+            if (url.origin !== location.origin) return;
+            if (url.pathname === location.pathname && url.hash) return;
+            if (/\.(pdf|zip|png|jpe?g|webp|mp4)$/i.test(url.pathname)) return;
+            e.preventDefault();
+            document.body.classList.add('is-leaving');
+            setTimeout(function () { location.href = url.href; }, 220);
+        });
+        window.addEventListener('pageshow', function (ev) { if (ev.persisted) document.body.classList.remove('is-leaving'); });
+    }
 
     /* ---------------- Footer year ---------------- */
     document.querySelectorAll('[data-year]').forEach(function (el) {

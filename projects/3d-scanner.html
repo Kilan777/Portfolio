@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/3d-scanner.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.1">
+    <link rel="stylesheet" href="../styles.css?v=2.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/3d-scanner.html">
@@ -59,13 +59,13 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#projects" class="link link--back">Projects</a>
-                    <span class="eyebrow">Principles of Integrated Engineering</span>
+                    <span class="eyebrow">Class project</span>
                     <h1 class="detail-hero__title">DIY 3D Scanner</h1>
-                    <p class="detail-hero__sub">An Arduino pan-and-tilt scanner with a Sharp infrared distance sensor; a Python script turns each sweep into a 3D point cloud.</p>
+                    <p class="detail-hero__sub">An Arduino pan-and-tilt scanner with a Sharp infrared distance sensor that turns each sweep into a 3D point cloud.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2025">2025</time></span>
                         <span>Boston, MA</span>
-                        <span>PIE Mini Project 2</span>
+                        <span>Principles of Integrated Engineering, Mini Project 2</span>
                     </div>
                     <div class="pills">
                         <span class="pill">Arduino</span>
@@ -82,18 +82,70 @@
                 <div class="media__frame media__frame--contain">
                     <img src="3Dpics/good.webp" alt="The completed 3D scanner: an Arduino Uno on a breadboard wired to a pan-and-tilt mount with an MG996R servo and a Sharp infrared distance sensor on a white 3D-printed base" width="1600" height="1200" decoding="async">
                 </div>
-                <figcaption>The scanner: Arduino and breadboard, and the 3D-printed pan-and-tilt head carrying the Sharp IR sensor.</figcaption>
+                <figcaption>The finished scanner, with the Arduino on a breadboard and the 3D-printed pan-and-tilt head carrying the Sharp IR sensor.</figcaption>
             </figure>
         </div>
 
         <article class="container prose">
             <p class="lede">
                 For PIE Mini Project 2 we built a 3D scanner from an Arduino, two servos and a Sharp GP2Y0A02YK0F
-                infrared distance sensor. The servos sweep the sensor in pan and tilt, the Arduino streams the readings
-                over serial, and a Python script converts them to Cartesian points and plots the point cloud.
+                infrared distance sensor. The Arduino streams the readings over serial and a Python script converts
+                them to Cartesian points and plots the point cloud; a scan of a cardboard letter K came out at 547
+                points after filtering.
             </p>
 
-            <h2>Hardware</h2>
+            <div class="stats">
+                <div class="stat"><div class="stat__value">37</div><div class="stat__label">pan positions (0–180° in 5° steps)</div></div>
+                <div class="stat"><div class="stat__value">19</div><div class="stat__label">tilt positions (0–90° in 5° steps)</div></div>
+                <div class="stat"><div class="stat__value">703</div><div class="stat__label">points per scan (37 × 19)</div></div>
+                <div class="stat"><div class="stat__value">~70 s</div><div class="stat__label">scan time (100 ms per position)</div></div>
+            </div>
+
+            <h2>Overview</h2>
+            <p>
+                The servos sweep the sensor across the scene in pan and tilt, so each reading is a distance at a known
+                pair of angles. Converting those spherical readings to Cartesian coordinates gives a point cloud of
+                whatever is in front of the scanner. The two hard parts were the sensor, which is noisy and follows an
+                inverse power law rather than a straight line, and the trade-off between angular resolution and scan
+                time.
+            </p>
+
+            <h2>Design</h2>
+            <p>
+                The printed parts are a base block that holds the pan servo, a round platform on the pan servo that
+                carries the tilt servo, and a U-shaped bracket on the tilt servo that holds the sensor. The bracket
+                geometry was chosen so it clears the base through the full tilt range.
+            </p>
+
+            <figure class="media">
+                <div class="media__frame media__frame--white media__frame--contain">
+                    <img src="3Dpics/cad101.webp" alt="CAD render of the full scanner assembly: a gray base block, a servo on top spinning a round platform, and an orange bracket holding a second servo and the Sharp IR sensor" width="377" height="522" loading="lazy" decoding="async">
+                </div>
+                <figcaption>CAD model of the full assembly, with the base, pan servo, rotating platform and the tilt bracket holding the sensor.</figcaption>
+            </figure>
+
+            <div class="media-row media-row--3">
+                <figure class="media">
+                    <div class="media__frame media__frame--contain">
+                        <img src="3Dpics/cad102.webp" alt="CAD render of the gray base block with the pan servo and its cross horn mounted on top" width="435" height="269" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The base block with the pan servo.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain">
+                        <img src="3Dpics/cad103.webp" alt="CAD render of the round spinning platform with the tilt servo mounted vertically in an orange bracket" width="386" height="363" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The rotating platform with the tilt servo.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain">
+                        <img src="3Dpics/cad104.webp" alt="CAD render of the orange U-shaped sensor mount holding the Sharp IR distance sensor" width="310" height="350" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The U-shaped sensor bracket.</figcaption>
+                </figure>
+            </div>
+
+            <h2>Electronics and control</h2>
             <ul>
                 <li>Arduino Uno for servo control and sensor readout.</li>
                 <li>Two servos, one for pan and one for tilt.</li>
@@ -101,48 +153,12 @@
                 <li>3D-printed base, rotating platform and sensor bracket.</li>
             </ul>
 
-            <div class="media-row">
-                <figure class="media">
-                    <div class="media__frame media__frame--white media__frame--contain">
-                        <img src="3Dpics/wiring.webp" alt="Wiring schematic: an Arduino Uno R3 powers the IR sensor from 5V with its data line on A1, and drives two servo motors from pins D6 and D7, each on +5V and ground" width="637" height="820" decoding="async">
-                    </div>
-                    <figcaption>Wiring: IR sensor on A1, servos on D6 and D7, all on the Arduino's 5 V rail.</figcaption>
-                </figure>
-                <figure class="media">
-                    <div class="media__frame media__frame--white media__frame--contain">
-                        <img src="3Dpics/cad101.webp" alt="CAD render of the full scanner assembly: a gray base block, a servo on top spinning a round platform, and an orange bracket holding a second servo and the Sharp IR sensor" width="377" height="522" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption>CAD model of the full assembly: base, pan servo, rotating platform and the tilt bracket with the sensor.</figcaption>
-                </figure>
-            </div>
-
-            <h2>Mechanical design</h2>
-            <p>
-                The printed parts are a base block that holds the pan servo, a round platform on the pan servo that
-                carries the tilt servo, and a U-shaped bracket on the tilt servo that holds the sensor. The bracket
-                geometry was chosen so it clears the base through the full tilt range.
-            </p>
-
-            <div class="media-row media-row--3">
-                <figure class="media">
-                    <div class="media__frame media__frame--contain">
-                        <img src="3Dpics/cad102.webp" alt="CAD render of the gray base block with the pan servo and its cross horn mounted on top" width="435" height="269" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption>Base with the pan servo.</figcaption>
-                </figure>
-                <figure class="media">
-                    <div class="media__frame media__frame--contain">
-                        <img src="3Dpics/cad103.webp" alt="CAD render of the round spinning platform with the tilt servo mounted vertically in an orange bracket" width="386" height="363" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption>Rotating platform with the tilt servo.</figcaption>
-                </figure>
-                <figure class="media">
-                    <div class="media__frame media__frame--contain">
-                        <img src="3Dpics/cad104.webp" alt="CAD render of the orange U-shaped sensor mount holding the Sharp IR distance sensor" width="310" height="350" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption>Sensor bracket.</figcaption>
-                </figure>
-            </div>
+            <figure class="media">
+                <div class="media__frame media__frame--white media__frame--contain">
+                    <img src="3Dpics/wiring.webp" alt="Wiring schematic: an Arduino Uno R3 powers the IR sensor from 5V with its data line on A1, and drives two servo motors from pins D6 and D7, each on +5V and ground" width="637" height="820" decoding="async">
+                </div>
+                <figcaption>Wiring, with the IR sensor on A1, the servos on D6 and D7, and everything on the Arduino's 5 V rail.</figcaption>
+            </figure>
 
             <h2>Software</h2>
 
@@ -200,8 +216,6 @@ ax = fig.add_subplot(111, projection='3d')
 ax.scatter(points[:,0], points[:,1], points[:,2])
 plt.show()</code></pre></div>
 
-            <h2>Sensor calibration and geometry</h2>
-
             <h3>IR sensor calibration</h3>
             <p>
                 The Sharp GP2Y0A02YK0F outputs an analog voltage that falls with distance, following an inverse power
@@ -245,39 +259,31 @@ plt.show()</code></pre></div>
             <h3>Angular resolution</h3>
             <p>
                 Scan resolution is set by the servo step size. I used 5° steps as a compromise between point density
-                and scan time:
-            </p>
-            <div class="stats">
-                <div class="stat"><div class="stat__value">37</div><div class="stat__label">pan positions (0–180° in 5° steps)</div></div>
-                <div class="stat"><div class="stat__value">19</div><div class="stat__label">tilt positions (0–90° in 5° steps)</div></div>
-                <div class="stat"><div class="stat__value">703</div><div class="stat__label">points per scan (37 × 19)</div></div>
-                <div class="stat"><div class="stat__value">~70 s</div><div class="stat__label">scan time (100 ms per position)</div></div>
-            </div>
-            <p>
-                A finer step (2°, say) gives a denser cloud but the scan time grows in proportion. 5° is enough detail
-                for objects 20–50 cm across.
+                and scan time: 37 pan positions by 19 tilt positions is 703 points per scan, at 100 ms per position
+                about 70 s. A finer step (2°, say) gives a denser cloud but the scan time grows in proportion. 5° is
+                enough detail for objects 20–50 cm across.
             </p>
 
-            <h2>Scans</h2>
+            <h2>Results</h2>
             <figure class="media">
                 <div class="media__frame">
                     <img src="3Dpics/scan1.webp" alt="The scanner on a workshop table pointed at a large cardboard letter K standing upright, with the Arduino and breadboard beside it and a laptop in the background" width="1600" height="970" loading="lazy" decoding="async">
                 </div>
-                <figcaption>Scan setup: the scanner sweeping across a cardboard letter K.</figcaption>
+                <figcaption>The scanner sweeping across a cardboard letter K.</figcaption>
             </figure>
 
             <figure class="media">
                 <div class="media__frame media__frame--white">
                     <img src="3Dpics/plot1.webp" alt="Matplotlib side-view plot titled Horizontal Scan showing a row of red points at a constant Z of about 11.5 cm spread across Y from −13 to −8.5 cm, with a gap where the letter has no material" width="1600" height="395" loading="lazy" decoding="async">
                 </div>
-                <figcaption>One horizontal sweep, seen from the side: a flat row of points with a gap where the letter has no material.</figcaption>
+                <figcaption>One horizontal sweep seen from the side, a flat row of points with a gap where the letter has no material.</figcaption>
             </figure>
 
             <figure class="media">
                 <div class="media__frame media__frame--white media__frame--contain">
                     <img src="3Dpics/plot_2.webp" alt="3D scatter plot titled 3D Scan Results (547 points) showing the shape of the letter K in X, Y and Z centimetres, with points coloured by distance from 24 to 31 cm" width="966" height="860" loading="lazy" decoding="async">
                 </div>
-                <figcaption>Full 3D point cloud of the letter K, 547 points after filtering, coloured by measured distance.</figcaption>
+                <figcaption>The full 3D point cloud of the letter K, 547 points after filtering, coloured by measured distance.</figcaption>
             </figure>
 
             <p>
@@ -286,10 +292,14 @@ plt.show()</code></pre></div>
                 filtering.
             </p>
 
-            <h2>Skills</h2>
+            <h2>What I learned</h2>
             <p>
-                Arduino programming and serial communication, Python and matplotlib, CAD for the printed parts, servo
-                control and timing, IR sensor calibration, and spherical-to-Cartesian coordinate transforms.
+                The sensor was the core of the project. Its output follows an inverse power law rather than a straight
+                line, so the calibration curve fitted from measurements at known distances is what makes the
+                distances real, and the filtering (moving average, range check, median of repeated samples and the
+                surface normal check) handles the noise from ambient light and surface reflectivity. On the tooling
+                side I got comfortable with Arduino programming and serial communication, Python and matplotlib, CAD
+                for the printed parts, servo control and timing, and spherical-to-Cartesian coordinate transforms.
             </p>
 
             <div class="footer-nav">
@@ -310,7 +320,7 @@ plt.show()</code></pre></div>
         </div>
     </footer>
 
-    <script src="../script.js?v=2.1"></script>
+    <script src="../script.js?v=2.2"></script>
 </body>
 
 </html>

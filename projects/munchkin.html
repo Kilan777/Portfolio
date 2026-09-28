@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/munchkin.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.1">
+    <link rel="stylesheet" href="../styles.css?v=2.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/munchkin.html">
@@ -33,52 +33,6 @@
       "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
     }
     </script>
-
-    <!-- Page-scoped styles, tokens only: the two interactive widgets (inverse-kinematics canvas, webcam
-         mouth-tracking demo), the portrait V3 clip beside its text, and the inline architecture SVG.
-         Everything else is the shared stylesheet. -->
-    <style>
-        .widget { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px; margin: 32px 0; }
-        .widget__note { margin-top: 12px; font-size: 14px; color: var(--text-3); text-wrap: pretty; }
-
-        .ik canvas { width: 100%; height: auto; background: var(--bg-alt); border-radius: var(--radius-sm); cursor: crosshair; touch-action: none; }
-        .ik__readout { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 20px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
-        .ik__cell span { display: block; font-size: 13px; color: var(--text-3); margin-bottom: 2px; }
-        .ik__cell output { display: block; font-size: 16px; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
-
-        .cam__intro { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 4px 0; }
-        .cam__intro p { margin: 0; }
-        .cam__intro .btn { margin-top: 6px; }
-        .cam__stage { position: relative; display: none; border-radius: var(--radius-sm); overflow: hidden; background: var(--text); }
-        .cam__stage video { width: 100%; height: auto; display: block; }
-        .cam__stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-        .cam__stop { display: none; margin-top: 12px; }
-        .cam.is-active .cam__intro { display: none; }
-        .cam.is-active .cam__stage { display: block; }
-        .cam.is-active .cam__stop { display: inline-flex; }
-        .cam__status { margin-top: 12px; font-size: 14px; color: var(--warn); }
-        .cam__status:empty { display: none; }
-
-        .split { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 28px; align-items: center; margin: 28px 0; }
-        .video--portrait { aspect-ratio: 9 / 16; width: 100%; max-width: 320px; margin: 0 auto; }
-
-        /* Architecture diagram: the SVG carries its own colours; these rules pull it to the page palette. */
-        .arch svg { width: 100%; height: auto; display: block; }
-        .arch svg > rect { fill: var(--bg-alt); stroke: none; }
-        .arch rect { fill: var(--bg-alt); stroke: var(--line); }
-        .arch .sec rect { fill: var(--bg); }
-        .arch text { fill: var(--text-2); }
-        .arch .sec text { fill: var(--text-3); }
-        .arch line { stroke: var(--text-3); stroke-width: 1; }
-        .arch .safety rect { stroke: var(--warn); }
-        .arch .safety text, .arch text.safety { fill: var(--warn); }
-
-        @media (max-width: 640px) {
-            .widget { padding: 12px; }
-            .ik__readout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .split { grid-template-columns: 1fr; gap: 20px; }
-        }
-    </style>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9QFYJ377"></script>
@@ -105,7 +59,7 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#projects" class="link link--back">Projects</a>
-                    <span class="eyebrow">Final project · Olin College · Fall 2024</span>
+                    <span class="eyebrow">Final project, Olin College</span>
                     <h1 class="detail-hero__title">Munchkin</h1>
                     <p class="detail-hero__sub">An open-source robotic feeding device for people with limited upper-body mobility: a 4-DOF arm, camera-based mouth tracking and an automatic utensil changer.</p>
                     <div class="detail-hero__meta">
@@ -134,72 +88,23 @@
                 MediaPipe track the user's mouth, and a 4-DOF arm brings each bite to it. The V1 parts cost is under $600
                 and the design is open-source.
             </p>
+
+            <h2>Overview</h2>
             <p>
                 The tracking puts the food where the user's mouth actually is, and open/closed detection lets the user set the
-                pace. Olin College funded the project with a <strong>SAG Grant</strong> for
-                prototyping and a <strong>SEED Grant</strong> for continued development. We have since formed
-                <strong>Munchkin LLC</strong>, licensed in Massachusetts, to run structured user testing at
+                pace. Olin College funded the project with a <strong>SAG Grant</strong> for prototyping and a
+                <strong>SEED Grant</strong> for continued development. We have since formed <strong>Munchkin LLC</strong>,
+                licensed in Massachusetts, to run structured user testing at
                 <strong>Briarwood Rehabilitation &amp; Healthcare Center</strong>.
             </p>
-
-            <div class="stats">
-                <div class="stat"><div class="stat__value">&lt;$600</div><div class="stat__label">parts cost, V1</div></div>
-                <div class="stat"><div class="stat__value">30 fps</div><div class="stat__label">mouth tracking on a Raspberry Pi 4</div></div>
-                <div class="stat"><div class="stat__value">~45 ms</div><div class="stat__label">from mouth movement to arm response</div></div>
-                <div class="stat"><div class="stat__value">&lt;2 s</div><div class="stat__label">fork-to-spoon swap, V3</div></div>
-            </div>
-
-            <h2>V3, in development</h2>
             <p>
-                V3 rebuilds the system with higher-torque servos, a plate holder built into the body and a modular tool
-                changer. User testing is planned at Briarwood in Fall 2026.
+                V1, shown above, is the version we built for the final project: a 4-DOF articulated arm on serial-bus
+                servos, an Intel RealSense depth camera and a Raspberry Pi 4 that runs everything on the device. V3 is the
+                version now in development, with higher-torque servos, a plate holder built into the body and an automatic
+                tool changer.
             </p>
 
-            <h3>Automatic tool changer</h3>
-            <div class="split">
-                <div class="video yt video--portrait" data-yt="0s-LrVQN4e0" data-autoplay data-loop data-title="Munchkin V3 automatic tool changer swapping between fork and spoon"></div>
-                <div>
-                    <p>
-                        The end effector locks and releases a fork or a spoon on its own. A swap takes under 2 seconds and
-                        needs no help from the user or a caregiver, and the device picks the utensil based on what is being
-                        served.
-                    </p>
-                </div>
-            </div>
-
-            <div class="features">
-                <div class="feature">
-                    <div class="feature__media feature__media--contain"><img src="munchkin/assets/v3/servo.webp" alt="Cutaway of a V3 servo showing its control PCB, motor and gearbox inside the black housing" width="800" height="800" decoding="async"></div>
-                    <h4>Higher-torque servos</h4>
-                    <p>30 kg·cm servos with 0.1° angular resolution, up from 15 kg·cm on V1. Smoother motion and better repeatability at the end effector.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__media"><img src="munchkin/assets/v3/PlateHolder.webp" alt="V3 prototype: white device body with the black ring-shaped plate holder folded out on a desk" width="1800" height="1350" decoding="async"></div>
-                    <h4>Integrated plate holder</h4>
-                    <p>The plate holder is part of the device body and folds flush when not in use, so there is no separate tray to carry or set up.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__media"><img src="munchkin/assets/v3/foldingarm.webp" alt="V3 prototype clamped to a chair with the robotic arm folded down against the device body" width="1800" height="2400" loading="lazy" decoding="async"></div>
-                    <h4>Folding arm</h4>
-                    <p>The arm folds fully inside the body for transport and storage.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__media"><img src="munchkin/assets/v3/Touchscreen.webp" alt="Top-down view of the V3 device with its onboard display and control electronics next to the folded plate holder" width="1800" height="2400" loading="lazy" decoding="async"></div>
-                    <h4>Onboard touchscreen</h4>
-                    <p>Feeding mode, speed and other settings are set on the device. No phone or laptop is needed.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature__media"><img src="munchkin/assets/v3/ports.webp" alt="Inside the open V3 enclosure: servo motors, controller boards, battery and wiring routed to the external control ports" width="1800" height="2400" loading="lazy" decoding="async"></div>
-                    <h4>Adaptive control ports</h4>
-                    <p>External ports accept switches, sip-and-puff controllers and similar assistive devices, for partial or full control depending on what each user can operate.</p>
-                </div>
-                <div class="feature">
-                    <h4>Food recognition (planned)</h4>
-                    <p>A camera over the plate to identify what is on it, track portion sizes and estimate nutrition. Not built yet.</p>
-                </div>
-            </div>
-
-            <h2>V1 design decisions</h2>
+            <h2>Design</h2>
             <p>
                 We looked at several layouts before settling on the final one: a stationary arm on a rotating base, a
                 gantry, and a jointed arm like a small industrial robot.
@@ -212,37 +117,12 @@
                 <li><strong>Why:</strong> the largest workspace and the most natural approach path. The wrist joint (which a 3-DOF arm lacks) keeps the utensil level whatever the approach angle, which matters for not spilling food. It costs one more servo and more control complexity than the simpler options.</li>
             </ul>
 
-            <div class="widget ik" id="ikDemo">
-                <canvas id="ikCanvas" width="700" height="400" aria-label="Interactive inverse-kinematics demo: a three-segment planar arm follows the pointer"></canvas>
-                <div class="ik__readout" aria-live="off">
-                    <div class="ik__cell"><span>Base</span><output id="baseAngle">0°</output></div>
-                    <div class="ik__cell"><span>Shoulder</span><output id="shoulderAngle">0°</output></div>
-                    <div class="ik__cell"><span>Elbow</span><output id="elbowAngle">0°</output></div>
-                    <div class="ik__cell"><span>Error</span><output id="distance">0px</output></div>
-                </div>
-                <p class="widget__note">Planar inverse kinematics solved with cyclic coordinate descent (CCD). Move the pointer over the canvas to set the target.</p>
-            </div>
-
             <h3>Mouth tracking</h3>
             <ul>
                 <li><strong>Options:</strong> MediaPipe Face Mesh, OpenCV Haar cascades, a custom CNN, depth camera only.</li>
                 <li><strong>Choice:</strong> MediaPipe Face Mesh with an Intel RealSense depth camera.</li>
                 <li><strong>Why:</strong> MediaPipe gives 468 facial landmarks at 30 fps on a Raspberry Pi 4, and the RealSense depth frame turns the 2D mouth position into a 3D target. Using a pre-trained model saved weeks of training, and the open-source code was easy to debug. Haar cascades were not accurate enough, and a custom CNN would have needed a dataset we did not have.</li>
             </ul>
-
-            <div class="widget cam" id="mediapipeDemo">
-                <div class="cam__intro">
-                    <p><strong>Try the mouth tracking in your browser.</strong></p>
-                    <p class="small muted">Runs the same MediaPipe Face Mesh model. The camera feed stays on your device.</p>
-                    <button class="btn btn--primary" id="startDemoBtn" type="button">Start camera</button>
-                </div>
-                <div class="cam__stage">
-                    <video id="demoVideo" autoplay playsinline muted></video>
-                    <canvas id="demoCanvas"></canvas>
-                </div>
-                <button class="btn btn--secondary btn--small cam__stop" id="stopDemoBtn" type="button">Stop</button>
-                <p class="cam__status" id="demoStatus" role="status"></p>
-            </div>
 
             <h3>Computing platform</h3>
             <ul>
@@ -256,281 +136,277 @@
                 mouth without visible lag.
             </p>
 
-            <h2>System architecture</h2>
+            <h2>Electronics and control</h2>
             <p>
                 The V1 electronics split into three groups: inputs (a depth camera, two emergency stops and two isolated power
                 rails), processing on the Raspberry Pi (face tracking, inverse kinematics, safety monitoring and serial servo
                 control through a BusLinker board) and outputs (four daisy-chained serial-bus servos and the utensil end effector).
             </p>
 
-            <!-- Wrapped in a div on purpose: script.js gives every direct .prose > .media a .reveal class whose
-                 "transform: none" would cancel the .wide translateX and push the figure off to the right. -->
-            <div class="arch">
-            <figure class="media wide">
+            <figure class="media">
                 <div class="media__frame media__frame--white">
                     <svg viewBox="0 0 1400 630" role="img" aria-labelledby="archTitle">
                     <title id="archTitle">Munchkin V1 system architecture: input, processing and output components and how they connect</title>
                         <!-- Background -->
-                        <rect width="1400" height="630" fill="#ffffff" rx="12" />
-
+                        <rect width="1400" height="630" fill="#fff" rx="12" />
+                    
                         <!-- INPUT SECTION -->
-                        <g class="sec">
-                            <rect x="30" y="60" width="380" height="540" rx="12" fill="#F8FAFC"
-                                stroke="#E2E8F0" stroke-width="1.5" />
-                            <text x="220" y="85" text-anchor="middle" fill="#475569" font-size="15"
+                        <g>
+                            <rect x="30" y="60" width="380" height="540" rx="12" fill="var(--tile)"
+                                stroke="none" />
+                            <text x="220" y="85" text-anchor="middle" fill="var(--text-3)" font-size="15"
                                 font-weight="600" letter-spacing="0.05em">INPUT</text>
                         </g>
-
+                    
                         <!-- Intel RealSense Camera -->
                         <g>
-                            <rect x="60" y="105" width="320" height="85" rx="8" fill="#F1F5F9"
-                                stroke="#CBD5E1" stroke-width="1.2" />
-                            <text x="220" y="133" text-anchor="middle" fill="#334155" font-size="14"
+                            <rect x="60" y="105" width="320" height="85" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="220" y="133" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Intel RealSense Depth Camera</text>
-                            <text x="220" y="153" text-anchor="middle" fill="#475569" font-size="12">RGB-D Video Stream</text>
-                            <text x="220" y="172" text-anchor="middle" fill="#64748B" font-size="11">USB 3.0</text>
+                            <text x="220" y="153" text-anchor="middle" fill="var(--text-2)" font-size="12">RGB-D Video Stream</text>
+                            <text x="220" y="172" text-anchor="middle" fill="var(--text-2)" font-size="11">USB 3.0</text>
                         </g>
-
+                    
                         <!-- E-Stop Primary -->
-                        <g class="safety">
-                            <rect x="60" y="205" width="320" height="65" rx="8" fill="#FEF2F2"
-                                stroke="#FCA5A5" stroke-width="1.2" />
-                            <text x="220" y="231" text-anchor="middle" fill="#991B1B" font-size="14"
+                        <g>
+                            <rect x="60" y="205" width="320" height="65" rx="8" fill="#fff"
+                                stroke="var(--warn)" stroke-width="1.5" />
+                            <text x="220" y="231" text-anchor="middle" fill="var(--warn)" font-size="14"
                                 font-weight="600">E-Stop (Primary)</text>
-                            <text x="220" y="251" text-anchor="middle" fill="#B91C1C"
+                            <text x="220" y="251" text-anchor="middle" fill="var(--text-2)"
                                 font-size="12">Hard-Wired to GPIO</text>
                         </g>
-
+                    
                         <!-- E-Stop Shoulder Mount -->
-                        <g class="safety">
-                            <rect x="60" y="285" width="320" height="65" rx="8" fill="#FEF2F2"
-                                stroke="#FCA5A5" stroke-width="1.2" />
-                            <text x="220" y="311" text-anchor="middle" fill="#991B1B" font-size="14"
+                        <g>
+                            <rect x="60" y="285" width="320" height="65" rx="8" fill="#fff"
+                                stroke="var(--warn)" stroke-width="1.5" />
+                            <text x="220" y="311" text-anchor="middle" fill="var(--warn)" font-size="14"
                                 font-weight="600">E-Stop (Shoulder Mount)</text>
-                            <text x="220" y="331" text-anchor="middle" fill="#B91C1C"
+                            <text x="220" y="331" text-anchor="middle" fill="var(--text-2)"
                                 font-size="12">Pluggable - GPIO</text>
                         </g>
-
+                    
                         <!-- Power Supply 5V -->
                         <g>
-                            <rect x="60" y="365" width="150" height="75" rx="8" fill="#F0FDF4"
-                                stroke="#BBF7D0" stroke-width="1.2" />
-                            <text x="135" y="391" text-anchor="middle" fill="#166534" font-size="14"
+                            <rect x="60" y="365" width="150" height="75" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="135" y="391" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Power Supply</text>
-                            <text x="135" y="411" text-anchor="middle" fill="#15803D" font-size="12">5V 5A</text>
-                            <text x="135" y="428" text-anchor="middle" fill="#166534" font-size="11">Pi Power</text>
+                            <text x="135" y="411" text-anchor="middle" fill="var(--text-2)" font-size="12">5V 5A</text>
+                            <text x="135" y="428" text-anchor="middle" fill="var(--text)" font-size="11">Pi Power</text>
                         </g>
-
+                    
                         <!-- Power Supply 9V -->
                         <g>
-                            <rect x="230" y="365" width="150" height="75" rx="8" fill="#F0FDF4"
-                                stroke="#BBF7D0" stroke-width="1.2" />
-                            <text x="305" y="391" text-anchor="middle" fill="#166534" font-size="14"
+                            <rect x="230" y="365" width="150" height="75" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="305" y="391" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Power Supply</text>
-                            <text x="305" y="411" text-anchor="middle" fill="#15803D" font-size="12">9V 3A</text>
-                            <text x="305" y="428" text-anchor="middle" fill="#166534" font-size="11">Servo Power</text>
+                            <text x="305" y="411" text-anchor="middle" fill="var(--text-2)" font-size="12">9V 3A</text>
+                            <text x="305" y="428" text-anchor="middle" fill="var(--text)" font-size="11">Servo Power</text>
                         </g>
-
+                    
                         <!-- Power Switch -->
                         <g>
-                            <rect x="60" y="455" width="320" height="65" rx="8" fill="#F0FDF4"
-                                stroke="#BBF7D0" stroke-width="1.2" />
-                            <text x="220" y="481" text-anchor="middle" fill="#166534" font-size="14"
+                            <rect x="60" y="455" width="320" height="65" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="220" y="481" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Power Switch</text>
-                            <text x="220" y="501" text-anchor="middle" fill="#15803D"
+                            <text x="220" y="501" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Controls BusLinker Power (Servo Control)</text>
                         </g>
-
+                    
                         <!-- PROCESSING SECTION -->
-                        <g class="sec">
-                            <rect x="440" y="60" width="520" height="540" rx="12" fill="#F8FAFC"
-                                stroke="#E2E8F0" stroke-width="1.5" />
-                            <text x="700" y="85" text-anchor="middle" fill="#475569" font-size="15"
+                        <g>
+                            <rect x="440" y="60" width="520" height="540" rx="12" fill="var(--tile)"
+                                stroke="none" />
+                            <text x="700" y="85" text-anchor="middle" fill="var(--text-3)" font-size="15"
                                 font-weight="600" letter-spacing="0.05em">PROCESSING</text>
                         </g>
-
+                    
                         <!-- Raspberry Pi 4 Model B -->
                         <g>
-                            <rect x="470" y="105" width="460" height="60" rx="8" fill="#F5F3FF"
-                                stroke="#DDD6FE" stroke-width="1.5" />
-                            <text x="700" y="128" text-anchor="middle" fill="#5B21B6" font-size="15"
+                            <rect x="470" y="105" width="460" height="60" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="700" y="128" text-anchor="middle" fill="var(--text)" font-size="15"
                                 font-weight="600">Raspberry Pi 4 Model B</text>
-                            <text x="700" y="148" text-anchor="middle" fill="#6D28D9" font-size="12">Main Processing Unit</text>
+                            <text x="700" y="148" text-anchor="middle" fill="var(--text-2)" font-size="12">Main Processing Unit</text>
                         </g>
-
+                    
                         <!-- MediaPipe -->
                         <g>
-                            <rect x="480" y="180" width="210" height="90" rx="8" fill="#F5F3FF"
-                                stroke="#DDD6FE" stroke-width="1.2" />
-                            <text x="585" y="205" text-anchor="middle" fill="#5B21B6" font-size="14"
+                            <rect x="480" y="180" width="210" height="90" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="585" y="205" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">MediaPipe</text>
-                            <text x="585" y="223" text-anchor="middle" fill="#6D28D9" font-size="11">Face Detection</text>
-                            <text x="585" y="239" text-anchor="middle" fill="#6D28D9" font-size="11">Mouth Tracking</text>
-                            <text x="585" y="255" text-anchor="middle" fill="#6D28D9"
+                            <text x="585" y="223" text-anchor="middle" fill="var(--text-2)" font-size="11">Face Detection</text>
+                            <text x="585" y="239" text-anchor="middle" fill="var(--text-2)" font-size="11">Mouth Tracking</text>
+                            <text x="585" y="255" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Open/Close Detection</text>
                         </g>
-
+                    
                         <!-- Motion Control -->
                         <g>
-                            <rect x="710" y="180" width="210" height="90" rx="8" fill="#F5F3FF"
-                                stroke="#DDD6FE" stroke-width="1.2" />
-                            <text x="815" y="205" text-anchor="middle" fill="#5B21B6" font-size="14"
+                            <rect x="710" y="180" width="210" height="90" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="815" y="205" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Motion Control</text>
-                            <text x="815" y="223" text-anchor="middle" fill="#6D28D9"
+                            <text x="815" y="223" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Inverse Kinematics</text>
-                            <text x="815" y="239" text-anchor="middle" fill="#6D28D9"
+                            <text x="815" y="239" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Position Calculation</text>
-                            <text x="815" y="255" text-anchor="middle" fill="#6D28D9" font-size="11">Servo Commands</text>
+                            <text x="815" y="255" text-anchor="middle" fill="var(--text-2)" font-size="11">Servo Commands</text>
                         </g>
-
+                    
                         <!-- Safety Monitor -->
-                        <g class="safety">
-                            <rect x="480" y="285" width="210" height="75" rx="8" fill="#FEF2F2"
-                                stroke="#FCA5A5" stroke-width="1.2" />
-                            <text x="585" y="311" text-anchor="middle" fill="#991B1B" font-size="14"
+                        <g>
+                            <rect x="480" y="285" width="210" height="75" rx="8" fill="#fff"
+                                stroke="var(--warn)" stroke-width="1.5" />
+                            <text x="585" y="311" text-anchor="middle" fill="var(--warn)" font-size="14"
                                 font-weight="600">Safety Monitor</text>
-                            <text x="585" y="329" text-anchor="middle" fill="#B91C1C"
+                            <text x="585" y="329" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">E-Stop Detection</text>
-                            <text x="585" y="345" text-anchor="middle" fill="#B91C1C"
+                            <text x="585" y="345" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Emergency Pause</text>
                         </g>
-
+                    
                         <!-- Serial Control -->
                         <g>
-                            <rect x="710" y="285" width="210" height="75" rx="8" fill="#F5F3FF"
-                                stroke="#DDD6FE" stroke-width="1.2" />
-                            <text x="815" y="311" text-anchor="middle" fill="#5B21B6" font-size="14"
+                            <rect x="710" y="285" width="210" height="75" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="815" y="311" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Serial Control</text>
-                            <text x="815" y="329" text-anchor="middle" fill="#6D28D9" font-size="11">USB Communication</text>
-                            <text x="815" y="345" text-anchor="middle" fill="#6D28D9" font-size="11">Servo Protocol</text>
+                            <text x="815" y="329" text-anchor="middle" fill="var(--text-2)" font-size="11">USB Communication</text>
+                            <text x="815" y="345" text-anchor="middle" fill="var(--text-2)" font-size="11">Servo Protocol</text>
                         </g>
-
+                    
                         <!-- Cooling Fan -->
                         <g>
-                            <rect x="480" y="375" width="440" height="60" rx="8" fill="#F0FDF4"
-                                stroke="#BBF7D0" stroke-width="1.2" />
-                            <text x="700" y="399" text-anchor="middle" fill="#166534" font-size="14"
+                            <rect x="480" y="375" width="440" height="60" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="700" y="399" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Cooling Fan</text>
-                            <text x="700" y="419" text-anchor="middle" fill="#15803D"
+                            <text x="700" y="419" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Thermal Management</text>
                         </g>
-
+                    
                         <!-- BusLinker V2.2 -->
                         <g>
-                            <rect x="480" y="450" width="440" height="85" rx="8" fill="#FFFBEB"
-                                stroke="#FDE68A" stroke-width="1.2" />
-                            <text x="700" y="476" text-anchor="middle" fill="#92400E" font-size="14"
+                            <rect x="480" y="450" width="440" height="85" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="700" y="476" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">BusLinker V2.2</text>
-                            <text x="700" y="494" text-anchor="middle" fill="#B45309"
+                            <text x="700" y="494" text-anchor="middle" fill="var(--text-2)"
                                 font-size="12">Serial Bus Servo Control</text>
-                            <text x="700" y="510" text-anchor="middle" fill="#B45309"
+                            <text x="700" y="510" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Converts USB → Serial Bus Protocol</text>
-                            <text x="700" y="525" text-anchor="middle" fill="#B45309"
+                            <text x="700" y="525" text-anchor="middle" fill="var(--text-2)"
                                 font-size="10">Controls 4 servos</text>
                         </g>
-
+                    
                         <!-- OUTPUT SECTION -->
-                        <g class="sec">
-                            <rect x="990" y="60" width="380" height="540" rx="12" fill="#F8FAFC"
-                                stroke="#E2E8F0" stroke-width="1.5" />
-                            <text x="1180" y="85" text-anchor="middle" fill="#475569" font-size="15"
+                        <g>
+                            <rect x="990" y="60" width="380" height="540" rx="12" fill="var(--tile)"
+                                stroke="none" />
+                            <text x="1180" y="85" text-anchor="middle" fill="var(--text-3)" font-size="15"
                                 font-weight="600" letter-spacing="0.05em">OUTPUT</text>
                         </g>
-
+                    
                         <!-- Servo ID 0 - Base Pan -->
                         <g>
-                            <rect x="1020" y="105" width="320" height="70" rx="8" fill="#FFFBEB"
-                                stroke="#FDE68A" stroke-width="1.2" />
-                            <text x="1180" y="129" text-anchor="middle" fill="#92400E" font-size="14"
+                            <rect x="1020" y="105" width="320" height="70" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="1180" y="129" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Servo ID 0 - Base Pan</text>
-                            <text x="1180" y="147" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="147" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">HiWonder LX-15D</text>
-                            <text x="1180" y="163" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="163" text-anchor="middle" fill="var(--text-2)"
                                 font-size="10">Rotational Axis - Joint 0</text>
                         </g>
-
+                    
                         <!-- Servo ID 1 - Shoulder -->
                         <g>
-                            <rect x="1020" y="190" width="320" height="70" rx="8" fill="#FFFBEB"
-                                stroke="#FDE68A" stroke-width="1.2" />
-                            <text x="1180" y="214" text-anchor="middle" fill="#92400E" font-size="14"
+                            <rect x="1020" y="190" width="320" height="70" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="1180" y="214" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Servo ID 1 - Shoulder</text>
-                            <text x="1180" y="232" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="232" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">HiWonder LX-15D</text>
-                            <text x="1180" y="248" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="248" text-anchor="middle" fill="var(--text-2)"
                                 font-size="10">Vertical Axis - Joint 1</text>
                         </g>
-
+                    
                         <!-- Servo ID 2 - Elbow -->
                         <g>
-                            <rect x="1020" y="275" width="320" height="70" rx="8" fill="#FFFBEB"
-                                stroke="#FDE68A" stroke-width="1.2" />
-                            <text x="1180" y="299" text-anchor="middle" fill="#92400E" font-size="14"
+                            <rect x="1020" y="275" width="320" height="70" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="1180" y="299" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Servo ID 2 - Elbow</text>
-                            <text x="1180" y="317" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="317" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">HiWonder LX-15D</text>
-                            <text x="1180" y="333" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="333" text-anchor="middle" fill="var(--text-2)"
                                 font-size="10">Vertical Axis - Joint 2</text>
                         </g>
-
+                    
                         <!-- Servo ID 3 - Wrist -->
                         <g>
-                            <rect x="1020" y="360" width="320" height="70" rx="8" fill="#FFFBEB"
-                                stroke="#FDE68A" stroke-width="1.2" />
-                            <text x="1180" y="384" text-anchor="middle" fill="#92400E" font-size="14"
+                            <rect x="1020" y="360" width="320" height="70" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="1180" y="384" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">Servo ID 3 - Wrist</text>
-                            <text x="1180" y="402" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="402" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">HiWonder LX-15D</text>
-                            <text x="1180" y="418" text-anchor="middle" fill="#B45309"
+                            <text x="1180" y="418" text-anchor="middle" fill="var(--text-2)"
                                 font-size="10">Vertical Axis - Joint 3</text>
                         </g>
-
+                    
                         <!-- End Effector -->
                         <g>
-                            <rect x="1020" y="445" width="320" height="80" rx="8" fill="#FDF2F8"
-                                stroke="#FBCFE8" stroke-width="1.2" />
-                            <text x="1180" y="471" text-anchor="middle" fill="#9D174D" font-size="14"
+                            <rect x="1020" y="445" width="320" height="80" rx="8" fill="#fff"
+                                stroke="var(--line)" stroke-width="1" />
+                            <text x="1180" y="471" text-anchor="middle" fill="var(--text)" font-size="14"
                                 font-weight="600">End Effector</text>
-                            <text x="1180" y="489" text-anchor="middle" fill="#C2185B"
+                            <text x="1180" y="489" text-anchor="middle" fill="var(--text-2)"
                                 font-size="11">Hybrid Spoon &amp; Fork Holder</text>
-                            <text x="1180" y="505" text-anchor="middle" fill="#9D174D"
+                            <text x="1180" y="505" text-anchor="middle" fill="var(--text)"
                                 font-size="10">Quick-release mechanism</text>
-                            <text x="1180" y="519" text-anchor="middle" fill="#9D174D" font-size="10">3D Printed PLA</text>
+                            <text x="1180" y="519" text-anchor="middle" fill="var(--text)" font-size="10">3D Printed PLA</text>
                         </g>
-
+                    
                         <!-- Connection Lines -->
                         <!-- Camera to Pi -->
-                        <line x1="380" y1="147" x2="470" y2="135" stroke="#CBD5E1" stroke-width="2" />
-                        <text x="425" y="132" fill="#475569" font-size="9" font-weight="600">USB 3.0</text>
-
+                        <line x1="380" y1="147" x2="470" y2="135" stroke="var(--text-3)" stroke-width="1.5" />
+                        <text x="425" y="132" fill="var(--text-2)" font-size="9" font-weight="600">USB 3.0</text>
+                    
                         <!-- E-Stops to Pi -->
-                        <line class="safety" x1="380" y1="237" x2="470" y2="135" stroke="#FCA5A5" stroke-width="1.5" />
-                        <line class="safety" x1="380" y1="317" x2="470" y2="135" stroke="#FCA5A5" stroke-width="1.5" />
-                        <text class="safety" x="415" y="174" fill="#991B1B" font-size="9" font-weight="600">GPIO</text>
-
+                        <line x1="380" y1="237" x2="470" y2="135" stroke="var(--warn)" stroke-width="1.5" />
+                        <line x1="380" y1="317" x2="470" y2="135" stroke="var(--warn)" stroke-width="1.5" />
+                        <text x="415" y="174" fill="var(--warn)" font-size="9" font-weight="600">GPIO</text>
+                    
                         <!-- Power to Pi -->
-                        <line x1="380" y1="402" x2="470" y2="135" stroke="#BBF7D0" stroke-width="2" />
-                        <text x="420" y="302" fill="#166534" font-size="9" font-weight="600">5V</text>
-
+                        <line x1="380" y1="402" x2="470" y2="135" stroke="var(--text-3)" stroke-width="1.5" />
+                        <text x="420" y="302" fill="var(--text-2)" font-size="9" font-weight="600">5V</text>
+                    
                         <!-- Power to BusLinker -->
-                        <line x1="380" y1="402" x2="480" y2="492" stroke="#BBF7D0" stroke-width="2" />
-                        <text x="420" y="459" fill="#166534" font-size="9" font-weight="600">9V</text>
-
+                        <line x1="380" y1="402" x2="480" y2="492" stroke="var(--text-3)" stroke-width="1.5" />
+                        <text x="420" y="459" fill="var(--text-2)" font-size="9" font-weight="600">9V</text>
+                    
                         <!-- Pi to BusLinker -->
-                        <line x1="700" y1="165" x2="700" y2="450" stroke="#DDD6FE" stroke-width="2" />
-                        <text x="706" y="443" fill="#5B21B6" font-size="9" font-weight="600">USB → Serial</text>
-
+                        <line x1="700" y1="165" x2="700" y2="450" stroke="var(--text-3)" stroke-width="1.5" />
+                        <text x="706" y="443" fill="var(--text-2)" font-size="9" font-weight="600">USB → Serial</text>
+                    
                         <!-- BusLinker to Servos -->
-                        <line x1="920" y1="492" x2="1020" y2="140" stroke="#FDE68A" stroke-width="1.5" />
-                        <line x1="920" y1="492" x2="1020" y2="225" stroke="#FDE68A" stroke-width="1.5" />
-                        <line x1="920" y1="492" x2="1020" y2="310" stroke="#FDE68A" stroke-width="1.5" />
-                        <line x1="920" y1="492" x2="1020" y2="395" stroke="#FDE68A" stroke-width="1.5" />
-                        <text x="955" y="230" fill="#92400E" font-size="9" font-weight="600">Serial Bus</text>
+                        <line x1="920" y1="492" x2="1020" y2="140" stroke="var(--text-3)" stroke-width="1.5" />
+                        <line x1="920" y1="492" x2="1020" y2="225" stroke="var(--text-3)" stroke-width="1.5" />
+                        <line x1="920" y1="492" x2="1020" y2="310" stroke="var(--text-3)" stroke-width="1.5" />
+                        <line x1="920" y1="492" x2="1020" y2="395" stroke="var(--text-3)" stroke-width="1.5" />
+                        <text x="955" y="230" fill="var(--text-2)" font-size="9" font-weight="600">Serial Bus</text>
                     </svg>
                 </div>
                 <figcaption>V1 electronics: inputs on the left, the Raspberry Pi and BusLinker in the middle, the four servos and end effector on the right.</figcaption>
             </figure>
-            </div>
 
             <h3>Component specifications</h3>
             <div class="table-wrap"><table class="table">
@@ -560,6 +436,132 @@
                 </tbody>
             </table></div>
 
+            <h2>Software</h2>
+            <p>
+                Everything runs on the Pi: MediaPipe for face detection and mouth tracking, an inverse-kinematics solver
+                that turns the mouth coordinate into four servo angles at 100 Hz, a safety monitor polling both e-stops at
+                1000 Hz, and serial servo control through the BusLinker.
+            </p>
+
+            <h3>Inverse kinematics</h3>
+            <p>
+                The device uses an analytical 4-DOF solver. The demo below is the planar version of the same problem: a
+                three-segment arm solved with cyclic coordinate descent (CCD), which rotates each joint from the end
+                effector back toward the target. Move the pointer over the canvas to set the target.
+            </p>
+
+            <div class="widget" id="ikDemo">
+                <div class="widget__bar">
+                    <span>Inverse kinematics, planar three-joint arm</span>
+                    <button class="btn btn--secondary btn--small" id="ikReset" type="button">Reset</button>
+                </div>
+                <div class="widget__body">
+                    <canvas id="ikCanvas" width="700" height="400" aria-label="Interactive inverse-kinematics demo: a three-segment planar arm follows the pointer"></canvas>
+                </div>
+                <div class="widget__readout" aria-live="off">
+                    <span>Base <strong><output id="baseAngle">0°</output></strong></span>
+                    <span>Shoulder <strong><output id="shoulderAngle">0°</output></strong></span>
+                    <span>Elbow <strong><output id="elbowAngle">0°</output></strong></span>
+                    <span>Error <strong><output id="distance">0px</output></strong></span>
+                </div>
+                <div class="widget__note">Cyclic coordinate descent, 10 iterations per frame with 50% damping. The base joint rotates freely; the shoulder and elbow are limited to ±170°.</div>
+            </div>
+
+            <h3>Mouth tracking</h3>
+            <p>
+                The browser demo runs the same MediaPipe Face Mesh model as the device. It draws the lip outlines on the
+                frame and computes the mouth target exactly like the arm code: the average of landmark 13 (top lip) and
+                landmark 14 (bottom lip). The camera feed stays on your device.
+            </p>
+
+            <div class="widget" id="mediapipeDemo">
+                <div class="widget__bar">
+                    <span>Mouth tracking, live from your webcam</span>
+                    <button class="btn btn--primary btn--small" id="demoToggle" type="button">Start camera</button>
+                </div>
+                <div class="widget__body">
+                    <canvas id="demoCanvas" width="640" height="480" aria-label="Webcam frame with the tracked lip outline and mouth target drawn over it"></canvas>
+                </div>
+                <div class="widget__note" id="demoStatus" role="status">The MediaPipe library loads only when you start the camera. Nothing is uploaded.</div>
+            </div>
+
+            <h2>V3</h2>
+            <p>
+                V3 rebuilds the system with higher-torque servos, a plate holder built into the body and a modular tool
+                changer. User testing is planned at Briarwood in Fall 2026.
+            </p>
+            <p>
+                The end effector locks and releases a fork or a spoon on its own. A swap takes under 2 seconds and needs
+                no help from the user or a caregiver, and the device picks the utensil based on what is being served.
+            </p>
+
+            <div class="media-row">
+                <figure class="media">
+                    <div class="video yt video--4x3" data-yt="0s-LrVQN4e0" data-autoplay data-loop data-title="Munchkin V3 automatic tool changer swapping between fork and spoon"></div>
+                    <figcaption>Automatic tool changer swapping between the fork and the spoon.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="munchkin/assets/v3/PlateHolder.webp" alt="V3 prototype: white device body with the black ring-shaped plate holder folded out on a desk" width="1800" height="1350" decoding="async">
+                    </div>
+                    <figcaption>V3 prototype with the integrated plate holder folded out.</figcaption>
+                </figure>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature__media feature__media--contain"><img src="munchkin/assets/v3/servo.webp" alt="Cutaway of a V3 servo showing its control PCB, motor and gearbox inside the black housing" width="800" height="800" loading="lazy" decoding="async"></div>
+                    <h4>Higher-torque servos</h4>
+                    <p>30 kg·cm servos with 0.1° angular resolution, up from 15 kg·cm on V1. Smoother motion and better repeatability at the end effector.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/foldingarm.webp" alt="V3 prototype clamped to a chair with the robotic arm folded down against the device body" width="1800" height="2400" loading="lazy" decoding="async"></div>
+                    <h4>Folding arm</h4>
+                    <p>The arm folds fully inside the body for transport and storage.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/Touchscreen.webp" alt="Top-down view of the V3 device with its onboard display and control electronics next to the folded plate holder" width="1800" height="2400" loading="lazy" decoding="async"></div>
+                    <h4>Onboard touchscreen</h4>
+                    <p>Feeding mode, speed and other settings are set on the device. No phone or laptop is needed.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature__media"><img src="munchkin/assets/v3/ports.webp" alt="Inside the open V3 enclosure: servo motors, controller boards, battery and wiring routed to the external control ports" width="1800" height="2400" loading="lazy" decoding="async"></div>
+                    <h4>Adaptive control ports</h4>
+                    <p>External ports accept switches, sip-and-puff controllers and similar assistive devices, for partial or full control depending on what each user can operate.</p>
+                </div>
+                <div class="feature">
+                    <h4>Integrated plate holder</h4>
+                    <p>The plate holder is part of the device body and folds flush when not in use, so there is no separate tray to carry or set up.</p>
+                </div>
+                <div class="feature">
+                    <h4>Food recognition (planned)</h4>
+                    <p>A camera over the plate to identify what is on it, track portion sizes and estimate nutrition. Not built yet.</p>
+                </div>
+            </div>
+
+            <h2>Results</h2>
+            <div class="stats">
+                <div class="stat"><div class="stat__value">&lt;$600</div><div class="stat__label">parts cost, V1</div></div>
+                <div class="stat"><div class="stat__value">30 fps</div><div class="stat__label">mouth tracking on a Raspberry Pi 4</div></div>
+                <div class="stat"><div class="stat__value">~45 ms</div><div class="stat__label">from mouth movement to arm response</div></div>
+                <div class="stat"><div class="stat__value">&lt;2 s</div><div class="stat__label">fork-to-spoon swap, V3</div></div>
+            </div>
+            <p>
+                V1 works end to end: it tracks the mouth at 30 fps on the Pi, responds in about 45 ms and comes in under
+                $600 in parts. The project earned an Olin SAG Grant and a SEED Grant, and Munchkin LLC is now set up to
+                run structured user testing at Briarwood Rehabilitation &amp; Healthcare Center, planned for Fall 2026
+                with the V3 hardware.
+            </p>
+
+            <h2>What I learned</h2>
+            <p>
+                Latency mattered more than anything else in a motion that ends at someone's face, and that decided the
+                computing platform: keeping the whole loop on the Pi gives a consistent 45 ms response that a cloud or
+                laptop pipeline could not. A pre-trained model was the right call for tracking; MediaPipe saved weeks
+                against training a custom CNN and was easier to debug. On the hardware side, the wrist joint earned its
+                extra servo by keeping the utensil level, and isolating the servo rail from the Pi kept motor noise out of
+                the compute side.
+            </p>
 
             <div class="footer-nav">
                 <a href="../index.html#projects" class="link link--back">All projects</a>
@@ -579,9 +581,9 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=2.1"></script>
+    <script src="../script.js?v=2.2"></script>
 
-    <!-- Widget 1: inverse-kinematics canvas demo (CCD solver). Page-specific by design. -->
+    <!-- Widget 1: inverse-kinematics canvas demo (CCD solver). Colours come from the page tokens. -->
     <script>
     (function () {
         'use strict';
@@ -589,11 +591,15 @@
         if (!canvas) return;
         var ctx = canvas.getContext('2d');
         var root = getComputedStyle(document.documentElement);
-        var tok = function (name, fallback) { return (root.getPropertyValue(name) || '').trim() || fallback; };
-        var C_TEXT = tok('--text', '#1d1d1f');
-        var C_TEXT2 = tok('--text-2', '#6e6e73');
-        var C_TEXT3 = tok('--text-3', '#86868b');
-        var C_ACCENT = tok('--accent', '#0066cc');
+        var tok = function (name) { return root.getPropertyValue(name).trim(); };
+        var C_TEXT = tok('--text');
+        var C_TEXT2 = tok('--text-2');
+        var C_TEXT3 = tok('--text-3');
+        var C_ACCENT = tok('--accent');
+        var C_LINE = tok('--line');
+        var C_BG = tok('--bg-alt');
+        canvas.style.cursor = 'crosshair';
+        canvas.style.touchAction = 'none';
 
         /* Arm segment lengths (8 / 8 / 6 units) */
         var segments = [{ length: 80 }, { length: 80 }, { length: 60 }];
@@ -601,10 +607,14 @@
         var baseY = canvas.height - 50;
 
         /* CCD tracks joint angles, not positions. Start pointing up. */
-        var angles = [0, -Math.PI / 2, 0];
-        var targetX = baseX;
-        var targetY = baseY - 220;
-        var pointerMoved = false;
+        var angles, targetX, targetY, pointerMoved;
+        function reset() {
+            angles = [0, -Math.PI / 2, 0];
+            targetX = baseX;
+            targetY = baseY - 220;
+            pointerMoved = false;
+        }
+        reset();
 
         function getJointPositions() {
             var joints = [{ x: baseX, y: baseY }];
@@ -665,14 +675,14 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             /* Grid */
-            ctx.strokeStyle = 'rgba(0, 0, 0, 0.04)';
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = C_LINE;
+            ctx.lineWidth = 0.5;
             for (var gx = 0; gx < canvas.width; gx += 50) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, canvas.height); ctx.stroke(); }
             for (var gy = 0; gy < canvas.height; gy += 50) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(canvas.width, gy); ctx.stroke(); }
 
             /* Workspace circle */
             var reach = segments.reduce(function (s, seg) { return s + seg.length; }, 0);
-            ctx.strokeStyle = 'rgba(0, 0, 0, 0.06)';
+            ctx.strokeStyle = C_LINE;
             ctx.lineWidth = 2;
             ctx.beginPath(); ctx.arc(baseX, baseY, reach, 0, Math.PI * 2); ctx.stroke();
 
@@ -695,7 +705,7 @@
             for (var k = 0; k < joints.length; k++) {
                 var isEnd = k === joints.length - 1;
                 ctx.beginPath(); ctx.arc(joints[k].x, joints[k].y, isEnd ? 10 : 8, 0, Math.PI * 2);
-                ctx.fillStyle = isEnd ? C_ACCENT : '#fff';
+                ctx.fillStyle = isEnd ? C_ACCENT : C_BG;
                 ctx.strokeStyle = isEnd ? C_ACCENT : C_TEXT;
                 ctx.fill(); ctx.stroke();
             }
@@ -724,6 +734,8 @@
             targetX = (e.clientX - r.left) * (canvas.width / r.width);
             targetY = (e.clientY - r.top) * (canvas.height / r.height);
         });
+        var resetBtn = document.getElementById('ikReset');
+        if (resetBtn) resetBtn.addEventListener('click', function () { reset(); draw(); });
 
         /* Only animate while the canvas is on screen. */
         var running = false;
@@ -747,27 +759,46 @@
     </script>
 
     <!-- Widget 2: MediaPipe Face Mesh webcam demo. The MediaPipe library is only fetched from the CDN
-         when the user presses "Try it out", so it never affects page load. Page-specific by design. -->
+         when the user starts the camera, so it never affects page load. A detached <video> element feeds
+         the model; each frame is drawn onto the canvas with the landmarks on top. -->
     <script>
     (function () {
         'use strict';
-        var box = document.getElementById('mediapipeDemo');
-        var startBtn = document.getElementById('startDemoBtn');
-        var stopBtn = document.getElementById('stopDemoBtn');
-        var video = document.getElementById('demoVideo');
+        var toggle = document.getElementById('demoToggle');
         var canvas = document.getElementById('demoCanvas');
         var status = document.getElementById('demoStatus');
-        if (!box || !startBtn || !video || !canvas) return;
+        if (!toggle || !canvas) return;
+        /* The camera element never enters the DOM; the canvas shows each frame with the landmarks on top. */
+        var video = document.createElement('video');
+        video.autoplay = true; video.muted = true; video.playsInline = true;
+        video.setAttribute('playsinline', '');
         var ctx = canvas.getContext('2d');
         var root = getComputedStyle(document.documentElement);
-        var C_ACCENT = (root.getPropertyValue('--accent') || '').trim() || '#0066cc';
-        var C_SUCCESS = (root.getPropertyValue('--success') || '').trim() || '#1f7a4d';
+        var tok = function (name) { return root.getPropertyValue(name).trim(); };
+        var C_ACCENT = tok('--accent');
+        var C_SUCCESS = tok('--success');
+        var C_TEXT2 = tok('--text-2');
+        var FONT = tok('--font') || 'sans-serif';
+        var IDLE_MSG = 'The MediaPipe library loads only when you start the camera. Nothing is uploaded.';
 
         var MP_BASE = 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh';
         var libPromise = null;
         var active = false;
+        var busy = false;
         var stream = null;
         var faceMesh = null;
+
+        function drawIdle(msg) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = C_TEXT2;
+            ctx.font = '16px ' + FONT;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(msg, canvas.width / 2, canvas.height / 2);
+            ctx.textAlign = 'start';
+            ctx.textBaseline = 'alphabetic';
+        }
+        drawIdle('Camera off');
 
         function loadLib() {
             if (window.FaceMesh) return Promise.resolve();
@@ -783,12 +814,18 @@
             return libPromise;
         }
 
-        function setStatus(msg) { if (status) status.textContent = msg || ''; }
+        function setStatus(msg) { if (status) status.textContent = msg || IDLE_MSG; }
+        function setButton(label, primary) {
+            toggle.textContent = label;
+            toggle.classList.toggle('btn--primary', primary);
+            toggle.classList.toggle('btn--secondary', !primary);
+        }
 
-        startBtn.addEventListener('click', function () {
-            if (active) return;
-            startBtn.disabled = true;
-            startBtn.textContent = 'Loading…';
+        function startDemo() {
+            if (active || busy) return;
+            busy = true;
+            toggle.disabled = true;
+            setButton('Loading…', true);
             setStatus('');
             Promise.all([
                 loadLib(),
@@ -797,7 +834,6 @@
                 stream = res[1];
                 video.srcObject = stream;
                 active = true;
-                box.classList.add('is-active');
                 return new Promise(function (resolve) {
                     video.onloadedmetadata = function () { video.play(); resolve(); };
                 });
@@ -807,6 +843,8 @@
                 faceMesh = new window.FaceMesh({ locateFile: function (file) { return MP_BASE + '/' + file; } });
                 faceMesh.setOptions({ maxNumFaces: 1, refineLandmarks: true, minDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
                 faceMesh.onResults(onResults);
+                setButton('Stop camera', false);
+                setStatus('Tracking. Landmarks 13 and 14 set the mouth target.');
                 processFrame();
             }).catch(function (err) {
                 console.error('Demo error:', err);
@@ -815,10 +853,10 @@
                     ? 'Camera access was denied. Allow camera access for this site and try again.'
                     : 'Could not start the demo: ' + (err && err.message ? err.message : err));
             }).then(function () {
-                startBtn.disabled = false;
-                startBtn.textContent = 'Try it out';
+                busy = false;
+                toggle.disabled = false;
             });
-        });
+        }
 
         function processFrame() {
             if (!active || !faceMesh) return;
@@ -831,10 +869,14 @@
             if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
             if (video.srcObject) video.srcObject = null;
             if (faceMesh) { faceMesh.close(); faceMesh = null; }
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            box.classList.remove('is-active');
+            canvas.width = 640;
+            canvas.height = 480;
+            drawIdle('Camera off');
+            setButton('Start camera', true);
+            setStatus('');
         }
-        if (stopBtn) stopBtn.addEventListener('click', stopDemo);
+
+        toggle.addEventListener('click', function () { if (active) stopDemo(); else startDemo(); });
         document.addEventListener('visibilitychange', function () { if (document.hidden && active) stopDemo(); });
 
         /* Lip outlines and the mouth-centre target, computed exactly like the real arm code:
@@ -847,12 +889,11 @@
 
         function onResults(results) {
             if (!active) return;
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var W = canvas.width, H = canvas.height;
+            ctx.clearRect(0, 0, W, H);
+            if (results.image) ctx.drawImage(results.image, 0, 0, W, H);
             if (!results.multiFaceLandmarks || !results.multiFaceLandmarks.length) return;
             var lm = results.multiFaceLandmarks[0];
-            var W = canvas.width, H = canvas.height;
 
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
             ctx.lineWidth = 1;
@@ -879,7 +920,7 @@
             ctx.moveTo(cx, cy - 8); ctx.lineTo(cx, cy + 8);
             ctx.stroke();
             ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.font = 'bold 13px sans-serif';
+            ctx.font = 'bold 13px ' + FONT;
             ctx.fillText('Mouth target', cx + 15, cy - 10);
         }
     })();

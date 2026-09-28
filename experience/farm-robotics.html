@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/experience/farm-robotics.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.1">
+    <link rel="stylesheet" href="../styles.css?v=2.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/experience/farm-robotics.html">
@@ -61,11 +61,11 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#teams" class="link link--back">Teams</a>
-                    <span class="eyebrow">Mechanical engineering, Farm Robotics Challenge team</span>
+                    <span class="eyebrow">Mechanical Engineer</span>
                     <h1 class="detail-hero__title">HydroFleet</h1>
-                    <p class="detail-hero__sub">Drone swarm that maps soil moisture by drilling a probe into the field; I built the Soil Probing Module.</p>
+                    <p class="detail-hero__sub">A drone swarm that maps soil moisture by drilling a probe into the field, built with MIT for the Farm Robotics Challenge.</p>
                     <div class="detail-hero__meta">
-                        <span><time datetime="2025">2025 – Present</time></span>
+                        <span><time datetime="2025">2025</time>–Present</span>
                         <span>Olin College × MIT</span>
                         <span>Farm Robotics Challenge</span>
                     </div>
@@ -84,65 +84,35 @@
             <div class="video">
                 <iframe src="https://drive.google.com/file/d/14CtJUGs3FAzTav8NykCC2oiNq6bymxE6/preview" allow="autoplay; encrypted-media" allowfullscreen loading="lazy" title="HydroFleet demonstration: a drone lowers the Soil Probing Module and drills a moisture probe into the field"></iframe>
             </div>
-            <p class="media__caption">Demonstration: a drone lowers the Soil Probing Module and drills the probe into the field.</p>
+            <p class="media__caption">A drone lowers the Soil Probing Module and drills the probe into the field.</p>
         </div>
 
         <article class="container prose">
             <p class="lede">
-                <strong>HydroFleet</strong> is a multi-drone system developed with a research team at the
-                <strong>Massachusetts Institute of Technology (MIT)</strong>. Each drone lowers a slung probe module into the field and
-                drills a capacitive moisture sensor into the soil, and the fleet turns those readings into a soil moisture map for
-                variable-rate irrigation. A scientific paper on the system is in progress.
+                HydroFleet is a multi-drone system developed with a research team at the Massachusetts Institute of Technology (MIT).
+                Each drone lowers a slung probe module into the field and drills a capacitive moisture sensor into the soil, and the
+                fleet turns those readings into a soil moisture map for variable-rate irrigation. I designed, simulated and fabricated
+                the Soil Probing Module, the payload that does the drilling.
             </p>
 
-            <div class="resources">
-                <div class="resource">
-                    <h4>Final technical report</h4>
-                    <p>The 41-page report we submitted: system architecture, mechatronics and the field evaluation.</p>
-                    <a class="btn btn--primary btn--small" href="Farmpics/HydroFleet_Final_Technical_Report.pdf" target="_blank" rel="noopener">Technical report (PDF)</a>
-                </div>
-                <div class="resource">
-                    <h4>Utility patent application</h4>
-                    <p><em>"Systems, Devices, and Methods for Measuring Soil Parameters Using an Unmanned Aerial Vehicle"</em> (docket MIT 27192J USPRO). Filed jointly by MIT and Olin College in 2026.</p>
-                    <p class="small muted">Under the USPTO 18-month confidentiality period, the application is not public until official publication.</p>
-                    <span class="pill">Confidential hold</span>
-                </div>
-            </div>
-
-            <h2>Project overview</h2>
+            <h2>Overview</h2>
             <p>
-                HydroFleet won the <strong>Excellence in Drone Applications Award</strong> at the Farm Robotics Challenge.
-            </p>
-            <p>
-                Variable-rate irrigation (VRI) driven by HydroFleet maps can raise crop yields by <strong>up to 15%</strong> and cut
-                water and energy costs by <strong>25% to 40%</strong>.
+                HydroFleet won the <strong>Excellence in Drone Applications Award</strong> at the Farm Robotics Challenge. Variable-rate
+                irrigation (VRI) driven by HydroFleet maps can raise crop yields by <strong>up to 15%</strong> and cut water and energy
+                costs by <strong>25% to 40%</strong>. A scientific paper on the system is in progress.
             </p>
             <p>
                 The technology is the subject of a <strong>utility patent application</strong> filed with the U.S. Patent and Trademark
-                Office. I designed, simulated and fabricated the <strong>Soil Probing Module (SPM)</strong>, the electromechanical payload
-                that lets a drone lower, anchor and drill a capacitive moisture probe more than 5 inches into the soil, taking a
-                ground-truth measurement without landing.
+                Office. My part was the <strong>Soil Probing Module (SPM)</strong>, the electromechanical payload that lets a drone lower,
+                anchor and drill a capacitive moisture probe more than 5 inches into the soil, taking a ground-truth measurement
+                without landing.
             </p>
 
-            <div class="stats">
-                <div class="stat"><div class="stat__value">0.43 m</div><div class="stat__label">Navigation accuracy (CEP50) over 12 consecutive flights</div></div>
-                <div class="stat"><div class="stat__value">0.23 m</div><div class="stat__label">Placement accuracy (CEP50) of the slung sampler payload</div></div>
-                <div class="stat"><div class="stat__value">0.95 R²</div><div class="stat__label">Correlation between drone-inserted and hand-inserted probe readings</div></div>
-                <div class="stat"><div class="stat__value">30+</div><div class="stat__label">Soil samples on one battery charge (15 W draw)</div></div>
-            </div>
-
-            <h2>The Soil Probing Module</h2>
+            <h2>Design</h2>
             <p>
                 The main mechanical problem was generating enough linear force to penetrate compacted clay while staying inside a
                 <strong>600 g payload budget</strong>.
             </p>
-
-            <figure class="media">
-                <div class="media__frame media__frame--contain">
-                    <img src="Farmpics/FinalSampler.webp" alt="The final fabricated Soil Probing Module: stacked pocketed aluminium plates on a lead screw, three anchoring claw servos around the base and the auger drive in the centre" width="647" height="755" decoding="async">
-                </div>
-                <figcaption>The finished Soil Probing Module: pocketed aluminium plates on the lead screw, three anchoring claw servos around the base, and the single-motor drive in the centre.</figcaption>
-            </figure>
 
             <h3>Single-motor drive for feed and rotation</h3>
             <p>
@@ -178,7 +148,20 @@
                 a Waveshare USB-CAN-A converter on the PC.
             </p>
 
-            <h2>System bill of materials</h2>
+            <h2>Build</h2>
+            <p>
+                The finished module is built from pocketed aluminium plates on the lead screw, 3D-printed gears and carbon fibre
+                tubes, and weighs 570 g as a payload.
+            </p>
+
+            <figure class="media">
+                <div class="media__frame media__frame--contain">
+                    <img src="Farmpics/FinalSampler.webp" alt="The final fabricated Soil Probing Module: stacked pocketed aluminium plates on a lead screw, three anchoring claw servos around the base and the auger drive in the centre" width="647" height="755" decoding="async">
+                </div>
+                <figcaption>The finished Soil Probing Module with its pocketed aluminium plates, three anchoring claw servos and single-motor drive.</figcaption>
+            </figure>
+
+            <h3>Bill of materials</h3>
             <p>
                 One HydroFleet unit costs <strong>$1,846.83</strong> in materials: $455.11 for the sampler module and $1,391.72 for the
                 flight platform.
@@ -218,7 +201,7 @@
                 </tbody>
             </table></div>
 
-            <h2>Field evaluation</h2>
+            <h2>Testing</h2>
             <p>
                 We tested the integrated system at <strong>Powisset Farm in Dover, MA</strong>, a 109-acre organic CSA vegetable farm.
             </p>
@@ -228,9 +211,38 @@
                 <li><strong>R² = 0.947</strong> between VWC readings from drone-inserted probes and hand-inserted controls, so vibration from the auger drive did not corrupt the capacitive measurement.</li>
             </ul>
 
-            <h2>Design changes along the way</h2>
+            <h2>Results</h2>
+            <div class="stats">
+                <div class="stat"><div class="stat__value">0.43 m</div><div class="stat__label">Navigation accuracy (CEP50) over 12 consecutive flights</div></div>
+                <div class="stat"><div class="stat__value">0.23 m</div><div class="stat__label">Placement accuracy (CEP50) of the slung sampler payload</div></div>
+                <div class="stat"><div class="stat__value">0.95 R²</div><div class="stat__label">Correlation between drone-inserted and hand-inserted probe readings</div></div>
+                <div class="stat"><div class="stat__value">30+</div><div class="stat__label">Soil samples on one battery charge (15 W draw)</div></div>
+            </div>
+            <ul>
+                <li>Excellence in Drone Applications Award at the Farm Robotics Challenge.</li>
+                <li>Utility patent application filed jointly by MIT and Olin College in 2026.</li>
+                <li>A scientific paper on the system is in progress.</li>
+            </ul>
+
+            <h2>Resources</h2>
+            <div class="resources">
+                <div class="resource">
+                    <h4>Final technical report</h4>
+                    <p>The 41-page report we submitted: system architecture, mechatronics and the field evaluation.</p>
+                    <a class="btn btn--primary btn--small" href="Farmpics/HydroFleet_Final_Technical_Report.pdf" target="_blank" rel="noopener">Technical report (PDF)</a>
+                </div>
+                <div class="resource">
+                    <h4>Utility patent application</h4>
+                    <p><em>"Systems, Devices, and Methods for Measuring Soil Parameters Using an Unmanned Aerial Vehicle"</em> (docket MIT 27192J USPRO). Filed jointly by MIT and Olin College in 2026.</p>
+                    <p class="small muted">Under the USPTO 18-month confidentiality period, the application is not public until official publication.</p>
+                    <span class="pill">Confidential hold</span>
+                </div>
+            </div>
+
+            <h2>What I learned</h2>
             <p>
-                The design went through several changes between the first prototype and the field version.
+                The design went through several changes between the first prototype and the field version, and each one came from
+                something that failed in testing.
             </p>
 
             <h3>Slung-payload oscillation</h3>
@@ -263,7 +275,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=2.1"></script>
+    <script src="../script.js?v=2.2"></script>
 </body>
 
 </html>

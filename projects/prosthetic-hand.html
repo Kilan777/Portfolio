@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/prosthetic-hand.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=2.1">
+    <link rel="stylesheet" href="../styles.css?v=2.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/prosthetic-hand.html">
@@ -60,13 +60,13 @@
             <div class="container detail-hero__inner">
                 <div>
                     <a href="../index.html#projects" class="link link--back">Projects</a>
-                    <span class="eyebrow">Computer Science (Adv) project · Westtown School</span>
-                    <h1 class="detail-hero__title">EMG-Controlled 3D Printed Prosthetic Hand</h1>
-                    <p class="detail-hero__sub">A 3D printed hand that opens and closes from one forearm EMG sensor, built for under $50.</p>
+                    <span class="eyebrow">Class project</span>
+                    <h1 class="detail-hero__title">EMG Prosthetic Hand</h1>
+                    <p class="detail-hero__sub">A 3D printed prosthetic hand that opens and closes from one forearm EMG sensor, built for under $50.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2024">2024</time></span>
                         <span>Philadelphia, PA</span>
-                        <span>Computer Science (Adv)</span>
+                        <span>Computer Science (Adv), Westtown School</span>
                     </div>
                     <div class="pills">
                         <span class="pill">EMG sensing</span>
@@ -80,10 +80,10 @@
 
         <div class="container detail-lead">
             <figure class="media">
-                <div class="media__frame">
+                <div class="media__frame media__frame--white">
                     <img src="Handpics/Hand.webp" alt="Project poster for the 3D printed prosthetic hand: photos of EMG electrodes on a forearm, the Arduino and servo test bench, fingers printing on an Original Prusa i3 MK3, the assembled black hand, the Arduino code, and the wiring diagram" width="1800" height="1350" decoding="async">
                 </div>
-                <figcaption>The project poster from the Computer Science (Adv) course at Westtown School: electrodes, test bench, printing, the assembled hand, the code and the wiring diagram. Click to zoom.</figcaption>
+                <figcaption>The project poster, with the electrodes on a forearm, the servo test bench, fingers printing, the assembled hand, the code and the wiring diagram.</figcaption>
             </figure>
         </div>
 
@@ -93,18 +93,28 @@
                 One EMG sensor, an Arduino Nano, five servos, two 9V batteries and 3D printed parts, for a total of under $50.
             </p>
 
-            <h2>The idea</h2>
+            <h2>Overview</h2>
             <p>
                 I wanted a simple prosthetic hand that other people could build themselves for a low cost, instead of
                 spending thousands of dollars on a traditional prosthetic.
             </p>
-
-            <h2>First steps</h2>
             <p>
                 To start, I needed to purchase the equipment to make the arm work. Researching DIY prosthetics, I found I
                 needed an EMG (electromyograph) to measure electrical muscle activity. This tells you whether the muscle is
                 being tensioned or not, and based on that the hand's fingers would move.
             </p>
+
+            <h2>Build</h2>
+            <p>
+                The hand itself was much more complex than I had assumed. I first 3D printed a test finger, which broke
+                immediately. I knew what changes the finger needed but was running out of time to turn in the project, so
+                I decided to find a prosthetic hand design online and modify it to work with my components; my goal would
+                still be accomplished and I wanted a working hand. The first hand I printed was far too complicated and
+                did not work. The second one worked, but I had issues with wrong screw sizes and nowhere to put the motors
+                and electronics. I stuck with this hand and modified it for my use.
+            </p>
+
+            <h2>Electronics and control</h2>
             <p>
                 Once I had all the components, I attempted to move a single servo motor using the EMG readings. This proved
                 far more complicated than I had thought: I could not power the EMG, and I did not know how to convert the
@@ -115,8 +125,6 @@
                 readings from my sensor. After around two weeks of work, I could finally move a servo based on my muscle's
                 electrical signals.
             </p>
-
-            <h2>Progress</h2>
             <p>
                 Next, I added more servos, an LED and more EMG sensors to see how many I wanted for the prosthetic hand. I
                 decided to use only one EMG, because each one needs three cables attached to a person's muscle and more
@@ -125,46 +133,12 @@
                 readings.
             </p>
             <p>
-                Finally, I needed to make the hand. This was also much more complex than I had assumed. I first 3D printed a
-                test finger, which broke immediately. I knew what changes the finger needed but was running out of time to
-                turn in the project, so I decided to find a prosthetic hand design online and modify it to work with my
-                components; my goal would still be accomplished and I wanted a working hand. The first hand I printed was
-                far too complicated and did not work. The second one worked, but I had issues with wrong screw sizes and
-                nowhere to put the motors and electronics. I stuck with this hand and modified it for my use.
+                The wiring diagram on the poster shows how the electronics are connected, all relating back to the central
+                processing unit, an Arduino Nano (ATmega328P): the EMG sensor on an analog input, five servos on digital
+                pins 2 to 6, an RGB LED through 300 Ω resistors on pins 7 to 9, and two 9V batteries for power.
             </p>
 
-            <h2>Result</h2>
-            <p>
-                The result is a working prototype for under 50 dollars. Next I want to make it easier to build and print:
-                the current hand has screws sticking out of it and is not easy to assemble. Once I have the new arm, I want
-                to try another method of reading muscle activity, so that I no longer need three wires on the user's
-                muscle and can instead use a wireless device attached to it.
-            </p>
-
-            <h2>Findings and add-ons</h2>
-            <h3>Controlling a computer with the EMG</h3>
-            <p>
-                While using the EMG sensor, I realised I could also use it to control computer actions. In parallel with
-                the prosthetic hand I used the EMG sensor and an Arduino to control video games.
-            </p>
-
-            <h3>Screen and remote control</h3>
-            <p>
-                I wanted the hand to remain simple but still be usable in a more advanced configuration if the user wants.
-                To do this I added a screen and a remote control. The remote manually adjusts the threshold value of the
-                device and turns the hand on and off; the screen displays the current EMG value compared to the threshold.
-                This makes adjusting the hand possible without changing the code.
-            </p>
-
-            <h3>Self-calibrating threshold</h3>
-            <p>
-                As well as physical add-ons, I wrote different versions of the code. One version records the highest and
-                lowest values read within a 10-second window of the hand being used, adds them together and divides by two,
-                and uses that number as the threshold. The user no longer needs to change the value on the computer between
-                users; the hand finds its own threshold.
-            </p>
-
-            <h2>Code</h2>
+            <h2>Software</h2>
             <p>
                 I made the code as simple as possible so anyone can recreate it and change the values to suit their arm.
                 The EMG value is printed to the Serial Monitor; once the user determines their "maximum" and "minimum"
@@ -243,11 +217,45 @@ void setColor(int redValue, int greenValue, int blueValue) {
 }</code></pre>
             </div>
 
-            <h2>Wiring</h2>
+            <h2>Add-ons</h2>
+
+            <h3>Controlling a computer with the EMG</h3>
             <p>
-                The wiring diagram on the poster shows how the electronics are connected, all relating back to the central
-                processing unit, an Arduino Nano (ATmega328P): the EMG sensor on an analog input, five servos on digital
-                pins 2 to 6, an RGB LED through 300 Ω resistors on pins 7 to 9, and two 9V batteries for power.
+                While using the EMG sensor, I realised I could also use it to control computer actions. In parallel with
+                the prosthetic hand I used the EMG sensor and an Arduino to control video games.
+            </p>
+
+            <h3>Screen and remote control</h3>
+            <p>
+                I wanted the hand to remain simple but still be usable in a more advanced configuration if the user wants.
+                To do this I added a screen and a remote control. The remote manually adjusts the threshold value of the
+                device and turns the hand on and off; the screen displays the current EMG value compared to the threshold.
+                This makes adjusting the hand possible without changing the code.
+            </p>
+
+            <h3>Self-calibrating threshold</h3>
+            <p>
+                As well as physical add-ons, I wrote different versions of the code. One version records the highest and
+                lowest values read within a 10-second window of the hand being used, adds them together and divides by two,
+                and uses that number as the threshold. The user no longer needs to change the value on the computer between
+                users; the hand finds its own threshold.
+            </p>
+
+            <h2>Results</h2>
+            <p>
+                The result is a working prototype for under 50 dollars. Next I want to make it easier to build and print:
+                the current hand has screws sticking out of it and is not easy to assemble. Once I have the new arm, I want
+                to try another method of reading muscle activity, so that I no longer need three wires on the user's
+                muscle and can instead use a wireless device attached to it.
+            </p>
+
+            <h2>What I learned</h2>
+            <p>
+                Getting a usable signal out of the EMG sensor took about two weeks of the project: powering it properly
+                from the two 9V batteries and tuning existing Arduino EMG libraries to my sensor. The mechanical hand was
+                the other surprise; my own test finger broke immediately, and adapting an existing design was what got a
+                working hand finished before the deadline. Keeping the code simple, with the EMG value printed to the
+                Serial Monitor to set the threshold, is what makes it possible for someone else to rebuild it.
             </p>
 
             <h2>References</h2>
@@ -277,7 +285,7 @@ void setColor(int redValue, int greenValue, int blueValue) {
         </div>
     </footer>
 
-    <script src="../script.js?v=2.1"></script>
+    <script src="../script.js?v=2.2"></script>
 </body>
 
 </html>

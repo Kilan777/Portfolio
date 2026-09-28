@@ -10,7 +10,7 @@
     <link rel="canonical" href="https://kilanrou.com/">
     <link rel="icon" type="image/png" href="Pics/webicon.png">
     <link rel="apple-touch-icon" href="Pics/webicon.png">
-    <link rel="stylesheet" href="styles.css?v=2.1">
+    <link rel="stylesheet" href="styles.css?v=2.2">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kilanrou.com/">
@@ -63,11 +63,11 @@
 
 <body>
     <header class="nav">
-        <div class="container nav__inner">
+        <div class="container container--wide nav__inner">
             <a href="index.html" class="nav__logo">Kilan Rougeot</a>
             <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span></button>
             <ul class="nav__links" id="nav-links">
-                <li><a href="#experience" class="nav__link">Work</a></li>
+                <li><a href="#experience" class="nav__link">Experience</a></li>
                 <li><a href="#teams" class="nav__link">Teams</a></li>
                 <li><a href="#projects" class="nav__link">Projects</a></li>
                 <li><a href="Files/ResumeKilan.pdf" class="nav__link" target="_blank" rel="noopener">Resume</a></li>
@@ -78,208 +78,275 @@
 
     <main>
         <section class="hero" id="home">
-            <div class="container hero__grid">
+            <div class="container container--wide hero__grid">
                 <div data-stagger>
                     <h1 class="hero__title">Kilan Rougeot</h1>
-                    <p class="hero__role">Mechanical engineering student at Olin College. Founding engineer at AutoPallet Robotics.</p>
                     <p class="hero__lede">
-                        I work on mechatronics and robotics: mechanical design, embedded systems, and getting hardware to
-                        work reliably in the real world. Before AutoPallet I automated production lines at Kia, co-authored a
-                        filed utility patent for an agricultural drone system, and captained a FIRST Robotics team to three
-                        World Championships.
+                        I am a trilingual student at Olin College of Engineering studying mechanical engineering and specializing in
+                        mechatronics and robotics. My background spans scaling startup hardware as a founding engineer at YC-backed
+                        <strong>AutoPallet Robotics</strong> and implementing factory automation at <strong>Kia</strong>. I co-authored a
+                        filed utility patent for agricultural drone swarms and led robotics teams to world championships.
                     </p>
                     <div class="hero__actions">
-                        <a href="#projects" class="btn btn--primary">Projects</a>
+                        <a href="#projects" class="btn btn--primary">View projects</a>
                         <a href="Files/ResumeKilan.pdf" class="btn btn--secondary" target="_blank" rel="noopener">Resume</a>
-                        <a href="mailto:kilanrou@gmail.com" class="link">kilanrou@gmail.com</a>
                     </div>
                 </div>
                 <div class="hero__portrait">
-                    <img src="Pics/Headshot.webp" alt="Portrait of Kilan Rougeot" fetchpriority="high" width="1400" height="1138" decoding="async">
+                    <img src="Pics/Headshot.webp" alt="Portrait of Kilan Rougeot" width="1400" height="1138" fetchpriority="high" decoding="async">
                 </div>
             </div>
         </section>
 
         <section id="experience" class="section section--alt">
-            <div class="container">
-                <div class="section__head">
-                    <h2 class="section__title">Work</h2>
+            <div class="container container--wide">
+                <div class="section__head section__head--rule">
+                    <h2 class="section__title section__title--rule">Work Experience</h2>
+                </div>
+                <div class="cards">
+                <div class="card card--static">
+                    <div class="card__media card__media--cover">
+                        <img src="Pics/AutoPallet.webp" alt="AutoPallet Robotics" loading="lazy" decoding="async" width="770" height="500">
+                        <span class="card__status">Ongoing role</span>
+                        <img class="card__logo" src="Pics/AutoPalletLogo.webp" alt="AutoPallet Robotics logo" loading="lazy" decoding="async">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>AutoPallet Robotics</h3>
+                        <p class="card__meta">Founding Engineer · Ongoing</p>
+                        <p class="card__text">Founding engineer at YC-backed AutoPallet Robotics, owning mechanical design and mechatronic prototyping.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>AutoPallet Robotics</h3>
+                        <p class="card__meta">Founding Engineer · Ongoing</p>
+                    </div>
                 </div>
 
-                <div class="rows">
-                    <div class="row">
-                        <img class="row__thumb row__thumb--cover" src="Pics/AutoPallet.webp" alt="AutoPallet Robotics warehouse robot lifting a cardboard case" width="770" height="500" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">AutoPallet Robotics</h3>
-                            <p class="row__role">Founding Engineer · YC-backed warehouse automation</p>
-                            <p class="row__text">Mechanical design and mechatronic prototyping for robots that pick, sort and palletize cases.</p>
-                        </div>
-                        <span class="row__date">Current <span class="tile__status">Ongoing</span></span>
+                <a href="experience/kia.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/Kia.webp" alt="Kia (Hyundai Motor Group)" loading="lazy" decoding="async" width="512" height="398">
+                        <img class="card__logo" src="Pics/KiaLogo.webp" alt="Kia logo" loading="lazy" decoding="async" width="400" height="257">
                     </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Kia (Hyundai Motor Group)</h3>
+                        <p class="card__meta">Engineering Intern · Summer 2025</p>
+                        <p class="card__text">Built automated robotic systems across factory operations, including a tire loading cell that improved safety and removed manual handling. Programmed robotic arms, PLCs and 3D vision systems across five departments.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Kia (Hyundai Motor Group)</h3>
+                        <p class="card__meta">Engineering Intern · Summer 2025</p>
+                    </div>
+                </a>
 
-                    <a href="experience/kia.html" class="row">
-                        <img class="row__thumb" src="Pics/Kia.webp" alt="CAD render of the automated wheel-rim loading cell at Kia" width="512" height="398" loading="lazy" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">Kia (Hyundai Motor Group)</h3>
-                            <p class="row__role">Engineering Intern · Žilina, Slovakia</p>
-                            <p class="row__text">Led an automated robotic wheel-loading cell and worked on robotic arms, PLCs and vision systems across all five maintenance departments.</p>
-                        </div>
-                        <span class="row__date"><time datetime="2025-06">Summer 2025</time></span>
-                    </a>
+                <a href="experience/at-dev.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/ATDev.webp" alt="AT Dev Inc" loading="lazy" decoding="async" width="512" height="312">
+                        <img class="card__logo" src="Pics/atdevlogo.webp" alt="AT Dev logo" loading="lazy" decoding="async" width="400" height="123">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>AT Dev Inc</h3>
+                        <p class="card__meta">Robotics Engineering Intern · Summer 2022</p>
+                        <p class="card__text">Developed and prototyped assistive technology for people with physical disabilities. Designed a leg brace with a new fastening system using CAD and hands-on machining.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>AT Dev Inc</h3>
+                        <p class="card__meta">Robotics Engineering Intern · Summer 2022</p>
+                    </div>
+                </a>
 
-                    <a href="experience/at-dev.html" class="row">
-                        <img class="row__thumb" src="Pics/ATDev.webp" alt="Reflex leg brace prototype by AT Dev" width="512" height="312" loading="lazy" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">AT Dev Inc</h3>
-                            <p class="row__role">Robotics Engineering Intern · Los Angeles, CA</p>
-                            <p class="row__text">Prototyped assistive technology, including a leg brace with a new fastening system, from CAD through machining and FDA compliance work.</p>
-                        </div>
-                        <span class="row__date"><time datetime="2022-06">Summer 2022</time></span>
-                    </a>
-
-                    <a href="experience/astara.html" class="row">
-                        <img class="row__thumb" src="Pics/Astara.webp" alt="Fleet analytics dashboard built at Astara" width="900" height="536" loading="lazy" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">Astara</h3>
-                            <p class="row__role">Data &amp; Computer Science Intern · Madrid, Spain</p>
-                            <p class="row__text">Python automation and web-scraping tools that cut weekly report preparation time by over 90%.</p>
-                        </div>
-                        <span class="row__date"><time datetime="2023-06">Summer 2023</time></span>
-                    </a>
+                <a href="experience/astara.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/Astara.webp" alt="Astara" loading="lazy" decoding="async" width="900" height="536">
+                        <img class="card__logo" src="Pics/astaralogo.webp" alt="Astara logo" loading="lazy" decoding="async" width="300" height="52">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Astara</h3>
+                        <p class="card__meta">Data &amp; Computer Science Intern · Summer 2023</p>
+                        <p class="card__text">Developed Python automation tools and web scraping solutions. Reduced weekly report preparation time by over 90%.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Astara</h3>
+                        <p class="card__meta">Data &amp; Computer Science Intern · Summer 2023</p>
+                    </div>
+                </a>
                 </div>
             </div>
         </section>
 
         <section id="teams" class="section">
-            <div class="container">
-                <div class="section__head">
-                    <h2 class="section__title">Teams</h2>
+            <div class="container container--wide">
+                <div class="section__head section__head--rule">
+                    <h2 class="section__title section__title--rule">Project Teams</h2>
                 </div>
+                <div class="cards">
+                <a href="experience/farm-robotics.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/Farm.webp" alt="HydroFleet · Farm Robotics Challenge" loading="lazy" decoding="async" width="397" height="512">
+                        <img class="card__logo" src="Pics/FarmTeamLogo.webp" alt="Farm Robotics Challenge logo" loading="lazy" decoding="async" width="400" height="193">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>HydroFleet · Farm Robotics Challenge</h3>
+                        <p class="card__meta">Mechanical Engineering Member · with MIT</p>
+                        <p class="card__text">Award-winning autonomous soil-testing drone (Excellence in Drone Applications) in partnership with MIT. Designed the 6-inch auger sampling mechanism. Utility patent filed.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>HydroFleet · Farm Robotics Challenge</h3>
+                        <p class="card__meta">Mechanical Engineering Member · with MIT</p>
+                    </div>
+                </a>
 
-                <div class="rows">
-                    <a href="experience/farm-robotics.html" class="row">
-                        <img class="row__thumb" src="Pics/Farm.webp" alt="CAD render of the HydroFleet auger soil-sampling module" width="397" height="512" loading="lazy" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">HydroFleet · Farm Robotics Challenge</h3>
-                            <p class="row__role">Mechanical engineering · with MIT</p>
-                            <p class="row__text">Autonomous soil-testing drone swarm. I designed the auger sampling module. Excellence in Drone Applications award; utility patent filed.</p>
-                        </div>
-                        <span class="row__date"><time datetime="2025">2025 –</time></span>
-                    </a>
+                <a href="experience/frc.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/FRC.webp" alt="FIRST Robotics, Team 1391" loading="lazy" decoding="async" width="500" height="446">
+                        <img class="card__logo" src="Pics/FRCLogo.webp" alt="FIRST Robotics logo" loading="lazy" decoding="async" width="400" height="346">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>FIRST Robotics, Team 1391</h3>
+                        <p class="card__meta">Team Captain, Lead Builder &amp; Operator · 2022–2024</p>
+                        <p class="card__text">Led the team to three consecutive World Championship appearances, ranking in the top 3% globally. Engineering Excellence award and a competition win.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>FIRST Robotics, Team 1391</h3>
+                        <p class="card__meta">Team Captain, Lead Builder &amp; Operator · 2022–2024</p>
+                    </div>
+                </a>
 
-                    <a href="experience/frc.html" class="row">
-                        <img class="row__thumb" src="Pics/FRC.webp" alt="FRC Team 1391 competition robot with extended arm" width="500" height="446" loading="lazy" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">FIRST Robotics, Team 1391</h3>
-                            <p class="row__role">Team Captain, Lead Builder &amp; Operator</p>
-                            <p class="row__text">Three consecutive World Championship appearances, top 3% globally, Engineering Excellence award.</p>
-                        </div>
-                        <span class="row__date"><time datetime="2022">2022</time> – <time datetime="2024">2024</time></span>
-                    </a>
-
-                    <a href="experience/baja.html" class="row">
-                        <img class="row__thumb" src="Pics/Baja.webp" alt="Olin Baja SAE off-road vehicle" width="900" height="900" loading="lazy" decoding="async">
-                        <div class="row__main">
-                            <h3 class="row__title">Baja SAE</h3>
-                            <p class="row__role">Chassis Lead</p>
-                            <p class="row__text">Frame design, FEA, welding jigs and the BOM for Olin's off-road competition vehicle.</p>
-                        </div>
-                        <span class="row__date"><time datetime="2024">2024 –</time></span>
-                    </a>
+                <a href="experience/baja.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/Baja.webp" alt="Baja SAE" loading="lazy" decoding="async" width="900" height="900">
+                        <img class="card__logo" src="Pics/Bajalogo.webp" alt="SAE International logo" loading="lazy" decoding="async" width="400" height="248">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Baja SAE</h3>
+                        <p class="card__meta">Chassis Lead</p>
+                        <p class="card__text">Designed and fabricated an off-road competition vehicle. Promoted to Chassis Lead; frame design, FEA, welding jigs and the BOM.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Baja SAE</h3>
+                        <p class="card__meta">Chassis Lead</p>
+                    </div>
+                </a>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="section section--alt">
-            <div class="container">
-                <div class="section__head">
-                    <h2 class="section__title">Projects</h2>
+            <div class="container container--wide">
+                <div class="section__head section__head--rule">
+                    <h2 class="section__title section__title--rule">Projects</h2>
                 </div>
+                <div class="cards">
+                <a href="projects/munchkin.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/Munchkin.webp" alt="Munchkin Assistive Feeding Device" loading="lazy" decoding="async" width="900" height="675">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Munchkin Assistive Feeding Device</h3>
+                        <p class="card__meta">Olin final project · Fall 2024</p>
+                        <p class="card__text">Robotic assistive feeding device combining computer vision, robotics and embedded systems for people with limited upper-body mobility. An affordable route to independent eating.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Munchkin Assistive Feeding Device</h3>
+                        <p class="card__meta">Olin final project · Fall 2024</p>
+                    </div>
+                </a>
 
-                <div class="grid grid--2">
-                    <a href="projects/munchkin.html" class="tile tile--wide">
-                        <div class="tile__media tile__media--white">
-                            <img src="Pics/Munchkin.webp" alt="Munchkin robotic assistive feeding device scooping cereal from a bowl" width="900" height="675" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">Munchkin, a robotic assistive feeding device</h3>
-                            <p class="tile__meta">Olin College final project · <time datetime="2024-12">Fall 2024</time> · Munchkin LLC</p>
-                            <p class="tile__text">A 4-DOF arm with real-time face tracking and an automatic utensil changer, so people with limited upper-body mobility can eat on their own. Built for a fraction of the cost of existing devices.</p>
-                        </div>
-                    </a>
+                <a href="projects/beach-wheelchair.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/Wheelchair.webp" alt="Motorized Beach Wheelchair" loading="lazy" decoding="async" width="500" height="500">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Motorized Beach Wheelchair</h3>
+                        <p class="card__meta">2024</p>
+                        <p class="card__text">User-controlled electric wheelchair with better stability and waterproof components for sand. Total cost under $1,500.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Motorized Beach Wheelchair</h3>
+                        <p class="card__meta">2024</p>
+                    </div>
+                </a>
 
-                    <a href="projects/beach-wheelchair.html" class="tile">
-                        <div class="tile__media">
-                            <img src="Pics/Wheelchair.webp" alt="Motorized beach wheelchair with balloon tires" width="500" height="500" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">Motorized beach wheelchair</h3>
-                            <p class="tile__text">Electric wheelchair with waterproof components and better stability on sand, built for under $1,500.</p>
-                        </div>
-                    </a>
+                <a href="projects/3d-scanner.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/scanner.webp" alt="DIY 3D Scanner" loading="lazy" decoding="async" width="462" height="279">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>DIY 3D Scanner</h3>
+                        <p class="card__meta">2025</p>
+                        <p class="card__text">Arduino-based 3D scanner using a pan-and-tilt servo mechanism and an IR distance sensor to capture point-cloud data, with Python processing for live 3D visualization.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>DIY 3D Scanner</h3>
+                        <p class="card__meta">2025</p>
+                    </div>
+                </a>
 
-                    <a href="projects/3d-scanner.html" class="tile">
-                        <div class="tile__media">
-                            <img src="Pics/scanner.webp" alt="Arduino pan-tilt 3D scanner on a breadboard" width="462" height="279" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">DIY 3D scanner</h3>
-                            <p class="tile__text">Arduino pan-tilt scanner with an IR distance sensor and Python point-cloud processing.</p>
-                        </div>
-                    </a>
+                <a href="projects/line-follower.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/LineFollower.webp" alt="Line Follower Robot" loading="lazy" decoding="async" width="512" height="384">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Line Follower Robot</h3>
+                        <p class="card__meta">October 2025</p>
+                        <p class="card__text">Autonomous robot with closed-loop PD control and real-time parameter tuning. Custom chassis with a 5-sensor array; 100% success rate and 30-second laps.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Line Follower Robot</h3>
+                        <p class="card__meta">October 2025</p>
+                    </div>
+                </a>
 
-                    <a href="projects/line-follower.html" class="tile">
-                        <div class="tile__media">
-                            <img src="Pics/LineFollower.webp" alt="Custom line-following robot with a five-sensor array" width="512" height="384" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">Line-following robot</h3>
-                            <p class="tile__text">Closed-loop PD control with live parameter tuning from a Python GUI. 30-second laps, 15 for 15 runs.</p>
-                        </div>
-                    </a>
+                <a href="projects/prosthetic-hand.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/hand.webp" alt="EMG Prosthetic Hand" loading="lazy" decoding="async" width="900" height="675">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>EMG Prosthetic Hand</h3>
+                        <p class="card__meta">2024</p>
+                        <p class="card__text">Low-cost prosthetic hand controlled by muscle signals. 3D printed with Arduino-based electronics for under $50.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>EMG Prosthetic Hand</h3>
+                        <p class="card__meta">2024</p>
+                    </div>
+                </a>
 
-                    <a href="projects/prosthetic-hand.html" class="tile">
-                        <div class="tile__media">
-                            <img src="Pics/hand.webp" alt="3D-printed EMG-controlled prosthetic hand" width="900" height="675" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">EMG prosthetic hand</h3>
-                            <p class="tile__text">3D-printed hand controlled by muscle signals, with Arduino electronics, for under $50.</p>
-                        </div>
-                    </a>
+                <a href="projects/laser-cut-mechanics.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/easter.webp" alt="Spring Cliches Moving Sculpture" loading="lazy" decoding="async" width="512" height="437">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Spring Cliches Moving Sculpture</h3>
+                        <p class="card__meta">Spring 2025</p>
+                        <p class="card__text">Kinetic sculpture with five nature-inspired elements (windmill, butterfly, flower, bunny, chick) driven by one belt-and-pulley system with cams and linkages.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Spring Cliches Moving Sculpture</h3>
+                        <p class="card__meta">Spring 2025</p>
+                    </div>
+                </a>
 
-                    <a href="projects/laser-cut-mechanics.html" class="tile">
-                        <div class="tile__media">
-                            <img src="Pics/easter.webp" alt="Spring Cliches laser-cut kinetic sculpture with windmill and animals" width="512" height="437" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">Spring Cliches, kinetic sculpture</h3>
-                            <p class="tile__text">Five laser-cut mechanisms driven by one belt-and-pulley system with cams and linkages.</p>
-                        </div>
-                    </a>
-
-                    <a href="projects/farm-house.html" class="tile">
-                        <div class="tile__media">
-                            <img src="Pics/house.webp" alt="Laser-cut plywood miniature barn" width="500" height="500" loading="lazy" decoding="async">
-                        </div>
-                        <div class="tile__body">
-                            <h3 class="tile__title">Barn in a Box</h3>
-                            <p class="tile__text">Laser-cut plywood barn with working doors, five joint types and four fastening methods, from one sheet.</p>
-                        </div>
-                    </a>
+                <a href="projects/farm-house.html" class="card">
+                    <div class="card__media">
+                        <img src="Pics/house.webp" alt="Barn in a Box" loading="lazy" decoding="async" width="500" height="500">
+                    </div>
+                    <div class="card__overlay" aria-hidden="true">
+                        <h3>Barn in a Box</h3>
+                        <p class="card__meta">Fall 2024</p>
+                        <p class="card__text">Laser-cut plywood miniature barn with working doors, decorative engravings and architectural details. Five joint types and four fastening methods from a single sheet.</p>
+                    </div>
+                    <div class="card__caption">
+                        <h3>Barn in a Box</h3>
+                        <p class="card__meta">Fall 2024</p>
+                    </div>
+                </a>
                 </div>
             </div>
         </section>
 
-        <section class="section section--tight" id="contact">
-            <div class="container">
-                <p class="hero__lede mt-0">Want to talk about robotics, automation or hardware startups? Email <a href="mailto:kilanrou@gmail.com">kilanrou@gmail.com</a> or use the <a href="contact.html">contact form</a>.</p>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
-        <div class="container footer__inner">
+        <div class="container container--wide footer__inner">
             <span>&copy; <span data-year>2026</span> Kilan Rougeot</span>
             <ul class="footer__links">
                 <li><a href="index.html">Home</a></li>
@@ -290,7 +357,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=2.1"></script>
+    <script src="script.js?v=2.2"></script>
 </body>
 
 </html>
