@@ -326,7 +326,7 @@
         var sizeStack = function () {
             if (!stack || !stage) return;
             var w = stage.getBoundingClientRect().width || 900;
-            stack.style.setProperty('--persp', (w * 1.0157) + 'px');   /* fitted: perspective = 1.0157 x stage width */
+            stack.style.setProperty('--persp', (w * 1.0694) + 'px');   /* fitted: perspective = 1.0157 x stage width */
             stack.style.setProperty('--unit', (w / 900) + 'px');
         };
         sizeStack();
@@ -337,7 +337,7 @@
                 var sp = stackEnd > 0 ? Math.min(1, p / stackEnd) : 1;
                 stack.style.setProperty('--p', String(1 - sp));
                 var fadeIn = sp < 0.7 ? 0 : Math.min(1, (sp - 0.7) / 0.3);   /* render fades in on top of the collapsed stack */
-                stack.style.opacity = '1';
+                stack.style.opacity = sp >= 1 ? '0' : '1';
                 stack.classList.toggle('is-hidden', sp >= 1);
                 canvas.style.opacity = sp >= 1 ? '' : String(fadeIn);
             }
