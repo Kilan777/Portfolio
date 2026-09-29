@@ -309,9 +309,9 @@
             current = i; currentMix = mix;
             canvas.classList.add('is-ready');
         };
-        var setCaption = function (i) {
+        var setCaption = function (i, stackVisible) {
             var step = 0;
-            steps.forEach(function (s, k) { if (i >= s) step = k + 1; });
+            if (!stackVisible) steps.forEach(function (s, k) { if (i >= s) step = k + 1; });
             captions.forEach(function (c, k) { c.classList.toggle('is-active', k === Math.min(step, captions.length - 1)); });
         };
         var progress = function () {
@@ -320,11 +320,22 @@
             if (total <= 0) return 1;
             return Math.min(1, Math.max(0, -r.top / total));
         };
+        var stack = el.querySelector('.stack');
+        var stackEnd = parseFloat(el.getAttribute('data-stack-until')) || 0;
         var render = function () {
             var p = progress();
             if (p > 0.01) el.classList.add('is-started');
-            var i = Math.min(n - 1, Math.floor(p * n));
-            setCaption(i);
+            if (stack) {
+                var sp = stackEnd > 0 ? Math.min(1, p / stackEnd) : 1;
+                stack.style.setProperty('--p', String(1 - sp));
+                var fade = sp < 0.7 ? 1 : Math.max(0, (1 - sp) / 0.3);   /* stack fades out over the last 30% while the render fades in */
+                stack.style.opacity = String(fade);
+                stack.classList.toggle('is-hidden', sp >= 1);
+                canvas.style.opacity = sp >= 1 ? '' : String(1 - fade);
+            }
+            var q = stackEnd > 0 ? Math.max(0, (p - stackEnd) / (1 - stackEnd)) : p;
+            var i = Math.min(n - 1, Math.floor(q * n));
+            setCaption(i, stack && stackEnd > 0 && p < stackEnd);
             var go = function () { draw(i); };
             if (frames[i] && frames[i].complete) {
                 if (fullTpl && i >= fullFrom && !(fulls[i] && fulls[i].complete)) loadInto(fulls, fullTpl.replace('{i}', pad3(i)), i, go);
@@ -340,7 +351,7 @@
                 if (fullTpl) loadInto(fulls, fullTpl.replace('{i}', pad3(last)), last, function () { draw(last); });
                 else draw(last);
             });
-            setCaption(last);
+            setCaption(last, false);
             return;
         }
 

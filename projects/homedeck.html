@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/homedeck.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=3.2">
+    <link rel="stylesheet" href="../styles.css?v=3.3">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/homedeck.html">
@@ -28,7 +28,7 @@
       "url": "https://kilanrou.com/projects/homedeck.html",
       "image": "https://kilanrou.com/projects/homedeck-pics/board_top.png",
       "dateCreated": "2026-09",
-      "keywords": ["PCB design", "KiCad", "Raspberry Pi Compute Module 4", "JLCPCB", "USB-C Power Delivery", "voice assistant", "air quality sensor", "Python", "echo cancellation"],
+      "keywords": ["PCB design", "KiCad", "Raspberry Pi Compute Module 4", "JLCPCB", "USB-C Power Delivery", "voice assistant", "air quality sensor", "Python", "C++", "autorouter", "Onshape", "3D printing", "echo cancellation"],
       "author": { "@type": "Person", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" },
       "isPartOf": { "@type": "WebSite", "name": "Kilan Rougeot", "url": "https://kilanrou.com/" }
     }
@@ -71,19 +71,34 @@
         </section>
 
         <div class="container detail-lead">
-            <div class="scrolly" data-scrolly data-frames="72" data-src="homedeck-pics/turntable/bare/{i}.webp" data-full="homedeck-pics/turntable/full/{i}.webp" data-full-from="54" data-steps="18,36,54" aria-label="3D view of the HomeDeck board">
+            <div class="scrolly" data-scrolly data-stack-until="0.16" data-frames="87" data-src="homedeck-pics/story/{i}.webp" data-steps="0,25,41,69,77" aria-label="3D view of the HomeDeck board">
                 <div class="scrolly__sticky">
-                    <canvas class="scrolly__canvas" width="900" height="750" role="img" aria-label="The HomeDeck carrier board, rotating"></canvas>
+                    <div class="stack" aria-hidden="true">
+                        <div class="stack__scene">
+                            <div class="stack__world">
+                                <div class="stack__layer"><img src="homedeck-pics/layers/b_top.webp" alt="" data-nofade width="1100" height="890" decoding="async"></div>
+                                <div class="stack__layer"><img src="homedeck-pics/layers/b_cu.webp" alt="" data-nofade width="1100" height="890" decoding="async"></div>
+                                <div class="stack__layer"><img src="homedeck-pics/layers/in2_cu.webp" alt="" data-nofade width="1100" height="890" loading="lazy" decoding="async"></div>
+                                <div class="stack__layer stack__layer--board"><img src="homedeck-pics/layers/edge_cuts.webp" alt="" data-nofade width="1100" height="890" loading="lazy" decoding="async"></div>
+                                <div class="stack__layer"><img src="homedeck-pics/layers/in1_cu.webp" alt="" data-nofade width="1100" height="890" loading="lazy" decoding="async"></div>
+                                <div class="stack__layer"><img src="homedeck-pics/layers/f_cu.webp" alt="" data-nofade width="1100" height="890" loading="lazy" decoding="async"></div>
+                                <div class="stack__layer"><img src="homedeck-pics/layers/f_top.webp" alt="" data-nofade width="1100" height="890" loading="lazy" decoding="async"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <canvas class="scrolly__canvas" width="900" height="771" role="img" aria-label="The HomeDeck carrier board, rotating"></canvas>
                     <div class="scrolly__caption">
-                        <span>The bare rev A board, straight from the fab.</span>
-                        <span>Flipping over: four layers, ENIG finish, 130 by 105 mm.</span>
-                        <span>The back: the CM4 sockets, the sensor tongue and the USB-C input.</span>
-                        <span>218 parts placed by the fab. Enclosure and photos coming next.</span>
+                        <span>Four copper layers, two masks, two silkscreens: the stack that makes the board.</span>
+                        <span>Top side: passives first, then the ICs, then connectors, buttons and the LED bar.</span>
+                        <span>Flipping over to the back.</span>
+                        <span>The back: 116 passives and the parts that sit against the display.</span>
+                        <span>The Compute Module 4 drops onto its two 100-pin sockets.</span>
+                        <span>Complete. Enclosure and photos next.</span>
                     </div>
                     <div class="scrolly__hint">Scroll</div>
                 </div>
             </div>
-            <noscript><img src="homedeck-pics/turntable/full/071.webp" alt="The populated HomeDeck carrier board" width="900" height="750" decoding="async"></noscript>
+            <noscript><img src="homedeck-pics/story/086.webp" alt="The populated HomeDeck carrier board with the Compute Module 4 fitted" width="900" height="771" decoding="async" loading="lazy"></noscript>
         </div>
 
         <article class="container prose">
@@ -143,10 +158,10 @@
                 exactly what the board was built from.
             </p>
             <p>
-                Placement and routing also went through a script. I wrote a negotiated-congestion grid router in C++ for the
-                project, then post-processed its output into conventional 0, 45 and 90 degree geometry with chamfered
-                corners, and length-matched every differential pair with small meanders on the shorter leg. All the DSI, CSI
-                and USB pairs ended up within 1.3 mm of each other, except the second USB-C port's data pair at 7.7 mm,
+                Placement and routing also went through a script: a grid router I wrote in C++ for the project, then
+                post-processing into conventional 0, 45 and 90 degree geometry with chamfered corners, and length matching
+                of every differential pair with small meanders on the shorter leg. The next section describes those tools.
+                All the DSI, CSI and USB pairs ended up within 1.3 mm of each other, except the second USB-C port's data pair at 7.7 mm,
                 which the receptacle's interleaved pads made impossible to match automatically. That is about 2.5 percent of a
                 USB high-speed bit, so it works, but it is the first thing I would tidy by hand.
             </p>
@@ -171,7 +186,7 @@
             <div class="media-row">
                 <figure class="media">
                     <div class="media__frame">
-                        <img src="homedeck-pics/kicad_all_layers.webp" alt="The HomeDeck board in the KiCad PCB editor with all four copper layers, silkscreen and outline visible" width="1800" height="1485" decoding="async">
+                        <img src="homedeck-pics/kicad_all_layers.webp" alt="The HomeDeck board in the KiCad PCB editor with all four copper layers, silkscreen and outline visible" width="1800" height="1485" decoding="async" loading="lazy">
                     </div>
                     <figcaption>All four copper layers in the KiCad editor: the CM4 fan-out in the middle, power on the right, the LED bar and buttons along the top.</figcaption>
                 </figure>
@@ -198,6 +213,78 @@
                 </figure>
             </div>
 
+            <h2>The tools I built</h2>
+            <p>
+                The board was not drawn in KiCad, it was generated. Everything in <code>tools/</code>, about 4,000 lines of
+                Python and C++, exists to turn one circuit description into a schematic, a placed and routed board and a set
+                of fab files, and to do it again from scratch whenever the circuit changed. The pipeline is four commands:
+                <code>gen_lib.py</code>, <code>gen_sch.py</code>, <code>route.py</code> and <code>export.py</code>. The
+                routing step rebuilds an unrouted board every time and takes 20 to 40 minutes.
+            </p>
+            <p>
+                It starts with <code>circuit.py</code>: every part with its LCSC number, connected pin by pin to named nets
+                through a small netlist model that looks the pins up in KiCad's own symbol libraries, so a wrong pin name
+                fails before anything is drawn. From there <code>gen_lib.py</code> writes the project symbols and footprints
+                KiCad does not ship (the CM4 socket pair, the PD controller, the amplifier, the USB mux and switches, the
+                BME688, the FPC connectors), <code>gen_sch.py</code> writes the nine-sheet schematic with a global label on
+                every pin, and <code>gen_pcb.py</code> builds the board: outline and mounting holes, the placement (the main
+                parts have coordinates in the script, each passive is put next to the chip it belongs to, and a legaliser
+                pushes overlapping courtyards apart), the CM4 fan-out stubs and vias, the rule areas and the power planes.
+            </p>
+            <p>
+                The router is the part I am proudest of. KiCad has no autorouter, only its interactive push-and-shove router,
+                and since the board is rebuilt from scratch by a script, anything routed by hand would have been thrown away
+                on the next regeneration. I also wanted rules KiCad's tools do not know about: the fan-out areas, power nets
+                that drop to the inner planes instead of being routed, and a reserved exit direction for every fine pad.
+                <code>route.py</code> exports the problem as JSON (pad polygons, plane outlines, per-net widths and
+                clearances, the fourteen differential pairs and those short "escape strips") and hands it to
+                <code>router.cpp</code>, a negotiated-congestion grid router in the PathFinder style. It is in C++ because
+                the grid is 0.1 mm over a 130 by 105 mm board on two signal layers, about 1.4 million cells per layer. Each
+                net is routed with A* against hard obstacles (pads, keepouts, the escape strips) and soft ones (other nets'
+                copper, which only costs a penalty); then every net that overlaps another is ripped up and rerouted with a
+                history cost on the contested cells, and the loop repeats until the conflicts are gone. Power nets end in
+                vias down to their plane, and each leg of a differential pair is pulled toward its partner's path. An earlier
+                version, <code>router_v1.cpp</code>, was plain A* without the negotiation; the second one replaced it. Back
+                in Python, <code>route.py</code> imports the tracks and vias, fills the zones, runs KiCad's DRC from the
+                command line and reroutes any unconnected ground pads as plane drops until the report is clean. The final
+                board has 160 nets, 0 DRC errors and 0 unconnected items.
+            </p>
+            <p>
+                The raw router output looks like a staircase, so a set of post-processing scripts turns it into what a person
+                would have drawn, each one checking clearance against a shared geometry model before it touches anything.
+                Then the pairs are measured and tuned, the ground pours are stitched, and the fab files are written.
+            </p>
+
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr><th>Tool</th><th>What it does</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>circuit.py</code>, <code>netlist.py</code>, <code>kilib.py</code></td><td>The circuit: every part, its LCSC number and its pin-to-net connections, checked against KiCad's symbol libraries.</td></tr>
+                        <tr><td><code>gen_lib.py</code></td><td>Project symbols and footprints that KiCad does not ship.</td></tr>
+                        <tr><td><code>gen_sch.py</code></td><td>The nine-sheet hierarchical schematic, label style, one global label per pin.</td></tr>
+                        <tr><td><code>gen_pcb.py</code></td><td>Outline, holes, placement and legaliser, CM4 fan-out, rule areas, planes, and the custom DRC rules file.</td></tr>
+                        <tr><td><code>route.py</code>, <code>router.cpp</code></td><td>Routing problem export, the C++ negotiated-congestion router, import, zone fill, DRC and the repair passes.</td></tr>
+                        <tr><td><code>straighten.py</code>, <code>octilinear.py</code>, <code>merge_collinear.py</code>, <code>chamfer.py</code></td><td>Staircases to straight and 45 degree runs, collinear pieces merged, right angles chamfered, only where the new copper is clear.</td></tr>
+                        <tr><td><code>obstacles.py</code></td><td>The shared clearance model (shapely geometry in an R-tree) the post-processing scripts check against.</td></tr>
+                        <tr><td><code>skew.py</code>, <code>pathlen.py</code>, <code>tune_pairs.py</code></td><td>Length report for the 14 pairs, signal-path length through the ESD parts, and meander bumps on the shorter leg to within 0.25 mm where there is room.</td></tr>
+                        <tr><td><code>gnd_islands.py</code>, <code>gnd_stitch.py</code>, <code>gnd_stitch2.py</code>, <code>via_grid.py</code></td><td>Find every patch of pour with no path to the ground plane, give each a via, then lay a 5 mm grid of stitching vias over the open pour.</td></tr>
+                        <tr><td><code>freespot.py</code>, <code>place_fp.py</code>, <code>partial.py</code></td><td>Find a clear spot for a footprint near a target, move it there, and route a few nets with everything else fixed.</td></tr>
+                        <tr><td><code>export.py</code>, <code>render.py</code></td><td>Gerbers and drill files, the JLCPCB BOM and placement file with per-package rotation corrections, the schematic PDF and the board renders.</td></tr>
+                        <tr><td><code>manual_fix.py</code>, <code>c2_manual.py</code>, <code>dump.py</code>, <code>clearchk.py</code>, <code>try_*.py</code></td><td>One-offs: a handful of hand-specified tracks and vias (including the second USB-C pair), debugging dumps around a pad, and reroute experiments that measure skew and DRC, then keep or revert.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                I wrote these tools with Claude as a pair programmer. I described what each step had to do and what the
+                fab and the datasheets required, ran the result against the board, read the DRC report, the skew table and
+                the renders, and went back with what was wrong; the code came out of that loop, over many rounds. The
+                one-offs in the last row are honest about where automation stopped: five ground vias, a moved resistor and
+                one USB pair were placed by coordinates, and the experiments were how I found out which reroutes helped.
+            </p>
+
             <h2>Build</h2>
             <p>
                 The boards were made and assembled by JLCPCB: four layers, 1.6 mm, ENIG, and two-sided "Standard" assembly
@@ -209,6 +296,13 @@
                 whether its orientation matters and where its pin 1, cathode band or plus mark has to sit. The tactile switches
                 are the trap there: a 90 degree error shorts the button permanently.
             </p>
+
+            <figure class="media">
+                <div class="media__frame media__frame--white">
+                    <img src="homedeck-pics/jlc_assembly_preview.webp" alt="JLCPCB assembly preview of the HomeDeck board with every placed part outlined on the top side" width="1800" height="1471" loading="lazy" decoding="async">
+                </div>
+                <figcaption>JLCPCB's assembly preview of the top side: every part it will place, checked against my orientation list before the order went in.</figcaption>
+            </figure>
             <p>
                 Bring-up followed a checklist: resistance from each rail to ground with no CM4 fitted, then the PD charger
                 alone to check the 15 V input and 5.0 to 5.2 V on the three rails, then the module. The eMMC was flashed
@@ -318,6 +412,36 @@
 
             <!-- TODO: photo of the screen in use in the room -->
 
+            <h2>Enclosure</h2>
+            <p>
+                The enclosure is the mechanical engineering part of the project. I exported the populated board from KiCad
+                as a STEP model and designed the case around it in Onshape. The constraints were set before I opened the CAD:
+                a 130 x 105 mm board sitting on the four M2.5 standoffs of the 7-inch Touch Display 2, bottom side toward the
+                back of the panel, with 3 to 4 mm standoffs setting the gap because the bottom side only carries parts about
+                a millimetre tall; the CM4, its heatsink and everything tall on the far side; and every external connector
+                on one board edge. The case is a front part that holds the display behind its bezel and a back cover over
+                the board, in landscape, so that the sensors sit beside the CM4 rather than above it in its rising warm air.
+            </p>
+            <p>
+                Most openings were dictated by the board. The sensor tongue at the board edge has two routed slots for
+                thermal isolation, and the case is open there so the SCD40 and BME688 read the room rather than the inside of
+                the box. The BH1750 light sensor is on a lead from its header so it can sit behind the bezel where it sees
+                light, and the camera module sits in the bezel on its ribbon. The two microphones are bottom-ported and
+                listen up through 1 mm holes in the board, so the case needs matching holes at the top corners. The two
+                small speakers, the fan and the USB-C connectors on the bottom edge each get their own opening, and the
+                CM4 heatsink needs the fan to move air over it and out. The light does not come from the on-board LED bar;
+                an external WS2812B strip on the strip header does that, seventy LEDs in one chain, and the software maps
+                which of them are visible through the case. The power button is wired to its panel header; the two other
+                button headers were clipped off to make room.
+            </p>
+            <p>
+                The case is 3D printed on a Bambu Lab printer in several pieces at 0.24 mm layers, with supports where the
+                overhangs need them. The 3MF files sit alongside the KiCad project. Renders and photos are next.
+            </p>
+            <!-- TODO: enclosure render/photos -->
+            <!-- TODO: photos of the device in the enclosure (front, back, sides) -->
+            <!-- TODO: the Onshape model still lacks the LEDs, the button and the bolts -->
+
             <h2>What I learned</h2>
 
             <h3>PCB design</h3>
@@ -345,28 +469,26 @@
 
             <h3>Working with AI</h3>
             <p>
-                I used AI tools to help me design, debug and learn this project, and I am not ashamed of it. They helped me
-                write the circuit generator and the assistant software, read datasheets I had never opened, review the design
-                against them before I ordered, and work through the PD inrush and the audio chain when the boards were on the
-                bench. What they could not do was hold the board, reseat a
-                ribbon, notice the rail that came alive when I picked the board up, or decide what the device should be. The
-                design decisions, the mistakes in the rev A table and the fixes are mine. I know the circuit well enough now
-                to explain every block on it, which was the point.
+                I used Claude throughout this project, and I am not ashamed of it. The toolchain described above, from
+                <code>circuit.py</code> to the C++ router and the export scripts, was written with it as a pair programmer:
+                I said what each step had to do, ran it against the board, read the DRC report and the skew table, and came
+                back with what broke. It also helped me write the assistant software, read datasheets I had never opened,
+                review the design against them before I ordered, and work through the PD inrush and the audio chain when the
+                boards were on the bench. What it could not do was hold the board, reseat a ribbon, notice the rail that came
+                alive when I picked the board up, model the case, or decide what the device should be. The design decisions,
+                the bench work, the CAD, the mistakes in the rev A table and the fixes are mine. I know the circuit well
+                enough now to explain every block on it, which was the point.
             </p>
 
-            <h2>Enclosure</h2>
-            <p>
-                The enclosure is 3D-printed and exists as STEP and 3MF files. It holds the display with the board on its
-                standoffs behind it, in landscape, with the CM4 heatsink given airflow. The board's layout dictates most of
-                its openings: vent slots by the sensor tongue at the board edge, a light pipe or window for the BH1750 behind
-                the bezel, gasketed holes at the top corners for the two microphones, which are bottom-ported and listen up
-                through the board, and clearance for the connectors along the bottom edge. The on-board LED bar is not used
-                in the enclosure; an external WS2812B strip on the strip header is, seventy LEDs in one chain, and the
-                software maps which of them are visible through the case. The board-to-display spacing is set by the 1.5 mm
-                CM4 socket stack and the display's standoffs.
-            </p>
-            <!-- TODO: enclosure render/photos -->
-            <!-- TODO: photos of the device in the enclosure (front, back, sides) -->
+            <h3>Skills used</h3>
+            <ul>
+                <li>PCB design in KiCad 7: a four-layer stack-up with split power planes, fan-out under a 0.4 mm pitch connector, DSI, CSI and USB 2.0 differential pairs, and a power tree from USB-C PD through three bucks and an LDO.</li>
+                <li>Embedded Linux on the CM4: Raspberry Pi OS, device-tree overlays, ALSA, systemd services, a Chromium kiosk.</li>
+                <li>Python and C++ tooling: the KiCad generation scripts on the pcbnew API, shapely geometry for the post-processing, the C++ grid router.</li>
+                <li>CAD in Onshape and 3D printing on Bambu Lab printers.</li>
+                <li>Bring-up and bench debugging: rail resistance and voltage checks, a serial console, and turning what the boards did into the rev B list.</li>
+                <li>Fab and assembly ordering: JLCPCB BOM and placement files, part selection against stock and the Basic and Extended libraries, part-by-part orientation checks in the placement preview.</li>
+            </ul>
 
             <h2>What I would do differently</h2>
             <ul>
@@ -399,7 +521,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=3.2"></script>
+    <script src="../script.js?v=3.3"></script>
 </body>
 
 </html>
