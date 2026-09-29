@@ -1186,15 +1186,20 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
     .scrolly__hint { display: none; }
 }
 
-/* Exploded layer stack shown before the frame sequence (HomeDeck lead). --p goes 1 (exploded) -> 0 (collapsed). */
-.stack { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 1; transition: opacity 0.35s var(--ease); }
-.stack.is-hidden { opacity: 0; }
-.stack__scene { position: relative; width: min(100%, 900px); aspect-ratio: 1100 / 890; perspective: 1400px; }
-.stack__world { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--tilt, 57deg)) rotateZ(var(--yaw, 20deg)) scale(0.86); }
-.stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * var(--p, 1) * 1px)); opacity: calc(0.35 + 0.65 * var(--p, 1)); }
+/* Exploded layer stack shown before the frame sequence (HomeDeck lead).
+   The stack sits in the same box as the canvas; its camera was fitted numerically to the first render frame.
+   --p goes 1 (exploded) -> 0 (collapsed). JS sets --persp and --unit from the stage width. */
+.scrolly__stage { position: relative; width: min(100%, 980px); }
+.scrolly__stage .scrolly__canvas { width: 100%; }
+.stack { position: absolute; inset: 0; pointer-events: none; }
+.stack__scene { position: absolute; inset: 0; perspective: var(--persp, 900px); }
+.stack__world {
+    position: absolute; inset: 0; transform-style: preserve-3d;
+    transform: translate(1.99%, -0.65%) rotateX(32.9deg) rotateZ(-18.2deg) scale(0.662);
+}
+.stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * var(--p, 1) * var(--unit, 1px))); opacity: calc(0.35 + 0.65 * var(--p, 1)); }
 .stack__layer img { width: 100%; height: 100%; display: block; opacity: 1 !important; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18)); }
-.stack__layer--board { background: #0b5b3a; border-radius: 6px; box-shadow: 0 30px 40px rgba(20, 30, 45, 0.25); opacity: 1; }
-.stack__label { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotateZ(calc(-1 * var(--yaw, -20deg))) rotateX(calc(-1 * var(--tilt, 52deg))); font-size: 13px; color: var(--text-3); white-space: nowrap; opacity: var(--p, 1); }
+.stack__layer--board { background: #0b5b3a; border-radius: 6px; box-shadow: 0 30px 40px rgba(20, 30, 45, 0.25); opacity: 1 !important; }
 .stack__layer:nth-child(1) { --z: -150; }   /* bottom silk + mask */
 .stack__layer:nth-child(2) { --z: -110; }   /* B.Cu */
 .stack__layer:nth-child(3) { --z: -60; }    /* In2.Cu */
@@ -1202,5 +1207,3 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .stack__layer:nth-child(5) { --z: 20; }     /* In1.Cu */
 .stack__layer:nth-child(6) { --z: 70; }     /* F.Cu */
 .stack__layer:nth-child(7) { --z: 120; }    /* top mask + silk */
-.stack__layer--board { opacity: 1 !important; }
-@media (max-width: 640px) { .stack__world { transform: rotateX(var(--tilt, 57deg)) rotateZ(var(--yaw, 20deg)) scale(0.6); } .stack__scene { transform: translateY(-6%); } }

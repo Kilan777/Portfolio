@@ -322,6 +322,14 @@
         };
         var stack = el.querySelector('.stack');
         var stackEnd = parseFloat(el.getAttribute('data-stack-until')) || 0;
+        var stage = el.querySelector('.scrolly__stage');
+        var sizeStack = function () {
+            if (!stack || !stage) return;
+            var w = stage.getBoundingClientRect().width || 900;
+            stack.style.setProperty('--persp', (w * 1.0157) + 'px');   /* fitted: perspective = 1.0157 x stage width */
+            stack.style.setProperty('--unit', (w / 900) + 'px');
+        };
+        sizeStack();
         var render = function () {
             var p = progress();
             if (p > 0.01) el.classList.add('is-started');
@@ -372,7 +380,7 @@
             requestAnimationFrame(function () { render(); ticking = false; });
         };
         window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
+        window.addEventListener('resize', function () { sizeStack(); onScroll(); });
     });
 
     /* debug: ?scroll=N jumps to a scroll offset after load (used for screenshots) */
