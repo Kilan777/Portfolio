@@ -1035,7 +1035,7 @@ a.card:hover .card__media > img:not(.card__logo) { transform: scale(1.03); }
     position: absolute;
     top: 12px; right: 12px;
     z-index: 2;
-    height: 48px; width: auto; max-width: 140px;
+    height: 48px; width: 120px;
     object-fit: contain;
     background: rgba(255, 255, 255, 0.94);
     border: 1px solid var(--line);
@@ -1084,7 +1084,7 @@ a.card:hover .card__overlay, a.card:focus-visible .card__overlay { opacity: 1; }
     .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .card { border-radius: 10px; }
     .card__media { padding: 10px; }
-    .card__logo { height: 32px; max-width: 96px; top: 8px; right: 8px; padding: 3px 5px; }
+    .card__logo { height: 34px; width: 84px; top: 8px; right: 8px; padding: 3px 5px; }
     .card__status { top: 8px; left: 8px; font-size: 10px; padding: 3px 7px; }
     .card__caption { padding: 8px 10px 10px; }
     .card__caption h3 { font-size: 13.5px; }
@@ -1197,7 +1197,7 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
     position: absolute; inset: 0; transform-style: preserve-3d;
     transform: translate(1.99%, -0.65%) rotateX(32.9deg) rotateZ(-18.2deg) scale(0.662);
 }
-.stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * var(--p, 1) * var(--unit, 1px))); opacity: calc(0.35 + 0.65 * var(--p, 1)); }
+.stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * (0.015 + 0.985 * var(--p, 1)) * var(--unit, 1px))); }
 .stack__layer img { width: 100%; height: 100%; display: block; opacity: 1 !important; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18)); }
 .stack__layer--board { background: #0b5b3a; border-radius: 6px; box-shadow: 0 30px 40px rgba(20, 30, 45, 0.25); opacity: 1 !important; }
 .stack__layer:nth-child(1) { --z: -150; }   /* bottom silk + mask */
