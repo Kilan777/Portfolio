@@ -1203,3 +1203,4 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .stack__layer:nth-child(6) { --z: 70; }     /* F.Cu */
 .stack__layer:nth-child(7) { --z: 120; }    /* top mask + silk */
 .stack__layer--board { opacity: 1 !important; }
+@media (max-width: 640px) { .stack__world { transform: rotateX(var(--tilt, 57deg)) rotateZ(var(--yaw, 20deg)) scale(0.6); } .stack__scene { transform: translateY(-6%); } }
