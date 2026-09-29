@@ -336,10 +336,10 @@
             if (stack) {
                 var sp = stackEnd > 0 ? Math.min(1, p / stackEnd) : 1;
                 stack.style.setProperty('--p', String(1 - sp));
-                var fade = sp < 0.7 ? 1 : Math.max(0, (1 - sp) / 0.3);   /* stack fades out over the last 30% while the render fades in */
-                stack.style.opacity = String(fade);
+                var fadeIn = sp < 0.7 ? 0 : Math.min(1, (sp - 0.7) / 0.3);   /* render fades in on top of the collapsed stack */
+                stack.style.opacity = '1';
                 stack.classList.toggle('is-hidden', sp >= 1);
-                canvas.style.opacity = sp >= 1 ? '' : String(1 - fade);
+                canvas.style.opacity = sp >= 1 ? '' : String(fadeIn);
             }
             var q = stackEnd > 0 ? Math.max(0, (p - stackEnd) / (1 - stackEnd)) : p;
             var i = Math.min(n - 1, Math.floor(q * n));

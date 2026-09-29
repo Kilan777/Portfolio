@@ -1190,7 +1190,7 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
    The stack sits in the same box as the canvas; its camera was fitted numerically to the first render frame.
    --p goes 1 (exploded) -> 0 (collapsed). JS sets --persp and --unit from the stage width. */
 .scrolly__stage { position: relative; width: min(100%, 980px); }
-.scrolly__stage .scrolly__canvas { width: 100%; }
+.scrolly__stage .scrolly__canvas { width: 100%; position: relative; z-index: 2; }
 .stack { position: absolute; inset: 0; pointer-events: none; }
 .stack__scene { position: absolute; inset: 0; perspective: var(--persp, 900px); }
 .stack__world {
