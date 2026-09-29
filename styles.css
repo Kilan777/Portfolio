@@ -32,7 +32,7 @@
     --prose: 880px;
     --figure: 1100px;
     --gutter: clamp(20px, 4vw, 48px);
-    --nav-h: 56px;
+    --nav-h: 72px;
     --radius: 12px;
     --radius-sm: 8px;
 
@@ -175,6 +175,7 @@ h1, h2, h3, h4 {
 .nav.is-open .nav__toggle span:nth-child(2) { top: 19.5px; transform: rotate(-45deg); }
 
 @media (max-width: 768px) {
+    :root { --nav-h: 60px; }
     .nav__toggle { display: block; }
     .nav__links {
         position: fixed;
