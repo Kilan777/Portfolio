@@ -261,47 +261,57 @@
     }
 
 
-    /* ---------------- Scroll-driven frame sequence ---------------- */
+    /* ---------------- Scroll-driven frame sequence ----------------
+       <div class="scrolly" data-scrolly data-frames="72" data-src="…/bare/{i}.webp"
+            data-full="…/full/{i}.webp" data-full-from="54">
+       Frame i of the bare board is shown for scroll progress i/N. From data-full-from on,
+       the matching populated frame is blended in, so components appear during the last phase. */
     document.querySelectorAll('[data-scrolly]').forEach(function (el) {
         var canvas = el.querySelector('canvas');
         if (!canvas || !canvas.getContext) return;
         var ctx = canvas.getContext('2d');
         var n = parseInt(el.getAttribute('data-frames'), 10) || 1;
         var tpl = el.getAttribute('data-src');
-        var finalSrc = el.getAttribute('data-final');
-        var turnEnd = 0.78;                     /* scroll fraction where the turntable stops */
-        var frames = new Array(n);
-        var finalImg = null;
+        var fullTpl = el.getAttribute('data-full');
+        var fullFrom = parseInt(el.getAttribute('data-full-from'), 10);
+        if (isNaN(fullFrom)) fullFrom = n;
+        var frames = new Array(n), fulls = new Array(n);
         var current = -1, currentMix = -1;
         var captions = el.querySelectorAll('.scrolly__caption > span');
+        var steps = (el.getAttribute('data-steps') || '').split(',').map(function (v) { return parseInt(v, 10); }).filter(function (v) { return !isNaN(v); });
 
-        var src = function (i) { return tpl.replace('{i}', String(i).padStart(3, '0')); };
-        var load = function (i, cb) {
-            if (frames[i]) { if (frames[i].complete) cb && cb(); return; }
+        var pad3 = function (i) { return String(i).padStart(3, '0'); };
+        var loadInto = function (arr, url, i, cb) {
+            if (arr[i]) { if (arr[i].complete) cb && cb(); return; }
             var img = new Image();
             img.decoding = 'async';
-            img.src = src(i);
-            frames[i] = img;
+            img.src = url;
+            arr[i] = img;
             img.onload = function () { cb && cb(); };
         };
-        var draw = function (i, mix) {
+        var mixFor = function (i) {
+            if (!fullTpl || i < fullFrom) return 0;
+            var span = Math.max(1, n - 1 - fullFrom);
+            return Math.min(1, (i - fullFrom) / span);
+        };
+        var draw = function (i) {
             var img = frames[i];
             if (!img || !img.complete || !img.naturalWidth) return;
+            var mix = mixFor(i);
+            var full = fulls[i];
+            if (mix > 0 && !(full && full.complete && full.naturalWidth)) mix = 0;
             if (canvas.width !== img.naturalWidth) { canvas.width = img.naturalWidth; canvas.height = img.naturalHeight; }
             if (i === current && mix === currentMix) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.globalAlpha = 1;
             ctx.drawImage(img, 0, 0);
-            if (mix > 0 && finalImg && finalImg.complete && finalImg.naturalWidth) {
-                ctx.globalAlpha = mix;
-                ctx.drawImage(finalImg, 0, 0, canvas.width, canvas.height);
-                ctx.globalAlpha = 1;
-            }
+            if (mix > 0) { ctx.globalAlpha = mix; ctx.drawImage(full, 0, 0, canvas.width, canvas.height); ctx.globalAlpha = 1; }
             current = i; currentMix = mix;
             canvas.classList.add('is-ready');
         };
-        var setCaption = function (p) {
-            var step = p < 0.05 ? 0 : (p < turnEnd ? 1 : 2);
+        var setCaption = function (i) {
+            var step = 0;
+            steps.forEach(function (s, k) { if (i >= s) step = k + 1; });
             captions.forEach(function (c, k) { c.classList.toggle('is-active', k === Math.min(step, captions.length - 1)); });
         };
         var progress = function () {
@@ -313,28 +323,35 @@
         var render = function () {
             var p = progress();
             if (p > 0.01) el.classList.add('is-started');
-            var t = Math.min(1, p / turnEnd);
-            var i = Math.min(n - 1, Math.floor(t * n)) % n;
-            var mix = p <= turnEnd ? 0 : Math.min(1, (p - turnEnd) / (1 - turnEnd));
-            mix = Math.round(mix * 20) / 20;
-            setCaption(p);
-            if (frames[i] && frames[i].complete) draw(i, mix);
-            else load(i, function () { draw(i, mix); });
+            var i = Math.min(n - 1, Math.floor(p * n));
+            setCaption(i);
+            var go = function () { draw(i); };
+            if (frames[i] && frames[i].complete) {
+                if (fullTpl && i >= fullFrom && !(fulls[i] && fulls[i].complete)) loadInto(fulls, fullTpl.replace('{i}', pad3(i)), i, go);
+                go();
+            } else {
+                loadInto(frames, tpl.replace('{i}', pad3(i)), i, go);
+            }
         };
 
         if (reduceMotion) {
-            /* static: show the populated board */
-            var one = new Image(); one.src = finalSrc || src(0);
-            one.onload = function () { finalImg = one; frames[0] = one; draw(0, 0); };
-            setCaption(1);
+            var last = n - 1;
+            loadInto(frames, tpl.replace('{i}', pad3(last)), last, function () {
+                if (fullTpl) loadInto(fulls, fullTpl.replace('{i}', pad3(last)), last, function () { draw(last); });
+                else draw(last);
+            });
+            setCaption(last);
             return;
         }
 
-        /* first frame first, then the rest in the background, then the final frame */
-        load(0, function () {
+        /* first frame first, then everything else in order in the background */
+        loadInto(frames, tpl.replace('{i}', pad3(0)), 0, function () {
             render();
             var k = 1;
-            var next = function () { if (k < n) { load(k++, next); } else if (finalSrc) { finalImg = new Image(); finalImg.decoding = 'async'; finalImg.src = finalSrc; finalImg.onload = function () { currentMix = -1; render(); }; } };
+            var next = function () {
+                if (k < n) { var i = k++; loadInto(frames, tpl.replace('{i}', pad3(i)), i, next); }
+                else if (fullTpl) { fullTpl && (function loadFull(j) { if (j >= n) return; loadInto(fulls, fullTpl.replace('{i}', pad3(j)), j, function () { if (j === current) { currentMix = -1; draw(j); } loadFull(j + 1); }); })(fullFrom); }
+            };
             next();
         });
         var ticking = false;

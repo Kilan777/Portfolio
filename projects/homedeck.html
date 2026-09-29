@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/homedeck.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=3.1">
+    <link rel="stylesheet" href="../styles.css?v=3.2">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/homedeck.html">
@@ -71,18 +71,19 @@
         </section>
 
         <div class="container detail-lead">
-            <div class="scrolly" data-scrolly data-frames="60" data-src="homedeck-pics/turntable/{i}.webp" data-final="homedeck-pics/turntable/final.webp" aria-label="3D turntable of the HomeDeck board">
+            <div class="scrolly" data-scrolly data-frames="72" data-src="homedeck-pics/turntable/bare/{i}.webp" data-full="homedeck-pics/turntable/full/{i}.webp" data-full-from="54" data-steps="18,36,54" aria-label="3D view of the HomeDeck board">
                 <div class="scrolly__sticky">
-                    <canvas class="scrolly__canvas" width="820" height="663" role="img" aria-label="The HomeDeck carrier board, rotating"></canvas>
+                    <canvas class="scrolly__canvas" width="900" height="750" role="img" aria-label="The HomeDeck carrier board, rotating"></canvas>
                     <div class="scrolly__caption">
                         <span>The bare rev A board, straight from the fab.</span>
-                        <span>Four layers, 130 by 105 mm, 218 parts to place.</span>
-                        <span>Populated. Enclosure and photos coming next.</span>
+                        <span>Flipping over: four layers, ENIG finish, 130 by 105 mm.</span>
+                        <span>The back: the CM4 sockets, the sensor tongue and the USB-C input.</span>
+                        <span>218 parts placed by the fab. Enclosure and photos coming next.</span>
                     </div>
                     <div class="scrolly__hint">Scroll</div>
                 </div>
             </div>
-            <noscript><img src="homedeck-pics/turntable/final.webp" alt="The populated HomeDeck carrier board" width="820" height="663" decoding="async"></noscript>
+            <noscript><img src="homedeck-pics/turntable/full/071.webp" alt="The populated HomeDeck carrier board" width="900" height="750" decoding="async"></noscript>
         </div>
 
         <article class="container prose">
@@ -169,25 +170,33 @@
 
             <div class="media-row">
                 <figure class="media">
-                    <div class="media__frame media__frame--contain">
-                        <img src="homedeck-pics/board_top.webp" alt="Render of the top copper layer of the HomeDeck board: CM4 sockets in the centre, buck converters on the right, LED bar and buttons along the top" width="2400" height="2020" loading="lazy" decoding="async">
+                    <div class="media__frame">
+                        <img src="homedeck-pics/kicad_all_layers.webp" alt="The HomeDeck board in the KiCad PCB editor with all four copper layers, silkscreen and outline visible" width="1800" height="1485" decoding="async">
                     </div>
-                    <figcaption>Top copper: CM4 sockets in the centre, the three bucks on the right, LED bar and buttons along the top edge.</figcaption>
+                    <figcaption>All four copper layers in the KiCad editor: the CM4 fan-out in the middle, power on the right, the LED bar and buttons along the top.</figcaption>
                 </figure>
                 <figure class="media">
-                    <div class="media__frame media__frame--contain">
-                        <img src="homedeck-pics/board_bottom.webp" alt="Render of the bottom copper layer of the HomeDeck board with the fan-out under the CM4 and the decoupling passives" width="2400" height="2020" loading="lazy" decoding="async">
+                    <div class="media__frame">
+                        <img src="homedeck-pics/kicad_front_copper.webp" alt="Front copper layer of the HomeDeck board in the KiCad editor" width="1800" height="1485" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>Bottom copper: the CM4 fan-out and the 116 passives that sit against the display.</figcaption>
+                    <figcaption>Front copper only. The two long rows of pads in the centre are the Hirose DF40C sockets for the CM4.</figcaption>
                 </figure>
             </div>
 
-            <figure class="media">
-                <div class="media__frame media__frame--contain media__frame--white">
-                    <img src="homedeck-pics/schematic_page1.webp" alt="Root sheet of the HomeDeck schematic showing the nine functional sub-sheets: power, cm4, usb, video, sd, audio, sensors, ui and mech" width="1819" height="1286" loading="lazy" decoding="async">
-                </div>
-                <figcaption>The root sheet of the generated schematic, with one sub-sheet per functional block.</figcaption>
-            </figure>
+            <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame media__frame--contain">
+                        <img src="homedeck-pics/render_top.webp" alt="3D render of the populated HomeDeck board from above" width="1568" height="1288" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Top side, rendered from the KiCad model: buttons and light bar along the top, the three bucks and the audio amplifier on the right.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame media__frame--contain">
+                        <img src="homedeck-pics/render_bottom.webp" alt="3D render of the HomeDeck board from below, showing the passives that face the display" width="1568" height="1288" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>Bottom side: the 116 passives that sit against the back of the display, and the sensor tongue at the top right.</figcaption>
+                </figure>
+            </div>
 
             <h2>Build</h2>
             <p>
@@ -390,7 +399,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=3.1"></script>
+    <script src="../script.js?v=3.2"></script>
 </body>
 
 </html>

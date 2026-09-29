@@ -1154,7 +1154,7 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
    Scroll-driven frame sequence (3D turntable lead on project pages)
    <div class="scrolly" data-scrolly data-frames="60" data-src="…/{i}.webp" data-final="…/final.webp">
    -------------------------------------------------------------------------- */
-.scrolly { position: relative; height: 240vh; margin: 8px 0 24px; }
+.scrolly { position: relative; height: 320vh; margin: 8px 0 24px; }
 .scrolly__sticky {
     position: sticky;
     top: var(--nav-h);
@@ -1176,7 +1176,7 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .scrolly.is-started .scrolly__hint { opacity: 0; }
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 @media (max-width: 640px) {
-    .scrolly { height: 200vh; }
+    .scrolly { height: 260vh; }
     .scrolly__canvas { filter: drop-shadow(0 16px 22px rgba(20, 30, 45, 0.22)); }
     .scrolly__caption { font-size: 14px; }
 }
