@@ -132,7 +132,7 @@ h1, h2, h3, h4 {
 }
 
 .nav__logo {
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--accent);
     white-space: nowrap;
@@ -147,7 +147,7 @@ h1, h2, h3, h4 {
 }
 
 .nav__link {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--text-2);
     transition: color 0.2s var(--ease);
     white-space: nowrap;
@@ -335,7 +335,7 @@ h1, h2, h3, h4 {
 .hero__title {
     font-size: clamp(40px, 6vw, 68px);
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.005em;
     line-height: 1.02;
     color: var(--accent);
 }
@@ -357,7 +357,7 @@ h1, h2, h3, h4 {
     max-width: 600px;
     text-wrap: pretty;
 }
-.hero__lede strong { color: var(--text); font-weight: 600; }
+.hero__lede strong { color: inherit; font-weight: 700; }
 
 .hero__actions {
     display: flex;
@@ -537,7 +537,7 @@ a.tile:hover .tile__media img { transform: scale(1.03); }
     margin-top: 14px;
     font-size: clamp(18px, 2vw, 21px);
     line-height: 1.4;
-    color: var(--text);
+    color: var(--text-2);
     max-width: 44ch;
     text-wrap: pretty;
 }
