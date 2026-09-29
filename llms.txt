@@ -9,7 +9,7 @@ Every page is plain semantic HTML with schema.org JSON-LD in the head. The `.pro
 ## Work experience
 
 - [AutoPallet Robotics](https://kilanrou.com/#experience): Founding Engineer (ongoing). YC-backed warehouse automation; mechanical design and mechatronic prototyping.
-- [Munchkin LLC](https://kilanrou.com/projects/munchkin.html): Co-founder and CEO (ongoing). Robotic assistive feeding device: 4-DOF arm, real-time face tracking, automatic utensil changer. Started as an Olin final project (Fall 2024); Olin SAG and SEED grants; two investors; interviewed with Y Combinator.
+- [Munchkin Robotics (Munchkin LLC)](https://kilanrou.com/projects/munchkin.html): Co-founder and CEO (ongoing). Robotic assistive feeding device: 4-DOF arm, real-time face tracking, automatic utensil changer. Started as an Olin final project (Fall 2024); Olin SAG and SEED grants; two investors; interviewed with Y Combinator.
 - [Kia (Hyundai Motor Group)](https://kilanrou.com/experience/kia.html): Engineering Intern, Summer 2025, Žilina, Slovakia. Led an automated robotic wheel-loading cell; PLC, robotic arm, Keyence vision and safety work across Press, Body, Paint, Assembly and Engine departments.
 - [AT Dev Inc](https://kilanrou.com/experience/at-dev.html): Robotics Engineering Intern. Assistive technology; leg brace with a novel fastening system, CNC and lathe work, FDA compliance.
 - [Astara](https://kilanrou.com/experience/astara.html): Data & Computer Science Intern. Python automation and scraping; 90%+ reduction in weekly reporting time.
