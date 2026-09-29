@@ -22,6 +22,7 @@ Every page is plain semantic HTML with schema.org JSON-LD in the head. The `.pro
 
 ## Projects
 
+- [HomeDeck](https://kilanrou.com/projects/homedeck.html): Raspberry Pi CM4 carrier PCB (KiCad, 4-layer, JLCPCB-assembled) with a 7-inch touchscreen, CO2/VOC sensors, stereo audio and a wake-word voice assistant; built to learn PCB design.
 - [Motorized beach wheelchair](https://kilanrou.com/projects/beach-wheelchair.html): Waterproof electric wheelchair for sand, under $1,500.
 - [DIY 3D scanner](https://kilanrou.com/projects/3d-scanner.html): Arduino pan-tilt IR scanner with Python point-cloud processing.
 - [Line follower robot](https://kilanrou.com/projects/line-follower.html): PD control with live tuning GUI; 100% success rate, 30-second laps.

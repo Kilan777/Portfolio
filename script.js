@@ -260,6 +260,97 @@
         window.addEventListener('pageshow', function (ev) { if (ev.persisted) document.body.classList.remove('is-leaving'); });
     }
 
+
+    /* ---------------- Scroll-driven frame sequence ---------------- */
+    document.querySelectorAll('[data-scrolly]').forEach(function (el) {
+        var canvas = el.querySelector('canvas');
+        if (!canvas || !canvas.getContext) return;
+        var ctx = canvas.getContext('2d');
+        var n = parseInt(el.getAttribute('data-frames'), 10) || 1;
+        var tpl = el.getAttribute('data-src');
+        var finalSrc = el.getAttribute('data-final');
+        var turnEnd = 0.78;                     /* scroll fraction where the turntable stops */
+        var frames = new Array(n);
+        var finalImg = null;
+        var current = -1, currentMix = -1;
+        var captions = el.querySelectorAll('.scrolly__caption > span');
+
+        var src = function (i) { return tpl.replace('{i}', String(i).padStart(3, '0')); };
+        var load = function (i, cb) {
+            if (frames[i]) { if (frames[i].complete) cb && cb(); return; }
+            var img = new Image();
+            img.decoding = 'async';
+            img.src = src(i);
+            frames[i] = img;
+            img.onload = function () { cb && cb(); };
+        };
+        var draw = function (i, mix) {
+            var img = frames[i];
+            if (!img || !img.complete || !img.naturalWidth) return;
+            if (canvas.width !== img.naturalWidth) { canvas.width = img.naturalWidth; canvas.height = img.naturalHeight; }
+            if (i === current && mix === currentMix) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = 1;
+            ctx.drawImage(img, 0, 0);
+            if (mix > 0 && finalImg && finalImg.complete && finalImg.naturalWidth) {
+                ctx.globalAlpha = mix;
+                ctx.drawImage(finalImg, 0, 0, canvas.width, canvas.height);
+                ctx.globalAlpha = 1;
+            }
+            current = i; currentMix = mix;
+            canvas.classList.add('is-ready');
+        };
+        var setCaption = function (p) {
+            var step = p < 0.05 ? 0 : (p < turnEnd ? 1 : 2);
+            captions.forEach(function (c, k) { c.classList.toggle('is-active', k === Math.min(step, captions.length - 1)); });
+        };
+        var progress = function () {
+            var r = el.getBoundingClientRect();
+            var total = r.height - window.innerHeight;
+            if (total <= 0) return 1;
+            return Math.min(1, Math.max(0, -r.top / total));
+        };
+        var render = function () {
+            var p = progress();
+            if (p > 0.01) el.classList.add('is-started');
+            var t = Math.min(1, p / turnEnd);
+            var i = Math.min(n - 1, Math.floor(t * n)) % n;
+            var mix = p <= turnEnd ? 0 : Math.min(1, (p - turnEnd) / (1 - turnEnd));
+            mix = Math.round(mix * 20) / 20;
+            setCaption(p);
+            if (frames[i] && frames[i].complete) draw(i, mix);
+            else load(i, function () { draw(i, mix); });
+        };
+
+        if (reduceMotion) {
+            /* static: show the populated board */
+            var one = new Image(); one.src = finalSrc || src(0);
+            one.onload = function () { finalImg = one; frames[0] = one; draw(0, 0); };
+            setCaption(1);
+            return;
+        }
+
+        /* first frame first, then the rest in the background, then the final frame */
+        load(0, function () {
+            render();
+            var k = 1;
+            var next = function () { if (k < n) { load(k++, next); } else if (finalSrc) { finalImg = new Image(); finalImg.decoding = 'async'; finalImg.src = finalSrc; finalImg.onload = function () { currentMix = -1; render(); }; } };
+            next();
+        });
+        var ticking = false;
+        var onScroll = function () {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(function () { render(); ticking = false; });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+    });
+
+    /* debug: ?scroll=N jumps to a scroll offset after load (used for screenshots) */
+    var sm = /[?&]scroll=(\d+)/.exec(location.search);
+    if (sm) { window.addEventListener('load', function () { setTimeout(function () { document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo(0, parseInt(sm[1], 10)); window.dispatchEvent(new Event('scroll')); }, 300); }); }
+
     /* ---------------- Footer year ---------------- */
     document.querySelectorAll('[data-year]').forEach(function (el) {
         el.textContent = new Date().getFullYear();

@@ -1149,3 +1149,39 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
     .hero__portrait { transform: none; }
     .card__overlay > * { transform: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Scroll-driven frame sequence (3D turntable lead on project pages)
+   <div class="scrolly" data-scrolly data-frames="60" data-src="…/{i}.webp" data-final="…/final.webp">
+   -------------------------------------------------------------------------- */
+.scrolly { position: relative; height: 240vh; margin: 8px 0 24px; }
+.scrolly__sticky {
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 18px;
+}
+.scrolly__canvas {
+    width: min(100%, 980px); height: auto;
+    filter: drop-shadow(0 30px 40px rgba(20, 30, 45, 0.22));
+    opacity: 0; transition: opacity 0.6s var(--ease);
+}
+.scrolly__canvas.is-ready { opacity: 1; }
+.scrolly__caption { position: relative; min-height: 1.6em; width: min(100%, 620px); text-align: center; font-size: 16px; color: var(--text-2); }
+.scrolly__caption > span { position: absolute; left: 0; right: 0; top: 0; opacity: 0; transform: translateY(6px); transition: opacity 0.35s var(--ease), transform 0.35s var(--ease); }
+.scrolly__caption > span.is-active { opacity: 1; transform: none; }
+.scrolly__hint { font-size: 13px; color: var(--text-3); letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; transition: opacity 0.3s; }
+.scrolly__hint::after { content: "↓"; display: inline-block; animation: nudge 1.6s var(--ease) infinite; }
+.scrolly.is-started .scrolly__hint { opacity: 0; }
+@keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+@media (max-width: 640px) {
+    .scrolly { height: 200vh; }
+    .scrolly__canvas { filter: drop-shadow(0 16px 22px rgba(20, 30, 45, 0.22)); }
+    .scrolly__caption { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .scrolly { height: auto; }
+    .scrolly__sticky { position: static; height: auto; padding: 24px 0; }
+    .scrolly__hint { display: none; }
+}
