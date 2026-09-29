@@ -972,7 +972,8 @@ a.tile:hover .tile__media img { transform: scale(1.03); }
 /* --------------------------------------------------------------------------
    Home page: wide container, underline section titles, hover cards
    -------------------------------------------------------------------------- */
-.container--wide { max-width: 1600px; }
+.container--wide { max-width: 1600px; padding-left: max(var(--gutter), 10vw); padding-right: max(var(--gutter), 10vw); }
+@media (max-width: 640px) { .container--wide { padding-left: var(--gutter); padding-right: var(--gutter); } }
 
 .section__title--rule {
     display: inline-block;
