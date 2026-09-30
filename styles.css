@@ -1219,3 +1219,5 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .screen-live__clock { position: absolute; left: 34px; top: 22px; font-size: 156px; font-weight: 640; letter-spacing: -0.07em; line-height: 0.9; white-space: nowrap; font-variation-settings: "opsz" 32, "wght" 640; }
 .screen-live__clock span { font-size: 0.24em; font-weight: 600; letter-spacing: 0; margin-left: 0.18em; vertical-align: 1.1em; color: rgba(245, 245, 247, 0.72); }
 .screen-live__date { position: absolute; left: 36px; top: 168px; font-size: 26px; font-weight: 400; color: rgba(245, 245, 247, 0.82); letter-spacing: -0.005em; }
+.video--portrait { aspect-ratio: 9 / 16; max-width: 480px; margin-left: auto; margin-right: auto; }
+.video--portrait iframe { object-fit: cover; }
