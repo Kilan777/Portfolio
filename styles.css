@@ -1190,10 +1190,10 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .scrolly__stage { position: relative; width: min(100%, 980px); }
 .scrolly__stage .scrolly__canvas { width: 100%; position: relative; z-index: 2; }
 .stack { position: absolute; inset: 0; pointer-events: none; }
-.stack__scene { position: absolute; left: 0; right: 0; top: 50%; aspect-ratio: 1100 / 890; transform: translateY(-50%) translateX(1.7%) scaleX(0.948); perspective: var(--persp, 900px); }
+.stack__scene { position: absolute; left: 0; right: 0; top: 50%; aspect-ratio: 1100 / 890; transform: translateY(-50%); perspective: var(--persp, 900px); }
 .stack__world {
     position: absolute; inset: 0; transform-style: preserve-3d;
-    transform: translate(1.47%, -2.10%) rotateX(32.2deg) rotateZ(-18.2deg) scale(0.698);
+    transform: translate(1.24%, -1.65%) rotateX(31.45deg) rotateZ(-18.54deg) scale(0.6948);
 }
 .stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * (0.015 + 0.985 * var(--p, 1)) * var(--unit, 1px))); }
 .stack__layer img { width: 100%; height: 100%; display: block; opacity: 1 !important; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18)); }
@@ -1207,3 +1207,12 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .stack__layer:nth-child(7) { --z: 120; }    /* top mask + silk */
 .media-row .media .video { aspect-ratio: 16 / 9; }
 .media-row .media > .video { position: relative; }
+.video--16x10 { aspect-ratio: 16 / 10; }
+
+/* Live clock drawn over the HomeDeck screen at the end of the animation */
+@font-face { font-family: "Inter HD"; src: url("projects/homedeck-pics/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+.screen-live { position: absolute; left: 0; top: 0; z-index: 3; width: 1280px; height: 720px; transform-origin: 0 0; pointer-events: none; opacity: 0; transition: opacity 0.25s var(--ease); font-family: "Inter HD", Inter, system-ui, sans-serif; color: #f5f5f7; }
+.screen-live.is-on { opacity: 1; }
+.screen-live__clock { position: absolute; left: 34px; top: 22px; font-size: 156px; font-weight: 640; letter-spacing: -0.07em; line-height: 0.9; white-space: nowrap; font-variation-settings: "opsz" 32, "wght" 640; }
+.screen-live__clock span { font-size: 0.24em; font-weight: 600; letter-spacing: 0; margin-left: 0.18em; vertical-align: 1.1em; color: rgba(245, 245, 247, 0.72); }
+.screen-live__date { position: absolute; left: 36px; top: 168px; font-size: 26px; font-weight: 400; color: rgba(245, 245, 247, 0.82); letter-spacing: -0.005em; }

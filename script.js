@@ -322,11 +322,51 @@
         };
         var stack = el.querySelector('.stack');
         var stackEnd = parseFloat(el.getAttribute('data-stack-until')) || 0;
+        var live = el.querySelector('.screen-live');
+        var liveFrom = parseInt(el.getAttribute('data-live-from'), 10);
+        var liveQuad = null;
+        try { liveQuad = JSON.parse(el.getAttribute('data-live-quad') || 'null'); } catch (e) { liveQuad = null; }
+        /* homography from the 1280x720 screen to the quad (in frame pixels), then scaled to the displayed canvas */
+        var placeLive = function () {
+            if (!live || !liveQuad) return;
+            var r = canvas.getBoundingClientRect(); var k = r.width / canvas.width;
+            var q = liveQuad.map(function (p) { return [p[0] * k, p[1] * k]; });
+            var sw = 1280, sh = 720;
+            var src = [[0, 0], [sw, 0], [sw, sh], [0, sh]];
+            var A = [], B = [];
+            for (var i = 0; i < 4; i++) {
+                var x = src[i][0], y = src[i][1], u = q[i][0], v = q[i][1];
+                A.push([x, y, 1, 0, 0, 0, -u * x, -u * y]); B.push(u);
+                A.push([0, 0, 0, x, y, 1, -v * x, -v * y]); B.push(v);
+            }
+            var hgh = solve8(A, B); if (!hgh) return;
+            var m = [hgh[0], hgh[3], 0, hgh[6], hgh[1], hgh[4], 0, hgh[7], 0, 0, 1, 0, hgh[2], hgh[5], 0, 1];
+            live.style.transform = 'matrix3d(' + m.join(',') + ')';
+        };
+        var solve8 = function (A, B) {
+            var n = 8, M = A.map(function (row, i) { return row.concat([B[i]]); });
+            for (var c = 0; c < n; c++) {
+                var piv = c; for (var r2 = c + 1; r2 < n; r2++) if (Math.abs(M[r2][c]) > Math.abs(M[piv][c])) piv = r2;
+                if (Math.abs(M[piv][c]) < 1e-12) return null;
+                var t = M[c]; M[c] = M[piv]; M[piv] = t;
+                for (var r3 = 0; r3 < n; r3++) { if (r3 === c) continue; var f = M[r3][c] / M[c][c]; for (var k2 = c; k2 <= n; k2++) M[r3][k2] -= f * M[c][k2]; }
+            }
+            return M.map(function (row, i) { return row[n] / row[i]; });
+        };
+        var tickLive = function () {
+            if (!live) return;
+            var d = new Date();
+            var t = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+            var parts = t.replace(/\u202f/g, ' ').split(' ');
+            live.querySelector('.screen-live__clock').innerHTML = parts[0] + '<span>' + (parts[1] || '') + '</span>';
+            live.querySelector('.screen-live__date').textContent = d.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+        };
+        if (live) { tickLive(); setInterval(tickLive, 1000); placeLive(); }
         var stage = el.querySelector('.scrolly__stage');
         var sizeStack = function () {
             if (!stack || !stage) return;
             var w = stage.getBoundingClientRect().width || 900;
-            stack.style.setProperty('--persp', (w * 1.0726) + 'px');   /* fitted: perspective = 1.0157 x stage width */
+            stack.style.setProperty('--persp', (w * 1.1357) + 'px');   /* fitted: perspective = 1.0157 x stage width */
             stack.style.setProperty('--unit', (w / 900) + 'px');
         };
         sizeStack();
@@ -344,6 +384,7 @@
             var q = stackEnd > 0 ? Math.max(0, (p - stackEnd) / (1 - stackEnd)) : p;
             var i = Math.min(n - 1, Math.floor(q * n));
             setCaption(i, stack && stackEnd > 0 && p < stackEnd);
+            if (live) { placeLive(); live.classList.toggle('is-on', !isNaN(liveFrom) && i >= liveFrom); }
             var go = function () { draw(i); };
             if (frames[i] && frames[i].complete) {
                 if (fullTpl && i >= fullFrom && !(fulls[i] && fulls[i].complete)) loadInto(fulls, fullTpl.replace('{i}', pad3(i)), i, go);
