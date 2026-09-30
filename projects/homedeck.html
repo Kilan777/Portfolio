@@ -153,13 +153,12 @@
 
             <h2>Design</h2>
             <p>
-                The board is a KiCad 7 project with a hierarchical schematic of nine sheets (power, CM4, USB, video, SD, audio,
-                sensors, UI, mechanical) and a fully routed four-layer PCB. I did not draw it by hand. The whole circuit is
-                described once in a Python file, <code>tools/circuit.py</code>, and a set of scripts generates the symbols and
-                footprints, the schematic, the netlist and the BOM from it. That way the schematic, the board and the BOM cannot
-                disagree with each other. The schematic is "label style": every pin carries a global label with its net name,
-                so clicking any label in KiCad shows every place that net goes. It is not pretty, but it is complete and it is
-                exactly what the board was built from.
+                The board is a KiCad 7 project: a hierarchical schematic of nine sheets (power, CM4, USB, video, SD, audio,
+                sensors, UI, mechanical) and a four-layer PCB. I learned KiCad on this project, starting from the CM4 design
+                guide and the datasheets for every part, and used AI as a resource along the way: to explain what I was reading,
+                to check my work against the datasheets, and to help me write the scripts that took the repetitive parts off my
+                hands. The schematic is "label style": every pin carries a global label with its net name, so clicking any label
+                in KiCad shows every place that net goes.
             </p>
             <p>
                 Placement and routing also went through a script: a grid router I wrote in C++ for the project, then
@@ -219,16 +218,17 @@
 
             <h2>The tools I built</h2>
             <p>
-                The board was not drawn in KiCad, it was generated. Everything in <code>tools/</code>, about 4,000 lines of
-                Python and C++, exists to turn one circuit description into a schematic, a placed and routed board and a set
-                of fab files, and to do it again from scratch whenever the circuit changed. The pipeline is four commands:
-                <code>gen_lib.py</code>, <code>gen_sch.py</code>, <code>route.py</code> and <code>export.py</code>. The
-                routing step rebuilds an unrouted board every time and takes 20 to 40 minutes.
+                A 218-part board has a lot of repetitive work in it: hundreds of decoupling capacitors to place, 160 nets to
+                route, a BOM and a placement file to keep in sync with the schematic. Rather than redo that by hand after every
+                change, I wrote a set of tools, about 4,000 lines of Python and C++ in <code>tools/</code>, that take the parts
+                of the job a script does better than a person. The biggest of them is an autorouter, which saved me the most
+                time. The pipeline is four commands: <code>gen_lib.py</code>, <code>gen_sch.py</code>, <code>route.py</code>
+                and <code>export.py</code>, and the routing step takes 20 to 40 minutes.
             </p>
             <p>
-                It starts with <code>circuit.py</code>: every part with its LCSC number, connected pin by pin to named nets
-                through a small netlist model that looks the pins up in KiCad's own symbol libraries, so a wrong pin name
-                fails before anything is drawn. From there <code>gen_lib.py</code> writes the project symbols and footprints
+                The circuit itself lives in <code>circuit.py</code>: every part with its LCSC number, connected pin by pin to
+                named nets through a small netlist model that looks the pins up in KiCad's own symbol libraries, so a wrong pin
+                name fails before anything is drawn. That is the file I edited when the design changed. From there <code>gen_lib.py</code> writes the project symbols and footprints
                 KiCad does not ship (the CM4 socket pair, the PD controller, the amplifier, the USB mux and switches, the
                 BME688, the FPC connectors), <code>gen_sch.py</code> writes the nine-sheet schematic with a global label on
                 every pin, and <code>gen_pcb.py</code> builds the board: outline and mounting holes, the placement (the main
@@ -282,11 +282,11 @@
             </div>
 
             <p>
-                I wrote these tools with Claude as a pair programmer. I described what each step had to do and what the
-                fab and the datasheets required, ran the result against the board, read the DRC report, the skew table and
-                the renders, and went back with what was wrong; the code came out of that loop, over many rounds. The
-                one-offs in the last row are honest about where automation stopped: five ground vias, a moved resistor and
-                one USB pair were placed by coordinates, and the experiments were how I found out which reroutes helped.
+                I built these tools with AI helping me write the code. I decided what each step had to do and what the fab and
+                the datasheets required, ran the result against the board, read the DRC report, the skew table and the renders,
+                and went back with what was wrong; the tools came out of that loop, over many rounds. The one-offs in the last
+                row are honest about where automation stopped: five ground vias, a moved resistor and one USB pair were placed
+                by hand, and the experiments were how I found out which reroutes helped.
             </p>
 
             <h2>Build</h2>
@@ -627,12 +627,10 @@
 
             <h3>Working with AI</h3>
             <p>
-                I used Claude throughout this project, and I am not ashamed of it. The toolchain described above, from
-                <code>circuit.py</code> to the C++ router and the export scripts, was written with it as a pair programmer:
-                I said what each step had to do, ran it against the board, read the DRC report and the skew table, and came
-                back with what broke. It also helped me write the assistant software, read datasheets I had never opened,
-                review the design against them before I ordered, and work through the PD inrush and the audio chain when the
-                boards were on the bench. What it could not do was hold the board, reseat a ribbon, notice the rail that came
+                I used AI throughout this project, and I am not ashamed of it. I was learning KiCad and PCB design from zero,
+                and it was the resource I leaned on: to explain datasheets I had never opened, to review the design against
+                them before I ordered, to help me write the tools above (the autorouter especially) and the assistant software,
+                and to work through the PD inrush and the audio chain when the boards were on the bench. What it could not do was hold the board, reseat a ribbon, notice the rail that came
                 alive when I picked the board up, model the case, or decide what the device should be. The design decisions,
                 the bench work, the CAD, the mistakes in the rev A table and the fixes are mine. I know the circuit well
                 enough now to explain every block on it, which was the point.
