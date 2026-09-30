@@ -1031,7 +1031,7 @@ a.card:hover .card__media > img:not(.card__logo) { filter: brightness(0.4); }
 
 .card__logo {
     position: absolute;
-    top: 16px; right: 16px;
+    top: 16px; left: 16px;
     z-index: 2;
     width: 60px; height: 60px;
     object-fit: contain;
@@ -1041,7 +1041,7 @@ a.card:hover .card__media > img:not(.card__logo) { filter: brightness(0.4); }
 }
 .card__status {
     position: absolute;
-    top: 16px; left: 16px;
+    top: 16px; right: 16px;
     z-index: 5;
     padding: 6px 14px;
     font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
@@ -1081,8 +1081,8 @@ a.card:hover .card__overlay, a.card:focus-visible .card__overlay { opacity: 1; }
     .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .card { height: auto; aspect-ratio: 1; }
     .card__media { padding: 10px; }
-    .card__logo { width: 36px; height: 36px; padding: 4px; top: 8px; right: 8px; }
-    .card__status { top: 8px; left: 8px; font-size: 9px; padding: 3px 7px; }
+    .card__logo { width: 36px; height: 36px; padding: 4px; top: 8px; left: 8px; }
+    .card__status { top: 8px; right: 8px; font-size: 9px; padding: 3px 7px; }
     .card__overlay { padding: 12px; }
     .card__overlay h3 { font-size: 15px; margin-bottom: 4px; }
     .card__overlay .card__meta { font-size: 11px; margin-bottom: 0; }
@@ -1190,14 +1190,14 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .scrolly__stage { position: relative; width: min(100%, 980px); }
 .scrolly__stage .scrolly__canvas { width: 100%; position: relative; z-index: 2; }
 .stack { position: absolute; inset: 0; pointer-events: none; }
-.stack__scene { position: absolute; inset: 0; perspective: var(--persp, 900px); }
+.stack__scene { position: absolute; left: 0; right: 0; top: 50%; aspect-ratio: 1100 / 890; transform: translateY(-50%); perspective: var(--persp, 900px); }
 .stack__world {
     position: absolute; inset: 0; transform-style: preserve-3d;
     transform: translate(-2.46%, -2.05%) rotateX(32.4deg) rotateZ(-18.8deg) scale(0.697);
 }
 .stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * (0.015 + 0.985 * var(--p, 1)) * var(--unit, 1px))); }
 .stack__layer img { width: 100%; height: 100%; display: block; opacity: 1 !important; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18)); }
-.stack__layer--board { background: #0b5b3a; border-radius: 6px; box-shadow: 0 30px 40px rgba(20, 30, 45, 0.25); opacity: 1 !important; }
+.stack__layer--board { filter: drop-shadow(0 30px 30px rgba(20, 30, 45, 0.28)); opacity: 1 !important; }
 .stack__layer:nth-child(1) { --z: -150; }   /* bottom silk + mask */
 .stack__layer:nth-child(2) { --z: -110; }   /* B.Cu */
 .stack__layer:nth-child(3) { --z: -60; }    /* In2.Cu */
