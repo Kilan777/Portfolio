@@ -324,6 +324,7 @@
         var stackEnd = parseFloat(el.getAttribute('data-stack-until')) || 0;
         var live = el.querySelector('.screen-live');
         var liveFrom = parseInt(el.getAttribute('data-live-from'), 10);
+        var liveFull = parseInt(el.getAttribute('data-live-full'), 10); if (isNaN(liveFull)) liveFull = liveFrom;
         var liveQuad = null;
         try { liveQuad = JSON.parse(el.getAttribute('data-live-quad') || 'null'); } catch (e) { liveQuad = null; }
         /* homography from the 1280x720 screen to the quad (in frame pixels), then scaled to the displayed canvas */
@@ -384,7 +385,7 @@
             var q = stackEnd > 0 ? Math.max(0, (p - stackEnd) / (1 - stackEnd)) : p;
             var i = Math.min(n - 1, Math.floor(q * n));
             setCaption(i, stack && stackEnd > 0 && p < stackEnd);
-            if (live) { placeLive(); live.classList.toggle('is-on', !isNaN(liveFrom) && i >= liveFrom); }
+            if (live) { placeLive(); var on = !isNaN(liveFrom) && i >= liveFrom; live.classList.toggle('is-on', on); if (on) live.style.setProperty('--live-a', String(Math.min(1, (i - liveFrom + 1) / Math.max(1, liveFull - liveFrom + 1)))); }
             var go = function () { draw(i); };
             if (frames[i] && frames[i].complete) {
                 if (fullTpl && i >= fullFrom && !(fulls[i] && fulls[i].complete)) loadInto(fulls, fullTpl.replace('{i}', pad3(i)), i, go);

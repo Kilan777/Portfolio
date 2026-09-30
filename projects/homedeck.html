@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/homedeck.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=5.0">
+    <link rel="stylesheet" href="../styles.css?v=5.1">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/homedeck.html">
@@ -71,7 +71,7 @@
         </section>
 
         <div class="container detail-lead">
-            <div class="scrolly" data-scrolly data-live-from="141" data-live-quad='[[143.23, 210.93], [723.99, 210.93], [724.7, 535.15], [143.23, 535.15]]' data-stack-until="0.16" data-frames="147" data-src="homedeck-pics/story/{i}.webp" data-steps="0,10,55,70,86,122,141" aria-label="3D view of the HomeDeck board">
+            <div class="scrolly" data-scrolly data-live-from="135" data-live-full="141" data-live-quad='[[143.23, 215.91], [723.99, 215.91], [724.7, 540.14], [143.23, 540.14]]' data-stack-until="0.16" data-frames="147" data-src="homedeck-pics/story/{i}.webp" data-steps="0,10,55,70,86,122,141" aria-label="3D view of the HomeDeck board">
                 <div class="scrolly__sticky">
                     <div class="scrolly__stage">
                     <div class="stack" aria-hidden="true">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <canvas class="scrolly__canvas" width="900" height="787" role="img" aria-label="The HomeDeck carrier board, rotating"></canvas>
-                    <div class="screen-live" aria-hidden="true"><div class="screen-live__clock">12:00<span>PM</span></div><div class="screen-live__date">Monday, January 1</div></div>
+                    <div class="screen-live" aria-hidden="true"><img class="screen-live__bg" src="homedeck-pics/landscape_home_noclock.webp" alt="" width="1280" height="720" data-nofade><div class="screen-live__clock">12:00<span>PM</span></div><div class="screen-live__date">Monday, January 1</div></div>
                     </div>
                     <div class="scrolly__caption">
                         <span>Four copper layers, two masks, two silkscreens: the stack that makes the board.</span>
@@ -111,9 +111,25 @@
                 HomeDeck is a smart-home deck for my room: a carrier PCB for the Raspberry Pi Compute Module 4 that bolts to the
                 back of the 7-inch Raspberry Pi Touch Display 2, with CO2 and VOC sensors, stereo speakers, two microphones,
                 a camera and a light bar, plus the software that turns it into a voice assistant called Jarvis. I started it
-                because I wanted to learn PCB design properly, from schematic to a board assembled by a fab. The first
-                revision is on my desk and in daily use.
+                to learn PCB design properly, from schematic to a board assembled by a fab. The first revision is on my desk
+                and in daily use. The KiCad project, tools, enclosure CAD and assistant software are in the
+                <a href="https://github.com/Kilan777/Jarvis-Homedeck" target="_blank" rel="noopener">GitHub repository</a>.
             </p>
+
+            <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="homedeck-pics/photos/img_4212.webp" alt="The finished HomeDeck on a desk, seen from the front at an angle with the screen off, the power button and camera on the top edge and the vent slots on the side" width="1600" height="1200" decoding="async">
+                    </div>
+                    <figcaption>The finished device on the desk: display in the front frame, power button and camera on top, intake slots on the side.</figcaption>
+                </figure>
+                <figure class="media">
+                    <div class="media__frame">
+                        <img src="homedeck-pics/photos/img_4371.webp" alt="The finished HomeDeck on a desk showing the home screen with the time, weather, CO2 and transit tiles" width="1600" height="1200" decoding="async">
+                    </div>
+                    <figcaption>The home screen in use: time, weather, CO2 and the next bike and transit departures.</figcaption>
+                </figure>
+            </div>
 
             <div class="stats">
                 <div class="stat"><div class="stat__value">4 layers</div><div class="stat__label">130 x 105 mm board, ENIG, assembled on both sides</div></div>
@@ -122,68 +138,55 @@
                 <div class="stat"><div class="stat__value">9 V</div><div class="stat__label">USB-C PD input on the working rev A board</div></div>
             </div>
 
-
             <h2>Overview</h2>
             <p>
-                The device sits on a shelf and does what an Echo Show does, except I know everything that runs on it.
-                The home screen shows the time, the weather, the CO2 reading, the next calendar event, e-bike availability
-                at the nearest Bay Wheels station and what is playing. Saying "Hey Jarvis" starts a conversation: timers,
-                alarms, lights, music, volume and maths are matched as commands on the device without a language model,
-                and everything else goes to a hosted model. A phone app on a personal domain, behind Google sign-in,
-                gives the same controls from anywhere plus the camera, an intercom and presence.
+                It does what an Echo Show does, except I know everything that runs on it. The home screen shows the time,
+                the weather, the CO2 reading, the next calendar event, e-bikes at the nearest Bay Wheels station and what
+                is playing. "Hey Jarvis" starts a conversation: timers, alarms, lights, music, volume and maths are matched
+                as commands on the device without a language model; everything else goes to a hosted model. A phone app
+                behind Google sign-in gives the same controls from anywhere, plus the camera, an intercom and presence.
             </p>
 
-            <h3>Hardware at a glance</h3>
+            <h3>Hardware</h3>
             <ul>
-                <li><strong>Board:</strong> 130 x 105 mm, 4 layers, USB-C Power Delivery input (CH224K sink), three TPS5430 buck converters for the CM4, the peripherals and the USB ports, and an AMS1117 3.3 V regulator.</li>
-                <li><strong>Compute:</strong> Raspberry Pi CM4 with Wi-Fi, 4 GB RAM and 16 GB eMMC, on two Hirose DF40C 100-pin sockets, flashed through a USB-C port using an nRPIBOOT jumper and a pair of USB muxes.</li>
-                <li><strong>Display and camera:</strong> Touch Display 2 (7-inch, 720 x 1280) over DSI, Camera Module 3 over CSI, both on 15-pin FPC connectors.</li>
-                <li><strong>Sensors:</strong> SCD40 (CO2) and BME688 (temperature, humidity, pressure, VOC) on a slotted tongue at the board edge, and a header for a BH1750 light sensor behind the bezel. An SHT4x on the same header is auto-detected.</li>
-                <li><strong>Audio:</strong> PCM5102A I2S DAC into a TPA3118D2 stereo class-D amplifier (more than 5 W per channel into 8 ohm from the 15 V rail), two JST speaker connectors and two ICS-43434 MEMS microphones ported through holes in the board.</li>
-                <li><strong>Everything else:</strong> a CH334R USB hub feeding a USB-A port, a second USB-C port and two internal headers, ten WS2812B LEDs along the top edge with a header for an external strip, a fan header, power and user buttons, a UART debug header, a 2 x 8 expansion header and a microSD slot.</li>
+                <li><strong>Board:</strong> 130 x 105 mm, 4 layers, USB-C Power Delivery in (CH224K), three TPS5430 bucks, an AMS1117 3.3 V regulator.</li>
+                <li><strong>Compute:</strong> CM4 with Wi-Fi, 4 GB RAM and 16 GB eMMC on two Hirose DF40C sockets, flashed over USB-C with an nRPIBOOT jumper and two USB muxes.</li>
+                <li><strong>Display, camera, sensors:</strong> Touch Display 2 (7-inch, 720 x 1280) over DSI, Camera Module 3 over CSI, SCD40 (CO2) and BME688 (temperature, humidity, pressure, VOC) on a slotted tongue, a header for a BH1750 light sensor or an SHT4x.</li>
+                <li><strong>Audio and the rest:</strong> PCM5102A I2S DAC and TPA3118D2 class-D amplifier, two ICS-43434 MEMS microphones, a CH334R USB hub with USB-A and a second USB-C, ten WS2812B LEDs plus a strip header, fan, buttons, UART and expansion headers, microSD.</li>
             </ul>
 
-            <h3>Software at a glance</h3>
+            <h3>Software</h3>
             <ul>
-                <li>One Python service on the CM4 with a module per feature: voice, timers, alarms, reminders, lists, calendar, Spotify, YouTube, sensors, weather, bikes, transit, flights, lights, display, fan, sleep sounds, camera, presence, intercom, guest mode, Wi-Fi, notifications, auth and audio.</li>
-                <li>A touch UI in Chromium kiosk mode, with an app registry, a home screen, an app switcher and an on-screen keyboard I wrote myself.</li>
-                <li>Voice: openWakeWord for "Hey Jarvis" locally, Groq Whisper for speech to text, Groq chat with a web search fallback, Orpheus text to speech with Piper as an offline fallback.</li>
-                <li>A phone app served behind Google sign-in, with secrets redacted from every API response.</li>
+                <li>One Python service on the CM4 with a module per feature: voice, timers, alarms, calendar, Spotify, YouTube, sensors, weather, bikes, transit, lights, camera, presence, intercom, guest mode and more.</li>
+                <li>A touch UI in Chromium kiosk mode with an app switcher and my own on-screen keyboard, and a phone app behind Google sign-in with secrets redacted from every API response.</li>
+                <li>Voice: openWakeWord locally, Groq Whisper for speech to text, Groq chat with a web search fallback, Orpheus text to speech with Piper offline.</li>
             </ul>
 
             <h2>Design</h2>
             <p>
-                The board is a KiCad 7 project: a hierarchical schematic of nine sheets (power, CM4, USB, video, SD, audio,
-                sensors, UI, mechanical) and a four-layer PCB. I learned KiCad on this project, starting from the CM4 design
-                guide and the datasheets for every part, and used AI as a resource along the way: to explain what I was reading,
-                to check my work against the datasheets, and to help me write the scripts that took the repetitive parts off my
-                hands. The schematic is "label style": every pin carries a global label with its net name, so clicking any label
-                in KiCad shows every place that net goes.
+                The board is a KiCad 7 project I drew by hand: a hierarchical schematic of nine sheets (power, CM4, USB,
+                video, SD, audio, sensors, UI, mechanical) and a four-layer layout, learned from the CM4 design guide and
+                the datasheet of every part. The schematic is label style, a global label on every pin, so clicking any
+                label shows every place that net goes. Placement is mine too, each passive next to its chip. The routing
+                and the fab exports went through a handful of scripts, described below.
             </p>
             <p>
-                Placement and routing also went through a script: a grid router I wrote in C++ for the project, then
-                post-processing into conventional 0, 45 and 90 degree geometry with chamfered corners, and length matching
-                of every differential pair with small meanders on the shorter leg. The next section describes those tools.
-                All the DSI, CSI and USB pairs ended up within 1.3 mm of each other, except the second USB-C port's data pair at 7.7 mm,
-                which the receptacle's interleaved pads made impossible to match automatically. That is about 2.5 percent of a
-                USB high-speed bit, so it works, but it is the first thing I would tidy by hand.
+                The stack-up is signal, ground, power, signal, the power layer split into planes per rail: 5V_SYS under
+                the CM4, the 15 V input along the right edge, 5V_USB bottom left, 5V_PERIPH along the top and 3.3 V under
+                the sensor tongue. Rules are 0.2 mm tracks and 0.15 mm clearance, down to 0.1 mm in the two CM4 fan-out
+                areas, where every used pad gets a short stub to a small via in three staggered rows; the 0.4 mm pitch
+                sockets are why the board is ENIG. The DSI, CSI and USB pairs are matched within 1.3 mm except the second
+                USB-C port's data pair at 7.7 mm, which the receptacle's interleaved pads made impossible to tune
+                automatically. That is about 2.5 percent of a USB high-speed bit, so it works, but it is the first thing I
+                would tidy by hand.
             </p>
             <p>
-                The stack-up is signal, ground, power, signal. The inner power layer is split into planes for each rail:
-                5V_SYS under the CM4, the 15 V input along the right edge, 5V_USB bottom left, 5V_PERIPH along the top and
-                3.3 V under the sensor tongue. Design rules are 0.2 mm tracks and 0.15 mm clearance in general, down to
-                0.1 mm inside the two CM4 fan-out areas, where every used pad gets a short stub to a small via in three
-                staggered rows. The CM4 sockets have 0.4 mm pitch pads, so the board needs ENIG rather than HASL.
-            </p>
-            <p>
-                The mechanical decision that shaped the layout is that the board mounts on the display's own four M2.5
-                standoffs, on the 58 x 49 mm Raspberry Pi hole pattern, with the bottom of the board facing the back of the
-                panel. So the bottom side only carries flat passives, two small transistors and the two microphones, and
-                everything tall sits on top. All external connectors are on the bottom edge, the FPC connectors sit above the
-                CM4 with the ribbons exiting toward the top, the sensors are on a tongue at the left edge with two routed slots
-                for thermal isolation, and the microphones are at the top corners. The first mounting was portrait, the panel's
-                native orientation; the device ended up in landscape, for a thermal reason described in the build section,
-                and the software treats landscape as the default.
+                The mechanical decision that shaped the layout: the board mounts on the display's own four M2.5 standoffs,
+                on the 58 x 49 mm Raspberry Pi hole pattern, bottom side toward the panel. So the bottom carries only flat
+                passives, two small transistors and the microphones; everything tall is on top. External connectors are on
+                the bottom edge, the FPC connectors above the CM4 with the ribbons exiting toward the top, the sensors on a
+                tongue at the left edge with two routed slots for thermal isolation, the microphones at the top corners.
+                The first mounting was portrait; the device ended up in landscape for a thermal reason covered below.
             </p>
 
             <div class="media-row">
@@ -216,47 +219,58 @@
                 </figure>
             </div>
 
+            <h2>Bill of materials</h2>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr><th>Part</th><th>What it does</th><th>Qty</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Raspberry Pi CM4 (Wi-Fi, 4 GB, 16 GB eMMC)</td><td>The computer: runs Raspberry Pi OS and the assistant.</td><td>1</td></tr>
+                        <tr><td>Hirose DF40C-100DS-0.4V sockets</td><td>The two 100-pin, 0.4 mm pitch sockets the CM4 plugs into.</td><td>2</td></tr>
+                        <tr><td>Raspberry Pi Touch Display 2</td><td>7-inch 720 x 1280 touchscreen over DSI.</td><td>1</td></tr>
+                        <tr><td>Raspberry Pi Camera Module 3</td><td>Camera over CSI, for the phone app and motion clips.</td><td>1</td></tr>
+                        <tr><td>CH224K</td><td>USB-C Power Delivery sink: asks the charger for 9 V (15 V by jumper).</td><td>1</td></tr>
+                        <tr><td>TPS5430 buck converters</td><td>3 A bucks for the 5V_SYS, 5V_PERIPH and 5V_USB rails.</td><td>3</td></tr>
+                        <tr><td>AMS1117-3.3</td><td>3.3 V LDO for the sensors, hub and logic.</td><td>1</td></tr>
+                        <tr><td>CH334R</td><td>USB 2.0 hub feeding the USB-A port, the second USB-C and two internal headers.</td><td>1</td></tr>
+                        <tr><td>SCD40</td><td>CO2 sensor on the slotted tongue.</td><td>1</td></tr>
+                        <tr><td>BME688</td><td>Temperature, humidity, pressure and VOC sensor.</td><td>1</td></tr>
+                        <tr><td>SHT4x and BH1750 (J12 header)</td><td>Temperature and humidity on a lead away from the CM4; light sensor behind the bezel.</td><td>1 each</td></tr>
+                        <tr><td>PCM5102A</td><td>I2S stereo DAC.</td><td>1</td></tr>
+                        <tr><td>TPA3118D2</td><td>Stereo class-D amplifier, more than 5 W per channel into 8 ohm.</td><td>1</td></tr>
+                        <tr><td>ICS-43434</td><td>I2S MEMS microphones, bottom-ported through holes in the board.</td><td>2</td></tr>
+                        <tr><td>WS2812B</td><td>Addressable LEDs: ten on the board's top edge, seventy on the external strip.</td><td>10 + 70</td></tr>
+                        <tr><td>Speakers, 8 ohm</td><td>Two small full-range drivers on JST-PH leads, mounted in the back cover.</td><td>2</td></tr>
+                        <tr><td>Fan, 30 mm, 5 V</td><td>Pulls air over the CM4 heatsink and out the top of the case.</td><td>1</td></tr>
+                        <tr><td>USB-A and USB-C receptacles</td><td>One USB-A on the hub; two USB-C, one for power and one for data and flashing.</td><td>1 + 2</td></tr>
+                        <tr><td>Tactile switches</td><td>Power, reset and two user buttons.</td><td>4</td></tr>
+                        <tr><td>Passives</td><td>94 capacitors, 46 resistors and 7 inductors, mostly 0603 on the bottom side.</td><td>147</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                Full JLCPCB BOM and placement files are in the repository.
+                <a href="homedeck-pics/HomeDeck_BOM.csv" download>Download the BOM (CSV)</a>.
+            </p>
+
             <h2>The tools I built</h2>
             <p>
-                A 218-part board has a lot of repetitive work in it: hundreds of decoupling capacitors to place, 160 nets to
-                route, a BOM and a placement file to keep in sync with the schematic. Rather than redo that by hand after every
-                change, I wrote a set of tools, about 4,000 lines of Python and C++ in <code>tools/</code>, that take the parts
-                of the job a script does better than a person. The biggest of them is an autorouter, which saved me the most
-                time. The pipeline is four commands: <code>gen_lib.py</code>, <code>gen_sch.py</code>, <code>route.py</code>
-                and <code>export.py</code>, and the routing step takes 20 to 40 minutes.
-            </p>
-            <p>
-                The circuit itself lives in <code>circuit.py</code>: every part with its LCSC number, connected pin by pin to
-                named nets through a small netlist model that looks the pins up in KiCad's own symbol libraries, so a wrong pin
-                name fails before anything is drawn. That is the file I edited when the design changed. From there <code>gen_lib.py</code> writes the project symbols and footprints
-                KiCad does not ship (the CM4 socket pair, the PD controller, the amplifier, the USB mux and switches, the
-                BME688, the FPC connectors), <code>gen_sch.py</code> writes the nine-sheet schematic with a global label on
-                every pin, and <code>gen_pcb.py</code> builds the board: outline and mounting holes, the placement (the main
-                parts have coordinates in the script, each passive is put next to the chip it belongs to, and a legaliser
-                pushes overlapping courtyards apart), the CM4 fan-out stubs and vias, the rule areas and the power planes.
-            </p>
-            <p>
-                The router is the part I am proudest of. KiCad has no autorouter, only its interactive push-and-shove router,
-                and since the board is rebuilt from scratch by a script, anything routed by hand would have been thrown away
-                on the next regeneration. I also wanted rules KiCad's tools do not know about: the fan-out areas, power nets
-                that drop to the inner planes instead of being routed, and a reserved exit direction for every fine pad.
-                <code>route.py</code> exports the problem as JSON (pad polygons, plane outlines, per-net widths and
-                clearances, the fourteen differential pairs and those short "escape strips") and hands it to
-                <code>router.cpp</code>, a negotiated-congestion grid router in the PathFinder style. It is in C++ because
-                the grid is 0.1 mm over a 130 by 105 mm board on two signal layers, about 1.4 million cells per layer. Each
-                net is routed with A* against hard obstacles (pads, keepouts, the escape strips) and soft ones (other nets'
-                copper, which only costs a penalty); then every net that overlaps another is ripped up and rerouted with a
-                history cost on the contested cells, and the loop repeats until the conflicts are gone. Power nets end in
-                vias down to their plane, and each leg of a differential pair is pulled toward its partner's path. An earlier
-                version, <code>router_v1.cpp</code>, was plain A* without the negotiation; the second one replaced it. Back
-                in Python, <code>route.py</code> imports the tracks and vias, fills the zones, runs KiCad's DRC from the
-                command line and reroutes any unconnected ground pads as plane drops until the report is clean. The final
-                board has 160 nets, 0 DRC errors and 0 unconnected items.
-            </p>
-            <p>
-                The raw router output looks like a staircase, so a set of post-processing scripts turns it into what a person
-                would have drawn, each one checking clearance against a shared geometry model before it touches anything.
-                Then the pairs are measured and tuned, the ground pours are stitched, and the fab files are written.
+                KiCad has no autorouter, only its interactive push-and-shove router, and I did not want to hand-route 160
+                nets under a 0.4 mm pitch connector and redo them after every placement change. I also wanted rules KiCad
+                does not know: the fan-out areas, power nets that drop to the inner planes instead of being routed, and a
+                reserved exit direction for every fine pad. So I wrote about five scripts for the repetitive parts.
+                <code>route.py</code> exports the board as JSON (pad polygons, plane outlines, per-net widths and
+                clearances, the fourteen differential pairs, the escape strips) and hands it to <code>router.cpp</code>, a
+                negotiated-congestion grid router in the PathFinder style. It is C++ because the grid is 0.1 mm over the
+                whole board on two signal layers, about 1.4 million cells per layer. Each net is routed with A* against
+                hard obstacles (pads, keepouts) and soft ones (other nets' copper, which only costs a penalty); nets that
+                overlap are ripped up and rerouted with a history cost on the contested cells until the conflicts are
+                gone. Power nets end in vias to their plane and each leg of a differential pair is pulled toward its
+                partner. Back in Python the tracks are imported, the zones filled and KiCad's DRC run from the command
+                line; a pass takes 20 to 40 minutes. The rest is small: a pair tuner, a ground stitcher, a clearance
+                checker for the hand fixes, and the fab export. Five ground vias, a moved resistor and the second USB-C
+                pair were placed by hand where the scripts stopped.
             </p>
 
             <div class="table-wrap">
@@ -265,40 +279,24 @@
                         <tr><th>Tool</th><th>What it does</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><code>circuit.py</code>, <code>netlist.py</code>, <code>kilib.py</code></td><td>The circuit: every part, its LCSC number and its pin-to-net connections, checked against KiCad's symbol libraries.</td></tr>
-                        <tr><td><code>gen_lib.py</code></td><td>Project symbols and footprints that KiCad does not ship.</td></tr>
-                        <tr><td><code>gen_sch.py</code></td><td>The nine-sheet hierarchical schematic, label style, one global label per pin.</td></tr>
-                        <tr><td><code>gen_pcb.py</code></td><td>Outline, holes, placement and legaliser, CM4 fan-out, rule areas, planes, and the custom DRC rules file.</td></tr>
-                        <tr><td><code>route.py</code>, <code>router.cpp</code></td><td>Routing problem export, the C++ negotiated-congestion router, import, zone fill, DRC and the repair passes.</td></tr>
-                        <tr><td><code>straighten.py</code>, <code>octilinear.py</code>, <code>merge_collinear.py</code>, <code>chamfer.py</code></td><td>Staircases to straight and 45 degree runs, collinear pieces merged, right angles chamfered, only where the new copper is clear.</td></tr>
-                        <tr><td><code>obstacles.py</code></td><td>The shared clearance model (shapely geometry in an R-tree) the post-processing scripts check against.</td></tr>
-                        <tr><td><code>skew.py</code>, <code>pathlen.py</code>, <code>tune_pairs.py</code></td><td>Length report for the 14 pairs, signal-path length through the ESD parts, and meander bumps on the shorter leg to within 0.25 mm where there is room.</td></tr>
-                        <tr><td><code>gnd_islands.py</code>, <code>gnd_stitch.py</code>, <code>gnd_stitch2.py</code>, <code>via_grid.py</code></td><td>Find every patch of pour with no path to the ground plane, give each a via, then lay a 5 mm grid of stitching vias over the open pour.</td></tr>
-                        <tr><td><code>freespot.py</code>, <code>place_fp.py</code>, <code>partial.py</code></td><td>Find a clear spot for a footprint near a target, move it there, and route a few nets with everything else fixed.</td></tr>
-                        <tr><td><code>export.py</code>, <code>render.py</code></td><td>Gerbers and drill files, the JLCPCB BOM and placement file with per-package rotation corrections, the schematic PDF and the board renders.</td></tr>
-                        <tr><td><code>manual_fix.py</code>, <code>c2_manual.py</code>, <code>dump.py</code>, <code>clearchk.py</code>, <code>try_*.py</code></td><td>One-offs: a handful of hand-specified tracks and vias (including the second USB-C pair), debugging dumps around a pad, and reroute experiments that measure skew and DRC, then keep or revert.</td></tr>
+                        <tr><td><code>route.py</code>, <code>router.cpp</code></td><td>The autorouter: problem export, the C++ negotiated-congestion router, import, zone fill and DRC until the report is clean.</td></tr>
+                        <tr><td><code>tune_pairs.py</code>, <code>skew.py</code></td><td>Length report for the 14 differential pairs, and meander bumps on the shorter leg to within 0.25 mm where there is room.</td></tr>
+                        <tr><td><code>gnd_stitch.py</code>, <code>via_grid.py</code></td><td>A via for every patch of ground pour with no path to the plane, then a 5 mm grid of stitching vias over the open pour.</td></tr>
+                        <tr><td><code>clearchk.py</code></td><td>Clearance check of tracks and vias against pads and other nets, for the hand fixes.</td></tr>
+                        <tr><td><code>export.py</code></td><td>Gerbers and drill files, the JLCPCB BOM and placement file with per-package rotation corrections, the schematic PDF.</td></tr>
                     </tbody>
                 </table>
             </div>
 
-            <p>
-                I built these tools with AI helping me write the code. I decided what each step had to do and what the fab and
-                the datasheets required, ran the result against the board, read the DRC report, the skew table and the renders,
-                and went back with what was wrong; the tools came out of that loop, over many rounds. The one-offs in the last
-                row are honest about where automation stopped: five ground vias, a moved resistor and one USB pair were placed
-                by hand, and the experiments were how I found out which reroutes helped.
-            </p>
-
             <h2>Build</h2>
             <p>
-                The boards were made and assembled by JLCPCB: four layers, 1.6 mm, ENIG, and two-sided "Standard" assembly
-                because 116 of the 218 parts sit on the bottom. The BOM has 66 lines, 38 of them JLC Basic parts and 28
-                Extended, and I picked a Basic part wherever one existed, which is why there are three small TPS5430 bucks
-                instead of one large one. Three parts were out of stock at order time and had to be swapped (the fuse, the FPC
-                connectors and the CM4 sockets; the genuine Hirose sockets had 25 in stock and an 11-day lead). Because
-                JLCPCB's placement preview can rotate parts, I wrote an orientation list for every assembled part, saying
-                whether its orientation matters and where its pin 1, cathode band or plus mark has to sit. The tactile switches
-                are the trap there: a 90 degree error shorts the button permanently.
+                JLCPCB made and assembled the boards: four layers, 1.6 mm, ENIG, two-sided "Standard" assembly because 116
+                of the 218 parts sit on the bottom. The BOM has 66 lines, 38 JLC Basic and 28 Extended; I picked a Basic
+                part wherever one existed, hence three small TPS5430 bucks instead of one large one. Three parts were out
+                of stock and swapped (the fuse, the FPC connectors and the CM4 sockets; the genuine Hirose sockets had 25
+                in stock and an 11-day lead). Because JLCPCB's placement preview can rotate parts, I wrote an orientation
+                list for every assembled part with where pin 1, the cathode band or the plus mark has to sit. The tactile
+                switches are the trap: a 90 degree error shorts the button permanently.
             </p>
 
             <figure class="media">
@@ -340,7 +338,7 @@
                     <div class="media__frame media__frame--tall">
                         <img src="homedeck-pics/photos/img_4082.webp" alt="Angled view of the populated rev A board on the desk: the two CM4 sockets in the centre, the FPC connectors and buttons above them, the bucks at the top right and the USB, microSD and JST connectors along the bottom edge" width="1200" height="1600" loading="lazy" decoding="async">
                     </div>
-                    <figcaption>The populated board from an angle: the two CM4 sockets in the middle, the FPC connectors above them, the bucks at the top right and the connectors along the bottom edge.</figcaption>
+                    <figcaption>The populated board from an angle: the CM4 sockets in the middle, the FPC connectors above them, the bucks at the top right, the connectors along the bottom edge.</figcaption>
                 </figure>
             </div>
 
@@ -361,17 +359,13 @@
             <p>
                 Bring-up followed a checklist: resistance from each rail to ground with no CM4 fitted, then the PD charger
                 alone to check the 15 V input and 5.0 to 5.2 V on the three rails, then the module. The eMMC was flashed
-                through the second USB-C port with the nRPIBOOT jumper, which flips both USB muxes so the CM4 talks directly
-                to a PC. On the software side it took a few device-tree overlays: the DSI panel, I2C6 on GPIO 22 and 23 for
-                the sensors, a power button on GPIO 3, and a custom audio overlay for the DAC and the two microphones. A serial
-                adapter on the UART header saved time twice.
-            </p>
-            <p>
-                Two more fixes came from running the board inside its case. The CM4 ran too hot in the enclosure, so it got
-                the official CM4 heatsink, and I added an SHT4x on the J12 I2C header, on a lead away from the module, to
-                read the temperature somewhere the CM4 is not heating; the sensors module detects it on its own. And the
-                display ribbon was resting on the pins of the two unused button headers next to the FPC connectors, so I
-                clipped those pins off.
+                through the second USB-C port with the nRPIBOOT jumper, which flips both USB muxes so the CM4 talks
+                directly to a PC. Device-tree overlays covered the DSI panel, I2C6 on GPIO 22 and 23 for the sensors, a
+                power button on GPIO 3 and a custom audio overlay for the DAC and microphones; a serial adapter on the UART
+                header saved time twice. In the case, two more fixes: the CM4 ran too hot, so it got the official heatsink
+                and an SHT4x on the J12 I2C header, on a lead away from the module, now reads the room temperature; and
+                the display ribbon was resting on the pins of the two unused button headers next to the FPC connectors,
+                so I clipped those pins off.
             </p>
 
             <div class="media-row">
@@ -389,11 +383,10 @@
                 </figure>
             </div>
             <p>
-                Two rev A boards were assembled. Board #1 works completely and is in daily use after two solder-jumper
-                changes: USB-C PD, all three bucks, the CM4 with Wi-Fi and Bluetooth, the display and touch, the camera, both
-                sensors and the I2C header, the microphones, the amplifier, the LEDs, the fan, the buttons and the USB ports.
-                Board #2 is assembled and not yet powered. Here is what went wrong on the first revision and what the next
-                one changes.
+                Two rev A boards were assembled. Board #1 works completely after two solder-jumper changes and is in daily
+                use: PD, all three bucks, the CM4 with Wi-Fi and Bluetooth, display and touch, camera, both sensors and the
+                I2C header, microphones, amplifier, LEDs, fan, buttons and USB ports. Board #2 is assembled and not yet
+                powered. What went wrong on rev A and what rev B changes:
             </p>
 
             <div class="table-wrap">
@@ -417,39 +410,37 @@
 
             <h2>Software</h2>
             <p>
-                Everything runs as one systemd service on the CM4. The core, <code>server.py</code>, handles config, the module
-                loader, an event bus, the HTTP API, the auth gate, secret redaction and the content security policy. A module
-                is one Python file with a name, defaults, a <code>state()</code>, an <code>api()</code>, a blocking
-                <code>start()</code> loop, an optional <code>intent(text)</code> for voice and optional raw HTTP routes. Apps
-                on the screen register with the shell and get render, update, a home-screen tile and event hooks. Timers,
-                conversation history, air history and YouTube history persist across restarts and power loss.
+                Everything runs as one systemd service on stock Raspberry Pi OS; an <code>install.sh</code> sets up the
+                service, the kiosk, the audio configuration, Caddy for the phone app, DuckDNS and UPnP. The core,
+                <code>server.py</code>, handles config, the module loader, an event bus, the HTTP API, the auth gate,
+                secret redaction and the content security policy. A module is one Python file with a name, defaults, a
+                <code>state()</code>, an <code>api()</code>, a blocking <code>start()</code> loop and an optional
+                <code>intent(text)</code> for voice; apps on the screen register with the shell and get render, update, a
+                home-screen tile and event hooks. Timers, conversation, air and YouTube history survive power loss, and web
+                files hot-reload in the kiosk when their version changes.
             </p>
             <p>
-                The web app is the device UI in Chromium and a separate phone app. The Spotify module is a Spotify Connect
-                speaker (go-librespot) plus a full Web API client, with on-device sign-in using my own on-screen keyboard
-                injected into Spotify's login pages. YouTube plays through a yt-dlp search and an ffmpeg remux into a native,
-                ad-free player. The sensors module keeps a one-minute history and gives a spoken air report every day. Chromium
-                shares the ALSA chain with Jarvis and Spotify so that one software volume covers everything, and a watchdog
-                restarts the browser when its shared-memory leak fills <code>/tmp</code>, never while the screen is being
-                touched.
+                Spotify is a Spotify Connect speaker (go-librespot) plus a Web API client, with on-device sign-in through my on-screen keyboard injected into
+                Spotify's login pages; YouTube plays through a yt-dlp search and an ffmpeg remux into a native, ad-free
+                player; the sensors module keeps a one-minute history and gives a spoken air report daily. Chromium shares
+                the ALSA chain with Jarvis and Spotify so one software volume covers everything, and a watchdog restarts
+                the browser when its shared-memory leak fills <code>/tmp</code>, never while the screen is being touched.
             </p>
             <p>
-                Echo cancellation was the hard part. The speaker feed is teed into an ALSA loopback card, and a helper built on
-                WebRTC AEC3 reads the microphones and the loopback and feeds cleaned 16 kHz audio to the voice pipeline. The
-                echo reaches the microphones 20 to 40 ms before the loopback copy, so the microphone path is delayed 60 ms.
-                On the device at volume 55 it removes about 16 dB of music echo; if the helper dies twice in a minute the
-                pipeline falls back to plain capture. Later additions: one wake-word model running on the sum of both
-                microphones, a ten-band equaliser with a pink-noise room calibration, and music ducking of 14 dB for the
-                whole voice turn so Jarvis is audible over Spotify.
+                Echo cancellation was the hard part. The speaker feed is teed into an ALSA loopback card, and a helper
+                built on WebRTC AEC3 reads the microphones and the loopback and feeds cleaned 16 kHz audio to the voice
+                pipeline. The echo reaches the microphones 20 to 40 ms before the loopback copy, so the microphone path is
+                delayed 60 ms. At volume 55 it removes about 16 dB of music echo; if the helper dies twice in a minute the
+                pipeline falls back to plain capture. Later: one wake-word model on the sum of both microphones, a ten-band
+                equaliser with a pink-noise room calibration, and 14 dB of music ducking for the whole voice turn.
             </p>
             <p>
-                The on-board microphones turned out to be in the wrong place. The two ICS-43434s sit near the fan, and they
-                picked up enough of its noise that questions recorded through them often came back as "nothing said", which
-                made Jarvis feel slow. The fix was an external USB microphone, a Generalplus SF-558 on a gooseneck, plugged
-                into the USB-A port. The software detects it on its own: the echo-cancellation helper got a second input
-                with its own AEC3 instance fed the same loopback reference, the voice module watches
-                <code>/proc/asound/cards</code> and reopens capture when the microphone appears or goes away, questions are
-                recorded from the USB microphone when it is present and fall back to the on-board pair otherwise, and the
+                The on-board microphones are in the wrong place: the two ICS-43434s sit near the fan and picked up enough
+                of its noise that questions often came back as "nothing said", which made Jarvis feel slow. The fix is an
+                external USB microphone, a Generalplus SF-558 on a gooseneck in the USB-A port, which the software detects
+                on its own: the echo-cancellation helper got a second input with its own AEC3 instance on the same loopback
+                reference, the voice module watches <code>/proc/asound/cards</code> and reopens capture when the microphone
+                comes or goes, questions are recorded from it when present and from the on-board pair otherwise, and the
                 wake-word stream mixes both, scaled to the USB microphone's noise floor.
             </p>
 
@@ -459,11 +450,6 @@
                 </div>
                 <figcaption>The USB microphone on its gooseneck, next to the device.</figcaption>
             </figure>
-            <p>
-                There is no custom OS image. The device runs stock Raspberry Pi OS and an <code>install.sh</code> sets up the
-                service, the kiosk script, the audio configuration, Caddy for the phone app, DuckDNS and UPnP, the Spotify
-                event hook and the voice dependencies. Web files hot-reload in the kiosk when their version changes.
-            </p>
 
             <div class="media-row media-row--3">
                 <figure class="media">
@@ -518,51 +504,46 @@
 
             <h2>Enclosure</h2>
             <p>
-                The enclosure is the mechanical engineering part of the project. I exported the populated board from KiCad
-                as a STEP model and designed the case around it in Onshape. The constraints were set before I opened the CAD:
-                a 130 x 105 mm board sitting on the four M2.5 standoffs of the 7-inch Touch Display 2, bottom side toward the
-                back of the panel, with 3 to 4 mm standoffs setting the gap because the bottom side only carries parts about
-                a millimetre tall; the CM4, its heatsink and everything tall on the far side; and every external connector
-                on one board edge. The case is a front part that holds the display behind its bezel and a back cover over
-                the board, in landscape, so that the sensors sit beside the CM4 rather than above it in its rising warm air.
+                I exported the populated board from KiCad as a STEP model and designed the case around it in Onshape,
+                with the constraints fixed first: the board on the display's four M2.5 standoffs, bottom side toward the
+                panel with 3 to 4 mm standoffs setting the gap, since the bottom only carries parts about a millimetre
+                tall; the CM4, its heatsink and everything tall on the far side; every external connector on one edge. The
+                case is a front part that holds the display behind its bezel and a back cover over the board, in landscape
+                so the sensors sit beside the CM4 rather than above it in its rising warm air.
             </p>
             <p>
-                Most openings were dictated by the board. The sensor tongue at the board edge has two routed slots for
-                thermal isolation, and the case is open there so the SCD40 and BME688 read the room rather than the inside of
-                the box. The BH1750 light sensor is on a lead from its header so it can sit behind the bezel where it sees
-                light, and the camera module sits in the bezel on its ribbon. The two microphones are bottom-ported and
-                listen up through 1 mm holes in the board, so the case needs matching holes at the top corners. The two
-                small speakers, the fan and the USB-C connectors on the bottom edge each get their own opening, and the
-                CM4 heatsink needs the fan to move air over it and out. The light does not come from the on-board LED bar;
-                an external WS2812B strip on the strip header does that, seventy LEDs in one chain, and the software maps
-                which of them are visible through the case. The power button is wired to its panel header; the two other
-                button headers were clipped off because the display ribbon was resting on their pins.
-            </p>
-            <p>
-                Airflow is arranged around the air-quality sensor. The fan sits in the top of the enclosure and pulls air
-                out, and the sensor tongue with the SCD40 and BME688 is on the opposite side of the case, so room air is
-                drawn in through the vent slots on the side and past the sensors, then leaves at the fan. The sensors read
-                the room's air on its way in instead of the device's own warm air, and the CM4 heatsink gets the flow it needs.
-            </p>
-            <p>
-                The case is 3D printed on a Bambu Lab printer in several pieces at 0.24 mm layers, with supports where the
-                overhangs need them. The 3MF files sit alongside the KiCad project. Renders are next.
+                The board dictated most openings: the case is open at the sensor tongue so the SCD40 and BME688 read the
+                room rather than the inside of the box, the BH1750 sits on a lead behind the bezel where it sees light,
+                the camera sits in the bezel on its ribbon, the microphones listen up through 1 mm holes in the board and
+                matching holes at the top corners of the case, and the speakers, fan and bottom-edge connectors each get an
+                opening. The light is not the on-board LED bar but an external WS2812B strip on the strip header, seventy
+                LEDs in one chain, and the software maps which of them are visible through the case. The fan in the top of
+                the case pulls air out, so room air comes in through the side slots, past the sensor tongue on the opposite
+                side, over the CM4 heatsink and out. The case is printed on a Bambu Lab printer in several pieces at
+                0.24 mm layers; the 3MF files sit alongside the KiCad project. Renders are next.
             </p>
 
             <div class="media-row">
+                <figure class="media">
+                    <div class="media__frame media__frame--tall">
+                        <img src="homedeck-pics/photos/img_4180.webp" alt="The bottom side of the board seen through the two round speaker openings in the back half of the printed enclosure, with the speaker leads and hardware boxes beside it" width="1200" height="1600" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption>The board in the back half of the enclosure, before the speakers went in.</figcaption>
+                </figure>
                 <figure class="media">
                     <div class="media__frame media__frame--tall">
                         <img src="homedeck-pics/photos/img_4190.webp" alt="The two small speakers mounted inside the back cover with their leads to the JST connectors" width="1200" height="1600" loading="lazy" decoding="async">
                     </div>
                     <figcaption>The two speakers mounted in the back cover.</figcaption>
                 </figure>
-                <figure class="media">
-                    <div class="media__frame media__frame--tall">
-                        <img src="homedeck-pics/photos/img_4353.webp" alt="The finished HomeDeck case from behind, on a desk: the power button and the port openings on the top edge with a USB cable plugged in, the fan grille and the LED strip on the side" width="1200" height="1600" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption>The finished case from behind: the power button and the port openings on the top edge, the fan grille and the LED strip down the side.</figcaption>
-                </figure>
             </div>
+
+            <figure class="media">
+                <div class="media__frame media__frame--fixed">
+                    <img src="homedeck-pics/photos/img_4353.webp" alt="The finished HomeDeck case from behind, on a desk: the power button and the port openings on the top edge with a USB cable plugged in, the fan grille and the LED strip on the side" width="1200" height="1600" loading="lazy" decoding="async">
+                </div>
+                <figcaption>The finished case from behind: the power button and the port openings on the top edge, the fan grille and the LED strip down the side.</figcaption>
+            </figure>
 
             <div class="media-row">
                 <figure class="media">
@@ -590,26 +571,14 @@
                 <video src="homedeck-pics/video/apps.mp4" poster="homedeck-pics/video/apps.webp" controls playsinline preload="metadata" width="1280" height="800"></video>
             </div>
             <p class="media__caption">Lights, Spotify and the app switcher from the touchscreen.</p>
-            <p>
-                Board #1, in its case, on the desk where it lives.
-            </p>
 
-            <div class="media-row">
+            <div class="media-row media-row--3">
                 <figure class="media">
                     <div class="media__frame">
                         <img src="homedeck-pics/photos/img_4216.webp" alt="The finished HomeDeck on a desk showing the Jarvis boot screen" width="1600" height="1200" loading="lazy" decoding="async">
                     </div>
                     <figcaption>The Jarvis boot screen.</figcaption>
                 </figure>
-                <figure class="media">
-                    <div class="media__frame">
-                        <img src="homedeck-pics/photos/img_4371.webp" alt="The finished HomeDeck on a desk showing the home screen with the time, weather, CO2 and transit tiles" width="1600" height="1200" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption>The home screen in use: time, weather, CO2 and the next bike and transit departures.</figcaption>
-                </figure>
-            </div>
-
-            <div class="media-row">
                 <figure class="media">
                     <div class="media__frame">
                         <img src="homedeck-pics/photos/img_4375.webp" alt="The HomeDeck at night with the side LED bar lit purple and the home screen on" width="1600" height="1200" loading="lazy" decoding="async">
@@ -628,78 +597,76 @@
                 <div class="media__frame media__frame--fixed">
                     <img src="homedeck-pics/photos/img_4409.webp" alt="The bare rev A board in the foreground with the finished HomeDeck device behind it on the desk" width="1600" height="1200" loading="lazy" decoding="async">
                 </div>
-                <figcaption>A rev A board in front of the finished device.</figcaption>
+                <figcaption>A rev A board in front of the finished device, on the desk where it lives.</figcaption>
             </figure>
 
             <h2>What I learned</h2>
 
             <h3>PCB design</h3>
             <p>
-                I went in knowing how to read a schematic and came out having ordered a four-layer board with a 0.4 mm pitch
-                connector on it. The lessons that stuck are the ones the fab and the bench taught me. Datasheets matter down to
-                the detail: the TPS5430 wants some ESR on its output, the CM4 wants every pull-up referenced to its own 3.3 V
-                so no pin sees voltage while the module is off, and the CH334R hub has its crystal capacitors built in. Power
-                needs more thought than logic: my inrush into 280 uF tripped the laptop chargers I tried, a wide inductor
-                footprint over a plane cutout gave me an intermittent rail, and I had no test points to find either with a
-                meter. Heat moves: a temperature sensor above the CM4 reads ten degrees high, and once the board was in a case the
-                CM4 needed a heatsink and an air path of its own, with the room temperature read by an SHT4x on a lead away
-                from it. And the fab's placement preview
-                deserves a part-by-part check, because a rotated tactile switch is a permanently pressed button.
+                I went in knowing how to read a schematic and came out having ordered a four-layer board with a 0.4 mm
+                pitch connector on it. Datasheets matter down to the detail: the TPS5430 wants some ESR on its output, the
+                CM4 wants every pull-up referenced to its own 3.3 V so no pin sees voltage while the module is off, the
+                CH334R has its crystal capacitors built in. Power needs more thought than logic: inrush into 280 uF tripped
+                the laptop chargers, a wide inductor footprint over a plane cutout gave me an intermittent rail, and I had
+                no test points to find either. Heat moves: a sensor above the CM4 reads ten degrees high, and in a case the
+                CM4 needs a heatsink and an air path. And the fab's placement preview deserves a part-by-part check,
+                because a rotated tactile switch is a permanently pressed button.
             </p>
 
             <h3>Acoustics</h3>
             <p>
-                Two microphones next to a fan and two speakers, all on the same board, was the mistake in the audio design.
-                The fan noise got into every recording from the on-board pair, and no amount of software fixed that. The
-                external USB microphone on its gooseneck is the workaround, and it works, but it is a workaround for a
+                Two microphones next to a fan and two speakers, all on one board, was the mistake in the audio design. The
+                fan noise got into every recording and no software fixed it; the USB microphone is a workaround for a
                 placement decision I should have made differently on the board.
             </p>
 
             <h3>Coding</h3>
             <p>
-                The software is bigger than the board. Structuring it as a core plus one file per feature, with an event bus
-                and a small module contract, is what let it grow from a bench dashboard to a full assistant without
-                collapsing. I learned a lot of Linux audio the hard way: ALSA chains, dmix and softvol, loopback cards, why
-                Chromium and PipeWire fight over a sound card, and that an empty state file for the equaliser plugin makes
-                every ALSA client crash. Measuring beat guessing every time: the echo canceller only worked once I measured
-                the delay between the microphones and the reference, and the second wake-word model only got dropped once I
-                measured that one instance costs half a CM4 core.
+                The software is bigger than the board. A core plus one file per feature, with an event bus and a small
+                module contract, is what let it grow from a bench dashboard to a full assistant. I learned a lot of Linux
+                audio the hard way: ALSA chains, dmix and softvol, loopback cards, why Chromium and PipeWire fight over a
+                sound card, and that an empty state file for the equaliser plugin crashes every ALSA client. Measuring beat
+                guessing: the echo canceller only worked once I measured the delay between microphones and reference, and
+                the second wake-word model only got dropped once I measured that one instance costs half a CM4 core.
             </p>
 
             <h3>Working with AI</h3>
             <p>
-                I used AI throughout this project, and I am not ashamed of it. I was learning KiCad and PCB design from zero,
-                and it was the resource I leaned on: to explain datasheets I had never opened, to review the design against
-                them before I ordered, to help me write the tools above (the autorouter especially) and the assistant software,
-                and to work through the PD inrush and the audio chain when the boards were on the bench. What it could not do was hold the board, reseat a ribbon, notice the rail that came
-                alive when I picked the board up, model the case, or decide what the device should be. The design decisions,
-                the bench work, the CAD, the mistakes in the rev A table and the fixes are mine. I know the circuit well
-                enough now to explain every block on it, which was the point.
+                I used Claude's latest model at the time, Fable 5.1, to help with the build: from writing the autorouter
+                and the other PCB scripts, to most of the code the device runs on, to custom pieces like the
+                echo-cancellation helper that subtracts the speaker output so the microphones can still hear me while music
+                plays. I was learning KiCad and PCB design from zero, and it was the resource I leaned on to explain
+                datasheets I had never opened, to review the design against them before I ordered, and to work through
+                the PD inrush and the audio chain on the bench. What it could not do was hold the board, reseat a ribbon,
+                notice the rail that came alive when I picked the board up, model the case, or decide what the device
+                should be. The design, the bench work, the CAD, the mistakes in the rev A table and the fixes are mine. I
+                know the circuit well enough now to explain every block on it, which was the point.
             </p>
 
             <h3>Skills used</h3>
             <ul>
-                <li>PCB design in KiCad 7: a four-layer stack-up with split power planes, fan-out under a 0.4 mm pitch connector, DSI, CSI and USB 2.0 differential pairs, and a power tree from USB-C PD through three bucks and an LDO.</li>
-                <li>Embedded Linux on the CM4: Raspberry Pi OS, device-tree overlays, ALSA, systemd services, a Chromium kiosk.</li>
-                <li>Python and C++ tooling: the KiCad generation scripts on the pcbnew API, shapely geometry for the post-processing, the C++ grid router.</li>
+                <li>PCB design in KiCad 7: four-layer stack-up with split power planes, fan-out under a 0.4 mm pitch connector, DSI, CSI and USB 2.0 pairs, a power tree from USB-C PD through three bucks and an LDO.</li>
+                <li>Embedded Linux on the CM4: Raspberry Pi OS, device-tree overlays, ALSA, systemd, a Chromium kiosk.</li>
+                <li>Python and C++ tooling on KiCad's pcbnew API: the grid router, the pair tuner, the ground stitching, the fab export.</li>
                 <li>CAD in Onshape and 3D printing on Bambu Lab printers.</li>
-                <li>Bring-up and bench debugging: rail resistance and voltage checks, a serial console, and turning what the boards did into the rev B list.</li>
-                <li>Fab and assembly ordering: JLCPCB BOM and placement files, part selection against stock and the Basic and Extended libraries, part-by-part orientation checks in the placement preview.</li>
+                <li>Bring-up and bench debugging: rail checks, a serial console, and turning what the boards did into the rev B list.</li>
+                <li>Fab and assembly ordering: JLCPCB BOM and placement files, part selection against stock and the Basic and Extended libraries, orientation checks in the placement preview.</li>
             </ul>
 
             <h2>What I would do differently</h2>
             <ul>
-                <li>Not ask for 15 V. The amplifier is the only 15 V consumer and the speakers do not need it. Rev B defaults to 9 V and adds inrush limiting so laptop chargers stop tripping.</li>
-                <li>Put test points on every rail and route them where a probe reaches, and choose inductor footprints that are easy to solder and inspect.</li>
-                <li>Either drop the microSD slot or read the CM4 datasheet more carefully before adding it: with an eMMC module it can never work.</li>
-                <li>Place the environmental sensors as far from the CM4 as the board allows, with the fan pulling air away from them, rather than relying on slots.</li>
-                <li>Move the microphones off the board and into the front bezel, away from the fan and the speakers, or plan for an external microphone array from the start.</li>
-                <li>Check every GPIO against the audio overlays I plan to use, so a button does not land on a pin the sound card claims.</li>
-                <li>Use the amplifier's mute pin with a ramp instead of its shutdown pin, and keep the DAC running between plays.</li>
-                <li>A locking FPC connector for the display, a real PWM fan stage, and a comparator that keeps the CM4 in reset until the PD contract is good.</li>
-                <li>On the software side, skip the second wake-word instance. Summing both microphones into one model scores as well and costs half the CPU.</li>
-                <li>Hand-route the second USB-C port's data pair; 7.7 mm of skew works but should not ship in rev B.</li>
-                <li>Keep headers out of the ribbon path, or use right-angle or low-profile headers, so a ribbon cannot rest on their pins.</li>
+                <li>Not ask for 15 V: the amplifier is the only consumer and the speakers do not need it. Rev B defaults to 9 V with inrush limiting.</li>
+                <li>Test points on every rail where a probe reaches, and inductor footprints that are easy to solder and inspect.</li>
+                <li>Drop the microSD slot; with an eMMC module it can never work.</li>
+                <li>Sensors as far from the CM4 as the board allows, with the fan pulling air away from them.</li>
+                <li>Microphones off the board and into the front bezel, away from the fan and speakers, or an external microphone array from the start.</li>
+                <li>Check every GPIO against the audio overlays I plan to use.</li>
+                <li>The amplifier's mute pin with a ramp instead of its shutdown pin, and the DAC kept running between plays.</li>
+                <li>A locking FPC connector for the display, a real PWM fan stage, and a comparator that holds the CM4 in reset until the PD contract is good.</li>
+                <li>Skip the second wake-word instance: summing both microphones into one model scores as well at half the CPU.</li>
+                <li>Hand-route the second USB-C port's data pair; 7.7 mm of skew should not ship in rev B.</li>
+                <li>Keep headers out of the ribbon path, or use right-angle or low-profile headers.</li>
                 <li>Bring the power cable in on the side of the enclosure rather than the top.</li>
             </ul>
 
@@ -721,7 +688,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=5.0"></script>
+    <script src="../script.js?v=5.1"></script>
 </body>
 
 </html>
