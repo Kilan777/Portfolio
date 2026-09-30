@@ -326,7 +326,7 @@
         var sizeStack = function () {
             if (!stack || !stage) return;
             var w = stage.getBoundingClientRect().width || 900;
-            stack.style.setProperty('--persp', (w * 1.1450) + 'px');   /* fitted: perspective = 1.0157 x stage width */
+            stack.style.setProperty('--persp', (w * 1.0919) + 'px');   /* fitted: perspective = 1.0157 x stage width */
             stack.style.setProperty('--unit', (w / 900) + 'px');
         };
         sizeStack();

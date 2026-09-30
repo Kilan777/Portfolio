@@ -1193,7 +1193,7 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .stack__scene { position: absolute; inset: 0; perspective: var(--persp, 900px); }
 .stack__world {
     position: absolute; inset: 0; transform-style: preserve-3d;
-    transform: translate(-0.53%, -2.03%) rotateX(32.5deg) rotateZ(-18.5deg) scale(0.728);
+    transform: translate(-2.46%, -2.05%) rotateX(32.4deg) rotateZ(-18.8deg) scale(0.697);
 }
 .stack__layer { position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--z) * (0.015 + 0.985 * var(--p, 1)) * var(--unit, 1px))); }
 .stack__layer img { width: 100%; height: 100%; display: block; opacity: 1 !important; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.18)); }
