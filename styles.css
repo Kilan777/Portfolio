@@ -1221,3 +1221,6 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .screen-live__date { position: absolute; left: 36px; top: 168px; font-size: 26px; font-weight: 400; color: rgba(245, 245, 247, 0.82); letter-spacing: -0.005em; }
 .video--portrait { aspect-ratio: 9 / 16; max-width: 480px; margin-left: auto; margin-right: auto; }
 .video--portrait iframe { object-fit: cover; }
+/* Fullscreen video: show the whole frame, never crop */
+.video video:fullscreen, .video video:-webkit-full-screen { object-fit: contain; background: #000; }
+.video--16x10 video { object-fit: contain; }
