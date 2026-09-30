@@ -420,13 +420,7 @@
                 equaliser with a pink-noise room calibration, and 14 dB of music ducking for the whole voice turn.
             </p>
             <p>
-                The on-board microphones are in the wrong place: the two ICS-43434s sit near the fan and picked up enough
-                of its noise that questions often came back as "nothing said", which made Jarvis feel slow. The fix is an
-                external USB microphone, a Generalplus SF-558 on a gooseneck in the USB-A port, which the software detects
-                on its own: the echo-cancellation helper got a second input with its own AEC3 instance on the same loopback
-                reference, the voice module watches <code>/proc/asound/cards</code> and reopens capture when the microphone
-                comes or goes, questions are recorded from it when present and from the on-board pair otherwise, and the
-                wake-word stream mixes both, scaled to the USB microphone's noise floor.
+                Building this board taught me something about microphones in an enclosure: no matter how far out on the PCB you put them, two MEMS mics sitting near a fan and two speakers inside a closed case are hard to hear across a room. The on-board ICS-43434 pair works well within about 2 m; further away, questions often came back as "nothing said", which made Jarvis feel slow. So I added an external USB microphone, a Generalplus SF-558 on a gooseneck in the USB-A port, for talking to it from across the room. The software handles it on its own: the echo-cancellation helper got a second input with its own AEC3 instance on the same loopback reference, the voice module watches /proc/asound/cards and reopens capture when the microphone comes or goes, questions are recorded from it when present and from the on-board pair otherwise, and the wake-word stream mixes both, scaled to the USB microphone's noise floor.
             </p>
 
             <figure class="media">
@@ -595,9 +589,9 @@
 
             <h3>Acoustics</h3>
             <p>
-                Two microphones next to a fan and two speakers, all on one board, was the mistake in the audio design. The
-                fan noise got into every recording and no software fixed it; the USB microphone is a workaround for a
-                placement decision I should have made differently on the board.
+                Microphones inside an enclosure have a short reach. However far out on the board they sit, MEMS mics next to a
+                fan and two speakers in a closed case hear well to about 2 m and struggle beyond that. The board-mounted pair is
+                fine for the desk; the gooseneck USB microphone is what makes talking to it from across the room work.
             </p>
 
             <h3>Coding</h3>
@@ -649,7 +643,7 @@
                 <li>Test points on every rail where a probe reaches, and inductor footprints that are easy to solder and inspect.</li>
                 <li>Drop the microSD slot; with an eMMC module it can never work.</li>
                 <li>Sensors as far from the CM4 as the board allows, with the fan pulling air away from them.</li>
-                <li>Microphones off the board and into the front bezel, away from the fan and speakers, or an external microphone array from the start.</li>
+                <li>Plan for a far-field microphone from the start: a mic array in the front bezel, away from the fan and speakers, instead of relying on the on-board pair.</li>
                 <li>Check every GPIO against the audio overlays I plan to use.</li>
                 <li>The amplifier's mute pin with a ramp instead of its shutdown pin, and the DAC kept running between plays.</li>
                 <li>A locking FPC connector for the display, a real PWM fan stage, and a comparator that holds the CM4 in reset until the PD contract is good.</li>
