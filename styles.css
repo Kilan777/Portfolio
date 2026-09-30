@@ -1176,6 +1176,7 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 @media (max-width: 640px) {
     .scrolly { height: 380vh; }
+    .scrolly__sticky { min-height: auto; }
     .scrolly__canvas { filter: drop-shadow(0 16px 22px rgba(20, 30, 45, 0.22)); }
     .scrolly__caption { font-size: 14px; }
 }

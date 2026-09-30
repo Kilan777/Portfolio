@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>HomeDeck | Kilan Rougeot</title>
-    <meta name="description" content="HomeDeck: a Raspberry Pi CM4 carrier board designed in KiCad and assembled by JLCPCB, with a 7-inch touchscreen, CO2 and VOC sensors, stereo audio and a wake-word voice assistant. Built to learn PCB design.">
+    <meta name="description" content="HomeDeck: a Raspberry Pi CM4 carrier board designed in KiCad and assembled by JLCPCB, with a 7-inch touchscreen, CO2 and VOC sensors, stereo audio and a wake-word voice assistant. Built to learn PCB design and product integration.">
     <meta name="theme-color" content="#fafaf9">
     <link rel="canonical" href="https://kilanrou.com/projects/homedeck.html">
     <link rel="icon" type="image/png" href="../Pics/webicon.png">
-    <link rel="stylesheet" href="../styles.css?v=5.2">
+    <link rel="stylesheet" href="../styles.css?v=5.3">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://kilanrou.com/projects/homedeck.html">
     <meta property="og:title" content="HomeDeck | Kilan Rougeot">
-    <meta property="og:description" content="HomeDeck: a Raspberry Pi CM4 carrier board designed in KiCad and assembled by JLCPCB, with a 7-inch touchscreen, CO2 and VOC sensors, stereo audio and a wake-word voice assistant. Built to learn PCB design.">
+    <meta property="og:description" content="HomeDeck: a Raspberry Pi CM4 carrier board designed in KiCad and assembled by JLCPCB, with a 7-inch touchscreen, CO2 and VOC sensors, stereo audio and a wake-word voice assistant. Built to learn PCB design and product integration.">
     <meta property="og:image" content="https://kilanrou.com/Pics/og.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -61,7 +61,7 @@
                     <a href="../index.html#projects" class="link link--back">Projects</a>
                     <span class="eyebrow">Personal project</span>
                     <h1 class="detail-hero__title">HomeDeck</h1>
-                    <p class="detail-hero__sub">A Raspberry Pi CM4 carrier board with a 7-inch touchscreen, air-quality sensors and a voice assistant, built to learn PCB design.</p>
+                    <p class="detail-hero__sub">A Raspberry Pi CM4 carrier board, an enclosure and a voice assistant in one device, built to learn PCB design and product integration.</p>
                     <div class="detail-hero__meta">
                         <span><time datetime="2026-09">2026</time></span>
                         <span>CM4 carrier board and assistant software</span>
@@ -111,7 +111,7 @@
                 HomeDeck is a smart-home deck for my room: a carrier PCB for the Raspberry Pi Compute Module 4 that bolts to the
                 back of the 7-inch Raspberry Pi Touch Display 2, with CO2 and VOC sensors, stereo speakers, two microphones,
                 a camera and a light bar, plus the software that turns it into a voice assistant called Jarvis. I started it
-                to learn PCB design properly, from schematic to a board assembled by a fab. The first revision is on my desk
+                to learn PCB design properly, from schematic to a board assembled by a fab, and to practise product design: integrating the board, the enclosure and the software into one thing that works as a device. The first revision is on my desk
                 and in daily use. The KiCad project, tools, enclosure CAD and assistant software are in the
                 <a href="https://github.com/Kilan777/HomeDeck" target="_blank" rel="noopener">GitHub repository</a>.
             </p>
@@ -122,15 +122,6 @@
                 </div>
                 <figcaption>The finished device at night, LED bar on.</figcaption>
             </figure>
-                    <figcaption>The finished device on the desk: display in the front frame, power button and camera on top, intake slots on the side.</figcaption>
-                </figure>
-                <figure class="media">
-                    <div class="media__frame">
-                        <img src="homedeck-pics/photos/img_4371.webp" alt="The finished HomeDeck on a desk showing the home screen with the time, weather, CO2 and transit tiles" width="1600" height="1200" decoding="async">
-                    </div>
-                    <figcaption>The home screen in use: time, weather, CO2 and the next bike and transit departures.</figcaption>
-                </figure>
-            </div>
 
             <div class="stats">
                 <div class="stat"><div class="stat__value">4 layers</div><div class="stat__label">130 x 105 mm board, ENIG, assembled on both sides</div></div>
@@ -633,8 +624,18 @@
                 know the circuit well enough now to explain every block on it, which was the point.
             </p>
 
+            <h3>Product design</h3>
+            <p>
+                The board was the reason I started, but most of the time went into making the pieces work together: fitting the
+                board behind the display and inside a case that also has to hold two speakers, a fan and a camera; routing air
+                past the sensors; deciding what the device does, what the screen shows and what a voice command should do; and
+                finding out on the bench which of those decisions were wrong. Integrating hardware, software and the enclosure
+                into one thing that sits on a shelf and just works is a different skill from designing any one of them.
+            </p>
+
             <h3>Skills used</h3>
             <ul>
+                <li>Product design: integrating a board, an enclosure, a display and software into one device, and iterating on it from real use.</li>
                 <li>PCB design in KiCad 7: four-layer stack-up with split power planes, fan-out under a 0.4 mm pitch connector, DSI, CSI and USB 2.0 pairs, a power tree from USB-C PD through three bucks and an LDO.</li>
                 <li>Embedded Linux on the CM4: Raspberry Pi OS, device-tree overlays, ALSA, systemd, a Chromium kiosk.</li>
                 <li>Python and C++ tooling on KiCad's pcbnew API: the grid router, the pair tuner, the ground stitching, the fab export.</li>
@@ -677,7 +678,7 @@
         </div>
     </footer>
 
-    <script src="../script.js?v=5.2"></script>
+    <script src="../script.js?v=5.3"></script>
 </body>
 
 </html>
