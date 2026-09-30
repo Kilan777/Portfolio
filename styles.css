@@ -1152,13 +1152,14 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
    Scroll-driven frame sequence (3D turntable lead on project pages)
    <div class="scrolly" data-scrolly data-frames="60" data-src="…/{i}.webp" data-final="…/final.webp">
    -------------------------------------------------------------------------- */
-.scrolly { position: relative; height: 480vh; margin: 8px 0 24px; }
+.scrolly { position: relative; height: 480vh; margin: 8px 0 0; }
 .scrolly__sticky {
     position: sticky;
-    top: var(--nav-h);
-    height: calc(100vh - var(--nav-h));
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 18px;
+    top: calc(var(--nav-h) + 12px);
+    height: auto;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    gap: 14px;
+    padding-bottom: 8px;
 }
 .scrolly__canvas {
     width: min(100%, 980px); height: auto;
@@ -1180,14 +1181,14 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 }
 @media (prefers-reduced-motion: reduce) {
     .scrolly { height: auto; }
-    .scrolly__sticky { position: static; height: auto; padding: 24px 0; }
+    .scrolly__sticky { position: static; padding: 24px 0; }
     .scrolly__hint { display: none; }
 }
 
 /* Exploded layer stack shown before the frame sequence (HomeDeck lead).
    The stack sits in the same box as the canvas; its camera was fitted numerically to the first render frame.
    --p goes 1 (exploded) -> 0 (collapsed). JS sets --persp and --unit from the stage width. */
-.scrolly__stage { position: relative; width: min(100%, 980px); }
+.scrolly__stage { position: relative; width: min(100%, 980px, (100vh - var(--nav-h) - 150px) * 1.144); }
 .scrolly__stage .scrolly__canvas { width: 100%; position: relative; z-index: 2; }
 .stack { position: absolute; inset: 0; pointer-events: none; }
 .stack__scene { position: absolute; left: 0; right: 0; top: 50%; aspect-ratio: 1100 / 890; transform: translateY(-50%); perspective: var(--persp, 900px); }
