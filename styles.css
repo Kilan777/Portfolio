@@ -287,7 +287,7 @@ h1, h2, h3, h4 {
 /* --------------------------------------------------------------------------
    Sections & headings
    -------------------------------------------------------------------------- */
-.section { padding: clamp(56px, 8vw, 96px) 0; }
+.section { padding: clamp(40px, 5vw, 56px) 0; }
 .section--alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .section--tight { padding: 48px 0; }
 
@@ -324,7 +324,7 @@ h1, h2, h3, h4 {
 /* --------------------------------------------------------------------------
    Home hero
    -------------------------------------------------------------------------- */
-.hero { padding: calc(var(--nav-h) + clamp(48px, 8vw, 96px)) 0 clamp(48px, 7vw, 80px); }
+.hero { padding: calc(var(--nav-h) + clamp(32px, 5vw, 56px)) 0 clamp(32px, 4vw, 48px); }
 
 .hero__grid {
     display: grid;
@@ -992,7 +992,7 @@ a.tile:hover .tile__media img { transform: scale(1.03); }
     transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
 }
 .is-in .section__title--rule::after { transform: scaleX(1); }
-.section__head--rule { margin-bottom: 36px; }
+.section__head--rule { margin-bottom: 24px; }
 
 .cards {
     display: grid;
