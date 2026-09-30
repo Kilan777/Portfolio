@@ -312,6 +312,7 @@
         var setCaption = function (i, stackVisible) {
             var step = 0;
             if (!stackVisible) steps.forEach(function (s, k) { if (i >= s) step = k + 1; });
+            if (el.hasAttribute('data-reverse') && !stackVisible) { step = 0; steps.forEach(function (s, k) { if (i <= s) step = k + 1; }); }
             captions.forEach(function (c, k) { c.classList.toggle('is-active', k === Math.min(step, captions.length - 1)); });
         };
         var progress = function () {
@@ -371,21 +372,30 @@
             stack.style.setProperty('--unit', (w / 900) + 'px');
         };
         sizeStack();
+        var reverse = el.hasAttribute('data-reverse');
         var render = function () {
             var p = progress();
             if (p > 0.01) el.classList.add('is-started');
+            /* in reverse mode the layer stack lives in the LAST stackEnd fraction of the scroll */
+            var ps = reverse ? (1 - p) : p;
             if (stack) {
-                var sp = stackEnd > 0 ? Math.min(1, p / stackEnd) : 1;
+                var sp = stackEnd > 0 ? Math.min(1, ps / stackEnd) : 1;
                 stack.style.setProperty('--p', String(1 - sp));
-                var fadeIn = sp < 0.7 ? 0 : Math.min(1, (sp - 0.7) / 0.3);   /* render fades in on top of the collapsed stack */
+                var fadeIn = sp < 0.7 ? 0 : Math.min(1, (sp - 0.7) / 0.3);
                 stack.style.opacity = sp >= 1 ? '0' : '1';
                 stack.classList.toggle('is-hidden', sp >= 1);
                 canvas.style.opacity = sp >= 1 ? '' : String(fadeIn);
             }
-            var q = stackEnd > 0 ? Math.max(0, (p - stackEnd) / (1 - stackEnd)) : p;
+            var q = stackEnd > 0 ? Math.max(0, (ps - stackEnd) / (1 - stackEnd)) : ps;
+            if (reverse) q = 1 - q;
             var i = Math.min(n - 1, Math.floor(q * n));
-            setCaption(i, stack && stackEnd > 0 && p < stackEnd);
-            if (live) { placeLive(); var on = !isNaN(liveFrom) && i >= liveFrom; live.classList.toggle('is-on', on); if (on) live.style.setProperty('--live-a', String(Math.min(1, (i - liveFrom + 1) / Math.max(1, liveFull - liveFrom + 1)))); }
+            setCaption(i, stack && stackEnd > 0 && ps < stackEnd);
+            if (live) {
+                placeLive();
+                var on = !isNaN(liveFrom) && (reverse ? i <= liveFrom : i >= liveFrom);
+                live.classList.toggle('is-on', on);
+                if (on) live.style.setProperty('--live-a', String(reverse ? Math.min(1, (liveFrom - i + 1) / Math.max(1, liveFrom - liveFull + 1)) : Math.min(1, (i - liveFrom + 1) / Math.max(1, liveFull - liveFrom + 1))));
+            }
             var go = function () { draw(i); };
             if (frames[i] && frames[i].complete) {
                 if (fullTpl && i >= fullFrom && !(fulls[i] && fulls[i].complete)) loadInto(fulls, fullTpl.replace('{i}', pad3(i)), i, go);
@@ -396,7 +406,7 @@
         };
 
         if (reduceMotion) {
-            var last = n - 1;
+            var last = el.hasAttribute('data-reverse') ? 0 : n - 1;
             loadInto(frames, tpl.replace('{i}', pad3(last)), last, function () {
                 if (fullTpl) loadInto(fulls, fullTpl.replace('{i}', pad3(last)), last, function () { draw(last); });
                 else draw(last);
