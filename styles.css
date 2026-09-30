@@ -1059,6 +1059,7 @@ a.card:hover .card__media > img:not(.card__logo) { filter: brightness(0.4); }
     text-align: center;
     padding: 32px;
     color: #fff;
+    background: rgba(15, 23, 42, 0.82);
     opacity: 0;
     transition: opacity 0.3s var(--ease);
 }
@@ -1070,7 +1071,7 @@ a.card:hover .card__overlay, a.card:focus-visible .card__overlay { opacity: 1; }
 .card__caption { display: none; }
 
 @media (hover: none), (max-width: 768px) {
-    .card__overlay { opacity: 1; background: rgba(15, 23, 42, 0.8); }
+    .card__overlay { opacity: 1; }
     .card__media > img:not(.card__logo) { filter: brightness(0.35); }
     .card__overlay h3 { font-size: 22px; max-width: 95%; }
     .card__overlay .card__meta { font-size: 14px; margin-bottom: 8px; }
