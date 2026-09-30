@@ -1,18 +1,18 @@
 # Kilan Rougeot
 
-> Engineering portfolio of Kilan Rougeot: mechanical engineering student at Olin College of Engineering (mechatronics and robotics), founding engineer at YC-backed AutoPallet Robotics, former automation intern at Kia (Hyundai Motor Group). Co-author of a filed utility patent for agricultural drone soil sampling. Trilingual.
+> Engineering portfolio of Kilan Rougeot: mechanical engineering student at Olin College of Engineering (mechatronics and robotics), founding engineer at YC-backed AutoPallet Robotics, former automation intern at Kia (Hyundai Motor Group). Co-author of a filed utility patent for agricultural drone soil sampling. Trilingual: English, Spanish, French.
 
-Contact: kilanrou@gmail.com · https://kilanrou.com/contact.html · Resume: https://kilanrou.com/Files/ResumeKilan.pdf
+Contact: kilanrou@gmail.com · https://kilanrou.com/contact.html · GitHub: https://github.com/Kilan777 · LinkedIn: https://www.linkedin.com/in/kilanrou · Resume: https://kilanrou.com/Files/ResumeKilan.pdf
 
 Every page is plain semantic HTML with schema.org JSON-LD in the head. The `.prose` article on each page holds the full write-up.
 
 ## Work experience
 
-- [AutoPallet Robotics](https://kilanrou.com/#experience): Founding Engineer (ongoing). YC-backed warehouse automation; mechanical design and mechatronic prototyping.
-- [Munchkin Robotics (Munchkin LLC)](https://kilanrou.com/projects/munchkin.html): Co-founder and CEO (ongoing). Robotic assistive feeding device: 4-DOF arm, real-time face tracking, automatic utensil changer. Co-founded with Dhvan Shah; Olin SAG and SEED grants; two investors; interviewed with Y Combinator.
+- [AutoPallet Robotics](https://kilanrou.com/#experience): Founding Engineer (ongoing), San Francisco, CA. YC-backed warehouse automation; mechanical design and mechatronic prototyping.
+- [Munchkin Robotics (Munchkin LLC)](https://kilanrou.com/projects/munchkin.html): Co-founder and CEO (ongoing), Boston, MA. Registered LLC with Olin SAG and SEED grant funding and two investors. Robotic assistive feeding device: 4-DOF arm, real-time face tracking, automatic utensil changer. Co-founded with Dhvan Shah; Olin SAG and SEED grants; two investors; interviewed with Y Combinator.
 - [Kia (Hyundai Motor Group)](https://kilanrou.com/experience/kia.html): Engineering Intern, Summer 2025, Žilina, Slovakia. Led an automated robotic wheel-loading cell; PLC, robotic arm, Keyence vision and safety work across Press, Body, Paint, Assembly and Engine departments.
-- [AT Dev Inc](https://kilanrou.com/experience/at-dev.html): Robotics Engineering Intern. Assistive technology; leg brace with a novel fastening system, CNC and lathe work, FDA compliance.
-- [Astara](https://kilanrou.com/experience/astara.html): Data & Computer Science Intern. Python automation and scraping; 90%+ reduction in weekly reporting time.
+- [AT Dev Inc](https://kilanrou.com/experience/at-dev.html): Robotics Engineering Intern, Summer 2022, Los Angeles, CA. Assistive technology; leg brace with a novel fastening system, CNC and lathe work, FDA compliance.
+- [Astara](https://kilanrou.com/experience/astara.html): Data & Computer Science Intern, Summer 2023, Madrid, Spain. Python automation and scraping; 90%+ reduction in weekly reporting time.
 
 ## Project teams
 
