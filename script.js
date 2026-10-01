@@ -312,8 +312,15 @@
             var key = Math.round(f * 100);
             if (key === lastDrawn) return; lastDrawn = key;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.globalAlpha = 1; ctx.drawImage(src(A), 0, 0);
-            if (t > 0.02 && ready(B) && B !== A) { ctx.globalAlpha = t; ctx.drawImage(src(B), 0, 0); ctx.globalAlpha = 1; }
+            if (t > 0.02 && t < 0.98 && ready(B) && B !== A) {
+                /* additive cross-fade: A*(1-t) + B*t is an exact mix, so shadows and edges never double up */
+                ctx.globalCompositeOperation = 'lighter';
+                ctx.globalAlpha = 1 - t; ctx.drawImage(src(A), 0, 0);
+                ctx.globalAlpha = t; ctx.drawImage(src(B), 0, 0);
+                ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+            } else {
+                ctx.globalAlpha = 1; ctx.drawImage(src(t >= 0.98 && ready(B) ? B : A), 0, 0);
+            }
             current = a; canvas.classList.add('is-ready');
         };
         var setCaption = function (i, stackVisible) {
@@ -436,7 +443,7 @@
             render();
             var d = target - head;
             if (Math.abs(d) < 0.01) { head = target; draw(head); running = false; return; }
-            head += d * 0.18;
+            head += d * 0.14;
             requestAnimationFrame(tick);
         };
         var onScroll = function () {
