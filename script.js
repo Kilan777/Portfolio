@@ -287,27 +287,34 @@
             img.decoding = 'async';
             img.src = url;
             arr[i] = img;
-            img.onload = function () { cb && cb(); };
+            img.onload = function () {
+                if (window.createImageBitmap) {
+                    createImageBitmap(img).then(function (bm) { img._bm = bm; cb && cb(); }, function () { cb && cb(); });
+                } else { cb && cb(); }
+            };
         };
         var mixFor = function (i) {
             if (!fullTpl || i < fullFrom) return 0;
             var span = Math.max(1, n - 1 - fullFrom);
             return Math.min(1, (i - fullFrom) / span);
         };
-        var draw = function (i) {
-            var img = frames[i];
-            if (!img || !img.complete || !img.naturalWidth) return;
-            var mix = mixFor(i);
-            var full = fulls[i];
-            if (mix > 0 && !(full && full.complete && full.naturalWidth)) mix = 0;
-            if (canvas.width !== img.naturalWidth) { canvas.width = img.naturalWidth; canvas.height = img.naturalHeight; }
-            if (i === current && mix === currentMix) return;
+        var ready = function (img) { return img && img.complete && img.naturalWidth; };
+        var src = function (img) { return img._bm || img; };
+        var lastDrawn = -1;
+        var draw = function (f) {
+            var a = Math.max(0, Math.min(n - 1, Math.floor(f))), b = Math.min(n - 1, a + 1), t = f - a;
+            var A = frames[a], B = frames[b];
+            if (!ready(A)) { /* fall back to the nearest decoded frame so the canvas never stalls */
+                for (var d = 1; d < n; d++) { if (ready(frames[a - d])) { A = frames[a - d]; break; } if (ready(frames[a + d])) { A = frames[a + d]; break; } }
+                if (!ready(A)) return; t = 0;
+            }
+            if (canvas.width !== A.naturalWidth) { canvas.width = A.naturalWidth; canvas.height = A.naturalHeight; }
+            var key = Math.round(f * 100);
+            if (key === lastDrawn) return; lastDrawn = key;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.globalAlpha = 1;
-            ctx.drawImage(img, 0, 0);
-            if (mix > 0) { ctx.globalAlpha = mix; ctx.drawImage(full, 0, 0, canvas.width, canvas.height); ctx.globalAlpha = 1; }
-            current = i; currentMix = mix;
-            canvas.classList.add('is-ready');
+            ctx.globalAlpha = 1; ctx.drawImage(src(A), 0, 0);
+            if (t > 0.02 && ready(B) && B !== A) { ctx.globalAlpha = t; ctx.drawImage(src(B), 0, 0); ctx.globalAlpha = 1; }
+            current = a; canvas.classList.add('is-ready');
         };
         var setCaption = function (i, stackVisible) {
             var step = 0;
@@ -373,6 +380,7 @@
         };
         sizeStack();
         var reverse = el.hasAttribute('data-reverse');
+        var target = 0, head = -1, running = false;
         var render = function () {
             var p = progress();
             if (p > 0.01) el.classList.add('is-started');
@@ -380,15 +388,20 @@
             var ps = reverse ? (1 - p) : p;
             if (stack) {
                 var sp = stackEnd > 0 ? Math.min(1, ps / stackEnd) : 1;
+                if (sp >= 1 && stack._done) { /* nothing to update while the stack is out of play */ } else {
+                stack._done = sp >= 1;
                 stack.style.setProperty('--p', String(1 - sp));
                 var fadeIn = sp < 0.7 ? 0 : Math.min(1, (sp - 0.7) / 0.3);
                 stack.style.opacity = sp >= 1 ? '0' : '1';
                 stack.classList.toggle('is-hidden', sp >= 1);
                 canvas.style.opacity = sp >= 1 ? '' : String(fadeIn);
+                }
             }
             var q = stackEnd > 0 ? Math.max(0, (ps - stackEnd) / (1 - stackEnd)) : ps;
             if (reverse) q = 1 - q;
-            var i = Math.min(n - 1, Math.floor(q * n));
+            target = q * (n - 1);
+            if (head < 0) head = target;
+            var i = Math.round(head);
             setCaption(i, stack && stackEnd > 0 && ps < stackEnd);
             if (live) {
                 placeLive();
@@ -396,15 +409,8 @@
                 live.classList.toggle('is-on', on);
                 if (on) live.style.setProperty('--live-a', String(reverse ? Math.min(1, (liveFrom - i + 1) / Math.max(1, liveFrom - liveFull + 1)) : Math.min(1, (i - liveFrom + 1) / Math.max(1, liveFull - liveFrom + 1))));
             }
-            var go = function () { draw(i); };
-            if (frames[i] && frames[i].complete) {
-                if (fullTpl && i >= fullFrom && !(fulls[i] && fulls[i].complete)) loadInto(fulls, fullTpl.replace('{i}', pad3(i)), i, go);
-                go();
-            } else {
-                loadInto(frames, tpl.replace('{i}', pad3(i)), i, go);
-            }
+            draw(head);
         };
-
         if (reduceMotion) {
             var last = el.hasAttribute('data-reverse') ? 0 : n - 1;
             loadInto(frames, tpl.replace('{i}', pad3(last)), last, function () {
@@ -420,16 +426,22 @@
             render();
             var k = 1;
             var next = function () {
-                if (k < n) { var i = k++; loadInto(frames, tpl.replace('{i}', pad3(i)), i, next); }
-                else if (fullTpl) { fullTpl && (function loadFull(j) { if (j >= n) return; loadInto(fulls, fullTpl.replace('{i}', pad3(j)), j, function () { if (j === current) { currentMix = -1; draw(j); } loadFull(j + 1); }); })(fullFrom); }
+                if (k < n) { var i = k++; loadInto(frames, tpl.replace('{i}', pad3(i)), i, function () { lastDrawn = -1; next(); }); }
+                else if (false && fullTpl) { fullTpl && (function loadFull(j) { if (j >= n) return; loadInto(fulls, fullTpl.replace('{i}', pad3(j)), j, function () { if (j === current) { currentMix = -1; draw(j); } loadFull(j + 1); }); })(fullFrom); }
             };
-            next();
+            for (var c = 0; c < 6; c++) next();   /* six parallel loaders */
         });
-        var ticking = false;
+        /* eased playhead: follows the scroll position smoothly instead of jumping frame to frame */
+        var tick = function () {
+            render();
+            var d = target - head;
+            if (Math.abs(d) < 0.01) { head = target; draw(head); running = false; return; }
+            head += d * 0.18;
+            requestAnimationFrame(tick);
+        };
         var onScroll = function () {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(function () { render(); ticking = false; });
+            if (running) return;
+            running = true; requestAnimationFrame(tick);
         };
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', function () { sizeStack(); onScroll(); });
