@@ -287,11 +287,25 @@
             img.decoding = 'async';
             img.src = url;
             arr[i] = img;
-            img.onload = function () {
-                if (window.createImageBitmap) {
-                    createImageBitmap(img).then(function (bm) { img._bm = bm; cb && cb(); }, function () { cb && cb(); });
-                } else { cb && cb(); }
-            };
+            var done = function () { cb && cb(); };
+            img.onload = function () { if (img.decode) img.decode().then(done, done); else done(); };
+            img.onerror = done;
+        };
+        /* GPU-ready bitmaps: every frame on desktop, a window around the playhead on phones (147 full
+           bitmaps is ~400 MB, which iOS Safari will not keep) */
+        var lowMem = (navigator.deviceMemory && navigator.deviceMemory < 4) || /iPhone|iPad|iPod|Android/.test(navigator.userAgent) || (/Mac/.test(navigator.platform) && navigator.maxTouchPoints > 1);
+        var bmWin = lowMem ? 20 : n, bmCenter = -999;
+        var bitmapsAround = function (c) {
+            if (!window.createImageBitmap || Math.abs(c - bmCenter) < 4) return;
+            bmCenter = c;
+            for (var i = 0; i < n; i++) {
+                var img = frames[i]; if (!img || !img.complete || !img.naturalWidth) continue;
+                var near = Math.abs(i - c) <= bmWin;
+                if (near && !img._bm && !img._bmPending) {
+                    img._bmPending = true;
+                    (function (im) { createImageBitmap(im).then(function (bm) { im._bmPending = false; if (Math.abs(frames.indexOf(im) - bmCenter) <= bmWin) im._bm = bm; else bm.close(); }, function () { im._bmPending = false; }); })(img);
+                } else if (!near && img._bm) { img._bm.close && img._bm.close(); img._bm = null; }
+            }
         };
         var mixFor = function (i) {
             if (!fullTpl || i < fullFrom) return 0;
@@ -300,8 +314,9 @@
         };
         var ready = function (img) { return img && img.complete && img.naturalWidth; };
         var src = function (img) { return img._bm || img; };
-        var lastDrawn = -1;
+        var lastDrawn = -1, allIn = false;
         var draw = function (f) {
+            if (!allIn) f = 0;   /* hold the first frame until the whole sequence is decoded */
             var a = Math.max(0, Math.min(n - 1, Math.floor(f))), b = Math.min(n - 1, a + 1), t = f - a;
             var A = frames[a], B = frames[b];
             if (!ready(A)) { /* fall back to the nearest decoded frame so the canvas never stalls */
@@ -326,7 +341,7 @@
         var setCaption = function (i, stackVisible) {
             var step = 0;
             if (!stackVisible) steps.forEach(function (s, k) { if (i >= s) step = k + 1; });
-            if (el.hasAttribute('data-reverse') && !stackVisible) { step = 0; steps.forEach(function (s, k) { if (i <= s) step = k + 1; }); }
+            if (el.hasAttribute('data-reverse')) { step = captions.length - 1; if (!stackVisible) { step = 0; steps.forEach(function (s, k) { if (i > s) step = k + 1; }); } }
             captions.forEach(function (c, k) { c.classList.toggle('is-active', k === Math.min(step, captions.length - 1)); });
         };
         var progress = function () {
@@ -408,7 +423,7 @@
             if (reverse) q = 1 - q;
             target = q * (n - 1);
             if (head < 0) head = target;
-            var i = Math.round(head);
+            var i = allIn ? Math.round(head) : 0;
             setCaption(i, stack && stackEnd > 0 && ps < stackEnd);
             if (live) {
                 placeLive();
@@ -416,6 +431,7 @@
                 live.classList.toggle('is-on', on);
                 if (on) live.style.setProperty('--live-a', String(reverse ? Math.min(1, (liveFrom - i + 1) / Math.max(1, liveFrom - liveFull + 1)) : Math.min(1, (i - liveFrom + 1) / Math.max(1, liveFull - liveFrom + 1))));
             }
+            if (allIn) bitmapsAround(Math.round(head));
             draw(head);
         };
         if (reduceMotion) {
@@ -428,15 +444,20 @@
             return;
         }
 
-        /* first frame first, then everything else in order in the background */
+        /* preload: the first frame shows at once, the rest download and decode on page entry, and
+           scrubbing starts only once every frame is in memory (a thin bar shows progress meanwhile) */
+        var bar = document.createElement('div'); bar.className = 'scrolly__loader'; bar.innerHTML = '<span></span>';
+        if (stage) stage.appendChild(bar);
+        var got = 0;
+        var oneIn = function () {
+            got++; bar.firstChild.style.transform = 'scaleX(' + (got / n) + ')';
+            if (got === n) { allIn = true; bar.classList.add('is-done'); lastDrawn = -1; head = target; onScroll(); }
+        };
         loadInto(frames, tpl.replace('{i}', pad3(0)), 0, function () {
-            render();
+            render(); oneIn();
             var k = 1;
-            var next = function () {
-                if (k < n) { var i = k++; loadInto(frames, tpl.replace('{i}', pad3(i)), i, function () { lastDrawn = -1; next(); }); }
-                else if (false && fullTpl) { fullTpl && (function loadFull(j) { if (j >= n) return; loadInto(fulls, fullTpl.replace('{i}', pad3(j)), j, function () { if (j === current) { currentMix = -1; draw(j); } loadFull(j + 1); }); })(fullFrom); }
-            };
-            for (var c = 0; c < 6; c++) next();   /* six parallel loaders */
+            var next = function () { if (k < n) { var i = k++; loadInto(frames, tpl.replace('{i}', pad3(i)), i, function () { oneIn(); next(); }); } };
+            for (var c = 0; c < 8; c++) next();   /* eight parallel loaders */
         });
         /* eased playhead: follows the scroll position smoothly instead of jumping frame to frame */
         var tick = function () {
