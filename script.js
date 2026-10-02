@@ -453,6 +453,7 @@
             got++; bar.firstChild.style.transform = 'scaleX(' + (got / n) + ')';
             if (got === n) { allIn = true; bar.classList.add('is-done'); lastDrawn = -1; head = target; onScroll(); }
         };
+        render();   /* place the layer stack right away, before any frame has arrived */
         loadInto(frames, tpl.replace('{i}', pad3(0)), 0, function () {
             render(); oneIn();
             var k = 1;
