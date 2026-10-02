@@ -1227,9 +1227,5 @@ a.card:hover .card__overlay > *:nth-child(3) { transition-delay: 0.08s; }
 .scrolly__canvas, .stack__layer, .screen-live { will-change: transform, opacity; }
 .scrolly__canvas { transform: translateZ(0); }
 
-/* scrolly preload bar: thin line under the stage, fades out once every frame is decoded */
-.scrolly__loader { position: absolute; left: 25%; right: 25%; bottom: 4px; height: 2px; border-radius: 2px; background: rgba(15, 23, 42, 0.08); overflow: hidden; transition: opacity 0.4s ease; pointer-events: none; z-index: 4; }
-.scrolly__loader span { display: block; height: 100%; background: rgba(15, 23, 42, 0.45); transform: scaleX(0); transform-origin: left; transition: transform 0.2s linear; }
-.scrolly__loader.is-done { opacity: 0; }
 /* reverse sequences start on the finished device: keep the layer stack hidden until the script places it */
 .scrolly[data-reverse] .stack { opacity: 0; }

@@ -314,17 +314,19 @@
         };
         var ready = function (img) { return img && img.complete && img.naturalWidth; };
         var src = function (img) { return img._bm || img; };
-        var lastDrawn = -1, allIn = false;
+        var lastDrawn = '';
         var draw = function (f) {
-            if (!allIn) f = 0;   /* hold the first frame until the whole sequence is decoded */
-            var a = Math.max(0, Math.min(n - 1, Math.floor(f))), b = Math.min(n - 1, a + 1), t = f - a;
-            var A = frames[a], B = frames[b];
-            if (!ready(A)) { /* fall back to the nearest decoded frame so the canvas never stalls */
-                for (var d = 1; d < n; d++) { if (ready(frames[a - d])) { A = frames[a - d]; break; } if (ready(frames[a + d])) { A = frames[a + d]; break; } }
-                if (!ready(A)) return; t = 0;
-            }
+            /* blend the nearest loaded frames on either side: while the sequence is still streaming in
+               (coarse keyframes first) the motion is a smooth cross-fade, and it sharpens as frames land */
+            f = Math.max(0, Math.min(n - 1, f));
+            var a = Math.floor(f), b = Math.ceil(f);
+            while (a >= 0 && !ready(frames[a])) a--;
+            while (b < n && !ready(frames[b])) b++;
+            if (a < 0 && b >= n) return;
+            if (a < 0) a = b; if (b >= n) b = a;
+            var A = frames[a], B = frames[b], t = b > a ? (f - a) / (b - a) : 0;
             if (canvas.width !== A.naturalWidth) { canvas.width = A.naturalWidth; canvas.height = A.naturalHeight; }
-            var key = Math.round(f * 100);
+            var key = a + '|' + b + '|' + Math.round(t * 100);
             if (key === lastDrawn) return; lastDrawn = key;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             if (t > 0.02 && t < 0.98 && ready(B) && B !== A) {
@@ -423,7 +425,7 @@
             if (reverse) q = 1 - q;
             target = q * (n - 1);
             if (head < 0) head = target;
-            var i = allIn ? Math.round(head) : 0;
+            var i = Math.round(head);
             setCaption(i, stack && stackEnd > 0 && ps < stackEnd);
             if (live) {
                 placeLive();
@@ -431,7 +433,7 @@
                 live.classList.toggle('is-on', on);
                 if (on) live.style.setProperty('--live-a', String(reverse ? Math.min(1, (liveFrom - i + 1) / Math.max(1, liveFrom - liveFull + 1)) : Math.min(1, (i - liveFrom + 1) / Math.max(1, liveFull - liveFrom + 1))));
             }
-            if (allIn) bitmapsAround(Math.round(head));
+            bitmapsAround(Math.round(head));
             draw(head);
         };
         if (reduceMotion) {
@@ -444,22 +446,22 @@
             return;
         }
 
-        /* preload: the first frame shows at once, the rest download and decode on page entry, and
-           scrubbing starts only once every frame is in memory (a thin bar shows progress meanwhile) */
-        var bar = document.createElement('div'); bar.className = 'scrolly__loader'; bar.innerHTML = '<span></span>';
-        if (stage) stage.appendChild(bar);
-        var got = 0;
-        var oneIn = function () {
-            got++; bar.firstChild.style.transform = 'scaleX(' + (got / n) + ')';
-            if (got === n) { allIn = true; bar.classList.add('is-done'); lastDrawn = -1; head = target; onScroll(); }
+        /* stream coarse to fine: frame 0, then every 16th frame (the whole story in ~10 files),
+           then every 8th, 4th, 2nd and the rest, so the animation is scrubbable almost at once */
+        var order = [0], seen = { 0: true };
+        [16, 8, 4, 2, 1].forEach(function (st) { for (var j = 0; j < n; j += st) if (!seen[j]) { seen[j] = true; order.push(j); } if (!seen[n - 1]) { seen[n - 1] = true; order.push(n - 1); } });
+        var landed = function (i) {
+            var img = frames[i];
+            if (window.createImageBitmap && img.naturalWidth && Math.abs(i - Math.round(Math.max(head, 0))) <= bmWin && !img._bm) {
+                img._bmPending = true;
+                createImageBitmap(img).then(function (bm) { img._bmPending = false; img._bm = bm; lastDrawn = ''; draw(Math.max(head, 0)); }, function () { img._bmPending = false; });
+            }
+            lastDrawn = ''; draw(Math.max(head, 0));
         };
         render();   /* place the layer stack right away, before any frame has arrived */
-        loadInto(frames, tpl.replace('{i}', pad3(0)), 0, function () {
-            render(); oneIn();
-            var k = 1;
-            var next = function () { if (k < n) { var i = k++; loadInto(frames, tpl.replace('{i}', pad3(i)), i, function () { oneIn(); next(); }); } };
-            for (var c = 0; c < 8; c++) next();   /* eight parallel loaders */
-        });
+        var k = 0;
+        var next = function () { if (k < order.length) { var i = order[k++]; loadInto(frames, tpl.replace('{i}', pad3(i)), i, function () { if (i === 0) render(); landed(i); next(); }); } };
+        loadInto(frames, tpl.replace('{i}', pad3(0)), 0, function () { render(); landed(0); k = 1; for (var c = 0; c < 6; c++) next(); });
         /* eased playhead: follows the scroll position smoothly instead of jumping frame to frame */
         var tick = function () {
             render();
