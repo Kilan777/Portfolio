@@ -7,3 +7,6 @@
 Thumbs.db
 *.log
 node_modules/
+
+# Plaintext source for password-locked pages (never commit; see tools/lock_page.py)
+private/

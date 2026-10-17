@@ -36,6 +36,16 @@ python3 tools/optimize_media.py        # needs Pillow; ffmpeg only for GIFs
 
 It rewrites the `src` references for you and deletes the originals from the working tree (they stay in git history).
 
+## Password-locked pages
+
+`experience/autopallet.html` is under NDA. Its plaintext source and photos live in `private/` (gitignored, only on this machine). Edit `private/autopallet.html`, put media in `private/autopallet/` and reference it as `../private/autopallet/<file>`, then build:
+
+```
+python3 tools/lock_page.py private/autopallet.html experience/autopallet.html   # asks for the password
+```
+
+Everything between `<!-- lock:start -->` and `<!-- lock:end -->` is encrypted (AES-GCM, PBKDF2 key) and decrypted in the browser by `lock.js`; media becomes opaque `.bin` files in `experience/autopallet-enc/`. Never run `optimize_media.py` on `private/`, and never commit it.
+
 ## Design rules
 
 - Quiet and plain: warm off-white page (`--bg`), near-black text, slate-blue headings and buttons (`--accent`), hairlines instead of boxes.

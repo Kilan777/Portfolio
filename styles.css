@@ -683,6 +683,8 @@ a.tile:hover .tile__media img { transform: scale(1.03); }
 .media-row--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .media-row--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .media-row .media { margin: 0; }
+.media-row > .video { align-self: start; }
+.media-row > .video--portrait { max-width: none; margin: 0; }
 .media-row .media__frame { aspect-ratio: 4 / 3; }
 .media-row .media__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .media-row .media__frame--contain img { object-fit: contain; padding: 14px; }
@@ -1099,6 +1101,40 @@ a.card:hover .card__overlay, a.card:focus-visible .card__overlay { opacity: 1; }
 .widget__note { padding: 12px 16px; font-size: 14px; color: var(--text-3); border-top: 1px solid var(--line); }
 [hidden] { display: none !important; }
 .widget__body canvas { touch-action: none; }
+
+/* --------------------------------------------------------------------------
+   Password lock (NDA pages, see lock.js)
+   -------------------------------------------------------------------------- */
+.lock {
+    max-width: 640px;
+    margin: clamp(8px, 2vw, 24px) auto clamp(56px, 8vw, 104px);
+    padding: clamp(28px, 5vw, 48px) clamp(20px, 5vw, 48px) clamp(16px, 3vw, 28px);
+    text-align: center;
+    background: var(--tile);
+    border-radius: var(--radius);
+}
+.lock__icon { width: 36px; height: 36px; margin: 0 auto 16px; color: var(--accent); }
+.lock__title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
+.lock__text { margin-top: 8px; font-size: 16px; color: var(--text-2); text-wrap: pretty; }
+.lock__form { display: flex; gap: 10px; max-width: 420px; margin: 24px auto 0; }
+.lock__form input {
+    flex: 1; min-width: 0;
+    min-height: 44px;
+    padding: 0 14px;
+    font: inherit; font-size: 16px;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+}
+.lock__form input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+.lock__form .btn[disabled] { opacity: 0.6; cursor: progress; }
+.lock__error { min-height: 1.4em; margin-top: 12px; font-size: 14px; color: var(--warn); }
+.lock.is-wrong .lock__form { animation: lock-shake 0.35s var(--ease); }
+@keyframes lock-shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@media (max-width: 480px) { .lock__form { flex-direction: column; } }
 
 /* --------------------------------------------------------------------------
    Motion polish
