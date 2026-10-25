@@ -687,6 +687,7 @@ a.tile:hover .tile__media img { transform: scale(1.03); }
 .media-row > .video--portrait { max-width: none; margin: 0; }
 .media-row .media__frame { aspect-ratio: 4 / 3; }
 .media-row .media__frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.media-row .media__frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .media-row .media__frame--contain img { object-fit: contain; padding: 14px; }
 .media-row .media__frame--contain { padding: 0; }
 .media-row .media__frame--tall { aspect-ratio: 3 / 4; }

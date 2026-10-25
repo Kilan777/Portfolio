@@ -60,34 +60,112 @@
             });
     };
 
-    /* media is fetched and decrypted only as it nears the viewport */
-    var decryptMedia = function (key, scope) {
-        var els = scope.querySelectorAll('[data-enc]');
-        if (!('IntersectionObserver' in window)) { els.forEach(function (el) { decryptOne(key, el); }); return; }
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-                if (!e.isIntersecting) return;
-                io.unobserve(e.target);
-                decryptOne(key, e.target);
-            });
-        }, { rootMargin: '1200px 0px' });
-        els.forEach(function (el) { io.observe(el); });
+    /* Media is fetched and decrypted only as it nears the viewport, at most
+       four files at a time so what is on screen comes first. Images carry a
+       small (data-enc) and, when it differs, a large (data-enc-lg) file; the
+       large one is used when the image is shown wide, and for the lightbox.
+       Videos show their small poster early and fetch the clip when close. */
+    var queue = [], active = 0, MAX_ACTIVE = 4;
+    var pump = function () {
+        while (active < MAX_ACTIVE && queue.length) {
+            var job = queue.shift();
+            active++;
+            job().then(done, done);
+        }
+    };
+    var done = function () { active--; pump(); };
+    var enqueue = function (job, urgent) {
+        return new Promise(function (resolve, reject) {
+            var run = function () { return job().then(resolve, reject); };
+            if (urgent) queue.unshift(run); else queue.push(run);
+            pump();
+        });
     };
 
-    var decryptOne = function (key, el) {
-        fetch(el.getAttribute('data-enc'))
+    var blobUrl = function (key, url, type) {
+        return fetch(url)
             .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
             .then(function (buf) {
                 return crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(buf, 0, 12) }, key, new Uint8Array(buf, 12));
             })
-            .then(function (pt) {
-                el.src = URL.createObjectURL(new Blob([pt], { type: el.getAttribute('data-type') || '' }));
-                if (el.tagName === 'VIDEO' && el.hasAttribute('autoplay')) {
-                    var p = el.play();
-                    if (p && p.catch) p.catch(function () {});
+            .then(function (pt) { return URL.createObjectURL(new Blob([pt], { type: type || '' })); });
+    };
+
+    var wantsLarge = function (el) {
+        var w = el.getBoundingClientRect().width || (el.parentNode && el.parentNode.getBoundingClientRect().width) || 0;
+        return w * Math.min(window.devicePixelRatio || 1, 2) > 760;
+    };
+
+    var loadImage = function (key, el) {
+        var lg = el.getAttribute('data-enc-lg');
+        var url = lg && wantsLarge(el) ? lg : el.getAttribute('data-enc');
+        if (url === lg) el.removeAttribute('data-enc-lg');
+        return enqueue(function () {
+            return blobUrl(key, url, el.getAttribute('data-type')).then(function (src) { el.src = src; });
+        }).catch(function () { el.classList.add('is-loaded'); });
+    };
+
+    /* lightbox: swap in the large file once it is decrypted */
+    var upgradeImage = function (key, el) {
+        var lg = el.getAttribute('data-enc-lg');
+        if (!lg) return;
+        el.removeAttribute('data-enc-lg');
+        var small = el.src;
+        enqueue(function () { return blobUrl(key, lg, el.getAttribute('data-type')); }, true).then(function (src) {
+            el.src = src;
+            var open = document.querySelector('.lightbox.is-open img');
+            if (open && open.src === small) open.src = src;
+        }, function () {});
+    };
+
+    var loadPoster = function (key, el) {
+        var p = el.getAttribute('data-poster-enc');
+        if (!p) return;
+        enqueue(function () {
+            return blobUrl(key, p, 'image/webp').then(function (src) { if (!el.src) el.poster = src; });
+        }).catch(function () {});
+    };
+
+    var loadVideo = function (key, el) {
+        return enqueue(function () {
+            return blobUrl(key, el.getAttribute('data-enc'), el.getAttribute('data-type')).then(function (src) {
+                el.src = src;
+                if (el.hasAttribute('autoplay')) {
+                    var r = el.getBoundingClientRect();
+                    if (r.bottom > 0 && r.top < window.innerHeight) {
+                        var p = el.play();
+                        if (p && p.catch) p.catch(function () {});
+                    }
                 }
-            })
-            .catch(function () { el.classList.add('is-loaded'); });
+            });
+        }).catch(function () {});
+    };
+
+    var decryptMedia = function (key, scope) {
+        var imgs = scope.querySelectorAll('img[data-enc]');
+        var vids = scope.querySelectorAll('video[data-enc]');
+        imgs.forEach(function (el) {
+            el.addEventListener('click', function () { upgradeImage(key, el); });
+            el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') upgradeImage(key, el); });
+        });
+        if (!('IntersectionObserver' in window)) {
+            imgs.forEach(function (el) { loadImage(key, el); });
+            vids.forEach(function (el) { loadVideo(key, el); });
+            return;
+        }
+        var watch = function (els, margin, fn) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    io.unobserve(e.target);
+                    fn(key, e.target);
+                });
+            }, { rootMargin: margin });
+            els.forEach(function (el) { io.observe(el); });
+        };
+        watch(imgs, '900px 0px', loadImage);
+        watch(vids, '1200px 0px', loadPoster);
+        watch(vids, '300px 0px', loadVideo);
     };
 
     var reveal = function (key, html) {

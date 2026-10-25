@@ -13,6 +13,16 @@ the private folder are converted (images to WebP, videos to H.264 MP4), encrypte
 into <output dir>/<page>-enc/<opaque name>.bin and rewritten to data-enc, so
 neither the content nor the media can be read without the password.
 
+Images get two sizes: data-enc (720 px, for phones and small figures) and
+data-enc-lg (1600 px); lock.js picks one by rendered width and loads the large
+one for the lightbox. Videos become short silent loops (long side 960 px) with
+a small encrypted poster (data-poster-enc). Optional source attributes, all
+removed from the output:
+    data-rotate="-90"         turn clockwise by 90, 180 or -90 degrees (before cropping)
+    data-crop="x0,y0,x1,y1"   crop, as fractions of the (upright) frame
+    data-trim="start-end"     videos: seconds to keep
+    data-speed="4"            videos: play this many times faster
+
 Crypto: AES-256-GCM, key = PBKDF2-SHA256(password, salt, 600k). lock.js
 decrypts in the browser. The salt lives in private/.lock-<page>.json so the
 key, and with it the media file names, stay stable between builds: only new
@@ -27,11 +37,19 @@ from PIL import Image, ImageOps
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+try:
+    import pillow_heif
+    pillow_heif.register_heif_opener()
+except ImportError:
+    pass              # HEIC sources then need converting first
 
 ITER = 600_000
-MAX_W = 1800          # same cap as tools/optimize_media.py for content figures
-MAX_VIDEO_W = 1280
-PIPELINE = b'v1'      # bump to force every media file to be re-processed
+LG_W = 1600           # large image size, also what the lightbox shows
+SM_W = 720            # small image size, made when the source is wider than SM_MIN
+SM_MIN = 960
+VIDEO_LONG = 960      # long side of video loops
+POSTER_W = 480
+PIPELINE = b'v2'      # bump to force every media file to be re-processed
 
 IMG_EXT = {'.jpg', '.jpeg', '.png', '.webp', '.heic', '.gif', '.bmp', '.tif', '.tiff'}
 VID_EXT = {'.mp4', '.mov', '.m4v', '.webm', '.avi', '.mkv'}
@@ -65,31 +83,74 @@ def die(msg):
     sys.exit('lock_page: ' + msg)
 
 
-def convert_image(src):
-    im = Image.open(src)
-    im = ImageOps.exif_transpose(im)
+def parse_crop(value):
+    if not value:
+        return None
+    box = [float(v) for v in value.split(',')]
+    if len(box) != 4 or not (0 <= box[0] < box[2] <= 1 and 0 <= box[1] < box[3] <= 1):
+        die('bad data-crop: ' + value)
+    return box
+
+
+def parse_rotate(value):
+    if not value:
+        return 0
+    deg = int(value) % 360
+    if deg not in (90, 180, 270):
+        die('bad data-rotate: ' + value)
+    return deg
+
+
+def webp(im, width, quality):
+    if im.width > width:
+        im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, 'WEBP', quality=quality, method=6)
+    return buf.getvalue(), im.width, im.height
+
+
+def convert_image(src, crop, rotate):
+    """-> {'lg': (bytes, w, h), 'sm': (bytes, w, h) or missing}"""
+    im = ImageOps.exif_transpose(Image.open(src))
+    if rotate:
+        im = im.rotate(-rotate, expand=True)    # PIL turns counter-clockwise
     if im.mode not in ('RGB', 'RGBA'):
         im = im.convert('RGBA' if 'A' in im.getbands() else 'RGB')
-    if im.width > MAX_W:
-        im = im.resize((MAX_W, round(im.height * MAX_W / im.width)), Image.LANCZOS)
-    buf = io.BytesIO()
-    im.save(buf, 'WEBP', quality=82, method=6)
-    return buf.getvalue(), 'image/webp', im.width, im.height
+    if crop:
+        w, h = im.size
+        im = im.crop((round(crop[0] * w), round(crop[1] * h), round(crop[2] * w), round(crop[3] * h)))
+    q = 88 if src.lower().endswith('.png') else 80     # diagrams and renders stay crisp
+    out = {'lg': webp(im, LG_W, q)}
+    if im.width > SM_MIN:
+        out['sm'] = webp(im, SM_W, q)
+    return out
 
 
-def convert_video(src):
+def convert_video(src, crop, trim, speed, rotate):
+    """-> {'video': (bytes, w, h), 'poster': (bytes, w, h)}"""
     ffmpeg = shutil.which('ffmpeg') or die('ffmpeg is needed for videos')
+    pre = []
+    if trim:
+        a, b = (float(v) for v in trim.split('-'))
+        pre = ['-ss', '%.3f' % a, '-to', '%.3f' % b]
+    vf = {0: [], 90: ['transpose=1'], 180: ['transpose=1', 'transpose=1'], 270: ['transpose=2']}[rotate]
+    if crop:
+        vf.append('crop=iw*%.4f:ih*%.4f:iw*%.4f:ih*%.4f' % (crop[2] - crop[0], crop[3] - crop[1], crop[0], crop[1]))
+    if speed and float(speed) != 1:
+        vf.append('setpts=PTS/%s' % float(speed))
+    L = VIDEO_LONG
+    vf += ["scale='if(gt(iw,ih),min(%d,iw),-2)':'if(gt(iw,ih),-2,min(%d,ih))'" % (L, L), 'fps=30']
     with tempfile.TemporaryDirectory() as tmp:
         out = os.path.join(tmp, 'v.mp4')
-        subprocess.run([ffmpeg, '-loglevel', 'error', '-y', '-i', src,
-                        '-vf', f"scale='min({MAX_VIDEO_W},iw)':-2", '-c:v', 'libx264', '-preset', 'slow',
-                        '-crf', '27', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '96k',
-                        '-movflags', '+faststart', out], check=True)
-        probe = subprocess.run([ffmpeg, '-i', out], capture_output=True, text=True).stderr
-        m = re.search(r'Video:.*?(\d{2,5})x(\d{2,5})', probe)
-        w, h = (int(m.group(1)), int(m.group(2))) if m else (None, None)
+        subprocess.run([ffmpeg, '-loglevel', 'error', '-y'] + pre + ['-i', src, '-vf', ','.join(vf), '-an',
+                        '-c:v', 'libx264', '-preset', 'slow', '-crf', '28', '-profile:v', 'high',
+                        '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out], check=True)
+        png = os.path.join(tmp, 'p.png')
+        subprocess.run([ffmpeg, '-loglevel', 'error', '-y', '-i', out, '-frames:v', '1', png], check=True)
+        poster = Image.open(png).convert('RGB')
+        w, h = poster.size
         with open(out, 'rb') as f:
-            return f.read(), 'video/mp4', w, h
+            return {'video': (f.read(), w, h), 'poster': webp(poster, POSTER_W, 60)}
 
 
 def set_attr(tag, name, value):
@@ -99,6 +160,11 @@ def set_attr(tag, name, value):
     if pat.search(tag):
         return pat.sub(new, tag, count=1)
     return re.sub(r'\s*(/?>)$', new + r'\1', tag, count=1)
+
+
+def get_attr(tag, name):
+    m = re.search(r'\s%s\s*=\s*"([^"]*)"' % re.escape(name), tag)
+    return m.group(1) if m else None
 
 
 def drop_attr(tag, name):
@@ -173,21 +239,44 @@ def main():
         is_video = tag.lower().startswith('<video')
         if not is_video and ext not in IMG_EXT or is_video and ext not in VID_EXT:
             die('unsupported media type: ' + ref)
+        crop, trim, speed = get_attr(tag, 'data-crop'), get_attr(tag, 'data-trim'), get_attr(tag, 'data-speed')
+        rotate = parse_rotate(get_attr(tag, 'data-rotate'))
+        h256 = hashlib.sha256(PIPELINE + ('|%s|%s|%s|' % (crop, trim, speed)).encode()
+                              + (b'rot%d|' % rotate if rotate else b''))
         with open(path, 'rb') as f:
-            digest = hashlib.sha256(PIPELINE + f.read()).hexdigest()
-        name = hmac.new(key, digest.encode(), hashlib.sha256).hexdigest()[:24] + '.bin'
+            for block in iter(lambda: f.read(1 << 20), b''):
+                h256.update(block)
+        digest = h256.hexdigest()
         entry = media.get(digest)
-        if not entry or entry.get('name') != name or not os.path.exists(os.path.join(enc_dir, name)):
-            data, mime, w, h = convert_video(path) if is_video else convert_image(path)
-            iv = os.urandom(12)
-            with open(os.path.join(enc_dir, name), 'wb') as f:
-                f.write(iv + aes.encrypt(iv, data, None))
-            entry = {'name': name, 'type': mime, 'w': w, 'h': h, 'src': os.path.relpath(path, src_dir)}
+        if not entry or 'files' not in entry or not all(
+                os.path.exists(os.path.join(enc_dir, n)) for n in entry['files'].values()):
+            parts = (convert_video(path, parse_crop(crop), trim, speed, rotate) if is_video
+                     else convert_image(path, parse_crop(crop), rotate))
+            files = {}
+            for part, (data, w, h) in parts.items():
+                name = hmac.new(key, (digest + part).encode(), hashlib.sha256).hexdigest()[:24] + '.bin'
+                iv = os.urandom(12)
+                with open(os.path.join(enc_dir, name), 'wb') as f:
+                    f.write(iv + aes.encrypt(iv, data, None))
+                files[part] = name
+                print('  encrypted %s [%s] -> %s (%d KB)' % (ref, part, name, len(data) // 1024))
+            main_part = 'video' if is_video else 'lg'
+            entry = {'files': files, 'type': 'video/mp4' if is_video else 'image/webp',
+                     'w': parts[main_part][1], 'h': parts[main_part][2], 'src': os.path.relpath(path, src_dir)}
             media[digest] = entry
-            print('  encrypted %s -> %s/%s (%d KB)' % (ref, enc_rel, name, len(data) // 1024))
-        used.add(name)
-        tag = drop_attr(tag, 'src')
-        tag = set_attr(tag, 'data-enc', enc_rel + '/' + name)
+        files = entry['files']
+        used.update(files.values())
+        for a in ('src', 'data-crop', 'data-trim', 'data-speed', 'data-rotate'):
+            tag = drop_attr(tag, a)
+        if is_video:
+            tag = set_attr(tag, 'data-enc', enc_rel + '/' + files['video'])
+            tag = set_attr(tag, 'data-poster-enc', enc_rel + '/' + files['poster'])
+            tag = set_attr(tag, 'preload', 'none')
+        else:
+            tag = set_attr(tag, 'data-enc', enc_rel + '/' + files.get('sm', files['lg']))
+            if 'sm' in files:
+                tag = set_attr(tag, 'data-enc-lg', enc_rel + '/' + files['lg'])
+            tag = set_attr(tag, 'decoding', 'async')
         tag = set_attr(tag, 'data-type', entry['type'])
         if entry.get('w') and not re.search(r'\swidth\s*=', tag):
             tag = set_attr(tag, 'width', entry['w'])
@@ -201,7 +290,8 @@ def main():
         if fn.endswith('.bin') and fn not in used:
             os.remove(os.path.join(enc_dir, fn))
             print('  removed stale', fn)
-    cfg['media'] = {d: e for d, e in media.items() if e['name'] in used}
+    cfg['media'] = {d: e for d, e in media.items()
+                    if 'files' in e and set(e['files'].values()) <= used}
 
     iv = os.urandom(12)
     payload = json.dumps({'v': 1, 'salt': cfg['salt'], 'iter': cfg['iter'], 'iv': b64(iv),
@@ -216,6 +306,8 @@ def main():
     if not sm:
         die('no <script src="…script.js"> tag to hand over to lock.js')
     lock_src = re.sub(r'script\.js.*$', 'lock.js', sm.group(1))
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'lock.js'), 'rb') as f:
+        lock_src += '?v=' + hashlib.sha256(f.read()).hexdigest()[:8]    # new lock.js, new URL
     out = out.replace(sm.group(0), '<script src="%s" data-main="%s"></script>' % (lock_src, sm.group(1)))
 
     if re.search(r'private/', out):
