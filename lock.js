@@ -8,6 +8,9 @@
    videos inside it carry data-enc="file.bin" (12-byte IV + ciphertext) and data-type,
    and are decrypted to blob URLs.
 
+   Anything with class="lock-teaser" is a public summary and is hidden once
+   the page is unlocked.
+
    script.js is loaded only once the page is settled, so its reveal / lightbox /
    video hooks see the unlocked content. Unlocking saves the key for the tab
    (sessionStorage) and reloads, so the page comes up unlocked from the start. */
@@ -214,8 +217,14 @@
     var saved = store.get();
     if (!saved) { showLock(); return; }
     root.style.visibility = 'hidden';   /* no flash of the lock box while the saved key decrypts */
+    document.documentElement.classList.add('is-unlocking');   /* nor of the public summary (.lock-teaser) */
     crypto.subtle.importKey('raw', b64(saved), { name: 'AES-GCM' }, false, ['decrypt'])
         .then(function (key) { return decryptText(key).then(function (html) { reveal(key, html); }); })
         .then(loadMain)
-        .catch(function () { store.clear(); root.style.visibility = ''; showLock(); });
+        .catch(function () {
+            store.clear();
+            root.style.visibility = '';
+            document.documentElement.classList.remove('is-unlocking');
+            showLock();
+        });
 })();

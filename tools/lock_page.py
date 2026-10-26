@@ -8,6 +8,12 @@ The source is a normal page written as if it lived next to the output (so
 Everything between <!-- lock:start --> and <!-- lock:end --> is encrypted;
 the rest of the page (nav, hero, footer) stays public.
 
+Images outside the locked region that point into the private folder are shown
+to everyone, so they are written unencrypted (WebP, metadata stripped) into
+<output dir>/<page>-public/ with a 720/1600 px srcset. Give them a sizes=""
+attribute for their rendered width. Elements with class="lock-teaser" are
+hidden once the page is unlocked, for a public summary the full page repeats.
+
 Inside the locked region, <img src> and <video src> pointing at files inside
 the private folder are converted (images to WebP, videos to H.264 MP4), encrypted one file each
 into <output dir>/<page>-enc/<opaque name>.bin and rewritten to data-enc, so
@@ -224,29 +230,40 @@ def main():
     used = set()
     media = cfg.setdefault('media', {})
 
-    def process(match):
-        tag = match.group(0)
+    def source_path(tag):
+        """-> (src as written, file path) for media inside the private folder, else None"""
         sm = re.search(r'\ssrc\s*=\s*"([^"]+)"', tag)
         if not sm or re.match(r'(https?:)?//|data:', sm.group(1)):
-            return tag
+            return None
         ref = sm.group(1)
         path = os.path.normpath(os.path.join(src_dir, ref))
         if not path.startswith(src_dir + os.sep):
-            return tag    # already-public files (../Pics/…) stay as they are
+            return None    # already-public files (../Pics/…) stay as they are
         if not os.path.isfile(path):
             die('missing media file: %s (from %s)' % (ref, src_path))
+        return ref, path
+
+    def digest_of(path, crop, trim, speed, rotate):
+        h256 = hashlib.sha256(PIPELINE + ('|%s|%s|%s|' % (crop, trim, speed)).encode()
+                              + (b'rot%d|' % rotate if rotate else b''))
+        with open(path, 'rb') as f:
+            for block in iter(lambda: f.read(1 << 20), b''):
+                h256.update(block)
+        return h256.hexdigest()
+
+    def process(match):
+        tag = match.group(0)
+        found = source_path(tag)
+        if not found:
+            return tag
+        ref, path = found
         ext = os.path.splitext(path)[1].lower()
         is_video = tag.lower().startswith('<video')
         if not is_video and ext not in IMG_EXT or is_video and ext not in VID_EXT:
             die('unsupported media type: ' + ref)
         crop, trim, speed = get_attr(tag, 'data-crop'), get_attr(tag, 'data-trim'), get_attr(tag, 'data-speed')
         rotate = parse_rotate(get_attr(tag, 'data-rotate'))
-        h256 = hashlib.sha256(PIPELINE + ('|%s|%s|%s|' % (crop, trim, speed)).encode()
-                              + (b'rot%d|' % rotate if rotate else b''))
-        with open(path, 'rb') as f:
-            for block in iter(lambda: f.read(1 << 20), b''):
-                h256.update(block)
-        digest = h256.hexdigest()
+        digest = digest_of(path, crop, trim, speed, rotate)
         entry = media.get(digest)
         if not entry or 'files' not in entry or not all(
                 os.path.exists(os.path.join(enc_dir, n)) for n in entry['files'].values()):
@@ -293,13 +310,64 @@ def main():
     cfg['media'] = {d: e for d, e in media.items()
                     if 'files' in e and set(e['files'].values()) <= used}
 
+    # private images outside the locked region are public: plain WebP, no metadata
+    pub_rel = page + '-public'
+    pub_dir = os.path.join(out_dir, pub_rel)
+    public = cfg.setdefault('public', {})
+    shown = set()
+
+    def publish(match):
+        tag = match.group(0)
+        found = source_path(tag)
+        if not found:
+            return tag
+        ref, path = found
+        if tag.lower().startswith('<video') or os.path.splitext(path)[1].lower() not in IMG_EXT:
+            die('only images can be shown outside the locked region: ' + ref)
+        crop, rotate = get_attr(tag, 'data-crop'), parse_rotate(get_attr(tag, 'data-rotate'))
+        digest = digest_of(path, crop, None, None, rotate)
+        entry = public.get(digest)
+        if not entry or not all(os.path.exists(os.path.join(pub_dir, n)) for n in entry['files'].values()):
+            os.makedirs(pub_dir, exist_ok=True)
+            files = {}
+            parts = convert_image(path, parse_crop(crop), rotate)
+            for part, (data, w, h) in parts.items():
+                files[part] = '%s-%s.webp' % (digest[:16], part)
+                with open(os.path.join(pub_dir, files[part]), 'wb') as f:
+                    f.write(data)
+                print('  public %s [%s] -> %s (%d KB)' % (ref, part, files[part], len(data) // 1024))
+            entry = {'files': files, 'w': parts['lg'][1], 'h': parts['lg'][2], 'src': os.path.relpath(path, src_dir)}
+            public[digest] = entry
+        files = entry['files']
+        shown.update(files.values())
+        for a in ('data-crop', 'data-rotate'):
+            tag = drop_attr(tag, a)
+        tag = set_attr(tag, 'src', pub_rel + '/' + files['lg'])
+        if 'sm' in files:
+            tag = set_attr(tag, 'srcset', '%s/%s %dw, %s/%s %dw' % (
+                pub_rel, files['sm'], SM_W, pub_rel, files['lg'], entry['w']))
+        tag = set_attr(tag, 'decoding', 'async')
+        if not re.search(r'\swidth\s*=', tag):
+            tag = set_attr(tag, 'width', entry['w'])
+            tag = set_attr(tag, 'height', entry['h'])
+        return tag
+
+    before = re.sub(r'<img\b[^>]*>', publish, source[:m.start()], flags=re.I)
+    after = re.sub(r'<img\b[^>]*>', publish, source[m.end():], flags=re.I)
+    if os.path.isdir(pub_dir):
+        for fn in os.listdir(pub_dir):
+            if fn not in shown:
+                os.remove(os.path.join(pub_dir, fn))
+                print('  removed stale public', fn)
+    cfg['public'] = {d: e for d, e in public.items() if set(e['files'].values()) <= shown}
+
     iv = os.urandom(12)
     payload = json.dumps({'v': 1, 'salt': cfg['salt'], 'iter': cfg['iter'], 'iv': b64(iv),
                           'ct': b64(aes.encrypt(iv, region.strip().encode(), None))}, separators=(',', ':'))
     box = (LOCK_BOX.replace('{title}', title.group(1) if title else DEFAULT_TITLE)
                    .replace('{text}', text.group(1) if text else DEFAULT_TEXT)
                    .replace('{payload}', payload))
-    out = source[:m.start()] + box + source[m.end():]
+    out = before + box + after
     out = re.sub(r'\s*<!--\s*(lock:title|lock:text|private:)\s.*?-->', '', out, flags=re.S)
 
     sm = re.search(r'<script src="([^"]*script\.js[^"]*)"></script>', out)
